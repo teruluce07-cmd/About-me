@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tokyo Disneyland | 夢と革新が紡いだ王国の記憶 — BGS Chronicles</title>
+<meta name="description" content="1983年のグランドオープニングから続く、日本における夢と魔法の王国の歴史。高橋政知の剛腕交渉、ワールドバザールのガラス屋根の秘密、夜空を彩る光と色彩の記録。">
+<meta name="keywords" content="東京ディズニーランド BGS, ワールドバザール 屋根, 高橋政知, 川﨑千春, ディズニー歴史, TDL 誕生秘話">
+<meta name="author" content="TERU_LUCE_">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://teruluce07-cmd.github.io/disney-bgs/bgs-tdlhistory.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://teruluce07-cmd.github.io/disney-bgs/bgs-tdlhistory.html">
+<meta property="og:title" content="Tokyo Disneyland | 夢と革新が紡いだ王国の記憶">
+<meta property="og:description" content="1983年の浦安沖から始まった魔法の物語。本物のクオリティを求めた偉人たちの細やかなこだわりを紐解くアーカイブ。">
+<meta property="og:image" content="https://teruluce07-cmd.github.io/disney-bgs/tdl-entrance-sunset.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="BGS Chronicles">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tokyo Disneyland | 夢と革新が紡いだ王国の記憶">
+<meta name="twitter:description" content="1983年の浦安沖から始まった魔法 of 物語。本物のクオリティを求めた偉人たちの細やかなこだわりを紐解くアーカイブ。">
+<meta name="twitter:image" content="https://teruluce07-cmd.github.io/disney-bgs/tdl-entrance-sunset.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tokyo Disneyland — 夢と革新が紡いだ王国の記憶",
+  "description": "1983年のグランドオープニングから始まる「東京ディズニーランド」の誕生秘話と、本物のクオリティを追求した先駆者たちの足跡。",
+  "inLanguage": "ja",
+  "author": { "@type": "Person", "name": "TERU_LUCE_" },
+  "publisher": { "@type": "Person", "name": "TERU_LUCE_" },
+  "url": "https://teruluce07-cmd.github.io/disney-bgs/bgs-tdlhistory.html"
+}
+</script>
+
+<link rel="preload" href="tdl-entrance-sunset.jpg" as="image" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── CSS カスタムプロパティ（スクロール連動でJSが書き換える） ─── */
+:root {
+  /* ベースカラー（ニュートラル） */
+  --c-bg:       #EDF3F9;
+  --c-surface:  #FAFCFF;
+  --c-border:   rgba(60, 90, 120, 0.14);
+  --c-border2:  rgba(60, 90, 120, 0.32);
+  --c-text:     #1E2830;
+  --c-muted:    #52606D;
+
+  /* セクションごとに滑らかに変化するアクセント */
+  --accent-h:   210;          /* 色相 (Hue) */
+  --accent-s:   48%;          /* 彩度 */
+  --accent-l:   44%;          /* 明度 */
+  --accent-pale-l: 92%;       /* 淡い背景用明度 */
+  --accent-mid-l:  75%;       /* ミッドトーン */
+
+  /* 算出色（var同士の演算はCSS hsl()で） */
+  --accent:       hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --accent-pale:  hsl(var(--accent-h), 40%, var(--accent-pale-l));
+  --accent-mid:   hsl(var(--accent-h), 44%, var(--accent-mid-l));
+  --accent-dark:  hsl(var(--accent-h), 50%, 30%);
+
+  --gold:   #C9922A;
+  --gold-pale: #FBF2E2;
+
+  --content-max: 900px;
+  --pad: clamp(16px, 4vw, 56px);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body {
+  overflow-x: hidden;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  line-height: 1.95;
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── 背景：静的テクスチャ ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -2;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(80,110,140,.01) 2px, rgba(80,110,140,.01) 3px),
+    radial-gradient(ellipse 140% 80% at 15% 25%, rgba(210,230,250,.45) 0%, transparent 58%),
+    radial-gradient(ellipse 110% 65% at 85% 75%, rgba(200,220,240,.35) 0%, transparent 52%),
+    #E8F0F8;
+  transition: background 0.8s ease;
+}
+
+/* ─── セクション背景オーバーレイ（色相変化を受ける） ─── */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(ellipse 120% 60% at 50% 40%, var(--accent-pale) 0%, transparent 65%);
+  opacity: 0.45;
+  transition: background 1.2s ease;
+  pointer-events: none;
+}
+
+/* ─── コンテナ ─── */
+.wrap {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: clamp(28px,5vw,72px) var(--pad) clamp(60px,8vw,120px);
+}
+
+/* ─── リンク ─── */
+a { color: var(--accent-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: .62rem;
+  letter-spacing: .25em;
+  color: var(--c-muted);
+  border: 1px solid var(--c-border);
+  padding: 7px 16px;
+  margin-bottom: 36px;
+  transition: color .2s, border-color .2s, background .2s;
+  background: rgba(255,255,255,.7);
+}
+.back-btn:hover {
+  color: var(--accent-dark);
+  border-color: var(--accent-mid);
+  background: var(--accent-pale);
+  text-decoration: none;
+}
+
+/* ─── サイトロゴ ─── */
+.site-logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.site-logo a { text-decoration: none; }
+.logo-sub {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: .58rem;
+  letter-spacing: .5em;
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  transition: color 1.2s ease;
+}
+.logo-main {
+  display: block;
+  font-family: 'Alex Brush', cursive;
+  font-size: 2.2rem;
+  color: var(--c-text);
+  line-height: 1;
+}
+
+/* ─── ページヘッダー ─── */
+.page-header {
+  text-align: center;
+  padding: 16px 0 36px;
+  margin-bottom: 44px;
+  border-bottom: 1px solid var(--c-border);
+  position: relative;
+}
+
+/* エンブレム */
+.emblem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 78px; height: 78px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  margin-bottom: 20px;
+  background: var(--gold-pale);
+  position: relative;
+}
+.emblem::before {
+  content: '';
+  position: absolute; inset: 4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(201, 146, 42, .4);
+}
+.emblem-word {
+  font-family: 'Cinzel', serif;
+  font-size: .55rem;
+  letter-spacing: .15em;
+  color: var(--gold);
+  font-weight: 600;
+}
+.emblem-sub {
+  font-family: 'Cinzel', serif;
+  font-size: .38rem;
+  letter-spacing: .06em;
+  color: rgba(201,146,42,.7);
+  margin-top: 2px;
+}
+
+.page-eyebrow {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: .58rem;
+  letter-spacing: .45em;
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  transition: color 1.2s ease;
+}
+.page-title {
+  font-family: 'Alex Brush', cursive;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--c-text);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.page-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .85rem;
+  color: var(--accent-dark);
+  letter-spacing: .07em;
+  transition: color 1.2s ease;
+}
+
+/* ─── 仕切り ─── */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 44px 0;
+  user-select: none;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-mid), transparent);
+  transition: background 1.2s ease;
+}
+.divider .sun {
+  font-size: 1.3rem;
+  color: var(--gold);
+  animation: spin-sun 24s linear infinite;
+  display: inline-block;
+  line-height: 1;
+}
+.divider .star { font-size: .65rem; color: var(--accent-mid); transition: color 1.2s ease; }
+@keyframes spin-sun { to { transform: rotate(360deg); } }
+
+/* ─── 目次 ─── */
+.toc {
+  background: rgba(255,255,255,.88);
+  border: 1px solid var(--accent-mid);
+  border-left: 4px solid var(--accent);
+  padding: 28px 28px 24px;
+  margin-bottom: 52px;
+  transition: border-color 1.2s ease;
+}
+.toc-title {
+  font-family: 'Cinzel', serif;
+  font-size: .72rem;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: .3em;
+  font-weight: 600;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--c-border2);
+  transition: color 1.2s ease;
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--c-border);
+}
+.toc-list li:last-child { border-bottom: none; }
+.toc-list li span {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--c-text);
+  flex: 1;
+}
+.toc-list a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .72rem;
+  color: var(--accent-dark);
+  letter-spacing: .07em;
+  font-weight: 600;
+  border: 1px solid var(--c-border2);
+  padding: 4px 13px;
+  background: var(--accent-pale);
+  white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.toc-list a:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ─── セクション ─── */
+.section { margin-bottom: 72px; }
+
+.section-heading {
+  font-family: 'Cinzel', serif;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: .13em;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: color 1.2s ease;
+}
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent-mid), transparent);
+  transition: background 1.2s ease;
+}
+
+.section p {
+  font-size: .82rem;
+  font-weight: 300;
+  color: var(--c-text);
+  line-height: 2.1;
+  margin-bottom: 22px;
+  text-align: justify;
+}
+
+.sub-heading {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .83rem;
+  font-weight: 500;
+  padding-left: 11px;
+  margin: 30px 0 12px;
+  border-left: 3px solid var(--accent);
+  color: var(--accent-dark);
+  transition: border-color 1.2s ease, color 1.2s ease;
+}
+
+/* ─── 引用ブロック ─── */
+.blockquote {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .78rem;
+  font-style: italic;
+  background: var(--accent-pale);
+  padding: 20px 22px;
+  border-left: 3px solid var(--gold);
+  line-height: 2.1;
+  margin-bottom: 22px;
+  transition: background 1.2s ease;
+}
+
+/* ─── 強調テキスト ─── */
+.section strong { font-weight: 500; color: var(--c-text); }
+
+/* ─── 画像フレーム ─── */
+.img-wrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  margin: 22px 0 30px;
+  background: #242C35;
+  position: relative;
+  border: 1px solid var(--c-border);
+  box-shadow: inset 0 0 0 4px rgba(60,96,128,.07);
+}
+.img-wrapper img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(.95) contrast(1.02) sepia(8%);
+  -webkit-user-select: none; user-select: none;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+}
+.img-wrapper::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(30,40,50,.18) 100%);
+  z-index: 1;
+}
+.img-wrapper.purple-frame { border-color: rgba(140,110,180,.38); }
+
+/* ─── グリッド（クリエイター） ─── */
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 28px 0;
+}
+.creator-card {
+  background: rgba(255,255,255,.86);
+  border: 1px solid var(--c-border);
+  padding: 22px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .25s, transform .25s, box-shadow .25s, background .25s;
+}
+.creator-card:hover {
+  border-color: var(--accent-mid);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(60,90,120,.08);
+  background: var(--accent-pale);
+}
+.card-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  line-height: 1.3;
+  margin-bottom: 5px;
+  transition: color 1.2s ease;
+}
+.card-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .72rem;
+  color: var(--c-text);
+  margin-bottom: 5px;
+}
+.card-role {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .65rem;
+  color: var(--c-muted);
+  letter-spacing: .04em;
+}
+
+/* ─── モーダル ─── */
+.modal-bg {
+  position: fixed; inset: 0;
+  background: rgba(16,22,30,.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .3s, visibility .3s;
+  padding: 20px;
+}
+.modal-bg.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+@supports (backdrop-filter: blur(6px)) {
+  .modal-bg { background: rgba(16,22,30,.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+}
+.modal-box {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border2);
+  max-width: 480px;
+  width: 100%;
+  padding: 36px 32px 28px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(10,15,25,.25);
+}
+.modal-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent), var(--accent-mid));
+  transition: background 1.2s ease;
+}
+.modal-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: .6rem;
+  letter-spacing: .15em;
+  color: var(--c-muted);
+  background: none;
+  border: 1px solid var(--c-border);
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color .2s, background .2s, border-color .2s;
+}
+.modal-close:hover {
+  color: var(--accent-dark);
+  background: var(--accent-pale);
+  border-color: var(--accent-mid);
+}
+.modal-name-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  line-height: 1.2;
+  margin-bottom: 4px;
+  margin-top: 8px;
+  transition: color 1.2s ease;
+}
+.modal-name-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .72rem;
+  color: var(--c-muted);
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--c-border);
+}
+.modal-desc {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .78rem;
+  font-weight: 300;
+  color: var(--c-text);
+  line-height: 2.05;
+}
+
+/* ─── フッター ─── */
+.page-footer {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--c-border);
+}
+.page-footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .72rem;
+  color: var(--c-muted);
+  margin-bottom: 4px;
+}
+
+/* ─── Reveal アニメーション ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* ─── レスポンシブ ─── */
+@media (max-width: 600px) {
+  .wrap { padding: 28px 14px 56px; }
+  .page-title { font-size: 2.4rem; }
+  .creator-grid { grid-template-columns: 1fr; gap: 10px; }
+  .toc { padding: 20px 16px; }
+  .modal-box { padding: 28px 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- サイトロゴ -->
+  <div class="site-logo reveal">
+    <a href="index.html">
+      <span class="logo-sub">Tokyo Disney Resort</span>
+      <span class="logo-main">BGS Chronicles</span>
+    </a>
+  </div>
+
+  <a href="index.html" class="back-btn reveal">← Back to Archive Portal</a>
+
+  <!-- ページヘッダー -->
+  <header class="page-header reveal">
+    <div class="emblem" aria-hidden="true">
+      <span class="emblem-word">DREAM</span>
+      <span class="emblem-sub">EST. 1983 TOKYO</span>
+    </div>
+    <span class="page-eyebrow">Kingdom Genesis Archive</span>
+    <h1 class="page-title">Tokyo Disneyland</h1>
+    <p class="page-tagline">砂上の荒野に夢の王国を築いた先駆者たちと本物への誓い</p>
+  </header>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <!-- 目次 -->
+  <nav class="toc reveal" aria-label="目次" id="toc">
+    <div class="toc-title">Archives Index</div>
+    <ul class="toc-list">
+      <li><span>I. 砂上の王国 ― 浦安の漁民たちと高橋政知の膝詰め談判</span><a href="#negotiation">Explore →</a></li>
+      <li><span>II. 「本物」への執念 ― 総事業費1,800億円の壁を越えた剛腕</span><a href="#authenticity">Explore →</a></li>
+      <li><span>III. 創生を担った偉人たち ― 日本に魔法をもたらした4人の先駆者</span><a href="#pioneers">Explore →</a></li>
+      <li><span>IV. 雨と四季のガラス屋根 ― 「ワールドバザール」にのみ宿る気候の美学</span><a href="#worldbazaar">Explore →</a></li>
+      <li><span>V. 光と色彩が繋ぐ航路 ― 世代を超えて進化するエンターテインメントの歴史</span><a href="#entertainment">Explore →</a></li>
+    </ul>
+  </nav>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <!-- I. 砂上の王国 -->
+  <section class="section reveal" id="negotiation" data-palette="green">
+    <h2 class="section-heading">I. Muddy Ground to Holy Land — 砂上の王国と伝説の膝詰め談判</h2>
+
+    <p>
+      現在の千葉県浦安市舞浜。世界でも屈指の美しさと完成度を誇るディズニーリゾートが広がるこの場所は、1960年代初頭まで、海苔や貝類の養殖で生計を立てる血気盛んな漁師たちの広大な海でした。住民の7割近くが漁民であったこの「漁師の街」に、海を埋め立てて巨大レジャーランドを誘致するという大構想が持ち上がったところから、王国の歴史は動き出します。
+    </p>
+
+    <h3 class="sub-heading">漁民交渉と高橋政知の凄まじき人間力</h3>
+    <p>
+      当時、水質汚染の影響などで揺れていた漁民たちは、当然ながら生活の糧である漁業権を手放すことに猛烈に反対していました。この最大の難関を乗り越えるべく、オリエンタルランドの交渉役（後に2代目社長）として白羽の矢が立ったのが、高橋政知（まさとも）でした。
+    </p>
+    <p>
+      高橋の交渉術は、冷徹な利害計算などではなく、腹を割った熱い血の通うものでした。彼は浦安の町に深く入り込み、漁民たちと連日連夜にわたって大酒を酌み交わしました。料亭に組合の幹部たちを招き、人としての絶対的な信頼関係を築き上げていったのです。この剛腕かつ温かい膝詰め談判により、数年はかかると目されていた漁業補償交渉は、1961年の交渉開始からわずか半年余りという異例の早さで妥結への一歩を踏み出すことになりました。
+    </p>
+
+    <div class="img-wrapper">
+      <img src="tdl-entrance-sunset.jpg" alt="東京ディズニーランド エントランスから臨むシンデレラ城と夕景" loading="lazy" decoding="async">
+    </div>
+
+    <h3 class="sub-heading">海の記憶から夢の地平へ</h3>
+    <p>
+      埋め立て事業はその後順調に進行し、かつての遠浅の海は、世界に誇るディズニーランド建設のための静かな砂のキャンバスへと姿を変えました。私たちが現在、何気なく踏みしめるエントランスの赤レンガや美しい並木道（上の画像）は、かつての漁民たちの決断と、高橋政知の圧倒的な人間力がなければ、決して生まれることのなかった奇跡の地平なのです。
+    </p>
+  </section>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <!-- II. 本物への執念 -->
+  <section class="section reveal" id="authenticity" data-palette="gold">
+    <h2 class="section-heading">II. Devotion to Authenticity — 「本物」への執念と膨らむ熱情</h2>
+
+    <p>
+      米国のディズニー社との度重なるタフな交渉を経て、1980年12月、ついに東京ディズニーランドの建設工事が着工しました。しかし、そこからがもう一つの戦いの始まりでした。
+    </p>
+
+    <h3 class="sub-heading">「いくら金がかかってもいい、本物を作れ」</h3>
+    <p>
+      当初、総事業費は1,000億円程度で見込まれていました。しかし、日本に本物の夢の世界をもたらすために「妥協なきディズニー・クオリティ」を徹底的に追求していった結果、事業費はみるみるうちに跳ね上がり、最終的には1,800億円（現在の価値に換算すればさらに巨額）にまで膨れ上がったのです。
+    </p>
+    <p>
+      資金難に頭を抱える周囲を前に、高橋政知は現場のスタッフたちにただこう言い放ちました。
+    </p>
+
+    <div class="blockquote">
+      「いくら金がかかってもいい。とにかく『本物』を作れ。本物を作れば、客は必ずついてくる」
+    </div>
+
+    <p>
+      プラスチックのイミテーションではなく、実際の樹木を植え、壁紙の一枚に至るまで米国のオリジナルと同じ技法を駆使して塗り固める。「偽物」を徹底的に排除したこのウォルト・ディズニーの哲学を完璧に引き継ぐ熱情こそが、のちに開業初年度から1,000万人を超えるゲストを動員する熱狂を生み出すことになりました。
+    </p>
+
+    <h3 class="sub-heading">1983年4月15日の雨音</h3>
+    <p>
+      そして迎えた開園当日。あいにくの雨模様でしたが、高橋たちが創り上げた王国のゲートが静かに開かれました。雨の中に鳴り響くマーチングバンドの音とゲストの歓声が、20年以上の歳月をかけて誘致にすべてを捧げた男たちの情熱を祝福したのです。
+    </p>
+  </section>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <!-- III. 創生を担った偉人たち -->
+  <section class="section reveal" id="pioneers" data-palette="blue">
+    <h2 class="section-heading">III. Pioneers of Dream — 砂上に魔法をかけた4人の創生者</h2>
+
+    <p>
+      海を越え、国境を越え、日本に世界初の海外ディズニーランドを創生した先駆者たち。各肖像をタップすることで、彼らが王国の誕生に果たした情熱とこだわりを覗くことができます。
+    </p>
+
+    <div class="creator-grid" role="list">
+      <div class="creator-card" role="listitem" tabindex="0" data-member="chiharu" aria-label="川﨑千春の詳細を表示">
+        <div class="card-en">Chiharu Kawasaki</div>
+        <div class="card-ja">川﨑千春</div>
+        <div class="card-role">オリエンタルランド初代社長 / 誘致発案者</div>
+      </div>
+      <div class="creator-card" role="listitem" tabindex="0" data-member="masatomo" aria-label="高橋政知の詳細を表示">
+        <div class="card-en">Masatomo Takahashi</div>
+        <div class="card-ja">高橋政知</div>
+        <div class="card-role">オリエンタルランド2代目社長 / 交渉執行役</div>
+      </div>
+      <div class="creator-card" role="listitem" tabindex="0" data-member="walt" aria-label="ウォルト・ディズニーの詳細を表示">
+        <div class="card-en">Walt Disney</div>
+        <div class="card-ja">ウォルト・ディズニー</div>
+        <div class="card-role">ディズニー創設者 / 永遠の哲学の源流</div>
+      </div>
+      <div class="creator-card" role="listitem" tabindex="0" data-member="cardon" aria-label="E. カードン・ウォーカーの詳細を表示">
+        <div class="card-en">E. Cardon Walker</div>
+        <div class="card-ja">E. カードン・ウォーカー</div>
+        <div class="card-role">米ウォルト・ディズニー・プロダクション社長</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <!-- IV. ワールドバザール -->
+  <section class="section reveal" id="worldbazaar" data-palette="pink">
+    <h2 class="section-heading">IV. Covered Street — 雨と四季が創り出した「ワールドバザール」の秘密</h2>
+
+    <p>
+      東京ディズニーランドのゲートをくぐり、誰もが最初に足を踏み入れるヴィクトリア様式の美しい街並み。世界各国のディズニーパークではこのエリアを「メインストリートU.S.A.」と呼びますが、東京にのみ**「ワールドバザール（World Bazaar）」**という特別な名称が付けられています。
+    </p>
+    <p>
+      20世紀初頭のアメリカの温かい木造建築を再現しながらも、なぜ東京だけがその「ストリート」の名称を廃したのでしょうか。そこには、日本の美しき「四季」と、時折訪れる過酷な「雨」に対応するための、イマジニアたちの精緻な設計の工夫がありました。
+    </p>
+
+    <div class="img-wrapper">
+      <img src="tdl-castle-ribbon.jpg" alt="ワールドバザールからデコレーション越しに望むシンデレラ城の景観" loading="lazy" decoding="async">
+    </div>
+
+    <h3 class="sub-heading">ガラスの屋根：オールウェザーカバー</h3>
+    <p>
+      最大の特徴は、エリア全体を包み込む巨大なガラスの屋根、通称「オールウェザーカバー」です。梅雨や台風、秋雨、冬の冷たい北風など、雨の多い日本特有の気候からゲストを守り、いつでも快適にショッピングや散策を楽しめるようにするために設計されました。
+    </p>
+    <p>
+      この巨大な天蓋で覆われたことで、エリアは「通り（ストリート）」という屋外空間から、ひとつの巨大な「屋根付き市場（バザール）」のような没入感のある屋内構造へと変化しました。そのため、米ディズニー社とオリエンタルランドは議論を重ね、「ワールドバザール」というオリジナルのテーマランド名へと変更したのです。
+    </p>
+    <h3 class="sub-heading">遠近法が紡ぐシンデレラ城への距離感</h3>
+    <p>
+      ワールドバザールを歩く際、シンデレラ城へ向かうにつれて「通りの幅」が徐々に狭くなっていることに気づくでしょうか。これもイマジニアが仕掛けた遠近法のトリック（強制遠近法）です。エントランスから見るとシンデレラ城は実際よりも遠く、より壮大に見え、逆に帰り道にお城側からエントランスを振り返ると、出口が近く感じられるように設計されています。さらに、建物の1階から2階、3階へと上がるにつれて、窓や装飾のサイズをあえて小さくすることで、建物自体の高さを視覚的に強調する工夫もなされています。
+    </p>
+  </section>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <!-- V. 光と色彩が繋ぐ航路 -->
+  <section class="section reveal" id="entertainment" data-palette="purple">
+    <h2 class="section-heading">V. Dynamic Lights — 光と色彩が紡ぐエンターテインメントの進化</h2>
+
+    <p>
+      1983年の誕生から現在に至るまで、東京ディズニーランドは「永遠に完成しない」というウォルト・ディズニーの約束を忠実に守り続けてきました。そしてその進化が最も華やかに体現されているのが、日々パークの道を塗り変えるエンターテインメント、すなわちパレードの変遷です。
+    </p>
+
+    <div class="img-wrapper">
+      <img src="tdl-rainbow-dancer.jpg" alt="レインボーカラーの華やかなパレードダンサー" loading="lazy" decoding="async">
+    </div>
+
+    <h3 class="sub-heading">祝祭の色彩：ハーモニー・イン・カラー</h3>
+    <p>
+      近年、パークの昼を彩るパレードとして多くのゲストを魅了している「ディズニー・ハーモニー・イン・カラー」（上の画像）。このパレードは、まさに「色鮮やかな調和（ハーモニー）」をテーマにしています。ダンサーたちの衣装に見られる、一切の隔たりのない「虹色のグラデーション」は、多様な個性が重なり合い、共に新しい未来を描いていくという現代のディズニーが誇る平和のメッセージそのものです。
+    </p>
+
+    <div class="img-wrapper purple-frame">
+      <img src="tdl-ep-chipdale.jpg" alt="エレクトリカルパレードのフロート上でポーズをとるチップとデール" loading="lazy" decoding="async">
+    </div>
+
+    <h3 class="sub-heading">漆黒の夜空を照らす「エレクトリカルパレード・ドリームライツ」</h3>
+    <p>
+      そして、1985年の「東京ディズニーランド・エレクトリカルパレード」の導入から続く夜の魔法（下の画像）。暗闇に包まれた王国に、何百万個もの最先端LEDライトが灯り、チップとデールが煌びやかな船型のフロートから星空の向こうを指し示すあの瞬間、ゲストの心には世代を超えた確固たる光が灯り続けています。
+    </p>
+    <p>
+      夕暮れのセンチメンタルな余韻から、光と色彩の調和、部署や星々を越えて響き合う「宇宙的な友情」が幸福に融け合い、時空を超えた文化の架け橋が今日も静かに流れています。この美しいストーリーラインは、砂上の海辺から夢の帝国を創り上げた偉人たちの情熱が、今も生き生きとこの地に呼吸し続けている証なのです。
+    </p>
+  </section>
+
+  <div class="divider reveal" aria-hidden="true">
+    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
+  </div>
+
+  <footer class="page-footer reveal">
+    <p>&copy; 2026 TERU_LUCE_ — BGS Chronicles</p>
+    <p style="font-size:.6rem; opacity:.6; margin-top:4px;">&copy; 1983–2026 Tokyo Disney Resort. All Archives Reserved.</p>
+    <a href="index.html" class="back-btn" style="margin-top:24px; margin-bottom:0;">← Back to Archive Portal</a>
+  </footer>
+
+</div><!-- /wrap -->
+
+<!-- モーダル -->
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalNameEn">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="閉じる">✕ Close</button>
+    <div class="modal-name-en" id="modalNameEn"></div>
+    <div class="modal-name-ja" id="modalNameJa"></div>
+    <p class="modal-desc" id="modalDesc"></p>
+  </div>
+</div>
+
+<svg style="position:absolute;width:0;height:0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="paper-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
+      <feColorMatrix type="saturate" values="0" in="n" result="g"/>
+      <feBlend in="SourceGraphic" in2="g" mode="multiply" result="b"/>
+      <feComposite in="b" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<script>
+/* ─── クリエイターデータ ─── */
+const members = {
+  chiharu: {
+    en: "Chiharu Kawasaki",
+    ja: "川﨑千春",
+    desc: "当時の京成電鉄社長であり、オリエンタルランドの初代社長を務めた人物です。浦安沖を埋め立て、日本に世界初の海外ディズニーランドを誘致することを初めて発案し、その壮大な夢の最初の一歩を刻みました。京成電鉄の苦しい経営状況を背負いながらも、三井不動産の江戸英雄と共にディズニー社との粘り強い交渉に尽力し、プロジェクトの基盤を創り上げました。"
+  },
+  masatomo: {
+    en: "Masatomo Takahashi",
+    ja: "高橋政知",
+    desc: "オリエンタルランドの2代目社長を務めた、東京ディズニーランド誕生における最大の功労者です。浦安の血気盛んな漁師たちと連日連夜にわたり膝を突き合わせて大酒を酌み交わし、信頼を勝ち取って半年で漁業補償をまとめ上げました。ディズニー社とのハードな交渉を剛腕で牽引し、「いくら金がかかってもいい、本物を作れ」という信念で、現在の世界に誇るパークのクオリティを実現させました。"
+  },
+  walt: {
+    en: "Walt Disney",
+    ja: "ウォルト・ディズニー",
+    desc: "世界で最も愛されるディズニーパークの創始者です。東京ディズニーランドの開園時にはすでにこの世を去っていましたが、彼の「この場所は、世界に想像力がある限り、永遠に完成することはない」という進歩への情熱と哲学は、海を越えた東京の地にも完璧に宿り、今なお最新の夢をゲストに見せ続けています。"
+  },
+  cardon: {
+    en: "E. Cardon Walker",
+    ja: "E. Cardon Walker",
+    desc: "1970年代から80年代にかけて、米ウォルト・ディズニー・プロダクションの社長およびCEOを務めました。高橋政知とともに「東京ディズニーランド」の正式な基本協定を結び、「海を超える想像力」を全面的にバックアップした米側の立役者です。東京のクオリティに徹底的な信頼を置き、イマジニアたちを日本に派遣して、アメリカ国外で初のテーマパークの実現に大きく貢献しました。"
+  }
+};
+
+/* ─── パレット定義（h, s, l の3値） ─── */
+const palettes = {
+  default:  { h:  36, s: 50, l: 44 },   // セレブレーションゴールド（初期）
+  green:    { h: 150, s: 30, l: 42 },   // アドベンチャーグリーン
+  gold:     { h:  36, s: 50, l: 44 },   // セレブレーションゴールド
+  blue:     { h: 210, s: 48, l: 44 },   // トワイライトブルー
+  pink:     { h: 345, s: 40, l: 50 },   // ファンタジーピンク
+  purple:   { h: 270, s: 35, l: 48 },   // エレクトリカルナイト
+};
+
+/* ─── CSS変数補間（raf利用で軽量） ─── */
+const root = document.documentElement;
+let currentPalette = { ...palettes.default };
+let targetPalette  = { ...palettes.default };
+let animFrame = null;
+let lastActivePaletteKey = 'default';
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function applyPalette(p) {
+  root.style.setProperty('--accent-h', p.h);
+  root.style.setProperty('--accent-s', p.s + '%');
+  root.style.setProperty('--accent-l', p.l + '%');
+}
+
+function animatePalette() {
+  const SPEED = 0.04;
+  currentPalette.h = lerp(currentPalette.h, targetPalette.h, SPEED);
+  currentPalette.s = lerp(currentPalette.s, targetPalette.s, SPEED);
+  currentPalette.l = lerp(currentPalette.l, targetPalette.l, SPEED);
+  applyPalette(currentPalette);
+  const diff = Math.abs(currentPalette.h - targetPalette.h) +
+               Math.abs(currentPalette.s - targetPalette.s) +
+               Math.abs(currentPalette.l - targetPalette.l);
+  if (diff > 0.08) {
+    animFrame = requestAnimationFrame(animatePalette);
+  } else {
+    currentPalette = { ...targetPalette };
+    applyPalette(currentPalette);
+    animFrame = null;
+  }
+}
+
+function setPalette(key) {
+  if (key === lastActivePaletteKey) return;
+  lastActivePaletteKey = key;
+  targetPalette = { ...palettes[key] };
+  if (animFrame) cancelAnimationFrame(animFrame);
+  animFrame = requestAnimationFrame(animatePalette);
+}
+
+/* ─── スクロール連動パレット切り替え ─── */
+const sections = document.querySelectorAll('.section[data-palette]');
+const paletteObserver = new IntersectionObserver((entries) => {
+  // 最も表示割合が高いセクションのパレットを選ぶ
+  let best = null, bestRatio = 0;
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > bestRatio) {
+      bestRatio = e.intersectionRatio;
+      best = e.target.dataset.palette;
+    }
+  });
+  if (best) setPalette(best);
+}, { threshold: [0.1, 0.3, 0.5, 0.7] });
+
+sections.forEach(s => paletteObserver.observe(s));
+
+/* ─── スクロール Reveal ─── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('active');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─── モーダル ─── */
+const modalBg   = document.getElementById('modalBg');
+const modalClose = document.getElementById('modalClose');
+
+function openModal(id) {
+  const d = members[id];
+  if (!d) return;
+  document.getElementById('modalNameEn').textContent = d.en;
+  document.getElementById('modalNameJa').textContent = d.ja;
+  document.getElementById('modalDesc').textContent = d.desc;
+  modalBg.classList.add('open');
+  modalClose.focus();
+}
+function closeModal() { modalBg.classList.remove('open'); }
+
+document.querySelectorAll('.creator-card').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.member));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal(card.dataset.member);
+    }
+  });
+});
+modalClose.addEventListener('click', closeModal);
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ─── 画像保護 ─── */
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('contextmenu', e => e.preventDefault());
+  img.addEventListener('dragstart', e => e.preventDefault());
+});
+</script>
+</body>
+</html>
