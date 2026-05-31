@@ -431,6 +431,38 @@
         .article-list.grid-mode .crest-letters { font-size: 1.8rem; }
         .article-list.grid-mode .crest-motto { font-size: 0.55rem; }
 
+        /* 追加: TDL History クレストロゴ（画像代用のHTML/CSS生成ロゴ） */
+        .tdl-crest {
+            width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle, #1a2736 0%, #0d131a 100%);
+            text-align: center; position: relative;
+        }
+        .tdl-crest-inner {
+            border: 1px solid var(--gold);
+            padding: 15px 20px; position: relative; z-index: 2;
+        }
+        .tdl-crest-inner::before {
+            content: ''; position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border: 1px solid rgba(201, 146, 42, 0.3); pointer-events: none;
+        }
+        .tdl-crest-letters {
+            display: block; font-family: 'Cinzel', serif;
+            font-size: 2.2rem; color: var(--gold);
+            line-height: 1; letter-spacing: 0.2em;
+            margin-bottom: 10px; font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+        .tdl-crest-motto {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.65rem; color: rgba(201, 146, 42, 0.7);
+            letter-spacing: 0.15em; line-height: 1.6;
+            text-transform: uppercase; font-weight: 500;
+        }
+        .article-list.grid-mode .tdl-crest-letters { font-size: 1.8rem; }
+        .article-list.grid-mode .tdl-crest-motto { font-size: 0.55rem; }
+
         .card-tag-wrapper {
             display: flex; justify-content: space-between;
             align-items: center; margin-bottom: 6px;
@@ -848,10 +880,18 @@
                     <div class="read-btn">Explore Story →</div>
                 </a>
 
-                <!-- 追加: 東京ディズニーランドの歴史ドキュメントカード（jpg拡張子） -->
+                <!-- 追加: 東京ディズニーランドの歴史ドキュメントカード（CSSロゴ生成） -->
                 <a href="bgs-tdlhistory.html" class="article-card reveal" id="tdlhistory-card" data-category="tdl">
                     <div class="img-wrapper">
-                        <img src="tdl-entrance-sunset.jpg" alt="東京ディズニーランド エントランスの夕景" width="800" height="450" loading="lazy" decoding="async">
+                        <div class="tdl-crest">
+                            <div class="tdl-crest-inner">
+                                <span class="tdl-crest-letters">T.D.L.</span>
+                                <div class="tdl-crest-motto">
+                                    THE KINGDOM OF DREAMS<br>
+                                    ESTABLISHED 1983
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-tag-wrapper"><span class="card-tag">Chronicle</span><span class="card-meta">5 min</span></div>
                     <h2>Tokyo Disneyland</h2>
@@ -886,7 +926,7 @@
                     </div>
                     <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">3 min</span></div>
                     <h2>Sindbad's Voyage</h2>
-                    <p>船乗りシンドバッドと相棒チャンドゥの航海記。エリアのリニューアルに伴う、演出と音楽の変遷史。</p>
+                    <p>船乗りシンドバッドと相棒チャンドゥ of 航海記。エリアのリニューアルに伴う、演出と音楽の変遷史。</p>
                     <div class="read-btn">Explore Story →</div>
                 </a>
 
@@ -980,7 +1020,7 @@
                     <p>職人たちの手によって、潮風にさらされた錆や、雨だれの跡が優しく描かれ、歳月とともに本物の風合いへと育っていくように設計されています。ゲストの皆様が優しく手を触れ、舞浜の潮風を浴びることで、街並みは日々『本物のアンティーク』へと育っていきます。いつでも温かく、深いぬくもりを感じられるのは、こうした目に見えないこだわりがあるからなのです。</p>
 
                     <h4>V. すべての源流へ、自然が紡ぐ「水の物語」</h4>
-                    <p>ディズニーシーの広大な世界をつなぐ、澄んだ水。実は、2024年に誕生した『ファンタジースプリングス（魔法の泉）』は、パークのすべての水の<strong>『源流』</strong>という美しい物語を持っています。</p>
+                    <p>ディズニーシーの広大な世界をつなぐ、澄んだ水。実は, 2024年に誕生した『ファンタジースプリングス（魔法の泉）』は、パークのすべての水の<strong>『源流』</strong>という美しい物語を持っています。</p>
                     <p>美しい緑に囲まれた魔法の泉から湧き出た水は、川となってジャングル（ロストリバーデルタ）の奥地を潤し、やがて未来の港（ポートディスカバリー）を経て、壮大なハーバーへと流れ込みます。この広大な自然の循環が完成したことで、パークのすべての場所が一本の美しい「水のストーリー」で結ばれることになりました。港町をそぞろ歩くとき、その水の流れに耳を澄ませてみるのも、素敵な冒険の始まりになるかもしれません。</p>
                 </div>
             </details>
