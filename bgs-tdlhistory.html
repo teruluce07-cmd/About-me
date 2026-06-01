@@ -1,967 +1,389 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tokyo Disneyland | 夢と革新が紡いだ王国の記憶 — BGS Chronicles</title>
-<meta name="description" content="1983年のグランドオープニングから続く、日本における夢と魔法の王国の歴史。高橋政知の剛腕交渉、ワールドバザールのガラス屋根の秘密、夜空を彩る光と色彩の記録。">
-<meta name="keywords" content="東京ディズニーランド BGS, ワールドバザール 屋根, 高橋政知, 川﨑千春, ディズニー歴史, TDL 誕生秘話">
-<meta name="author" content="TERU_LUCE_">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://teruluce07-cmd.github.io/disney-bgs/bgs-tdlhistory.html">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://teruluce07-cmd.github.io/disney-bgs/bgs-tdlhistory.html">
-<meta property="og:title" content="Tokyo Disneyland | 夢と革新が紡いだ王国の記憶">
-<meta property="og:description" content="1983年の浦安沖から始まった魔法の物語。本物のクオリティを求めた偉人たちの細やかなこだわりを紐解くアーカイブ。">
-<meta property="og:image" content="https://teruluce07-cmd.github.io/disney-bgs/tdl-entrance-sunset.jpg">
-<meta property="og:locale" content="ja_JP">
-<meta property="og:site_name" content="BGS Chronicles">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tokyo Disneyland | 夢と革新が紡いだ王国の記憶">
-<meta name="twitter:description" content="1983年の浦安沖から始まった魔法 of 物語。本物のクオリティを求めた偉人たちの細やかなこだわりを紐解くアーカイブ。">
-<meta name="twitter:image" content="https://teruluce07-cmd.github.io/disney-bgs/tdl-entrance-sunset.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGS Deep Report: Cinderella Castle | teru_luce_</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-parchment: #F6F1E5; /* 落ち着いたアンティーク調の生成り */
+            --bg-blend: #DFD5BE; /* 年月を経た書籍のインナーカバー */
+            --text-main: #332924; /* 深いセピア・チャコールブラウン */
+            --accent-gold: #967C52; /* 古びた渋いブロンズゴールド */
+            --border-gold: rgba(150, 124, 82, 0.25);
+            --card-bg: rgba(255, 254, 251, 0.95);
+        }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Tokyo Disneyland — 夢と革新が紡いだ王国の記憶",
-  "description": "1983年のグランドオープニングから始まる「東京ディズニーランド」の誕生秘話と、本物のクオリティを追求した先駆者たちの足跡。",
-  "inLanguage": "ja",
-  "author": { "@type": "Person", "name": "TERU_LUCE_" },
-  "publisher": { "@type": "Person", "name": "TERU_LUCE_" },
-  "url": "https://teruluce07-cmd.github.io/disney-bgs/bgs-tdlhistory.html"
-}
-</script>
+        img { 
+            max-width: 100% !important; 
+            height: auto; 
+            display: block; 
+            /* 画像の長押し・右クリック・ドラッグによる保存を防ぐスタイル */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: none;
+        }
 
-<link rel="preload" href="tdl-entrance-sunset.jpg" as="image" fetchpriority="high">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
-/* ─── CSS カスタムプロパティ（スクロール連動でJSが書き換える） ─── */
-:root {
-  /* ベースカラー（ニュートラル） */
-  --c-bg:       #EDF3F9;
-  --c-surface:  #FAFCFF;
-  --c-border:   rgba(60, 90, 120, 0.14);
-  --c-border2:  rgba(60, 90, 120, 0.32);
-  --c-text:     #1E2830;
-  --c-muted:    #52606D;
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background-color: var(--bg-parchment);
+            background-image: radial-gradient(circle at 50% 30%, var(--bg-parchment) 30%, var(--bg-blend) 120%);
+            background-size: cover; 
+            background-attachment: fixed;
+            color: var(--text-main); 
+            line-height: 2.2; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  /* セクションごとに滑らかに変化するアクセント */
-  --accent-h:   210;          /* 色相 (Hue) */
-  --accent-s:   48%;          /* 彩度 */
-  --accent-l:   44%;          /* 明度 */
-  --accent-pale-l: 92%;       /* 淡い背景用明度 */
-  --accent-mid-l:  75%;       /* ミッドトーン */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
 
-  /* 算出色（var同士の演算はCSS hsl()で） */
-  --accent:       hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-  --accent-pale:  hsl(var(--accent-h), 40%, var(--accent-pale-l));
-  --accent-mid:   hsl(var(--accent-h), 44%, var(--accent-mid-l));
-  --accent-dark:  hsl(var(--accent-h), 50%, 30%);
+        .container { 
+            position: relative; z-index: 10;
+            max-width: 650px; 
+            margin: 60px auto; 
+            padding: 80px 40px 120px; 
+            background: var(--card-bg); 
+            border-radius: 4px; 
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 30px 70px rgba(51, 41, 36, 0.12);
+        }
 
-  --gold:   #C9922A;
-  --gold-pale: #FBF2E2;
+        /* 古い洋書のデボス装飾枠 */
+        .container::after {
+            content: "";
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid rgba(150, 124, 82, 0.15);
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 1px dashed rgba(150, 124, 82, 0.12);
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-  --content-max: 900px;
-  --pad: clamp(16px, 4vw, 56px);
-}
+        /* 初期ロード用アニメーション（ヘッダー・目次・1枚目用） */
+        .fade-in-load {
+            opacity: 0;
+            transform: translate3d(0, 15px, 0);
+            animation: fadeInLoad 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .fade-in-load-delayed-1 {
+            opacity: 0;
+            transform: translate3d(0, 15px, 0);
+            animation: fadeInLoad 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s forwards;
+        }
+        .fade-in-load-delayed-2 {
+            opacity: 0;
+            transform: translate3d(0, 15px, 0);
+            animation: fadeInLoad 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
+        }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-html, body {
-  overflow-x: hidden;
-  background: var(--c-bg);
-  color: var(--c-text);
-  font-family: 'Noto Serif JP', serif;
-  font-size: 14px;
-  line-height: 1.95;
-  letter-spacing: 0.03em;
-  -webkit-font-smoothing: antialiased;
-}
+        @keyframes fadeInLoad {
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
 
-/* ─── 背景：静的テクスチャ ─── */
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: -2;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(80,110,140,.01) 2px, rgba(80,110,140,.01) 3px),
-    radial-gradient(ellipse 140% 80% at 15% 25%, rgba(210,230,250,.45) 0%, transparent 58%),
-    radial-gradient(ellipse 110% 65% at 85% 75%, rgba(200,220,240,.35) 0%, transparent 52%),
-    #E8F0F8;
-  transition: background 0.8s ease;
-}
+        /* スクロールリビール（2枚目以降の要素用） */
+        .reveal {
+            opacity: 0; transform: translate3d(0, 30px, 0); will-change: transform, opacity;
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translate3d(0, 0, 0); }
 
-/* ─── セクション背景オーバーレイ（色相変化を受ける） ─── */
-body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: -1;
-  background: radial-gradient(ellipse 120% 60% at 50% 40%, var(--accent-pale) 0%, transparent 65%);
-  opacity: 0.45;
-  transition: background 1.2s ease;
-  pointer-events: none;
-}
+        .back-btn {
+            display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
+            color: var(--accent-gold); text-decoration: none; text-transform: uppercase; margin-bottom: 40px;
+            border-bottom: 1px solid transparent; transition: color 0.3s;
+        }
+        .back-btn:hover { border-color: var(--accent-gold); }
 
-/* ─── コンテナ ─── */
-.wrap {
-  width: 100%;
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: clamp(28px,5vw,72px) var(--pad) clamp(60px,8vw,120px);
-}
+        .header-section { text-align: center; margin-bottom: 50px; border-bottom: 1px solid var(--border-gold); padding-bottom: 40px; }
+        .bgs-tag { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--accent-gold); text-transform: uppercase; }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 400; margin: 15px 0 20px; letter-spacing: 0.05em; color: var(--text-main); }
+        .subtitle-jp { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.15em; opacity: 0.95; }
 
-/* ─── リンク ─── */
-a { color: var(--accent-dark); text-decoration: none; }
-a:hover { text-decoration: underline; }
+        .toc-box { background: rgba(150, 124, 82, 0.02); border: 1px dashed var(--border-gold); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
+        .toc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--accent-gold); text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { border-bottom: 1px dashed rgba(150, 124, 82, 0.15); padding: 12px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
+        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.85; }
+        .toc-list a:hover { color: var(--accent-gold); }
 
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: 'Cinzel', serif;
-  font-size: .62rem;
-  letter-spacing: .25em;
-  color: var(--c-muted);
-  border: 1px solid var(--c-border);
-  padding: 7px 16px;
-  margin-bottom: 36px;
-  transition: color .2s, border-color .2s, background .2s;
-  background: rgba(255,255,255,.7);
-}
-.back-btn:hover {
-  color: var(--accent-dark);
-  border-color: var(--accent-mid);
-  background: var(--accent-pale);
-  text-decoration: none;
-}
+        .article-block { margin-bottom: 40px; text-align: justify; }
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; font-style: italic; color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; }
+        h2::after { content: "✦"; font-size: 0.7rem; color: var(--accent-gold); margin-left: 15px; opacity: 0.6; }
+        p { font-size: 0.9rem; font-weight: 300; margin-bottom: 20px; opacity: 0.9; }
 
-/* ─── サイトロゴ ─── */
-.site-logo {
-  text-align: center;
-  margin-bottom: 10px;
-}
-.site-logo a { text-decoration: none; }
-.logo-sub {
-  display: block;
-  font-family: 'Cinzel', serif;
-  font-size: .58rem;
-  letter-spacing: .5em;
-  color: var(--accent);
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  transition: color 1.2s ease;
-}
-.logo-main {
-  display: block;
-  font-family: 'Alex Brush', cursive;
-  font-size: 2.2rem;
-  color: var(--c-text);
-  line-height: 1;
-}
+        .hero-img-container { 
+            margin: 50px auto; 
+            padding: 12px; 
+            background: #FAF8F5; 
+            border-radius: 1px; 
+            box-shadow: 0 15px 35px rgba(51, 41, 36, 0.08); 
+            border: 1px solid rgba(150, 124, 82, 0.15);
+            transform: rotate(-1deg);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s;
+        }
+        .hero-img-container:nth-of-type(even) {
+            transform: rotate(1deg);
+        }
+        .hero-img-container:hover {
+            transform: scale(1.03) rotate(0deg); 
+            box-shadow: 0 25px 50px rgba(51, 41, 36, 0.15); 
+        }
+        .hero-img { 
+            width: 100%; height: auto; display: block; 
+            border-radius: 1px;
+            filter: sepia(0.08) brightness(0.97) contrast(1.01); 
+        }
 
-/* ─── ページヘッダー ─── */
-.page-header {
-  text-align: center;
-  padding: 16px 0 36px;
-  margin-bottom: 44px;
-  border-bottom: 1px solid var(--c-border);
-  position: relative;
-}
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 40px 0; font-size: 0.8rem;
+            border-top: 2px solid var(--accent-gold); border-bottom: 2px solid var(--accent-gold);
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 12px 14px; text-align: left; border-bottom: 1px dashed rgba(150, 124, 82, 0.15);
+        }
+        .comparison-table th {
+            font-family: 'Montserrat', sans-serif; color: var(--accent-gold); letter-spacing: 0.1em; font-size: 0.75rem;
+        }
 
-/* エンブレム */
-.emblem {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 78px; height: 78px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  margin-bottom: 20px;
-  background: var(--gold-pale);
-  position: relative;
-}
-.emblem::before {
-  content: '';
-  position: absolute; inset: 4px;
-  border-radius: 50%;
-  border: 1px dashed rgba(201, 146, 42, .4);
-}
-.emblem-word {
-  font-family: 'Cinzel', serif;
-  font-size: .55rem;
-  letter-spacing: .15em;
-  color: var(--gold);
-  font-weight: 600;
-}
-.emblem-sub {
-  font-family: 'Cinzel', serif;
-  font-size: .38rem;
-  letter-spacing: .06em;
-  color: rgba(201,146,42,.7);
-  margin-top: 2px;
-}
+        /* 本のしおりや古い羊皮紙を思わせる上品なカード */
+        .connection-card { 
+            background: rgba(246, 241, 229, 0.6); 
+            border-left: 2px solid var(--accent-gold); 
+            border-top: 1px solid var(--border-gold);
+            border-bottom: 1px solid var(--border-gold);
+            border-right: 1px solid var(--border-gold);
+            padding: 30px; 
+            border-radius: 4px; 
+            margin: 40px 0; 
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(150, 124, 82, 0.05);
+        }
+        .connection-card::before {
+            content: "✦";
+            position: absolute;
+            top: 15px; right: 15px;
+            font-size: 1.2rem;
+            color: rgba(150, 124, 82, 0.2);
+        }
+        .connection-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; }
+        .connection-card p { font-size: 0.85rem; line-height: 2; margin-bottom: 0; }
 
-.page-eyebrow {
-  display: block;
-  font-family: 'Cinzel', serif;
-  font-size: .58rem;
-  letter-spacing: .45em;
-  color: var(--accent);
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  transition: color 1.2s ease;
-}
-.page-title {
-  font-family: 'Alex Brush', cursive;
-  font-size: 3.2rem;
-  font-weight: 400;
-  color: var(--c-text);
-  line-height: 1.1;
-  margin-bottom: 10px;
-}
-.page-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: .85rem;
-  color: var(--accent-dark);
-  letter-spacing: .07em;
-  transition: color 1.2s ease;
-}
-
-/* ─── 仕切り ─── */
-.divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin: 44px 0;
-  user-select: none;
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--accent-mid), transparent);
-  transition: background 1.2s ease;
-}
-.divider .sun {
-  font-size: 1.3rem;
-  color: var(--gold);
-  animation: spin-sun 24s linear infinite;
-  display: inline-block;
-  line-height: 1;
-}
-.divider .star { font-size: .65rem; color: var(--accent-mid); transition: color 1.2s ease; }
-@keyframes spin-sun { to { transform: rotate(360deg); } }
-
-/* ─── 目次 ─── */
-.toc {
-  background: rgba(255,255,255,.88);
-  border: 1px solid var(--accent-mid);
-  border-left: 4px solid var(--accent);
-  padding: 28px 28px 24px;
-  margin-bottom: 52px;
-  transition: border-color 1.2s ease;
-}
-.toc-title {
-  font-family: 'Cinzel', serif;
-  font-size: .72rem;
-  color: var(--accent);
-  text-align: center;
-  margin-bottom: 20px;
-  letter-spacing: .3em;
-  font-weight: 600;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed var(--c-border2);
-  transition: color 1.2s ease;
-}
-.toc-list { list-style: none; }
-.toc-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--c-border);
-}
-.toc-list li:last-child { border-bottom: none; }
-.toc-list li span {
-  font-family: 'Noto Serif JP', serif;
-  font-size: .78rem;
-  font-weight: 400;
-  color: var(--c-text);
-  flex: 1;
-}
-.toc-list a {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: .72rem;
-  color: var(--accent-dark);
-  letter-spacing: .07em;
-  font-weight: 600;
-  border: 1px solid var(--c-border2);
-  padding: 4px 13px;
-  background: var(--accent-pale);
-  white-space: nowrap;
-  transition: background .2s, color .2s, border-color .2s;
-}
-.toc-list a:hover {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-  text-decoration: none;
-}
-
-/* ─── セクション ─── */
-.section { margin-bottom: 72px; }
-
-.section-heading {
-  font-family: 'Cinzel', serif;
-  font-size: .88rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: .13em;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  transition: color 1.2s ease;
-}
-.section-heading::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--accent-mid), transparent);
-  transition: background 1.2s ease;
-}
-
-.section p {
-  font-size: .82rem;
-  font-weight: 300;
-  color: var(--c-text);
-  line-height: 2.1;
-  margin-bottom: 22px;
-  text-align: justify;
-}
-
-.sub-heading {
-  font-family: 'Noto Serif JP', serif;
-  font-size: .83rem;
-  font-weight: 500;
-  padding-left: 11px;
-  margin: 30px 0 12px;
-  border-left: 3px solid var(--accent);
-  color: var(--accent-dark);
-  transition: border-color 1.2s ease, color 1.2s ease;
-}
-
-/* ─── 引用ブロック ─── */
-.blockquote {
-  font-family: 'Noto Serif JP', serif;
-  font-size: .78rem;
-  font-style: italic;
-  background: var(--accent-pale);
-  padding: 20px 22px;
-  border-left: 3px solid var(--gold);
-  line-height: 2.1;
-  margin-bottom: 22px;
-  transition: background 1.2s ease;
-}
-
-/* ─── 強調テキスト ─── */
-.section strong { font-weight: 500; color: var(--c-text); }
-
-/* ─── 画像フレーム（縦横比の見切れ調整用） ─── */
-.img-wrapper {
-  width: 100%;
-  overflow: hidden;
-  margin: 22px 0 30px;
-  background: #242C35;
-  position: relative;
-  border: 1px solid var(--c-border);
-  box-shadow: inset 0 0 0 4px rgba(60,96,128,.07);
-}
-.img-wrapper.landscape-frame {
-  aspect-ratio: 16/9; /* 横長写真はそのまま16:9で表示 */
-}
-.img-wrapper.portrait-frame {
-  aspect-ratio: 3/4; /* 縦長写真の美しさをそのまま活かす縦長比率 */
-  max-width: 480px;  /* 画面いっぱいに縦に広がりすぎないように最大幅を制限 */
-  margin-left: auto;
-  margin-right: auto;
-}
-.img-wrapper img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(.95) contrast(1.02) sepia(8%);
-  -webkit-user-select: none; user-select: none;
-  pointer-events: none;
-  -webkit-touch-callout: none;
-}
-.img-wrapper::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(30,40,50,.18) 100%);
-  z-index: 1;
-}
-.img-wrapper.purple-frame { border-color: rgba(140,110,180,.38); }
-
-/* ─── グリッド（クリエイター） ─── */
-.creator-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin: 28px 0;
-}
-.creator-card {
-  background: rgba(255,255,255,.86);
-  border: 1px solid var(--c-border);
-  padding: 22px 16px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color .25s, transform .25s, box-shadow .25s, background .25s;
-}
-.creator-card:hover {
-  border-color: var(--accent-mid);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(60,90,120,.08);
-  background: var(--accent-pale);
-}
-.card-en {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: .95rem;
-  font-weight: 600;
-  color: var(--accent-dark);
-  line-height: 1.3;
-  margin-bottom: 5px;
-  transition: color 1.2s ease;
-}
-.card-ja {
-  font-family: 'Noto Serif JP', serif;
-  font-size: .72rem;
-  color: var(--c-text);
-  margin-bottom: 5px;
-}
-.card-role {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: .65rem;
-  color: var(--c-muted);
-  letter-spacing: .04em;
-}
-
-/* ─── モーダル ─── */
-.modal-bg {
-  position: fixed; inset: 0;
-  background: rgba(16,22,30,.55);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity .3s, visibility .3s;
-  padding: 20px;
-}
-.modal-bg.open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-@supports (backdrop-filter: blur(6px)) {
-  .modal-bg { background: rgba(16,22,30,.35); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-}
-.modal-box {
-  background: var(--c-surface);
-  border: 1px solid var(--c-border2);
-  max-width: 480px;
-  width: 100%;
-  padding: 36px 32px 28px;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(10,15,25,.25);
-}
-.modal-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(to right, var(--accent), var(--accent-mid));
-  transition: background 1.2s ease;
-}
-.modal-close {
-  position: absolute;
-  top: 14px; right: 16px;
-  font-family: 'Cinzel', serif;
-  font-size: .6rem;
-  letter-spacing: .15em;
-  color: var(--c-muted);
-  background: none;
-  border: 1px solid var(--c-border);
-  padding: 5px 12px;
-  cursor: pointer;
-  transition: color .2s, background .2s, border-color .2s;
-}
-.modal-close:hover {
-  color: var(--accent-dark);
-  background: var(--accent-pale);
-  border-color: var(--accent-mid);
-}
-.modal-name-en {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--accent-dark);
-  line-height: 1.2;
-  margin-bottom: 4px;
-  margin-top: 8px;
-  transition: color 1.2s ease;
-}
-.modal-name-ja {
-  font-family: 'Noto Serif JP', serif;
-  font-size: .72rem;
-  color: var(--c-muted);
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--c-border);
-}
-.modal-desc {
-  font-family: 'Noto Serif JP', serif;
-  font-size: .78rem;
-  font-weight: 300;
-  color: var(--c-text);
-  line-height: 2.05;
-}
-
-/* ─── フッター ─── */
-.page-footer {
-  text-align: center;
-  padding-top: 40px;
-  border-top: 1px solid var(--c-border);
-}
-.page-footer p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: .72rem;
-  color: var(--c-muted);
-  margin-bottom: 4px;
-}
-
-/* ─── Reveal アニメーション ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-/* ─── レスポンシブ ─── */
-@media (max-width: 600px) {
-  .wrap { padding: 28px 14px 56px; }
-  .page-title { font-size: 2.4rem; }
-  .creator-grid { grid-template-columns: 1fr; gap: 10px; }
-  .toc { padding: 20px 16px; }
-  .modal-box { padding: 28px 20px 24px; }
-}
-</style>
+        .footer-link { text-align: center; margin-top: 80px; }
+        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-gold); padding-bottom: 5px; }
+    </style>
 </head>
 <body>
 
-<div class="wrap">
+    <div class="noise-overlay"></div>
 
-  <!-- サイトロゴ -->
-  <div class="site-logo reveal">
-    <a href="index.html">
-      <span class="logo-sub">Tokyo Disney Resort</span>
-      <span class="logo-main">BGS Chronicles</span>
-    </a>
-  </div>
+    <div class="container">
+        <a href="index.html" class="back-btn">← Back to Portal</a>
 
-  <a href="index.html" class="back-btn reveal">← Back to Archive Portal</a>
+        <!-- 初期ロード用のクラスを付与 -->
+        <header class="header-section fade-in-load">
+            <div class="bgs-tag">Background Story</div>
+            <h1>Cinderella Castle</h1>
+            <div class="subtitle-jp">時を刻む魔法と、青き尖塔 of the fantasy</div>
+        </header>
 
-  <!-- ページヘッダー -->
-  <header class="page-header reveal">
-    <div class="emblem" aria-hidden="true">
-      <span class="emblem-word">DREAM</span>
-      <span class="emblem-sub">EST. 1983 TOKYO</span>
-    </div>
-    <span class="page-eyebrow">Kingdom Genesis Archive</span>
-    <h1 class="page-title">Tokyo Disneyland</h1>
-    <p class="page-tagline">砂上の荒野に夢の王国を築いた先駆者たちと本物への誓い</p>
-  </header>
+        <!-- 目次：初期ロード遅延用のクラスを付与 -->
+        <nav class="toc-box fade-in-load-delayed-1">
+            <div class="toc-title">Index</div>
+            <ul class="toc-list">
+                <li><span>I. 夢が現実になる場所（プロローグ）</span><a href="#prologue">Read →</a></li>
+                <li><span>II. 絵本の世界へ誘う色彩と「優しい配慮」</span><a href="#history">Read →</a></li>
+                <li><span>III. 「空を近くする」視覚の魔法</span><a href="#architecture">Read →</a></li>
+                <li><span>IV. 夜が魅せる、色とりどりのドレスアップ</span><a href="#night-dress">Read →</a></li>
+                <li><span>V. お城の中に隠された、秘密の回廊と光のドーム</span><a href="#inside-castle">Read →</a></li>
+                <li><span>VI. 世界のディズニー城 徹底比較</span><a href="#comparison">Read →</a></li>
+                <li><span>VII. 堀を泳ぐカルガモと、お城が起こす小さな奇跡</span><a href="#trivia">Read →</a></li>
+            </ul>
+        </nav>
 
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
+        <!-- 1枚目の画像：初期ロード遅延2用のクラスを付与し、即時表示されるように設計 -->
+        <div class="hero-img-container fade-in-load-delayed-2">
+            <img src="cinderella-castle-sunny.jpg" alt="Cinderella Castle on a Sunny Day" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-  <!-- 目次 -->
-  <nav class="toc reveal" aria-label="目次" id="toc">
-    <div class="toc-title">Archives Index</div>
-    <ul class="toc-list">
-      <li><span>I. 砂上の王国 ― 浦安の漁民たちと高橋政知の膝詰め談判</span><a href="#negotiation">Explore →</a></li>
-      <li><span>II. 「本物」への執念 ― 総事業費1,800億円の壁を越えた剛腕</span><a href="#authenticity">Explore →</a></li>
-      <li><span>III. 創生を担った偉人たち ― 日本に魔法をもたらした4人の先駆者</span><a href="#pioneers">Explore →</a></li>
-      <li><span>IV. 雨と四季のガラス屋根 ― 「ワールドバザール」にのみ宿る気候の美学</span><a href="#worldbazaar">Explore →</a></li>
-      <li><span>V. 光と色彩が繋ぐ航路 ― 世代を超えて進化するエンターテインメントの歴史</span><a href="#entertainment">Explore →</a></li>
-    </ul>
-  </nav>
+        <!-- I. プロローグ -->
+        <section class="article-block reveal" id="prologue">
+            <h2>I. 夢が現実になる場所</h2>
+            <p>ワールドバザールを抜け、どこまでも続く青空のもと、前方にそびえ立つ美しい「シンデレラ城」。一歩一歩近づくごとに、日常の騒がしさは遥か遠くへ消え去り、きらめく童話の世界に迎え入れられます。</p>
+            <p>このお城には、単なるランドマークとしての枠を超えた、イマジニアたちの細やかな「おもてなしの魔法」が散りばめられています。お城を見上げたときの高揚感、城門をくぐり抜けるときのどこか特別な空気。それらすべてが、私たちを物語の主人公へと優しく仕立て上げてくれます。</p>
+        </section>
 
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
+        <!-- 2枚目：手前の城壁塔とお城 -->
+        <div class="hero-img-container reveal">
+            <img src="cinderella-tower-front.jpg" alt="Castle Turret View" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-  <!-- I. 砂上の王国 -->
-  <section class="section reveal" id="negotiation" data-palette="green">
-    <h2 class="section-heading">I. Muddy Ground to Holy Land — 砂上の王国と伝説の膝詰め談判</h2>
+        <!-- II. 絵本の世界へ誘う色彩と「優しい配慮」 -->
+        <section class="article-block reveal" id="history">
+            <h2>II. 絵本の世界へ誘う色彩と「優しい配慮」</h2>
+            <p>お城を近くから眺めてみると、手前の重厚な城壁の石造りから、天に伸びる塔へ向かうにつれて優しく明るいクリーム色へとグラデーションが施されているのがわかります。この色彩は、東京の柔らかな光のもとで最も美しく輝き、温かみと高揚感をゲストに与えるように何度も計算して選ばれました。</p>
+            <p>また、これまでに実施された大規模な改修工事では、お城を覆う工事用シートに実物そっくりのシンデレラ城が描かれていました。パークを訪れたすべてのゲストの夢や思い出を、一瞬たりとも壊したくないというイマジニアたちによる「見えない優しさ」が、この美しいお城には息づいているのです。</p>
 
-    <p>
-      現在の千葉県浦安市舞浜。世界でも屈指の美しさと完成度を誇るディズニーリゾートが広がるこの場所は、1960年代初頭まで、海苔や貝類の養殖で生計を立てる血気盛んな漁師たちの広大な海でした。住民の7割近くが漁民であったこの「漁師の街」に、海を埋め立てて巨大レジャーランドを誘致するという大構想が持ち上がったところから、王国の歴史は動き出します。
-    </p>
+            <div class="connection-card">
+                <h4>🏰 【BGS Pick Up】レストランの夢をのせた「フェアリーテイル」</h4>
+                <p>実は開園当初、お城のなかに贅沢なレストランをオープンする計画がありました。しかし諸条件からそれは幻の計画となり、その代わりに数々の冒険を生んだ「シンデレラ城ミステリーツアー」が誕生しました。<br><br>
+                そして現在、城内は「シンデレラのフェアリーテイル・ホール」として生まれ変わり、美しいステンドグラスやシンデレラの物語を描いた数々の美術品が並ぶ、優雅なプリンセスの空間として私たちを歓迎してくれます。</p>
+            </div>
+        </section>
 
-    <h3 class="sub-heading">漁民交渉と高橋政知の凄まじき人間力</h3>
-    <p>
-      当時、水質汚染の影響などで揺れていた漁民たちは、当然ながら生活の糧である漁業権を手放すことに猛烈に反対していました。この最大の難関を乗り越えるべく、オリエンタルランドの交渉役（後に2代目社長）として白羽の矢が立ったのが、高橋政知（まさとも）でした。
-    </p>
-    <p>
-      高橋の交渉術は、冷徹な利害計算などではなく、腹を割った熱い血の通うものでした。彼は浦安の町に深く入り込み、漁民たちと連日連夜にわたって大酒を酌み交わしました。料亭に組合の幹部たちを招き、人としての絶対的な信頼関係を築き上げていったのです。この剛腕かつ温かい膝詰め談判により、交渉開始直後の1961年には（膠着していた状況から）急速に話し合いの席が設けられ、その後の約10年にわたるタフな補償交渉を経て、全面妥結へと至る偉大な一歩を踏み出すことになりました。
-    </p>
+        <!-- 3枚目：昼のプラザとお城 -->
+        <div class="hero-img-container reveal">
+            <img src="cinderella-castle-plaza.jpg" alt="Lively Palace Plaza" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-    <!-- 横長写真のため、見切れのない「landscape-frame」を指定 -->
-    <div class="img-wrapper landscape-frame">
-      <img src="tdl-entrance-sunset.jpg" alt="東京ディズニーランド エントランスから臨むシンデレラ城と夕景" loading="lazy" decoding="async">
-    </div>
+        <!-- III. 「空を近くする」視覚の魔法 -->
+        <section class="article-block reveal" id="architecture">
+            <h2>III. 「空を近くする」視覚の魔法</h2>
+            <p>プラザの広場から、ゆっくりとお城全体を見上げてみてください。実際よりも遥かに高く、まるで本当に雲に届きそうな壮大さを感じませんか？</p>
+            <p>ここには、上に行くほど窓や石垣、レンガのサイズを少しずつ小さく描いていく「強制遠近法」という視覚の魔法がかけられています。地上から見上げるゲストの瞳には、パースペクティブ（遠近感）が伸び、実際よりもはるかにスケールの大きな絵本の世界として映し出されるのです。工学的な現実を感じさせず、ただ物語としての純粋な美しさだけを伝える、イマジニアこだわりの技法です。</p>
+        </section>
 
-    <h3 class="sub-heading">海の記憶から夢の地平へ</h3>
-    <p>
-      埋め立て事業はその後順調に進行し、かつての遠浅の海は、世界に誇るディズニーランド建設のための静かな砂のキャンバスへと姿を変えました。私たちが現在、何気なく踏みしめるエントランスの赤レンガや美しい並木道（上の画像）は、かつての漁民たちの決断と、高橋政知の圧倒的な人間力がなければ、決して生まれることのなかった奇跡の地平なのです。
-    </p>
-  </section>
+        <!-- 4枚目：夕暮れの美しい水鏡リフレクション -->
+        <div class="hero-img-container reveal">
+            <img src="cinderella-castle-reflection.jpg" alt="Cinderella Castle Reflection in Moat" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
+        <!-- IV. 夜が魅せる、色とりどりのドレスアップ -->
+        <section class="article-block reveal" id="night-dress">
+            <h2>IV. 夜が魅せる、色とりどりのドレスアップ</h2>
+            <p>太陽が沈み、静かに夕闇が降りてくる頃。お城を囲むお堀の水面は、優しい光に照らされた青き尖塔をまるで鏡のように静かに映し出します。</p>
+            <p>シンデレラ城は、季節の移り変わりや節目のセレブレーションごとに、色鮮やかな光やデコレーションで華やかに着飾ります。アニバーサリーを祝う黄金の輝きや、ディズニーの夢を届けるプロジェクションマッピングなど、お城自体が一つの生きたキャンバスとなり、私たちの心に永遠に残る特別な夜をプロデュースしてくれます。</p>
+        </section>
 
-  <!-- II. 本物への執念 -->
-  <section class="section reveal" id="authenticity" data-palette="gold">
-    <h2 class="section-heading">II. Devotion to Authenticity — 「本物」への執念と膨らむ熱情</h2>
+        <!-- 5枚目：40周年夜の美しくライトアップされたシンデレラ城 -->
+        <div class="hero-img-container reveal">
+            <img src="cinderella-castle-40th-night.jpg" alt="40th Anniversary Light Up" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-    <p>
-      米国のディズニー社との度重なるタフな交渉を経て、1980年12月、ついに東京ディズニーランドの建設工事が着工しました。しかし、そこからがもう一つの戦いの始まりでした。
-    </p>
+        <!-- V. お城の中に隠された、秘密 of the castle -->
+        <section class="article-block reveal" id="inside-castle">
+            <h2>V. お城の中に隠された、秘密の回廊と光のドーム</h2>
+            <p>お城のなかへと一歩入ると、そこは外の広場とはまた違った、静粛で神秘的な空気が漂っています。</p>
+            <p>重厚な石造りのアーチに包まれた回廊のウェイティングスペース。頭上には、古い騎士たちの邸宅を思わせる、鉄細工の重厚で美しいシャンデリアが揺れています。その先に進むと、パステルブルーとゴールドの繊細な装飾で縁取られた八角形の高天井（ドーム）が現れ、まばゆいクリスタルのシャンデリアが空間全体に虹色の光の粒を優しく降らせています。そこにいるだけでプリンセスの優雅な余韻に浸れる、こだわり抜かれたロイヤルな空間デザインです。</p>
+        </section>
 
-    <h3 class="sub-heading">「いくら金がかかってもいい、本物を作れ」</h3>
-    <p>
-      当初、総事業費は1,000億円程度で見込まれていました。しかし、日本に本物の夢の世界をもたらすために「妥協なきディズニー・クオリティ」を徹底的に追求していった結果、事業費はみるみるうちに跳ね上がり、最終的には1,800億円（現在の価値に換算すればさらに巨額）にまで膨れ上がったのです。
-    </p>
-    <p>
-      資金難に頭を抱える周囲を前に、高橋政知は現場のスタッフたちにただこう言い放ちました。
-    </p>
+        <!-- 6枚目：城内のキューラインの鉄製シャンデリアとアーチ -->
+        <div class="hero-img-container reveal">
+            <img src="cinderella-inside-queue.jpg" alt="Castle Corridor Queue" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-    <div class="blockquote">
-      「いくら金がかかってもいい。とにかく『本物』を作れ。本物を作れば、客は必ずついてくる」
-    </div>
+        <!-- 7枚目：大広間の美しい八角形天井と豪華シャンデリア -->
+        <div class="hero-img-container reveal">
+            <img src="cinderella-hall-ceiling.jpg" alt="Grand Ballroom Dome Ceiling" class="hero-img" draggable="false" oncontextmenu="return false;">
+        </div>
 
-    <p>
-      プラスチックのイミテーションではなく、実際の樹木を植え、壁紙の一枚に至るまで米国のオリジナルと同じ技法を駆使して塗り固める。「偽物」を徹底的に排除したこのウォルト・ディズニーの哲学を完璧に引き継ぐ熱情こそが、のちに開業初年度から1,000万人を超えるゲストを動員する熱狂を生み出すことになりました。
-    </p>
+        <!-- VI. 世界のディズニー城 徹底比較 -->
+        <section class="article-block reveal" id="comparison">
+            <h2>VI. 世界のディズニー城 徹底比較</h2>
+            <p>世界中のディズニーパークにあるお城は、それぞれの土地や物語に合わせて、異なるコンセプトでデザインされています。建築の冷たい数字は置いておき、それぞれの「デザインコンセプト」と「見どころ」を夢あふれる視点で比較してみましょう。</p>
 
-    <h3 class="sub-heading">1983年4月15日の雨音</h3>
-    <p>
-      そして迎えた開園当日。あいにくの雨模様でしたが、高橋たちが創り上げた王国のゲートが静かに開かれました。雨の中に鳴り響くマーチングバンドの音とゲストの歓声が、20年以上の歳月をかけて誘致にすべてを捧げた男たちの情熱を祝福したのです。
-    </p>
-  </section>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>パーク＆お城の名前</th>
+                        <th>高さ</th>
+                        <th>デザインコンセプト</th>
+                        <th>夢が息づく見どころ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>東京DL</strong><br>シンデレラ城</td>
+                        <td>51 m</td>
+                        <td>青い尖塔と優しいクリームの色彩<br>映画『シンデレラ』より</td>
+                        <td>美しいガラスモザイクで描かれた物語 of the picture with wild ducks living in the moat.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>マジックキングダム</strong><br>シンデレラ城</td>
+                        <td>58 m</td>
+                        <td>童話の世界の完全なる再現<br>ディズニーファンタジーの総本山</td>
+                        <td>城内に実在する王宮レストランや、限られたゲストしか入れない「秘密のスイートルーム」の伝説。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ディズニーランド（CA）</strong><br>眠れる森の美女の城</td>
+                        <td>24 m</td>
+                        <td>初代パークの温かなシンボル<br>眠れる森の美女の物語</td>
+                        <td>ウォルトとお城を創ったイマジニアたちが手ずから築いた、低めで温かみのある佇まい。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ディズニーランド・パリ</strong><br>眠れる森の美女の城</td>
+                        <td>43 m</td>
+                        <td>ヨーロッパの城郭文化への敬意<br>ピンク色の幻想的なシルエット</td>
+                        <td>らせん状に伸びる不思議な木々と純金の箔。地下深くには「巨大なドラゴン」の棲み処。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>香港DL</strong><br>キャッスル・オブ・マジカル・ドリーム</td>
+                        <td>51 m</td>
+                        <td>12人のプリンセスたちの夢の融合</td>
+                        <td>それぞれのヒロインのモチーフがちりばめられた、形もカラーも異なる個性豊かな尖塔たち。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>上海DL</strong><br>エンチャンテッド・ストーリーブック・キャッスル</td>
+                        <td>60 m</td>
+                        <td>すべてのプリンセスの願いを象徴</td>
+                        <td>最頂部で輝くゴールデン・ピオニー（牡丹）。城内を水流が通り抜けるボートアトラクション。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
+        <!-- VII. トリビア -->
+        <section class="article-block reveal" id="trivia">
+            <h2>VII. 堀を泳ぐカルガモと、お城が起こす小さな奇跡</h2>
+            <p>お城を囲む穏やかなお堀。そこをすいすいと泳ぐ愛らしいカルガモたちを見かけたら、ぜひ優しく見守ってみてください。彼らは人工のオーディオ・アニマトロニクスではなく、居心地のよい魔法の空気に誘われていつの間にかここに住み着くようになった、本物のカルガモたちです。</p>
+            <p>お堀のほとりや、城内の大広間で聞こえる優しい笑い声。お城は、今この瞬間も、訪れるゲスト一人ひとりの「思い出」という名の魔法によって、きらきらと輝きを放ち続けています。</p>
 
-  <!-- III. 創生を担った偉人たち -->
-  <section class="section reveal" id="pioneers" data-palette="blue">
-    <h2 class="section-heading">III. Pioneers of Dream — 砂上に魔法をかけた4人の創生者</h2>
+            <div class="connection-card">
+                <h4>💙 キャストが紡ぐ、ガラスの靴のぬくもり</h4>
+                <p>「シンデレラのフェアリーテイル・ホール」のガラスの靴や玉座の前では、まいにち心温まる奇跡が生まれています。<br><br>
+                かつてここでお互いに愛を誓い、プロポーズを成功させたカップルが、数年後に嬉しそうにお子様を連れて「ただいま！」と報告に来てくれたり、ドレスを着てちょっぴり緊張している小さなプリンセスに、キャストがそっと優しくロイヤルなおもてなしを届けたり。シンデレラ城は、私たちゲストの夢を優しく抱きしめ、叶えてくれる場所なのです。</p>
+            </div>
+        </section>
 
-    <p>
-      海を越え、国境を越え、日本に世界初の海外ディズニーランドを創生した先駆者たち。各肖像をタップすることで、彼らが王国の誕生に果たした情熱とこだわりを覗くことができます。
-    </p>
-
-    <div class="creator-grid" role="list">
-      <div class="creator-card" role="listitem" tabindex="0" data-member="chiharu" aria-label="川﨑千春の詳細を表示">
-        <div class="card-en">Chiharu Kawasaki</div>
-        <div class="card-ja">川﨑千春</div>
-        <div class="card-role">オリエンタルランド初代社長 / 誘致発案者</div>
-      </div>
-      <div class="creator-card" role="listitem" tabindex="0" data-member="masatomo" aria-label="高橋政知の詳細を表示">
-        <div class="card-en">Masatomo Takahashi</div>
-        <div class="card-ja">高橋政知</div>
-        <div class="card-role">オリエンタルランド2代目社長 / 交渉執行役</div>
-      </div>
-      <div class="creator-card" role="listitem" tabindex="0" data-member="walt" aria-label="ウォルト・ディズニーの詳細を表示">
-        <div class="card-en">Walt Disney</div>
-        <div class="card-ja">ウォルト・ディズニー</div>
-        <div class="card-role">ディズニー創設者 / 永遠の哲学の源流</div>
-      </div>
-      <div class="creator-card" role="listitem" tabindex="0" data-member="cardon" aria-label="E. カードン・ウォーカーの詳細を表示">
-        <div class="card-en">E. Cardon Walker</div>
-        <div class="card-ja">E. カードン・ウォーカー</div>
-        <div class="card-role">米ウォルト・ディズニー・プロダクション社長</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
-
-  <!-- IV. ワールドバザール -->
-  <section class="section reveal" id="worldbazaar" data-palette="pink">
-    <h2 class="section-heading">IV. Covered Street — 雨と四季が創り出した「ワールドバザール」の秘密</h2>
-
-    <p>
-      東京ディズニーランドのゲートをくぐり、誰もが最初に足を踏み入れるヴィクトリア様式の美しい街並み。世界各国のディズニーパークではこのエリアを「メインストリートU.S.A.」と呼びますが、東京にのみ**「ワールドバザール（World Bazaar）」**という特別な名称が付けられています。
-    </p>
-    <p>
-      20世紀初頭のアメリカの温かい木造建築を再現しながらも、なぜ東京だけがその「ストリート」の名称を廃したのでしょうか。そこには、日本の美しき「四季」と、時折訪れる過酷な「雨」に対応するための、イマジニアたちの精緻な設計の工夫がありました。
-    </p>
-
-    <!-- 縦長写真のため、上下をカットせず本来の比率を活かす「portrait-frame」を指定 -->
-    <div class="img-wrapper portrait-frame">
-      <img src="tdl-castle-ribbon.jpg" alt="ワールドバザールからデコレーション越しに望むシンデレラ城の景観" loading="lazy" decoding="async">
-    </div>
-
-    <h3 class="sub-heading">ガラスの屋根：オールウェザーカバー</h3>
-    <p>
-      最大の特徴は、エリア全体を包み込む巨大なガラスの屋根、通称「オールウェザーカバー」です。梅雨や台風、秋雨、冬の冷たい北風など、雨の多い日本特有の気候からゲストを守り、いつでも快適にショッピングや散策を楽しめるようにするために設計されました。
-    </p>
-    <p>
-      この巨大な天蓋で覆われたことで、エリアは「通り（ストリート）」という屋外空間から、ひとつの巨大な「屋根付き市場（バザール）」のような没入感のある屋内構造へと変化しました。そのため、米ディズニー社とオリエンタルランドは議論を重ね、「ワールドバザール」というオリジナルのテーマランド名へと変更したのです。
-    </p>
-    <h3 class="sub-heading">遠近法が紡ぐシンデレラ城への距離感</h3>
-    <p>
-      ワールドバザールを歩く際、シンデレラ城へ向かうにつれて「通りの幅」が徐々に狭くなっていることに気づくでしょうか。これもイマジニアが仕掛けた遠近法のトリック（強制遠近法）です。エントランスから見るとシンデレラ城は実際よりも遠く、より壮大に見え、逆に帰り道にお城側からエントランスを振り返ると、出口が近く感じられるように設計されています。さらに、建物の1階から2階、3階へと上がるにつれて、窓や装飾のサイズをあえて小さくすることで、建物自体の高さを視覚的に強調する工夫もなされています。
-    </p>
-  </section>
-
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
-
-  <!-- V. 光と色彩が繋ぐ航路 -->
-  <section class="section reveal" id="entertainment" data-palette="purple">
-    <h2 class="section-heading">V. Dynamic Lights — 光と色彩が紡ぐエンターテインメントの進化</h2>
-
-    <p>
-      1983年の誕生から現在に至るまで、東京ディズニーランドは「永遠に完成しない」というウォルト・ディズニーの約束を忠実に守り続けてきました。そしてその進化が最も華やかに体現されているのが、日々パークの道を塗り変えるエンターテインメント、すなわちパレードの変遷です。
-    </p>
-
-    <!-- 縦長写真のため、上下をカットせず本来の比率を活かす「portrait-frame」を指定 -->
-    <div class="img-wrapper portrait-frame">
-      <img src="tdl-rainbow-dancer.jpg" alt="レインボーカラーの華やかなパレードダンサー" loading="lazy" decoding="async">
+        <div class="footer-link reveal">
+            <a href="index.html">← HOMEへ戻る</a>
+        </div>
     </div>
 
-    <h3 class="sub-heading">祝祭の色彩：ハーモニー・イン・カラー</h3>
-    <p>
-      近年、パークの昼を彩るパレードとして多くのゲストを魅了している「ディズニー・ハーモニー・イン・カラー」（上の画像）。このパレードは、まさに「色鮮やかな調和（ハーモニー）」をテーマにしています。ダンサーたちの衣装に見られる、一切の隔たりのない「虹色のグラデーション」は、多様な個性が重なり合い、共に新しい未来を描いていくという現代のディズニーが誇る平和のメッセージそのものです。
-    </p>
-
-    <!-- 縦長写真のため、上下をカットせず本来の比率を活かす「portrait-frame」を指定 -->
-    <div class="img-wrapper portrait-frame purple-frame">
-      <img src="tdl-ep-chipdale.jpg" alt="エレクトリカルパレードのフロート上でポーズをとるチップとデール" loading="lazy" decoding="async">
-    </div>
-
-    <h3 class="sub-heading">幻の光の叙事詩：「ディズニー・ファンティリュージョン！」</h3>
-    <p>
-      東京ディズニーランドの夜を象徴するエレクトリカルパレードですが、実はその光の歴史には、一時的な「休止」と、その間に夜空を焦がしたもう一つの伝説のパレードが存在しました。1995年、初代エレクトリカルパレードが多くのゲストに惜しまれながら一度その幕を閉じた後、新たにスタートしたのが『ディズニー・ファンティリュージョン！』（1995〜2001年）です。
-    </p>
-    <p>
-      ファンティリュージョンは、初代Eパレの軽快な電子音とは一線を画す、クラシックオーケストラによる重厚でドラマチックなシンフォニーが最大の特徴でした。その音楽を手掛けたのは、米国や東京の伝説的ナイトエンターテインメント『ファンタズミック！』の作曲者としても名高い、ブルース・ヒーリー（Bruce Healey）氏。重厚で、美しく、どこかミステリアスな旋律はまさに「これぞディズニー（The Disney）」と呼ぶにふさわしい、圧倒的な格調高さを湛えていました。
-    </p>
-    <p>
-      惜しくも約6年という短い期間で公演を終えてしまったため、当時を直接知らない若い世代や音楽ファンからは「一度でいいから生で体感したかった」と、その劇的なメロディを惜しむ声が今なお絶えません。しかし、闇が光に打ち勝つ壮大なストーリーと音楽の記憶は、パークの歴史に深く刻み込まれています。
-    </p>
-
-    <h3 class="sub-heading">進化を続ける「ドリームライツ」と季節の魔法</h3>
-    <p>
-      そして2001年、ファンティリュージョンの志を引き継ぎつつ、現在の「東京ディズニーランド・エレクトリカルパレード・ドリームライツ」がデビュー。最新のLED技術を駆使したこのパレードは、誕生から現在に至るまで数年おきにフロートやキャラクターの追加・リニューアルを繰り返し、常に「最新の夜の魔法」を見せ続けています。
-    </p>
-    <p>
-      さらに、冬の訪れとともに訪れるクリスマス期間には、おなじみのテーマ曲にクリスマスソングが美しく織り交ざり、キャラクターたちがサンタクロースやトナカイの特別仕様の装いを纏う「クリスマス・バージョン」が運行されます。季節ごとの温かい魔法が夜の運河を照らし、私たちの心に絶え間ない感動を届け続けているのです。
-    </p>
-    <p>
-      夕暮れのセンチメンタルな余韻から、光と色彩の調和、部署や星々を越えて響き合う「宇宙的な友情」が幸福に融け合い、時空を超えた文化の架け橋が今日も静かに流れています。この美しいストーリーラインは、砂上の海辺から夢の帝国を創り上げた偉人たちの情熱が、今も生き生きとこの地に呼吸し続けている証なのです。
-    </p>
-  </section>
-
-  <div class="divider reveal" aria-hidden="true">
-    <span class="star">✦</span><span class="sun">☼</span><span class="star">✦</span>
-  </div>
-
-  <footer class="page-footer reveal">
-    <p>&copy; 2026 TERU_LUCE_ — BGS Chronicles</p>
-    <p style="font-size:.6rem; opacity:.6; margin-top:4px;">&copy; 1983–2026 Tokyo Disney Resort. All Archives Reserved.</p>
-    <a href="index.html" class="back-btn" style="margin-top:24px; margin-bottom:0;">← Back to Archive Portal</a>
-  </footer>
-
-</div><!-- /wrap -->
-
-<!-- モーダル -->
-<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalNameEn">
-  <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="閉じる">✕ Close</button>
-    <div class="modal-name-en" id="modalNameEn"></div>
-    <div class="modal-name-ja" id="modalNameJa"></div>
-    <p class="modal-desc" id="modalDesc"></p>
-  </div>
-</div>
-
-<svg style="position:absolute;width:0;height:0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="paper-grain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/>
-      <feColorMatrix type="saturate" values="0" in="n" result="g"/>
-      <feBlend in="SourceGraphic" in2="g" mode="multiply" result="b"/>
-      <feComposite in="b" in2="SourceGraphic" operator="in"/>
-    </filter>
-  </defs>
-</svg>
-
-<script>
-/* ─── クリエイターデータ ─── */
-const members = {
-  chiharu: {
-    en: "Chiharu Kawasaki",
-    ja: "川﨑千春",
-    desc: "当時の京成電鉄社長であり、オリエンタルランドの初代社長を務めた人物です。浦安沖を埋め立て、日本に世界初の海外ディズニーランドを誘致することを初めて発案し、その壮大な夢の最初の一歩を刻みました。京成電鉄の苦しい経営状況を背負いながらも、三井不動産の江戸英雄と共にディズニー社との粘り強い交渉に尽力し、プロジェクトの基盤を創り上げました。"
-  },
-  masatomo: {
-    en: "Masatomo Takahashi",
-    ja: "高橋政知",
-    desc: "オリエンタルランドの2代目社長を務めた、東京ディズニーランド誕生における最大の功労者です。浦安の血気盛んな漁師たちと連日連夜にわたり膝を突き合わせて大酒を酌み交わし、信頼を勝ち取って半年で漁業補償をまとめ上げました。ディズニー社とのハードな交渉を剛腕で牽引し、「いくら金がかかってもいい、本物を作れ」という信念で、現在の世界に誇るパークのクオリティを実現させました。"
-  },
-  walt: {
-    en: "Walt Disney",
-    ja: "ウォルト・ディズニー",
-    desc: "世界で最も愛されるディズニーパーク of 創始者です。東京ディズニーランドの開園時にはすでにこの世を去っていましたが、彼の「この場所は、世界に想像力がある限り、永遠に完成することはない」という進歩への情熱と哲学は、海を越えた東京の地にも完璧に宿り、今なお最新の夢をゲストに見せ続けています。"
-  },
-  cardon: {
-    en: "E. Cardon Walker",
-    ja: "E. Cardon Walker",
-    desc: "1970年代から80年代にかけて、米ウォルト・ディズニー・プロダクションの社長およびCEOを務めました。高橋政知とともに「東京ディズニーランド」の正式な基本協定を結び、「海を超える想像力」を全面的にバックアップした米側の立役者です。東京のクオリティに徹底的な信頼を置き、イマジニアたちを日本に派遣して、アメリカ国外で初のテーマパークの実現に大きく貢献しました。"
-  }
-};
-
-/* ─── パレット定義（h, s, l の3値） ─── */
-const palettes = {
-  default:  { h:  36, s: 50, l: 44 },   // セレブレーションゴールド（初期）
-  green:    { h: 150, s: 30, l: 42 },   // アドベンチャーグリーン
-  gold:     { h:  36, s: 50, l: 44 },   // セレブレーションゴールド
-  blue:     { h: 210, s: 48, l: 44 },   // トワイライトブルー
-  pink:     { h: 345, s: 40, l: 50 },   // ファンタジーピンク
-  purple:   { h: 270, s: 35, l: 48 },   // エレクトリカルナイト
-};
-
-/* ─── CSS変数補間（raf利用で軽量） ─── */
-const root = document.documentElement;
-let currentPalette = { ...palettes.default };
-let targetPalette  = { ...palettes.default };
-let animFrame = null;
-let lastActivePaletteKey = 'default';
-
-function lerp(a, b, t) { return a + (b - a) * t; }
-
-function applyPalette(p) {
-  root.style.setProperty('--accent-h', p.h);
-  root.style.setProperty('--accent-s', p.s + '%');
-  root.style.setProperty('--accent-l', p.l + '%');
-}
-
-function animatePalette() {
-  const SPEED = 0.04;
-  currentPalette.h = lerp(currentPalette.h, targetPalette.h, SPEED);
-  currentPalette.s = lerp(currentPalette.s, targetPalette.s, SPEED);
-  currentPalette.l = lerp(currentPalette.l, targetPalette.l, SPEED);
-  applyPalette(currentPalette);
-  const diff = Math.abs(currentPalette.h - targetPalette.h) +
-               Math.abs(currentPalette.s - targetPalette.s) +
-               Math.abs(currentPalette.l - targetPalette.l);
-  if (diff > 0.08) {
-    animFrame = requestAnimationFrame(animatePalette);
-  } else {
-    currentPalette = { ...targetPalette };
-    applyPalette(currentPalette);
-    animFrame = null;
-  }
-}
-
-function setPalette(key) {
-  if (key === lastActivePaletteKey) return;
-  lastActivePaletteKey = key;
-  targetPalette = { ...palettes[key] };
-  if (animFrame) cancelAnimationFrame(animFrame);
-  animFrame = requestAnimationFrame(animatePalette);
-}
-
-/* ─── スクロール連動パレット切り替え ─── */
-const sections = document.querySelectorAll('.section[data-palette]');
-const paletteObserver = new IntersectionObserver((entries) => {
-  // 最も表示割合が高いセクションのパレットを選ぶ
-  let best = null, bestRatio = 0;
-  entries.forEach(e => {
-    if (e.isIntersecting && e.intersectionRatio > bestRatio) {
-      bestRatio = e.intersectionRatio;
-      best = e.target.dataset.palette;
-    }
-  });
-  if (best) setPalette(best);
-}, { threshold: [0.1, 0.3, 0.5, 0.7] });
-
-sections.forEach(s => paletteObserver.observe(s));
-
-/* ─── スクロール Reveal ─── */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('active');
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.05 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* ─── モーダル ─── */
-const modalBg   = document.getElementById('modalBg');
-const modalClose = document.getElementById('modalClose');
-
-function openModal(id) {
-  const d = members[id];
-  if (!d) return;
-  document.getElementById('modalNameEn').textContent = d.en;
-  document.getElementById('modalNameJa').textContent = d.ja;
-  document.getElementById('modalDesc').textContent = d.desc;
-  modalBg.classList.add('open');
-  modalClose.focus();
-}
-function closeModal() { modalBg.classList.remove('open'); }
-
-document.querySelectorAll('.creator-card').forEach(card => {
-  card.addEventListener('click', () => openModal(card.dataset.member));
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openModal(card.dataset.member);
-    }
-  });
-});
-modalClose.addEventListener('click', closeModal);
-modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-/* ─── 画像保護 ─── */
-document.querySelectorAll('img').forEach(img => {
-  img.addEventListener('contextmenu', e => e.preventDefault());
-  img.addEventListener('dragstart', e => e.preventDefault());
-});
-</script>
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+        reveals.forEach(reveal => revealOnScroll.observe(reveal));
+    </script>
 </body>
 </html>
