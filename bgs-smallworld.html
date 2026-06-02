@@ -40,26 +40,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ─── CSS カスタムプロパティ ─── */
+/* ─── CSS 変数（スマホ最適化カラーパレット） ─── */
 :root {
-  --c-surface:  rgba(255, 255, 255, 0.55);
-  --c-border:   rgba(201, 146, 42, 0.16);
-  --c-border2:  rgba(201, 146, 42, 0.3);
-  --c-text:     #23282D; /* 豊かなスレートチャコール */
-  --c-muted:    #555D66;
-  --accent-h:   38;
-  --accent-s:   35%;
-  --accent-l:   45%;
-  --accent-pale-l: 91.5%; /* 背景変化が美しく視認できる明度 */
-  --accent-mid-l:  74%;
-  --accent:       hsl(var(--accent-h), var(--accent-s), var(--accent-l));
-  --accent-pale:  hsl(var(--accent-h), calc(var(--accent-s) * 0.8), var(--accent-pale-l));
-  --accent-mid:   hsl(var(--accent-h), 32%, var(--accent-mid-l));
-  --accent-dark:  hsl(var(--accent-h), 40%, 28%);
-  --gold:   #C39B50; /* 伝統的なシャンパンゴールド */
+  --accent: #C39B50;
+  --accent-pale: #F9F5EE; /* シャンパンゴールド */
+  --accent-dark: #7A5F2C;
+  --accent-mid: #E8DCC4;
+  --gold: #C39B50;
   --gold-pale: #FAF3E5;
-  --content-max: 880px;
-  --pad: clamp(24px, 6vw, 60px);
+  --c-text: #23282D;
+  --c-muted: #555D66;
+  --content-max: 720px; /* スマホで最も読みやすい幅に設定 */
+  --pad: clamp(16px, 5vw, 36px);
+}
+
+/* スクロール連動：Bodyに付与されるテーマごとのカラー遷移（GPUハードウェア加速） */
+body.theme-pink {
+  --accent: #D07B8C;
+  --accent-pale: #FAF0F2; /* ソフトローズ */
+  --accent-dark: #7E3B48;
+  --accent-mid: #F2D2D9;
+}
+body.theme-blue {
+  --accent: #6C94B2;
+  --accent-pale: #EDF3F7; /* ミストブルー */
+  --accent-dark: #325066;
+  --accent-mid: #CBD9E4;
+}
+body.theme-green {
+  --accent: #5B896F;
+  --accent-pale: #EEF4F1; /* セージグリーン */
+  --accent-dark: #2B4E3C;
+  --accent-mid: #C3DAD0;
+}
+body.theme-purple {
+  --accent: #8E7BB2;
+  --accent-pale: #F2EEF7; /* ラベンダーパープル */
+  --accent-dark: #4C3C68;
+  --accent-mid: #DBD2E9;
+}
+body.theme-gold {
+  --accent: #C39B50;
+  --accent-pale: #F9F5EE; /* トパーズゴールド */
+  --accent-dark: #7A5F2C;
+  --accent-mid: #E8DCC4;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -69,71 +93,21 @@ html, body {
   background-color: var(--accent-pale);
   color: var(--c-text);
   font-family: 'Noto Serif JP', serif;
-  font-size: 15px;
-  line-height: 2.15;
+  font-size: 14px;
+  line-height: 1.95;
   letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
-  /* スクロール時の背景色変化を極めて滑らかにするCSS遷移 */
-  transition: background-color 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  /* 背景色変化を極めて軽量に滑らかにするCSS遷移 */
+  transition: background-color 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ─── 手漉き紙＆粒子テクスチャ背景（色が透き通るオーバーレイ） ─── */
+/* スマホのCPU負荷を一切増やさない軽量パターン背景 */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: -2;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 1.5px, rgba(201, 146, 42, 0.02) 1.5px, rgba(201, 146, 42, 0.02) 3px),
-    repeating-linear-gradient(90deg, transparent, transparent 1.5px, rgba(201, 146, 42, 0.02) 1.5px, rgba(201, 146, 42, 0.02) 3px);
-  background-size: 36px 36px, 36px 36px;
-  filter: url(#paper-grain);
-  opacity: 0.12;
+  background-image: radial-gradient(rgba(201, 146, 42, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
   pointer-events: none;
-}
-body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: -1;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45) 0%, transparent 85%);
-  pointer-events: none;
-}
-
-/* ─── スモワ・キネティック装飾（モビール） ─── */
-.geo-deco {
-  position: fixed; inset: 0; z-index: -1;
-  pointer-events: none; overflow: hidden;
-}
-.floating-mobile-left, .floating-mobile-right {
-  position: absolute;
-  width: 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 36px;
-  opacity: 0.38;
-}
-.floating-mobile-left { left: 3%; top: 15%; }
-.floating-mobile-right { right: 3%; top: 22%; }
-
-.mobile-line {
-  width: 1.5px;
-  background: linear-gradient(to bottom, transparent, var(--gold) 30%, var(--gold) 85%, transparent);
-  margin-bottom: -16px;
-}
-.mobile-item {
-  animation: sway 12s ease-in-out infinite alternate;
-  filter: drop-shadow(0 2px 5px rgba(201, 146, 42, 0.15));
-}
-.floating-mobile-right .mobile-item {
-  animation-delay: -4s;
-  animation-duration: 15s;
-}
-
-@keyframes sway {
-  0% { transform: translateY(0) rotate(-6deg); }
-  100% { transform: translateY(-16px) rotate(6deg); }
-}
-
-@media (max-width: 1180px) {
-  .geo-deco { display: none; }
 }
 
 /* ─── コンテナ ─── */
@@ -141,7 +115,7 @@ body::after {
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: clamp(40px,7vw,96px) var(--pad) clamp(80px,10vw,140px);
+  padding: 24px var(--pad) 64px;
 }
 
 a { color: var(--accent-dark); text-decoration: none; }
@@ -154,96 +128,94 @@ a:hover { text-decoration: underline; }
   font-family: 'Cinzel', serif;
   font-size: .65rem;
   font-weight: 500;
-  letter-spacing: .25em;
+  letter-spacing: .2em;
   color: var(--c-muted);
   border: 1px solid var(--c-border2);
-  padding: 10px 24px;
-  margin-bottom: 48px;
-  transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
-  background: rgba(255,255,255,.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.08);
+  padding: 8px 18px;
+  margin-bottom: 32px;
+  transition: all .25s ease;
+  background: rgba(255,255,255,.7);
+  border-radius: 2px;
 }
 .back-btn:hover {
   color: var(--gold);
   border-color: var(--gold);
   background: #FFF;
-  letter-spacing: .28em;
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0px rgba(201, 146, 42, 0.15);
 }
 
 /* ─── サイトロゴ ─── */
-.site-logo { text-align: center; margin-bottom: 28px; }
+.site-logo { text-align: center; margin-bottom: 16px; }
 .site-logo a { text-decoration: none; }
 .logo-sub {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: .62rem;
-  letter-spacing: .45em;
+  font-size: .6rem;
+  letter-spacing: .4em;
   color: var(--gold);
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  transition: color 1.5s ease;
+  margin-bottom: 6px;
 }
 .logo-main {
   display: block;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 400;
   color: var(--c-text);
   line-height: 1;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
 }
 
 /* ─── ページヘッダー ─── */
 .page-header {
   text-align: center;
-  padding: 32px 0 48px;
-  margin-bottom: 60px;
-  border-bottom: 1.5px solid var(--c-border);
-  position: relative;
+  padding: 16px 0 28px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--c-border);
 }
 
-/* 特製SVGファサード（時計塔＆お城の装飾ライン） */
+/* 軽量ファサードSVG（城壁とお城の美的なラインアート） */
 .header-facade-svg {
   width: 100%;
-  max-width: 480px;
-  margin: 0 auto 32px;
+  max-width: 380px;
+  margin: 0 auto 20px;
   display: block;
-  filter: drop-shadow(0 3px 8px rgba(201, 146, 42, 0.12));
+}
+.header-facade-path {
+  stroke: var(--gold);
+  stroke-width: 1.2;
+  fill: none;
+  opacity: 0.65;
+  transition: stroke 1.2s ease;
 }
 
 .page-eyebrow {
   display: block;
   font-family: 'Cormorant Garamond', serif;
-  font-size: .75rem;
+  font-size: .7rem;
   font-style: italic;
-  letter-spacing: .22em;
+  letter-spacing: .18em;
   color: var(--accent-dark);
   font-weight: 600;
-  margin-bottom: 12px;
-  transition: color 1.5s ease;
+  margin-bottom: 8px;
+  transition: color 1.2s ease;
 }
 .page-title {
   font-family: 'Cinzel', 'Noto Serif JP', serif;
-  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-size: clamp(1.8rem, 5.5vw, 2.6rem);
   font-weight: 600;
   color: var(--c-text);
   line-height: 1.2;
-  letter-spacing: 0.12em;
-  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
 }
 .page-tagline {
   font-family: 'Noto Serif JP', serif;
-  font-size: .9rem;
+  font-size: .8rem;
   color: var(--c-muted);
-  letter-spacing: .1em;
-  font-weight: 500;
+  letter-spacing: .06em;
 }
 
 /* ─── 仕切り ─── */
@@ -251,223 +223,169 @@ a:hover { text-decoration: underline; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  margin: 72px 0;
+  gap: 16px;
+  margin: 40px 0;
   user-select: none;
 }
 .divider-line {
   flex: 1;
-  height: 1.5px;
+  height: 1px;
   background: linear-gradient(to right, transparent, var(--accent-mid), transparent);
-  transition: background 1.5s ease;
+  transition: background 1.2s ease;
 }
 .sun-wrapper {
-  width: 38px; height: 38px;
+  width: 26px; height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: spin-sun 36s linear infinite;
-  filter: drop-shadow(0 2px 6px rgba(201, 146, 42, 0.25));
+  animation: spin-sun 44s linear infinite;
 }
 @keyframes spin-sun { to { transform: rotate(360deg); } }
 
-/* ─── 目次 ─── */
+/* ─── 目次（スマホ最適化） ─── */
 .toc {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(253, 250, 245, 0.75));
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid var(--gold);
-  border-top: 4px solid var(--gold);
-  padding: 44px var(--pad) 36px;
-  margin-bottom: 72px;
-  box-shadow: 4px 4px 0px rgba(201, 146, 42, 0.15);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--gold);
+  border-top: 3px solid var(--gold);
+  padding: 20px var(--pad);
+  margin-bottom: 40px;
+  box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.05);
   position: relative;
   overflow: hidden;
 }
-.toc::after {
-  content: '';
-  position: absolute;
-  top: -24px; right: -24px;
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--accent-pale);
-  opacity: .6;
-  transition: background 1.5s ease;
-}
 .toc-title {
   font-family: 'Cinzel', serif;
-  font-size: .8rem;
+  font-size: .7rem;
   color: var(--accent-dark);
   text-align: center;
-  margin-bottom: 28px;
-  letter-spacing: .35em;
+  margin-bottom: 16px;
+  letter-spacing: .3em;
   font-weight: 700;
-  padding-bottom: 16px;
-  border-bottom: 1.5px dashed var(--c-border2);
-  transition: color 1.5s ease;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--c-border2);
+  transition: color 1.2s ease;
 }
 .toc-list { list-style: none; }
 .toc-list li {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 18px 0;
-  border-bottom: 1.5px solid rgba(201, 146, 42, 0.08);
+  flex-direction: column; /* スマホでは縦並び */
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(201, 146, 42, 0.08);
+}
+@media (min-width: 480px) {
+  .toc-list li {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
 }
 .toc-list li:last-child { border-bottom: none; }
 .toc-list li span {
   font-family: 'Noto Serif JP', serif;
-  font-size: .85rem;
+  font-size: .8rem;
   font-weight: 500;
   color: var(--c-text);
-  flex: 1;
+  line-height: 1.5;
 }
 .toc-list a {
   font-family: 'Cinzel', serif;
-  font-size: .65rem;
+  font-size: .6rem;
   color: var(--gold);
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   font-weight: 700;
-  border: 1.5px solid rgba(201, 146, 42, 0.4);
-  padding: 8px 20px;
-  background: rgba(255, 255, 255, 0.5);
-  white-space: nowrap;
-  transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.08);
+  border: 1px solid rgba(201, 146, 42, 0.3);
+  padding: 6px 12px;
+  background: #fff;
+  align-self: flex-start;
+  transition: all .2s ease;
 }
 .toc-list a:hover {
   background: var(--gold);
   color: #fff;
   border-color: var(--gold);
-  letter-spacing: .18em;
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0px rgba(201, 146, 42, 0.15);
 }
 
 /* ─── セクション（ペーパーコラージュ風プレート） ─── */
 .section {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(254, 252, 248, 0.88));
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--c-border2);
-  border-top: 4px solid var(--accent);
-  padding: 48px var(--pad);
-  border-radius: 8px;
-  margin-bottom: 84px;
-  box-shadow: 4px 4px 0px rgba(201, 146, 42, 0.06);
+  border-top: 3.5px solid var(--accent);
+  padding: 28px var(--pad);
+  border-radius: 4px;
+  margin-bottom: 48px;
+  box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.04);
   position: relative;
-  overflow: hidden;
-  transition: border-color 1.5s ease;
-}
-
-/* コラージュ風装飾（背景の淡い幾何学ぼかし） */
-.section::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  background: var(--accent-pale);
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
-  transition: background 1.5s ease;
-}
-.section::after {
-  content: '';
-  position: absolute;
-  bottom: -30px; left: -30px;
-  width: 120px; height: 120px;
-  background: var(--gold-pale);
-  opacity: 0.3;
-  transform: rotate(15deg);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.section > * {
-  position: relative;
-  z-index: 1;
+  transition: border-color 1.2s ease;
 }
 
 .section-heading {
   font-family: 'Cinzel', 'Noto Serif JP', serif;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--accent-dark);
-  letter-spacing: .12em;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  transition: color 1.5s ease;
+  letter-spacing: .08em;
+  margin-bottom: 24px;
+  transition: color 1.2s ease;
 }
 .section-heading::after {
   content: '';
-  width: 60px; height: 2px;
+  display: block;
+  width: 45px; height: 1.5px;
   background: var(--gold);
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .section p {
-  font-size: .9rem;
+  font-size: .85rem;
   font-weight: 300;
   color: var(--c-text);
-  line-height: 2.25;
-  margin-bottom: 32px;
+  line-height: 2.1;
+  margin-bottom: 24px;
   text-align: justify;
 }
 
 .sub-heading {
   font-family: 'Noto Serif JP', serif;
-  font-size: 1.05rem;
+  font-size: .95rem;
   font-weight: 600;
-  padding-left: 16px;
-  margin: 48px 0 20px;
+  padding-left: 12px;
+  margin: 36px 0 16px;
   border-left: 2px solid var(--gold);
   color: var(--accent-dark);
-  transition: color 1.5s ease;
-  letter-spacing: 0.05em;
+  transition: color 1.2s ease;
+  letter-spacing: 0.03em;
 }
 
 /* ─── 引用ブロック ─── */
 .blockquote {
   font-family: 'Noto Serif JP', serif;
-  font-size: .85rem;
+  font-size: .8rem;
   font-style: italic;
-  background: rgba(201, 146, 42, 0.05);
-  padding: 28px 36px;
-  border-left: 3px solid var(--gold);
-  line-height: 2.25;
-  margin: 40px 0;
+  background: rgba(201, 146, 42, 0.04);
+  padding: 16px 20px;
+  border-left: 2.5px solid var(--gold);
+  line-height: 2.1;
+  margin: 24px 0;
   color: var(--c-muted);
-  position: relative;
-  box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.04);
-}
-.blockquote::before {
-  content: '“';
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4.5rem;
-  color: rgba(201, 146, 42, 0.18);
-  position: absolute;
-  top: -16px; left: 16px;
-  line-height: 1;
 }
 
 .section strong { font-weight: 600; color: var(--c-text); }
 
-/* ─── 画像フレーム（特製ゴールドコーナーマウント額装） ─── */
+/* ─── 写真額装フレーム ─── */
 .img-wrapper {
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
-  margin: 44px 0;
+  margin: 28px 0;
   background: #FCFAF6;
   position: relative;
   border: 1px solid var(--gold);
-  padding: 14px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.06);
-  transition: border-color 1.5s ease;
+  padding: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+  transition: border-color 1.2s ease;
 }
 .img-wrapper img {
   width: 100%; height: 100%;
@@ -476,124 +394,112 @@ a:hover { text-decoration: underline; }
   -webkit-user-select: none; user-select: none;
   pointer-events: none;
   -webkit-touch-callout: none;
-  transition: filter 0.8s ease;
 }
-.img-wrapper:hover img {
-  filter: brightness(1.02) contrast(1.02) sepia(0%);
-}
-
-/* 四隅のゴールドコーナーマウント（角留め点線） */
 .img-wrapper::before {
   content: '';
-  position: absolute; inset: 6px;
-  border: 1px dashed rgba(201, 146, 42, 0.4);
+  position: absolute; inset: 4px;
+  border: 1px dashed rgba(201, 146, 42, 0.3);
   pointer-events: none;
 }
 .img-wrapper.purple-frame { border-color: var(--accent); }
 
-/* ─── キネティック・スカイライン（城壁モチーフの仕切り） ─── */
+/* ─── キネティック・スカイライン（宮殿シルエット） ─── */
 .geo-band {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 60px;
-  margin: 72px 0;
-  gap: 8px;
-  padding: 0 10px;
-  border-bottom: 2.5px solid rgba(201, 146, 42, 0.15);
+  height: 48px;
+  margin: 44px 0;
+  gap: 6px;
+  padding: 0 8px;
+  border-bottom: 2px solid rgba(201, 146, 42, 0.12);
 }
 .gb {
-  width: 32px;
+  width: 24px;
   opacity: 0.85;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.gb:hover {
-  transform: translateY(-8px);
-  opacity: 1;
-}
-.gb-1 { height: 32px; border-radius: 16px 16px 0 0; background: var(--accent-pale); border: 1.5px solid var(--accent); }
-.gb-2 { height: 48px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); background: var(--accent-mid); }
-.gb-3 { height: 36px; background: var(--gold-pale); border: 1.5px solid var(--gold); transform: rotate(45deg) scale(0.7); margin: 0 -4px; }
-.gb-4 { height: 42px; background: var(--accent); border-radius: 4px 4px 0 0; }
-.gb-5 { height: 52px; clip-path: polygon(50% 0%, 100% 30%, 100% 100%, 0% 100%); background: rgba(201, 146, 42, 0.2); }
-.gb-6 { height: 34px; border-radius: 17px 17px 0 0; background: var(--accent-mid); }
-.gb-7 { height: 45px; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); background: rgba(201,146,42,.35); }
-.gb-8 { height: 26px; border-radius: 50% 50% 0 0; background: var(--accent-dark); }
+.gb-1 { height: 24px; border-radius: 12px 12px 0 0; background: var(--accent-pale); border: 1.2px solid var(--accent); }
+.gb-2 { height: 38px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); background: var(--accent-mid); }
+.gb-3 { height: 28px; background: var(--gold-pale); border: 1px solid var(--gold); transform: rotate(45deg) scale(0.7); margin: 0 -4px; }
+.gb-4 { height: 32px; background: var(--accent); border-radius: 3px 3px 0 0; }
+.gb-5 { height: 42px; clip-path: polygon(50% 0%, 100% 30%, 100% 100%, 0% 100%); background: rgba(201, 146, 42, 0.2); }
+.gb-6 { height: 24px; border-radius: 12px 12px 0 0; background: var(--accent-mid); }
+.gb-7 { height: 35px; clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); background: rgba(201,146,42,.3); }
+.gb-8 { height: 20px; border-radius: 50% 50% 0 0; background: var(--accent-dark); }
 
-/* ─── グリッド（クリエイター：パステルコラージュ・プレート） ─── */
+/* ─── グリッド（スマホは1列、PCで2列にレスポンシブ化） ─── */
 .creator-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  margin: 44px 0;
+  grid-template-columns: 1fr; /* スマホデフォルト */
+  gap: 16px;
+  margin: 32px 0;
+}
+@media (min-width: 600px) {
+  .creator-grid {
+    grid-template-columns: repeat(2, 1fr); /* PCで2列に */
+    gap: 20px;
+  }
 }
 .creator-card {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1.5px solid rgba(201, 146, 42, 0.25);
-  padding: 36px 24px;
+  border: 1px solid rgba(201, 146, 42, 0.25);
+  padding: 24px 16px;
   text-align: center;
   cursor: pointer;
-  transition: all .4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all .25s ease;
   position: relative;
-  box-shadow: 3px 3px 0px rgba(201, 146, 42, 0.08);
+  box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.05);
 }
 .creator-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0;
   width: 0; height: 0;
-  border-top: 16px solid var(--gold);
-  border-right: 16px solid transparent;
+  border-top: 12px solid var(--gold);
+  border-right: 12px solid transparent;
 }
 
-/* クリエイターごとのテーマカラー背景 */
-.creator-card[data-member="mary"] { background: rgba(240, 195, 205, 0.35); }
-.creator-card[data-member="alice"] { background: rgba(195, 222, 212, 0.35); }
-.creator-card[data-member="blaine"] { background: rgba(195, 212, 228, 0.35); }
-.creator-card[data-member="sherman"] { background: rgba(244, 226, 195, 0.4); }
+.creator-card[data-member="mary"] { background: rgba(240, 195, 205, 0.22); }
+.creator-card[data-member="alice"] { background: rgba(195, 222, 212, 0.22); }
+.creator-card[data-member="blaine"] { background: rgba(195, 212, 228, 0.22); }
+.creator-card[data-member="sherman"] { background: rgba(244, 226, 195, 0.27); }
 
 .creator-card:hover {
   border-color: var(--gold);
-  transform: translateY(-5px);
-  box-shadow: 6px 6px 0px rgba(201, 146, 42, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px rgba(201, 146, 42, 0.1);
 }
-.creator-card[data-member="mary"]:hover { background: rgba(240, 195, 205, 0.55); }
-.creator-card[data-member="alice"]:hover { background: rgba(195, 222, 212, 0.55); }
-.creator-card[data-member="blaine"]:hover { background: rgba(195, 212, 228, 0.55); }
-.creator-card[data-member="sherman"]:hover { background: rgba(244, 226, 195, 0.6); }
 
 .card-en {
   font-family: 'Cinzel', serif;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--accent-dark);
-  letter-spacing: .08em;
-  margin-bottom: 6px;
-  transition: color 1.5s ease;
+  letter-spacing: .06em;
+  margin-bottom: 4px;
+  transition: color 1.2s ease;
 }
 .card-ja {
   font-family: 'Noto Serif JP', serif;
-  font-size: .85rem;
+  font-size: .8rem;
   font-weight: 500;
   color: var(--c-text);
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .card-role {
   font-family: 'Cormorant Garamond', serif;
-  font-size: .75rem;
+  font-size: .7rem;
   font-style: italic;
   color: var(--c-muted);
-  letter-spacing: .06em;
-  border-top: 1.5px dashed rgba(201,146,42,.25);
-  padding-top: 10px;
+  letter-spacing: .04em;
+  border-top: 1px dashed rgba(201,146,42,.2);
+  padding-top: 6px;
   display: inline-block;
 }
 
 /* ─── モーダル ─── */
 .modal-bg {
   position: fixed; inset: 0;
-  background: rgba(15, 23, 30, 0.45);
+  background: rgba(15, 23, 30, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -601,51 +507,49 @@ a:hover { text-decoration: underline; }
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity .4s, visibility .4s;
-  padding: 24px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  transition: opacity .3s, visibility .3s;
+  padding: 16px;
 }
 .modal-bg.open { opacity: 1; visibility: visible; pointer-events: auto; }
 .modal-box {
   background: #FAF7F2;
-  border: 2px solid var(--gold);
-  max-width: 540px;
+  border: 1.5px solid var(--gold);
+  max-width: 500px;
   width: 100%;
-  padding: 52px 44px;
+  padding: 36px 24px;
   position: relative;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 .modal-box::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(to right, var(--gold), var(--accent));
-  transition: background 1.5s ease;
+  transition: background 1.2s ease;
 }
 .modal-box::after {
   content: '';
   position: absolute;
   top: 0; right: 0;
   width: 0; height: 0;
-  border-top: 36px solid var(--accent-pale);
-  border-left: 36px solid transparent;
-  transition: border-top-color 1.5s ease;
+  border-top: 24px solid var(--accent-pale);
+  border-left: 24px solid transparent;
+  transition: border-top-color 1.2s ease;
 }
 .modal-close {
   position: absolute;
-  top: 16px; right: 20px;
+  top: 12px; right: 16px;
   font-family: 'Cinzel', serif;
-  font-size: .6rem;
-  letter-spacing: .15em;
+  font-size: .55rem;
+  letter-spacing: .1em;
   color: var(--c-muted);
   background: none;
   border: 1px solid var(--c-border2);
-  padding: 6px 14px;
+  padding: 4px 10px;
   cursor: pointer;
   z-index: 1;
-  transition: all .3s;
+  transition: all .2s;
 }
 .modal-close:hover {
   color: #fff;
@@ -654,80 +558,54 @@ a:hover { text-decoration: underline; }
 }
 .modal-name-en {
   font-family: 'Cinzel', serif;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--accent-dark);
   line-height: 1.2;
-  margin-bottom: 6px;
-  margin-top: 12px;
-  transition: color 1.5s ease;
+  margin-bottom: 4px;
+  margin-top: 8px;
+  transition: color 1.2s ease;
 }
 .modal-name-ja {
   font-family: 'Noto Serif JP', serif;
-  font-size: .88rem;
+  font-size: .8rem;
   font-weight: 500;
   color: var(--c-muted);
-  margin-bottom: 24px;
-  padding-bottom: 14px;
-  border-bottom: 1.5px dashed rgba(201, 146, 42, 0.3);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(201, 146, 42, 0.25);
 }
 .modal-desc {
   font-family: 'Noto Serif JP', serif;
-  font-size: .88rem;
+  font-size: .8rem;
   font-weight: 300;
   color: var(--c-text);
-  line-height: 2.2;
+  line-height: 2.0;
 }
 
 /* ─── フッター ─── */
 .page-footer {
   text-align: center;
-  padding-top: 52px;
-  border-top: 1.5px solid var(--c-border);
+  padding-top: 36px;
+  border-top: 1px solid var(--c-border);
 }
 .page-footer p {
   font-family: 'Cormorant Garamond', serif;
-  font-size: .78rem;
+  font-size: .75rem;
   color: var(--c-muted);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 /* ─── Reveal ─── */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity .8s cubic-bezier(0.16, 1, 0.3, 1), transform .8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.active { opacity: 1; transform: translateY(0); }
-
-/* ─── レスポンシブ ─── */
-@media (max-width: 600px) {
-  .wrap { padding: 32px 16px 64px; }
-  .page-title { font-size: 2.1rem; }
-  .creator-grid { grid-template-columns: 1fr; gap: 20px; }
-  .toc { padding: 32px 16px 24px; }
-  .modal-box { padding: 40px 24px 32px; }
-  .section { padding: 36px 20px; }
-}
 </style>
 </head>
 <body>
-
-<!-- 幾何学背景装飾（スモワモビール） -->
-<div class="geo-deco" aria-hidden="true">
-  <div class="floating-mobile-left">
-    <div class="mobile-line" style="height: 120px;"></div>
-    <div class="mobile-item shape-circle" style="width: 24px; height: 24px; border: 1.5px solid var(--gold); border-radius: 50%;"></div>
-    <div class="mobile-item shape-tri" style="width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 22px solid var(--accent-mid);"></div>
-    <div class="mobile-item shape-sq" style="width: 20px; height: 20px; border: 1.5px solid var(--gold); transform: rotate(45deg);"></div>
-  </div>
-  <div class="floating-mobile-right">
-    <div class="mobile-line" style="height: 140px;"></div>
-    <div class="mobile-item shape-sq" style="width: 22px; height: 22px; border: 1.5px solid var(--accent-mid); transform: rotate(15deg);"></div>
-    <div class="mobile-item shape-circle" style="width: 18px; height: 18px; border: 1.5px solid var(--gold); border-radius: 50%;"></div>
-    <div class="mobile-item shape-tri" style="width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 18px solid var(--gold); transform: rotate(180deg);"></div>
-  </div>
-</div>
 
 <div class="wrap">
 
@@ -744,36 +622,21 @@ a:hover { text-decoration: underline; }
   <!-- ページヘッダー -->
   <header class="page-header reveal">
     
-    <!-- 城壁とお城のシルエットを再現したプレミアムSVGファサード -->
-    <svg viewBox="0 0 500 80" class="header-facade-svg" aria-hidden="true">
-      <path d="M 50 80 L 50 40 L 70 20 L 90 40 L 90 80 Z" fill="var(--accent-pale)" stroke="var(--gold)" stroke-width="1" />
-      <circle cx="70" cy="50" r="8" fill="none" stroke="var(--gold)" stroke-width="1" />
-      
-      <rect x="130" y="50" width="20" height="30" fill="none" stroke="var(--accent)" stroke-width="1" />
-      <polygon points="140,25 130,50 150,50" fill="rgba(201,146,42,0.1)" stroke="var(--gold)" stroke-width="1" />
-      
-      <circle cx="250" cy="45" r="30" fill="var(--gold-pale)" stroke="var(--gold)" stroke-width="1.5" />
-      <g stroke="var(--gold)" stroke-width="1" opacity="0.8">
-        <line x1="250" y1="5" x2="250" y2="12" />
-        <line x1="250" y1="78" x2="250" y2="85" />
-        <line x1="210" y1="45" x2="217" y2="45" />
-        <line x1="283" y1="45" x2="290" y2="45" />
-        <line x1="222" y1="17" x2="227" y2="22" />
-        <line x1="273" y1="68" x2="278" y2="73" />
-        <line x1="222" y1="73" x2="227" y2="68" />
-        <line x1="273" y1="22" x2="278" y2="17" />
+    <!-- 軽量かつクリーンな宮殿のファサードSVGライン -->
+    <svg viewBox="0 0 500 60" class="header-facade-svg" aria-hidden="true">
+      <g class="header-facade-path">
+        <path d="M 80 60 L 80 30 L 100 15 L 120 30 L 120 60 Z" />
+        <circle cx="100" cy="38" r="6" />
+        <circle cx="250" cy="30" r="18" />
+        <path d="M 244 28 Q 247 25 250 28 Q 253 25 256 28" />
+        <path d="M 246 36 Q 250 40 254 36" />
+        <line x1="250" y1="5" x2="250" y2="10" />
+        <line x1="250" y1="50" x2="250" y2="55" />
+        <line x1="225" y1="30" x2="230" y2="30" />
+        <line x1="270" y1="30" x2="275" y2="30" />
+        <path d="M 380 60 L 380 30 L 400 15 L 420 30 L 420 60 Z" />
+        <circle cx="400" cy="38" r="6" />
       </g>
-      <path d="M 242 42 Q 246 38 250 42" fill="none" stroke="var(--gold)" stroke-width="1.5" />
-      <path d="M 250 42 Q 254 38 258 42" fill="none" stroke="var(--gold)" stroke-width="1.5" />
-      <path d="M 245 51 Q 250 56 255 51" fill="none" stroke="var(--gold)" stroke-width="1.5" />
-      <circle cx="241" cy="48" r="2" fill="var(--accent)" opacity="0.6" />
-      <circle cx="259" cy="48" r="2" fill="var(--accent)" opacity="0.6" />
-      
-      <rect x="350" y="50" width="20" height="30" fill="none" stroke="var(--accent)" stroke-width="1" />
-      <polygon points="360,25 350,50 370,50" fill="rgba(201,146,42,0.1)" stroke="var(--gold)" stroke-width="1" />
-      
-      <path d="M 410 80 L 410 40 L 430 20 L 450 40 L 450 80 Z" fill="var(--accent-pale)" stroke="var(--gold)" stroke-width="1" />
-      <circle cx="430" cy="50" r="8" fill="none" stroke="var(--gold)" stroke-width="1" />
     </svg>
     
     <span class="page-eyebrow">Attraction Archive Document</span>
@@ -845,7 +708,7 @@ a:hover { text-decoration: underline; }
       <img src="smallworld-exterior-day.jpeg" alt="東京ディズニーランド イッツ・ア・スモールワールドの外観（昼景）" loading="lazy" decoding="async">
     </div>
     <h3 class="sub-heading">③ 運河を照らし続ける「太陽」の演出</h3>
-    <p>ボートに乗って世界中を旅していると、ヨーロッパ、アジア、アフリカなど、どんな部屋に行っても、必ずその地域ごをと「太陽」が象徴的に描かれていることに気づきます。「私たちがどこにいても、同じ一つの太陽の下でみんな一緒に生きている（＝世界は一つ）」という事実を、旅の最初から最後まで、絶え間ない温かい光で優しく照らし続けているのです。</p>
+    <p>ボートに乗って世界中を旅していると、ヨーロッパ、アジア、アフリカなど、どんな部屋に行っても、必ずその地域ごとの「太陽」が象徴的に描かれていることに気づきます。「私たちがどこにいても、同じ一つの太陽の下でみんな一緒に生きている（＝世界は一つ）」という事実を、旅の最初から最後まで、絶え間ない温かい光で優しく照らし続けているのです。</p>
   </section>
 
   <div class="geo-band reveal" aria-hidden="true">
@@ -974,14 +837,14 @@ a:hover { text-decoration: underline; }
 
   <!-- IV -->
   <section class="section reveal" id="groot" data-palette="purple">
-    <h2 class="section-heading" style="color: hsl(275, 32%, 36%); transition: none;">IV. Cosmic Friendship — 「グルート」のバカンスと地球の絆</h2>
+    <h2 class="section-heading" style="color: var(--accent-dark); transition: none;">IV. Cosmic Friendship — 「グルート」のバカンスと地球の絆</h2>
     <p>小さな世界が紡ぐ平和のメッセージは、地球という国境を越えるだけでなく、ときには銀河の彼方をも結びつけてしまうようです。東京ディズニーランドの運河にて、現在特別な体験プログラムとして開催されている<strong>『イッツ・ア・スモールワールド with グルート』</strong>も、そんな素敵な出会いの一つですね。</p>
-    <p>映画『ガーディアンズ・オブ・ギャラクシー』シリーズに登場する、愛らしくも勇敢な樹木型宇宙人「グルート」。彼は、銀河の仲間たちと共に地球へバカンスを過ごしにやってきました。世界中の子供たちの歌声や、異国情緒あふれる美しい伝統文化に触れながら、世界各地の地域を巡る幸福な旅の記録です。</p>
+    <p>映画『ガーディアンズ・オブ・ギャラクシー』シリーズに登場する、愛らしくも勇敢な樹木型宇宙人「グルート」。彼は、銀河の仲間たちと共に地球へバカンスを過ごしにやってきました。世界中の子供たちの歌声や、異国情緒あふれる美しい伝統文化に触れながら、世界各地を巡る、幸せな船旅の記録です。</p>
     <div class="img-wrapper purple-frame">
       <img src="smallworld-groot.jpeg" alt="アフリカの夜空のもと、キリンと青いハートの光に包まれるグルート" loading="lazy" decoding="async">
     </div>
-    <h3 class="sub-heading" style="border-left-color: hsl(275, 32%, 52%); color: hsl(275, 32%, 36%); transition: none;">メアリー・ブレアのタッチで描かれたスーパーヒーローたち</h3>
-    <p>この特別な体験の中では、グルートの相棒であるロケット、マンティス、ガモーラ、ハルク、さらにはドクター・ストレンジ、ブラックパンサーといったマーベル・スタジオのヒーローたちが、<strong>すべてメアリー・ブレア独自の愛らしいデフォルメ・ドール（人形）</strong>となって、世界の子供たちに囲まれ、共に歌を口ずさんでいます。</p>
+    <h3 class="sub-heading" style="border-left-color: var(--accent); color: var(--accent-dark); transition: none;">メアリー・ブレアのタッチで描かれたスーパーヒーローたち</h3>
+    <p>この特別な体験の中では、グルートの相棒であるロケット、マンティス、ガモーラ、ハルク、さらにはドクター・ストレンジ、ブラックパンサーといったマーベル・スタジオのヒーローたちが、<strong>すべてメアリー・ブレア独自の愛らしいデフォルメ・ドール（人形）</strong>となって、世界の子供たちに囲まれ、共に歌を口ずさんでいる姿を見ることができます。</p>
     <p>例えば、アフリカの星空の下で現地のキリンと並び、淡く輝く青いハートの熱帯植物に見惚れているグルートや、南極でキャプテン・アメリカの強固なシールド（盾）に乗って楽しそうにそり遊びをする姿が確認できます。アトラクション本来の「私たちは一つ」というテーマと、異なる星々を越えて響き合う「宇宙的な友情」が幸福に融け合い、時空を超えた文化の架け橋が今日も静かに流れています。</p>
   </section>
 
@@ -1063,18 +926,6 @@ a:hover { text-decoration: underline; }
   </div>
 </div>
 
-<!-- 粒子/紙テクスチャ用SVG -->
-<svg style="position:absolute;width:0;height:0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="paper-grain">
-      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" result="n"/>
-      <feColorMatrix type="saturate" values="0" in="n" result="g"/>
-      <feBlend in="SourceGraphic" in2="g" mode="multiply" result="b"/>
-      <feComposite in="b" in2="SourceGraphic" operator="in"/>
-    </filter>
-  </defs>
-</svg>
-
 <script>
 /* ─── クリエイターデータ ─── */
 const members = {
@@ -1096,67 +947,32 @@ const members = {
   }
 };
 
-/* ─── パレット定義（スモワらしさと大人っぽさを両立するジュエルトーン） ─── */
-const palettes = {
-  default: { h: 38,  s: 40, l: 45 }, // トパーズゴールド
-  pink:    { h: 345, s: 42, l: 52 }, // ローズクォーツ
-  blue:    { h: 212, s: 38, l: 48 }, // サファイアブルー
-  green:   { h: 145, s: 30, l: 44 }, // エメラルドセージ
-  purple:  { h: 275, s: 32, l: 48 }, // アメジスト
-  gold:    { h: 38,  s: 45, l: 42 }, // クラシックアンバー
-};
-
-const root = document.documentElement;
-let cur = { ...palettes.default };
-let tgt = { ...palettes.default };
-let raf = null;
-let lastKey = 'default';
-function lerp(a, b, t) { return a + (b - a) * t; }
-function apply(p) {
-  root.style.setProperty('--accent-h', p.h);
-  root.style.setProperty('--accent-s', p.s + '%');
-  root.style.setProperty('--accent-l', p.l + '%');
-}
-function tick() {
-  cur.h = lerp(cur.h, tgt.h, 0.035);
-  cur.s = lerp(cur.s, tgt.s, 0.035);
-  cur.l = lerp(cur.l, tgt.l, 0.035);
-  apply(cur);
-  const d = Math.abs(cur.h-tgt.h)+Math.abs(cur.s-tgt.s)+Math.abs(cur.l-tgt.l);
-  if (d > 0.08) { raf = requestAnimationFrame(tick); }
-  else { cur = {...tgt}; apply(cur); raf = null; }
-}
-function setPalette(key) {
-  if (key === lastKey) return;
-  lastKey = key; tgt = {...palettes[key]};
-  if (raf) cancelAnimationFrame(raf);
-  raf = requestAnimationFrame(tick);
-}
-
-/* ─── スクロール連動パレット ─── */
+/* ─── スクロール連動：CSS変数切り替えロジック（極めて軽量） ─── */
+const body = document.body;
 const secs = document.querySelectorAll('.section[data-palette]');
-new IntersectionObserver((entries) => {
-  let best = null, bestR = 0;
-  entries.forEach(e => { if (e.isIntersecting && e.intersectionRatio > bestR) { bestR = e.intersectionRatio; best = e.target.dataset.palette; } });
-  if (best) setPalette(best);
-}, { threshold: [0.1,0.3,0.5,0.7] }).observe && secs.forEach(s => {
-  new IntersectionObserver((entries) => {
-    let best = null, bestR = 0;
-    entries.forEach(e => { if (e.isIntersecting && e.intersectionRatio > bestR) { bestR = e.intersectionRatio; best = e.target.dataset.palette; } });
-    if (best) setPalette(best);
-  }, { threshold: [0.1,0.3,0.5,0.7] }).observe(s);
-});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      body.classList.remove('theme-pink', 'theme-blue', 'theme-green', 'theme-purple', 'theme-gold');
+      body.classList.add(`theme-${e.target.dataset.palette}`);
+    }
+  });
+}, { threshold: 0.25 });
+secs.forEach(s => observer.observe(s));
 
-/* ─── Reveal ─── */
-new IntersectionObserver((entries, ob) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); ob.unobserve(e.target); } });
-}, { threshold: 0.05 }).observe && document.querySelectorAll('.reveal').forEach(el => {
-  new IntersectionObserver((entries, ob) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); ob.unobserve(e.target); } });
-  }, { threshold: 0.05 }).observe(el);
-});
+/* ─── フェードイン表示（Reveal） ─── */
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries, ob) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('active');
+      ob.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+reveals.forEach(el => revealObserver.observe(el));
 
-/* ─── モーダル ─── */
+/* ─── モーダル制御 ─── */
 const modalBg = document.getElementById('modalBg');
 const modalClose = document.getElementById('modalClose');
 function openModal(id) {
