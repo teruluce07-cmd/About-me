@@ -9,34 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #D6C7AE;
-            --text-main: #362A22;
-            --accent-gold: #9E6B3A;
-            --border-light: rgba(158, 107, 58, 0.3);
-            --img-filter: brightness(0.92) contrast(1.08) sepia(25%);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23E0D2BA' surfaceScale='3'%3E%3CfeDistantLight azimuth='45' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+            /* 霧深い真夜中の館をイメージした煤けたディープパープル */
+            --bg-color: #121016;
+            /* 古びた羊皮紙や古書を連想させる色褪せたアイボリー */
+            --text-main: #dfd8cb;
+            /* くすんだ真鍮のようなアンティークゴールド */
+            --accent-gold: #c3a15c;
+            --border-light: rgba(195, 161, 92, 0.22);
+            --img-filter: brightness(0.8) contrast(1.1) sepia(20%);
+            /* モバイルブラウザでの負荷を極限まで減らした超軽量ノイズテクスチャ */
+            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='1' result='noise'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Noto Serif JP', serif;
+            font-family: 'Noto Serif JP', 'Georgia', 'Times New Roman', serif;
             background-color: var(--bg-color); color: var(--text-main); line-height: 2; overflow-x: hidden; -webkit-font-smoothing: antialiased;
         }
 
-        .paper-bg { position: fixed; inset: 0; z-index: -2; background-image: var(--paper-texture); background-size: 300px 300px; opacity: 0.9; pointer-events: none; }
-        /* ホーンテッドマンション用の幽霊屋敷を感じる微かなパープル */
-        .noise-overlay { position: fixed; inset: 0; z-index: -1; background-image: radial-gradient(circle at 50% 50%, transparent 20%, rgba(40, 20, 50, 0.08) 100%); pointer-events: none; }
+        .paper-bg { position: fixed; inset: 0; z-index: -2; background-image: var(--paper-texture); background-size: 150px 150px; opacity: 0.85; pointer-events: none; }
+        /* 幽霊屋敷の不気味で美しい微かなパープルグラデーション */
+        .noise-overlay { position: fixed; inset: 0; z-index: -1; background-image: radial-gradient(circle at 50% 50%, transparent 10%, rgba(20, 10, 30, 0.4) 100%); pointer-events: none; }
 
         .container {
             position: relative; z-index: 1; width: 100%; max-width: 560px;
             margin: 40px auto 80px; padding: 45px 30px 80px;
-            background: rgba(250, 246, 238, 0.85); border-radius: 4px; border: 1px solid var(--border-light);
-            outline: 2px double rgba(158, 106, 56, 0.25); outline-offset: -8px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            background: rgba(22, 19, 27, 0.93); border-radius: 4px; border: 1px solid var(--border-light);
+            outline: 2px double rgba(195, 161, 92, 0.2); outline-offset: -8px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
+        /* 画像保存防止用の基本スタイル */
         img { max-width: 100%; height: auto; -webkit-touch-callout: none; user-select: none; pointer-events: none; }
+        
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -45,31 +51,34 @@
 
         .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 40px; }
         .bgs-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; color: var(--accent-gold); text-transform: uppercase; }
-        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 600; margin: 15px 0 20px; line-height: 1.6; text-align: center; }
+        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.4rem; font-weight: 600; margin: 15px 0 20px; line-height: 1.6; text-align: center; }
         h1 span { display: block; font-family: 'Cinzel', serif; font-size: 1rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 10px; }
-        .subtitle-jp { font-size: 0.8rem; font-weight: 300; letter-spacing: 0.05em; opacity: 0.9; text-align: justify; margin-top: 25px; line-height: 2.2; border-left: 2px solid var(--accent-gold); padding-left: 15px; }
+        .subtitle-jp { font-size: 0.8rem; font-weight: 300; letter-spacing: 0.05em; opacity: 0.85; text-align: justify; margin-top: 25px; line-height: 2.2; border-left: 2px solid var(--accent-gold); padding-left: 15px; }
 
-        .hero-img-container { margin: 40px 0; border-radius: 4px; overflow: hidden; }
+        /* 画像を完全に保護するための重ね合わせコンテナ */
+        .hero-img-container { position: relative; margin: 40px 0; border-radius: 4px; overflow: hidden; }
+        /* 完全に透明なカバーを前面に配置して長押しやドラッグを物理的に防ぐ */
+        .img-overlay { position: absolute; inset: 0; z-index: 2; background: transparent; pointer-events: auto; }
         .hero-img { width: 100%; height: auto; display: block; filter: var(--img-filter); transform: translate3d(0,0,0); backface-visibility: hidden; }
 
-        .toc-box { background: rgba(255,255,255,.4); border: 1px solid var(--border-light); padding: 25px; border-radius: 6px; margin-bottom: 50px; }
+        .toc-box { background: rgba(255,255,255, 0.02); border: 1px solid var(--border-light); padding: 25px; border-radius: 6px; margin-bottom: 50px; }
         .toc-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--text-main); text-align: center; margin-bottom: 20px; letter-spacing: .15em; font-weight: 600; }
         .toc-list { list-style: none; padding: 0; }
         .toc-list li { border-bottom: 1px dashed var(--border-light); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.8; }
+        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.75; }
         .toc-list a:hover { color: var(--accent-gold); }
 
         .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Noto Serif JP', serif; font-size: 1.15rem; font-weight: bold; color: var(--accent-gold); margin-top: 50px; margin-bottom: 25px; display: flex; align-items: center; }
+        h2 { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: bold; color: var(--accent-gold); margin-top: 50px; margin-bottom: 25px; display: flex; align-items: center; }
         h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.85rem; margin-bottom: 20px; opacity: 0.95; }
+        p { font-size: 0.82rem; margin-bottom: 20px; opacity: 0.85; }
 
-        .ghost-card { background: rgba(158, 107, 58, 0.04); border: 1px solid var(--border-light); padding: 25px; border-radius: 4px; margin: 25px 0; }
+        .ghost-card { background: rgba(195, 161, 92, 0.03); border: 1px solid var(--border-light); padding: 25px; border-radius: 4px; margin: 25px 0; }
         .ghost-card h3 { font-family: 'Noto Serif JP', serif; font-size: 0.9rem; font-weight: bold; color: var(--accent-gold); margin-bottom: 5px; }
-        .ghost-location { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--text-main); opacity: 0.7; margin-bottom: 12px; display: block; border-bottom: 1px dashed var(--border-light); padding-bottom: 8px;}
+        .ghost-location { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--text-main); opacity: 0.6; margin-bottom: 12px; display: block; border-bottom: 1px dashed var(--border-light); padding-bottom: 8px;}
 
         .micro-nav-card {
-            display: block; text-decoration: none; background: #fff;
+            display: block; text-decoration: none; background: rgba(18, 16, 22, 0.6);
             border-left: 3px solid var(--accent-gold); padding: 15px;
             margin: 15px 0; font-size: 0.75rem; line-height: 1.6; color: var(--text-main);
             border-radius: 0 4px 4px 0; transition: transform 0.3s; border: 1px solid var(--border-light); border-left: 3px solid var(--accent-gold);
@@ -78,7 +87,51 @@
         .micro-nav-card-title { font-weight: bold; color: var(--accent-gold); display: inline-block; margin-right: 5px; }
 
         .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; }
+        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; opacity: 0.8; }
+        .footer-link a:hover { color: var(--accent-gold); }
+
+        /* スマートフォン向け（横幅が狭い画面）の最適化設定 */
+        @media (max-width: 480px) {
+            .container {
+                margin: 15px 10px 40px;
+                padding: 30px 20px 60px;
+                outline-offset: -6px;
+            }
+            body {
+                line-height: 1.85;
+            }
+            h1 {
+                font-size: 1.25rem;
+            }
+            h1 span {
+                font-size: 0.9rem;
+            }
+            .subtitle-jp {
+                font-size: 0.78rem;
+                line-height: 2;
+                padding-left: 10px;
+            }
+            h2 {
+                font-size: 1rem;
+                margin-top: 40px;
+            }
+            p {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+            .toc-box {
+                padding: 15px;
+                margin-bottom: 35px;
+            }
+            .toc-list li {
+                font-size: 0.75rem;
+                padding: 8px 0;
+            }
+            .ghost-card {
+                padding: 15px;
+                margin: 20px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -111,12 +164,15 @@
         </nav>
 
         <div class="hero-img-container reveal">
-            <img src="haunted-exterior.jpg" alt="ホーンテッドマンションの外観" class="hero-img" draggable="false" decoding="async" loading="eager" fetchpriority="high">
+            <!-- 前面を保護するレイヤー -->
+            <div class="img-overlay"></div>
+            <!-- 保存防止属性（右クリック無効・ドラッグ無効）を付与 -->
+            <img src="haunted-exterior.jpg" alt="ホーンテッドマンションの外観" class="hero-img" draggable="false" decoding="async" loading="eager" fetchpriority="high" oncontextmenu="return false;">
         </div>
 
         <section class="article-block reveal" id="prologue">
             <h2>I. ファンタジーランドに佇む館</h2>
-            <p>東京ディズニーランドにおいて、ホーンテッドマンションは中世ヨーロッパ of の童話世界を模した「ファンタジーランド」にひっそりと配置されています。アメリカのパークでは歴史的なエリアにあるこの館が、なぜ日本では童話の世界にあるのでしょうか。</p>
+            <p>東京ディズニーランドにおいて、ホーンテッドマンションは中世ヨーロッパの童話世界を模した「ファンタジーランド」にひっそりと配置されています。アメリカのパークでは歴史的なエリアにあるこの館が、なぜ日本では童話の世界にあるのでしょうか。</p>
             <p>理由の一つとして、日本には古くから、幽霊や妖怪が登場する「怪談」を、恐れながらも一つのエンターテインメント（おとぎ話）として楽しむ文化が根付いていたことが挙げられます。イマジニアたちはこの文化的背景を鋭く見抜き、ホーンテッドマンションを「ゴシックロマンを内包したダークファンタジー」としてファンタジーランドに配置しました。</p>
             <p>さらに、視覚的な景観の調和（バランス）も最重視されました。隣接するウエスタンランドには、巨大な赤土の岩山「ビッグサンダー・マウンテン」がそびえ立つ計画が立てられていました。平坦なエリアと荒涼とした巨大な岩山が隣り合う境界において、ゴシック調の高い屋根やレンガ造りの重厚なシルエットを持つこの館を「緩衝地帯」として配置することにより、パーク全体の立体的な景観バランスを美しく保つという高度な計算がなされているのです。</p>
         </section>
@@ -126,7 +182,7 @@
             <p>このアトラクションの最大の魅力は、「決して誰も傷つかない、安全で楽しい死後の世界」であることです。前半部分は、誰もいない薄暗い廊下や不穏なライティングが続く「心理的な恐怖」の領域です。しかし、霊媒師マダム・レオタの降霊術のシーンを境に、館の空気は一変します。</p>
             <p>後半は、名曲「グリム・グリニング・ゴースト」とともに亡霊たちが墓地で陽気に歌い踊る「ユーモアと笑い」の領域へと移行します。この見事な感情のコントラストこそが、ホーンテッドマンションの黄金比です。</p>
 
-            <div class="ghost-card" style="border-color: var(--accent-gold); background: rgba(158, 107, 58, 0.04);">
+            <div class="ghost-card">
                 <h3>💡 音響心理の魔法：日米で異なる恐怖の周波数</h3>
                 <p>なぜ東京版のホーンテッドマンションの前半部分は、これほど静かで、じっとりとした冷気が肌にまとわりつくような演出になっているのでしょうか。そこには音響心理学に基づいた意図的な設計があります。<br><br>
                    一般的に西洋では、ホラー演出において**「高音域・不協和音・鋭い突発的な音」**が好まれ、叫び声のようなパニック演出が恐怖を掻き立てます。対して日本では、背後に何かが潜んでいるような**「低音域・静寂・低くじっとりとした持続音」**が最も心理的恐怖を煽るとされています。<br><br>
@@ -141,7 +197,7 @@
             <div class="ghost-card">
                 <h3>サリー・スレーター（Sally Slater）</h3>
                 <span class="ghost-location">出現場所：ストレッチングルーム（伸びる部屋）の肖像画</span>
-                <p>生前は勇敢な綱渡りパフォーマーでした。彼女がワニの潜む川の上で、傘を片手に平然と綱渡りを披露する、まさに絶体絶命の瞬間が肖像画に描かれています。</p>
+                <p>生前は勇敢な綱渡りパフォーマーでした。彼女がワニの潜む川の上で, 傘を片手に平然と綱渡りを披露する、まさに絶体絶命の瞬間が肖像画に描かれています。</p>
             </div>
 
             <div class="ghost-card">
