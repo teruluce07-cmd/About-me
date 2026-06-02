@@ -97,7 +97,7 @@ html, body {
   line-height: 1.95;
   letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
-  /* 背景色変化を極めて軽量に滑らかにするCSS遷移 */
+  /* ページ全体の背景変化を滑らかにする（超軽量動作） */
   transition: background-color 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -106,7 +106,7 @@ body::before {
   content: '';
   position: fixed; inset: 0; z-index: -2;
   background-image: radial-gradient(rgba(201, 146, 42, 0.05) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-size: 24px 24px;
   pointer-events: none;
 }
 
@@ -115,7 +115,7 @@ body::before {
   width: 100%;
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: 24px var(--pad) 64px;
+  padding: 32px var(--pad) 72px;
 }
 
 a { color: var(--accent-dark); text-decoration: none; }
@@ -132,9 +132,9 @@ a:hover { text-decoration: underline; }
   color: var(--c-muted);
   border: 1px solid var(--c-border2);
   padding: 8px 18px;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
   transition: all .25s ease;
-  background: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.6);
   border-radius: 2px;
 }
 .back-btn:hover {
@@ -171,15 +171,15 @@ a:hover { text-decoration: underline; }
 /* ─── ページヘッダー ─── */
 .page-header {
   text-align: center;
-  padding: 16px 0 28px;
+  padding: 16px 0 32px;
   margin-bottom: 36px;
   border-bottom: 1px solid var(--c-border);
 }
 
-/* 軽量ファサードSVG（城壁とお城の美的なラインアート） */
+/* お城のシルエットを再現した極軽量SVGファサード */
 .header-facade-svg {
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   margin: 0 auto 20px;
   display: block;
 }
@@ -187,7 +187,7 @@ a:hover { text-decoration: underline; }
   stroke: var(--gold);
   stroke-width: 1.2;
   fill: none;
-  opacity: 0.65;
+  opacity: 0.7;
   transition: stroke 1.2s ease;
 }
 
@@ -204,7 +204,7 @@ a:hover { text-decoration: underline; }
 }
 .page-title {
   font-family: 'Cinzel', 'Noto Serif JP', serif;
-  font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 600;
   color: var(--c-text);
   line-height: 1.2;
@@ -213,7 +213,7 @@ a:hover { text-decoration: underline; }
 }
 .page-tagline {
   font-family: 'Noto Serif JP', serif;
-  font-size: .8rem;
+  font-size: .82rem;
   color: var(--c-muted);
   letter-spacing: .06em;
 }
@@ -224,7 +224,7 @@ a:hover { text-decoration: underline; }
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin: 40px 0;
+  margin: 44px 0;
   user-select: none;
 }
 .divider-line {
@@ -234,11 +234,11 @@ a:hover { text-decoration: underline; }
   transition: background 1.2s ease;
 }
 .sun-wrapper {
-  width: 26px; height: 26px;
+  width: 28px; height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: spin-sun 44s linear infinite;
+  animation: spin-sun 40s linear infinite;
 }
 @keyframes spin-sun { to { transform: rotate(360deg); } }
 
@@ -247,8 +247,8 @@ a:hover { text-decoration: underline; }
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid var(--gold);
   border-top: 3px solid var(--gold);
-  padding: 20px var(--pad);
-  margin-bottom: 40px;
+  padding: 24px var(--pad);
+  margin-bottom: 48px;
   box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.05);
   position: relative;
   overflow: hidden;
@@ -268,7 +268,7 @@ a:hover { text-decoration: underline; }
 .toc-list { list-style: none; }
 .toc-list li {
   display: flex;
-  flex-direction: column; /* スマホでは縦並び */
+  flex-direction: column; /* スマホでの見やすさ優先 */
   gap: 8px;
   padding: 12px 0;
   border-bottom: 1px solid rgba(201, 146, 42, 0.08);
@@ -298,7 +298,7 @@ a:hover { text-decoration: underline; }
   border: 1px solid rgba(201, 146, 42, 0.3);
   padding: 6px 12px;
   background: #fff;
-  align-self: flex-start;
+  align-self: flex-start; /* スマホでボタンが横いっぱいに伸びるのを防ぐ */
   transition: all .2s ease;
 }
 .toc-list a:hover {
@@ -313,9 +313,9 @@ a:hover { text-decoration: underline; }
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--c-border2);
   border-top: 3.5px solid var(--accent);
-  padding: 28px var(--pad);
+  padding: 32px var(--pad);
   border-radius: 4px;
-  margin-bottom: 48px;
+  margin-bottom: 56px;
   box-shadow: 2px 2px 0px rgba(201, 146, 42, 0.04);
   position: relative;
   transition: border-color 1.2s ease;
@@ -365,30 +365,32 @@ a:hover { text-decoration: underline; }
   font-size: .8rem;
   font-style: italic;
   background: rgba(201, 146, 42, 0.04);
-  padding: 16px 20px;
+  padding: 20px 24px;
   border-left: 2.5px solid var(--gold);
   line-height: 2.1;
-  margin: 24px 0;
+  margin: 28px 0;
   color: var(--c-muted);
 }
 
 .section strong { font-weight: 600; color: var(--c-text); }
 
-/* ─── 写真額装フレーム ─── */
+/* ─── 写真額装フレーム（サブピクセル連動ズレ完全対策） ─── */
 .img-wrapper {
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
-  margin: 28px 0;
+  margin: 32px 0;
   background: #FCFAF6;
   position: relative;
   border: 1px solid var(--gold);
-  padding: 8px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.04);
   transition: border-color 1.2s ease;
 }
 .img-wrapper img {
-  width: 100%; height: 100%;
+  position: absolute;
+  inset: 8px; /* 全デバイスで四方のズレを完全排除 */
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
   object-fit: cover;
   filter: brightness(.97) contrast(1.02) sepia(4%);
   -webkit-user-select: none; user-select: none;
@@ -397,7 +399,8 @@ a:hover { text-decoration: underline; }
 }
 .img-wrapper::before {
   content: '';
-  position: absolute; inset: 4px;
+  position: absolute;
+  inset: 4px; /* 点線枠も完全に中央同心円上に固定 */
   border: 1px dashed rgba(201, 146, 42, 0.3);
   pointer-events: none;
 }
@@ -701,7 +704,7 @@ a:hover { text-decoration: underline; }
     <h2 class="section-heading">I. Core Philosophy — 平和への願いと3つの基本理念</h2>
     <p>みなさんは「イッツ・ア・スモールワールド」を訪れたとき、どんなことを感じますか？ 単なる子供向けの親しみやすいライドアトラクションのようにも見えますが、その穏やかな水流と愛らしい歌声の根底には、ディズニーが紡ぐ非常に強い平和へのメッセージと、人間への深い賛歌が静かに息づいているのです。</p>
     <h3 class="sub-heading">① 人形たちの「同じ顔」に込められた意味</h3>
-    <p>アトラクションに登場する何百体もの子供の人形たち。よく観察してみると、実はすべて全く同じひとつの顔の造形で作られていることに気づくでしょうか。これは彫刻家ブレイン・ギブソンによる意図的なデザイン。「人種、国籍、生まれた国がどこであっても、子供たちはみな同じ人間であり、等しく尊い存在である」という強い平等性の象徴です。あえて個々の顔の個性を排することで、隔たりのない普遍的な一体感を、物言わぬ表情の中に宿しています。</p>
+    <p>アトラクションに登場する何百体もの子供の人形たち。よく観察してみると、実はすべて全く同じひとつの顔の造形で作られていることに気づいたことはありますか？これは彫刻家ブレイン・ギブソンによる意図的なデザイン。「人種、国籍、生まれた国がどこであっても、子供たちはみな同じ人間であり、等しく尊い存在である」という強い平等性の象徴です。あえて個々の顔の個性を排することで、隔たりのない普遍的な一体感を、物言わぬ表情の中に宿しています。</p>
     <h3 class="sub-heading">② 純粋無垢な視点がつくる「子供たちだけの世界」</h3>
     <p>気づいた方もいるかもしれませんが、この幸福な世界には、ディズニーキャラクターを除いて「大人の人間」が一切登場しません。登場するのは、子供たちと動物たちだけ。これは、偏見や憎しみのない「純粋無垢な視点」のみで世界を見つめ直してほしいという、イマジニアたちからの静かな語りかけなのかもしれません。未来の平和を築き上げていく主役は、いつだって純真な子供たちであることを私たちに伝えてくれています。</p>
     <div class="img-wrapper">
@@ -745,9 +748,9 @@ a:hover { text-decoration: underline; }
     <p>この小さな世界の誕生は、1964年に開催された「ニューヨーク世界博覧会」にまで遡ります。ユニセフ（国連児童基金）パビリオンの主役となる展示として、ペプシコ社の出資のもと、ウォルト・ディズニー自らが制作を手掛けたのが始まりでした。世界の平和を祈念する壮大な歴史の記念碑として、パビリオン全体が設計されたのです。</p>
     <h3 class="sub-heading">厳粛な「賛歌」から軽快な「ポップス」へのテンポアップ</h3>
     <p>この曲を手掛けたのは、映画『メリー・ポピンズ』の音楽でもおなじみのロバート・B・シャーマンとリチャード・M・シャーマンの兄弟です。ウォルトから直々に「世界を一つにするシンプルな歌を作ってくれ」という使命を受け、彼らは制作に臨みました。</p>
-    <p>当初、シャーマン兄弟が書き上げたメロディは、<strong>テンポが非常に遅く、伴奏もない、まるで厳粛な賛歌（バラード）のような厳かさ</strong>を湛えていました。当時、世界が「キューバ危機」などの冷戦の極度の緊張状態に置かれていたことを反映し、厳粛な「平和への祈り」を表現しようとしていたためです。</p>
+    <p>当初、シャーマン兄弟が書き上げたメロディは、<strong>テンポが非常に遅く、伴奏もない、まるで賛歌（バラード）のような厳かさを湛えていました</strong>。当時、世界が「キューバ危機」などの冷戦の極度の緊張状態に置かれていたことを反映し、厳粛な「平和への祈り」を表現しようとしていたためです。</p>
     <p>しかし、試作を聴いたウォルト・ディズニーは、その平和のメッセージを認めつつも、次のように言葉を彼らに返しました。</p>
-    <div class="blockquote">「素晴らしい曲だ。だが、私たちが作りたいのは説教のための場所ではない。子供たちが笑顔で口ずみ、楽しく世界を旅できる、もっと明るく軽快なテンポが必要だ」</div>
+    <div class="blockquote">「素晴らしい曲だ。だが、私たちが作りたいのは説教のための場所ではない。子供たちが笑顔で口ずみ、楽しく世界を旅できる、もっと明るく軽快なテンポ必要だ」</div>
     <p>このウォルトの先見の明に満ちた一言により、曲は劇的にテンポアップ。現代の誰もが知る、異なるパートの旋律が美しく重なり合って一つの曲へと溶け合う、心躍る<strong>「輪唱（カウンタフォニー：対位法）」</strong>のスタイルへと生まれ変わったのです。</p>
     <div class="img-wrapper">
       <img src="smallworld-queue.jpeg" alt="ボートが並ぶ乗船エリアの内景" loading="lazy" decoding="async">
@@ -845,7 +848,7 @@ a:hover { text-decoration: underline; }
     </div>
     <h3 class="sub-heading" style="border-left-color: var(--accent); color: var(--accent-dark); transition: none;">メアリー・ブレアのタッチで描かれたスーパーヒーローたち</h3>
     <p>この特別な体験の中では、グルートの相棒であるロケット、マンティス、ガモーラ、ハルク、さらにはドクター・ストレンジ、ブラックパンサーといったマーベル・スタジオのヒーローたちが、<strong>すべてメアリー・ブレア独自の愛らしいデフォルメ・ドール（人形）</strong>となって、世界の子供たちに囲まれ、共に歌を口ずさんでいる姿を見ることができます。</p>
-    <p>例えば、アフリカの星空の下で現地のキリンと並び、淡く輝く青いハートの熱帯植物に見惚れているグルートや、南極でキャプテン・アメリカの強固なシールド（盾）に乗って楽しそうにそり遊びをする姿が確認できます。アトラクション本来の「私たちは一つ」というテーマと、異なる星々を越えて響き合う「宇宙的な友情」が幸福に融け合い、時空を超えた文化の架け橋が今日も静かに流れています。</p>
+    <p>例えば、アフリカの星空の下で現地のキリンと並び、淡く輝く青いハートの熱帯植物に見惚れているグルートや、南極でキャプテン・アメリカの強固なシールド（盾）に乗って楽しそうにそり遊びをする姿が確認できます。アトラクション本来の「私たちは一つ」というテーマと、異なる星々を越えて響き合う「宇宙的な友情」が幸福に融け合い、時空を超えた文化の架け橋として、今日もこの世界を優しく繋いでいます。</p>
   </section>
 
   <div class="geo-band reveal" aria-hidden="true">
@@ -884,7 +887,7 @@ a:hover { text-decoration: underline; }
       <img src="smallworld-exterior-night.jpeg" alt="光り輝くイッツ・ア・スモールワールドの外観（夜景）" loading="lazy" decoding="async">
     </div>
     <h3 class="sub-heading">ホワイト・ルーム（フィナーレ）に隠された「光の統合」</h3>
-    <p>旅の最後に訪れる、一面が純白の「ホワイト・ルーム」。各テーマの部屋では、緑や青、暖色といった地域ごとの固有の色彩が主役を務めていましたが、最終部屋であるこの空間では、それらがすべて「白と金」の2色へと統合されます。色彩学において、あらゆる色（光）を重ね合わせて混ぜ合わせると「真っ白な光」へと還元されるように、多種多様な文化や国籍が手を取り合い、すべてが一つに融け合う調和の状態を、目の前に広がる純白の光の中で表現しているのです。</p>
+    <p>旅の最後に訪れる、一面が純白の「ホワイト・ルーム」。各テーマの部屋では、緑や青、暖色といった地域ごとの固有の色彩が主役を務めていましたが、最終部屋であるこの空間では、それらがすべて「白と金」の2色へと統合されます。色彩学において、あらゆる光を重ね合わせると『白い光』になるように、多種多様な文化や国籍が手を取り合い、すべてが一つに融け合う調和の状態を、目の前に広がる純白の光の中で表現しているのです。</p>
     <p>アナハイムのパステル調のファサードから、フロリダ版の「純白と金」による屋内ファサード（太陽光による退色を防ぎつつ、光の統合を表現する美学）まで、各地の気候に合わせながらも一貫して同じメッセージが世界中で航行し続けています。</p>
   </section>
 
