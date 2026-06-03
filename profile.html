@@ -1,419 +1,418 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | teru_luce_</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400;600&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        /* ============================================
-           CSS Variables & Reset (index.htmlと完全同期)
-        ============================================ */
-        :root {
-            --parchment:     #E8DCC8;
-            --parchment-dark:#C9B99A;
-            --ink:           #1E1510;
-            --ink-mid:       #3D2B1F;
-            --sepia:         #6B4423;
-            --gold:          #9A6B2E;
-            --gold-light:    #C89B4A;
-            --gold-glow:     rgba(154,107,46,.35);
-            --vellum:        rgba(240,232,215,.72);
-            --border:        rgba(107,68,35,.28);
-            --border-strong: rgba(107,68,35,.55);
-            --shadow-deep:   rgba(15,8,3,.45);
-            --shadow-soft:   rgba(30,18,8,.2);
-            --bg-stain-size: 100% 2200px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        img {
-            max-width: 100%; height: auto;
-            -webkit-user-select: none; user-select: none;
-            -webkit-touch-callout: none; pointer-events: none;
-        }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
+      --max-w: 640px; /* Profile用のコンパクトな幅 */
+      --pad-x: clamp(16px, 5vw, 40px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        /* ============================================
-           Custom Cursor (ポータルと完全に同期させ、遷移時の違和感をゼロに)
-        ============================================ */
-        body { cursor: none; }
-        #cursor-outer {
-            position: fixed;
-            width: 36px; height: 36px;
-            border: 1.5px solid var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: opacity .3s ease, border-color .3s ease, width .2s ease, height .2s ease;
-            mix-blend-mode: multiply;
-            opacity: 0;
-        }
-        #cursor-inner {
-            position: fixed;
-            width: 6px; height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: opacity .3s ease;
-            opacity: 0;
-        }
-        #cursor-outer.hovering {
-            width: 52px; height: 52px;
-            border-color: var(--gold-light);
-            border-style: dashed;
-        }
-        #cursor-outer::before,
-        #cursor-outer::after {
-            content: '';
-            position: absolute;
-            background: var(--gold);
-            opacity: .5;
-        }
-        #cursor-outer::before { width: 1px; height: 6px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-        #cursor-outer::after { width: 6px; height: 1px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        @media (hover: none) {
-            body { cursor: auto !important; }
-            #cursor-outer, #cursor-inner { display: none !important; }
-        }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        /* ============================================
-           Body & Background (紅茶をこぼしたぐちゃぐちゃ羊皮紙スクロール)
-        ============================================ */
-        body {
-            font-family: 'Noto Serif JP', serif;
-            background-color: #D6C9AE;
-            background-image:
-                radial-gradient(ellipse at 10% 15%, rgba(90,55,20,.3)  0%, transparent 55%),
-                radial-gradient(ellipse at 90% 75%, rgba(80,45,15,.32) 0%, transparent 50%),
-                radial-gradient(circle   at 50%  5%, rgba(100,65,30,.22) 0%, transparent 65%),
-                radial-gradient(ellipse at 95% 10%, rgba(85,50,20,.25) 0%, transparent 45%),
-                radial-gradient(circle   at  5% 92%, rgba(90,55,20,.22) 0%, transparent 55%),
-                radial-gradient(ellipse at 50% 50%, transparent 15%, rgba(18,9,3,.42) 100%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='6' result='n'/%3E%3CfeDiffuseLighting in='n' lighting-color='%23F5EDD8' surfaceScale='9'%3E%3CfeDistantLight azimuth='45' elevation='35'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
-            background-size: var(--bg-stain-size), var(--bg-stain-size), var(--bg-stain-size), var(--bg-stain-size), var(--bg-stain-size), 100% 100%, 500px 500px;
-            background-repeat: repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, no-repeat, repeat;
-            color: var(--ink);
-            line-height: 2.2;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .noise-overlay {
-            position: fixed; inset: 0;
-            pointer-events: none; z-index: 3; opacity: .045;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        .vignette-overlay {
-            position: fixed; inset: 0;
-            pointer-events: none; z-index: 1;
-            background: radial-gradient(ellipse at center, transparent 40%, rgba(12,6,2,.55) 100%);
-        }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        /* ============================================
-           Container (手帳の二重ダブルフレーム枠)
-        ============================================ */
-        .container {
-            position: relative; z-index: 4;
-            width: 100%; max-width: 540px;
-            margin: 60px auto 120px; padding: 55px 38px 100px;
-            background: var(--vellum);
-            border-radius: 2px;
-            border: 1px solid var(--border-strong);
-            outline: 3px double rgba(107,68,35,.22);
-            outline-offset: -10px;
-            box-shadow:
-                0 20px 60px var(--shadow-deep),
-                0  4px 12px var(--shadow-soft),
-                inset 0 1px 0 rgba(255,245,225,.35);
-        }
-        .container::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg,
-                transparent 0%, rgba(200,155,74,.4) 20%,
-                rgba(255,235,180,.7) 50%,
-                rgba(200,155,74,.4) 80%, transparent 100%);
-        }
-        .container::after {
-            content: '';
-            position: absolute; bottom: 0; right: 0;
-            width: 0; height: 0;
-            border-style: solid;
-            border-width: 0 0 28px 28px;
-            border-color: transparent transparent rgba(107,68,35,.18) transparent;
-        }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        /* ============================================
-           Reveal Animation
-        ============================================ */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        /* ============================================
-           Back Button
-        ============================================ */
-        .back-btn {
-            display: inline-block; text-decoration: none;
-            font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em;
-            color: var(--gold); border-bottom: 1px solid transparent;
-            margin-bottom: 40px; transition: color 0.3s, border-color 0.3s;
-        }
-        .back-btn:hover { color: var(--ink-mid); border-color: var(--ink-mid); }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        /* ============================================
-           Hero Section
-        ============================================ */
-        .hero { text-align: center; margin-bottom: 50px; }
-        
-        /* FIX: プロフィール写真を手帳にテープで貼ったポラロイド（印画紙）風に調律。世界観が自然に繋がります */
-        .profile-img-container {
-            position: relative;
-            margin: 15px auto 25px;
-            padding: 8px 8px 14px;
-            background: #FAF6ED;
-            border-radius: 1px;
-            box-shadow: 2px 8px 20px var(--shadow-soft);
-            transform: rotate(-1.5deg);
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .profile-img-container:hover {
-            transform: rotate(0deg) scale(1.02);
-        }
-        .profile-img-container::before {
-            content: '';
-            position: absolute; top: -10px; left: 50%;
-            transform: translateX(-50%) rotate(2deg);
-            width: 50px; height: 14px;
-            background: rgba(215,190,148,.55);
-            backdrop-filter: blur(1px);
-            -webkit-backdrop-filter: blur(1px);
-            mask-image: linear-gradient(to right, transparent, #fff 8%, #fff 92%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, #fff 8%, #fff 92%, transparent);
-            z-index: 5; pointer-events: none;
-        }
-        .profile-img {
-            width: 110px !important; height: 110px !important; object-fit: cover;
-            display: block;
-            filter: brightness(.82) contrast(1.12) sepia(28%) saturate(.9);
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        h1 {
-            font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700;
-            letter-spacing: 0.08em; margin-bottom: 5px; color: var(--ink-mid);
-            text-shadow: 1px 1px 2px var(--shadow-soft);
-        }
-        .subtitle {
-            font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.25em;
-            color: var(--gold); text-transform: uppercase; margin-bottom: 20px;
-        }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        /* ============================================
-           Section Headers
-        ============================================ */
-        .section-title {
-            font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 400;
-            text-align: center; margin: 60px 0 35px; color: var(--sepia);
-            text-shadow: 1px 1px 2px var(--shadow-soft);
-            display: flex; align-items: center;
-        }
-        .section-title::before, .section-title::after {
-            content: ''; flex: 1; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-        }
-        .section-title span { padding: 0 16px; }
+    /* ============================================================
+       MASTHEAD / PROFILE HERO
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
 
-        /* ============================================
-           Info Block (プロフィール項目)
-        ============================================ */
-        .info-block {
-            border-top: 1px dashed var(--border); padding: 22px 0; 
-            display: flex; justify-content: space-between; align-items: flex-start;
-        }
-        .info-block:last-of-type { border-bottom: 1px dashed var(--border); }
-        .info-label {
-            font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.15em;
-            color: var(--gold); text-transform: uppercase; width: 40%; padding-top: 4px;
-        }
-        .info-value { font-size: 0.82rem; font-weight: 300; width: 60%; text-align: right; line-height: 1.8; color: var(--ink-mid); }
+    .profile-img-frame {
+      position: relative;
+      width: clamp(100px, 25vw, 130px);
+      aspect-ratio: 1/1;
+      margin: 0 auto 20px;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      transform: rotate(-1.5deg);
+      transition: transform 0.4s var(--ease);
+    }
+    .profile-img-frame:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+    .profile-img-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(35%) sepia(30%) contrast(1.1) brightness(0.82);
+      display: block;
+    }
 
-        /* ============================================
-           Connections Links Area
-        ============================================ */
-        .links-area { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
-        .btn {
-            display: block; text-decoration: none; color: var(--ink-mid); padding: 18px; 
-            border: 1px solid var(--border); text-align: center;
-            font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-            position: relative; overflow: hidden; transition: color 0.35s; background-color: transparent;
-        }
-        .btn::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--ink-mid); transform: scaleY(0); transform-origin: bottom;
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); z-index: -1;
-        }
-        .btn:hover { color: var(--parchment); border-color: var(--ink-mid); }
-        .btn:hover::before { transform: scaleY(1); }
-        .btn span { position: relative; z-index: 1; }
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 6vw, 2.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 8px;
+    }
 
-        footer { text-align: center; margin-top: 100px; font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; opacity: 0.7; }
-    </style>
+    .masthead-subtitle {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .masthead-bottom-rules {
+      margin-top: 24px;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .masthead-bottom-rules span {
+      display: block; height: 1px;
+      background: var(--border-strong);
+    }
+    .masthead-bottom-rules span:first-child { height: 3px; background: var(--ink); }
+
+    /* ============================================================
+       SECTIONS
+    ============================================================ */
+    .section-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      text-align: center;
+      margin: 48px 0 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .section-title::before,
+    .section-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+
+    /* ============================================================
+       INFO LIST
+    ============================================================ */
+    .info-list {
+      border-top: 1px solid var(--border-strong);
+      border-bottom: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.3);
+    }
+    .info-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: clamp(16px, 3vw, 20px) 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      font-family: var(--f-type);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      width: 40%;
+      padding-top: 4px;
+    }
+    .info-value {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      width: 60%;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* ============================================================
+       CONNECTIONS (LINKS)
+    ============================================================ */
+    .links-area {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-top: 24px;
+    }
+    .btn {
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.25em;
+      color: var(--ink);
+      text-transform: uppercase;
+      padding: 16px;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+      transition: all 0.25s;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      margin-top: 64px;
+      border-top: 3px double var(--border-strong);
+      padding-top: 24px;
+      text-align: center;
+    }
+    .footer-copy {
+      font-family: var(--f-type);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <!-- ノイズ & ビネット -->
-    <div class="noise-overlay" aria-hidden="true"></div>
-    <div class="vignette-overlay" aria-hidden="true"></div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <!-- カスタムカーソル -->
-    <div id="cursor-outer" aria-hidden="true"></div>
-    <div id="cursor-inner" aria-hidden="true"></div>
+  <!-- ===== BACK LINK ===== -->
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to BGS Portal</a>
+  </div>
 
-    <div class="container">
-        <!-- 戻るボタン -->
-        <a href="index.html" class="back-btn">← Back to BGS Portal</a>
-
-        <header class="hero reveal">
-            <!-- ポラロイド（印画紙）風に装飾されたプロフィール写真枠 -->
-            <div class="profile-img-container">
-                <img src="IMG_2226.jpeg" alt="teru_luce_" class="profile-img" draggable="false">
-            </div>
-            <h1>teru_luce_</h1>
-            <div class="subtitle">About the Curator</div>
-        </header>
-
-        <!-- プロフィール情報 -->
-        <h2 class="section-title reveal"><span>Curator Identity</span></h2>
-        <div class="reveal">
-            <div class="info-block">
-                <div class="info-label">Born in</div>
-                <div class="info-value">2007 (18yo)</div>
-            </div>
-            <div class="info-block">
-                <div class="info-label">Base &amp; Pace</div>
-                <div class="info-value">関東在住<br>約3ヶ月に1度のペースでイン</div>
-            </div>
-            <div class="info-block">
-                <div class="info-label">Character</div>
-                <div class="info-value">ドナルドダック</div>
-            </div>
-            <div class="info-block">
-                <div class="info-label">Favorite Area</div>
-                <div class="info-value">TDL: トゥモローランド<br>TDS: ポートディスカバリー</div>
-            </div>
-        </div>
-
-        <!-- 機材 -->
-        <h2 class="section-title reveal"><span>Gears</span></h2>
-        <div class="reveal">
-            <div class="info-block">
-                <div class="info-label">Main Camera</div>
-                <div class="info-value">Sony DSC-HX90V</div>
-            </div>
-            <div class="info-block">
-                <div class="info-label">Sub &amp; Edit</div>
-                <div class="info-value">Apple iPhone 15</div>
-            </div>
-        </div>
-
-        <!-- リンク集 -->
-        <h2 class="section-title reveal"><span>Connections</span></h2>
-        <div class="links-area reveal">
-            <a href="https://www.instagram.com/teru_luce_?igsh=MWV4bjlocXR0MXJmdw%3D%3D&amp;utm_source=qr" class="btn" target="_blank"><span>Instagram / Main</span></a>
-            <a href="https://www.instagram.com/teru_diario_?igsh=M25raDdsYmJlcWww&amp;utm_source=qr" class="btn" target="_blank"><span>Instagram / Diario</span></a>
-            <a href="https://x.com/teru_luce?s=21" class="btn" target="_blank"><span>X (Twitter)</span></a>
-        </div>
-
-        <footer class="reveal">
-            &copy; TERU_LUCE_ | Since 2007
-        </footer>
+  <!-- ===== HERO / MASTHEAD ===== -->
+  <header class="masthead reveal">
+    <div class="profile-img-frame">
+      <img 
+        src="IMG_2226.jpeg" 
+        alt="teru_luce_" 
+        width="130" height="130"
+        decoding="sync" loading="eager" fetchpriority="high"
+      >
     </div>
+    <h1 class="masthead-title">teru_luce_</h1>
+    <span class="masthead-subtitle">About the Curator</span>
 
-    <script>
-    // ============================================
-    // Custom Cursor (ポータルと完全に同期させ、タッチデバイスでは自動無効化)
-    // ============================================
-    const cursorOuter = document.getElementById('cursor-outer');
-    const cursorInner = document.getElementById('cursor-inner');
-    let mouseX = 0, mouseY = 0;
-    let outerX = 0, outerY = 0;
-    let mouseActive = false;
+    <div class="masthead-bottom-rules">
+      <span></span><span></span>
+    </div>
+  </header>
 
-    document.addEventListener('mousemove', e => {
-        if (!mouseActive) {
-            mouseActive = true;
-            cursorOuter.style.opacity = '1';
-            cursorInner.style.opacity = '1';
-        }
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorInner.style.left = mouseX + 'px';
-        cursorInner.style.top  = mouseY + 'px';
+  <!-- ===== IDENTITY ===== -->
+  <h2 class="section-title reveal">Curator Identity</h2>
+  <div class="info-list reveal">
+    <div class="info-row">
+      <div class="info-label">Born in</div>
+      <div class="info-value">2007 (18yo)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Base &amp; Pace</div>
+      <div class="info-value">関東在住<br>約3ヶ月に1度のペースでイン</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Character</div>
+      <div class="info-value">ドナルドダック</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Favorite Area</div>
+      <div class="info-value">TDL: トゥモローランド<br>TDS: ポートディスカバリー</div>
+    </div>
+  </div>
+
+  <!-- ===== GEARS ===== -->
+  <h2 class="section-title reveal">Gears</h2>
+  <div class="info-list reveal">
+    <div class="info-row">
+      <div class="info-label">Main Camera</div>
+      <div class="info-value">Sony DSC-HX90V</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Sub &amp; Edit</div>
+      <div class="info-value">Apple iPhone 15</div>
+    </div>
+  </div>
+
+  <!-- ===== CONNECTIONS ===== -->
+  <h2 class="section-title reveal">Connections</h2>
+  <div class="links-area reveal">
+    <a href="https://www.instagram.com/teru_luce_?igsh=MWV4bjlocXR0MXJmdw%3D%3D&amp;utm_source=qr" class="btn" target="_blank" rel="noopener noreferrer">Instagram / Main</a>
+    <a href="https://www.instagram.com/teru_diario_?igsh=M25raDdsYmJlcWww&amp;utm_source=qr" class="btn" target="_blank" rel="noopener noreferrer">Instagram / Diario</a>
+    <a href="https://x.com/teru_luce?s=21" class="btn" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer reveal">
+    <p class="footer-copy">&copy; TERU_LUCE_ | Since 2007</p>
+  </footer>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
     });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    document.addEventListener('mouseleave', () => {
-        cursorOuter.style.opacity = '0';
-        cursorInner.style.opacity = '0';
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 2) el.classList.add('on');
     });
-    document.addEventListener('mouseenter', () => {
-        if (mouseActive) {
-            cursorOuter.style.opacity = '1';
-            cursorInner.style.opacity = '1';
-        }
-    });
+  }, 50);
 
-    function animateCursor() {
-        outerX += (mouseX - outerX) * 0.14;
-        outerY += (mouseY - outerY) * 0.14;
-        cursorOuter.style.left = outerX + 'px';
-        cursorOuter.style.top  = outerY + 'px';
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    const hoverEls = document.querySelectorAll('a, button, .btn');
-    hoverEls.forEach(el => {
-        el.addEventListener('mouseenter', () => cursorOuter.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => cursorOuter.classList.remove('hovering'));
-    });
-
-    // ============================================
-    // Scroll Reveal
-    // ============================================
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // 最初から軽快に動くよう、ヒーロー要素を手動で即時アクティブに
-    const reveals = document.querySelectorAll('.reveal');
-    setTimeout(() => { reveals[0].classList.add('active'); }, 100);
-    </script>
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
