@@ -617,4 +617,14 @@
 
   /* ファーストビューの要素を即時表示 */
   setTimeout(() => {
-    document.querySelectorAll('.reveal').forEac
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
+</body>
+</html>
