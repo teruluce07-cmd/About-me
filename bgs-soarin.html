@@ -1,133 +1,535 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Soarin' | teru_luce_</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #E2D7C5; --text-main: #2D231E; --accent-gold: #3A7F93; --border-light: rgba(58, 127, 147, 0.2);
-            --img-filter: brightness(0.95) contrast(1.05) sepia(10%); --glow-color: rgba(58, 127, 147, 0.25);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='strong-paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='6' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23f5eee0' surfaceScale='5.5'%3E%3CfeDistantLight azimuth='50' elevation='45'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23strong-paper)'/%3E%3C/svg%3E");
-        }
-        body.curse-mode {
-            --bg-color: #070D1A; --text-main: #E2E8F0; --accent-gold: #F39C12; --border-light: rgba(243, 156, 18, 0.25);
-            --img-filter: brightness(0.8) contrast(1.25) saturate(1.2); --glow-color: rgba(243, 156, 18, 0.45);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='burnt'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23101c33' surfaceScale='2.5'%3E%3CfeDistantLight azimuth='45' elevation='40'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23burnt)'/%3E%3C/svg%3E");
-        }
-        img { max-width: 100% !important; height: auto; }
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Noto Serif JP', serif; background-color: var(--bg-color); background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.2) 100%), var(--paper-texture); background-size: cover; background-attachment: fixed; color: var(--text-main); line-height: 2.2; overflow-x: hidden; transition: background-color 0.8s ease, color 0.8s ease; -webkit-font-smoothing: antialiased; }
-        .paper-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.2) 100%), var(--paper-texture); background-size: cover; transform: translate3d(0, 0, 0); will-change: transform; pointer-events: none; }
-        .noise-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
-        .container { position: relative; z-index: 10; max-width: 600px; margin: 0 auto; padding: 60px 25px 120px; background: rgba(245, 240, 230, 0.45); border-radius: 8px; box-shadow: inset 0 0 40px rgba(0,0,0,0.03); transition: background 0.8s ease; }
-        body.curse-mode .container { background: rgba(10, 18, 32, 0.45); box-shadow: inset 0 0 40px rgba(243,156,18,0.02); }
-        .reveal { opacity: 0; transform: translate3d(0, 30px, 0); will-change: transform, opacity; transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .reveal.active { opacity: 1; transform: translate3d(0, 0, 0); }
-        .back-btn { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--accent-gold); text-decoration: none; text-transform: uppercase; margin-bottom: 40px; border-bottom: 1px solid transparent; transition: color 0.3s; }
-        .back-btn:hover { border-color: var(--accent-gold); }
-        .theme-switch { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%; background-color: var(--accent-gold); color: var(--bg-color); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
-        .theme-switch:hover { transform: scale(1.1); }
-        .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 40px; }
-        .bgs-tag { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--accent-gold); text-transform: uppercase; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; margin: 10px 0 20px; letter-spacing: 0.05em; }
-        .subtitle-jp { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.1em; opacity: 0.9; }
-        .toc-box { background: rgba(0, 0, 0, 0.02); border: 1px solid var(--border-light); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
-        .toc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--accent-gold); text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed var(--border-light); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.8; }
-        .toc-list a:hover { color: var(--accent-gold); }
-        .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; font-style: italic; color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.9rem; font-weight: 300; margin-bottom: 20px; opacity: 0.9; }
-        .hero-img-container { margin: 40px 0; border-radius: 4px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .hero-img { width: 100%; height: auto; display: block; filter: var(--img-filter); transition: transform 2s ease, filter 0.8s ease; }
-        .hero-img-container:hover .hero-img { transform: scale(1.03); }
-        .comparison-table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 0.8rem; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-        .comparison-table th, .comparison-table td { padding: 10px 12px; text-align: left; border-bottom: 1px dashed var(--border-light); }
-        .comparison-table th { font-family: 'Montserrat', sans-serif; color: var(--accent-gold); letter-spacing: 0.1em; font-size: 0.75rem; }
-        .connection-card { background: rgba(58, 127, 147, 0.05); border: 1px solid var(--accent-gold); padding: 25px; border-radius: 4px; margin: 30px 0; }
-        body.curse-mode .connection-card { background: rgba(243, 156, 18, 0.03); }
-        .connection-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; }
-        .connection-card p { font-size: 0.85rem; line-height: 2; margin-bottom: 0; }
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Soarin' | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
+
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
+
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
+
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
+
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
+
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
+
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
+
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 7vw, 3.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h4 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       DATA TABLE
+    ============================================================ */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+      text-align: left;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px dashed var(--border);
+      font-family: var(--f-jp);
+      font-size: clamp(0.7rem, 2vw, 0.75rem);
+      line-height: 1.8;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table th {
+      font-family: var(--f-sc);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      background: rgba(245,237,216,0.5);
+      border-bottom: 1px solid var(--border-strong);
+      font-weight: 400;
+    }
+    .data-table td strong {
+      color: var(--ink);
+      font-family: var(--f-sc);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
-    <div class="noise-overlay"></div>
-    <div class="paper-bg"></div>
-    <div class="theme-switch" id="theme-switch">🌙</div>
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back to Portal</a>
-        <header class="header-section reveal">
-            <div class="bgs-tag">Background Story</div>
-            <h1>Soarin'</h1>
-            <div class="subtitle-jp">カメリアとハイタワー三世の確執、そして日本との因縁</div>
-        </header>
-        <nav class="toc-box reveal">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. 現代SFから「歴史ロマン」への大改変（日米比較）</span><a href="#prologue">Read →</a></li>
-                <li><span>II. カメリア vs ハイタワー三世（S.E.A.の光と影）</span><a href="#conflict">Read →</a></li>
-                <li><span>III. 日本「明治維新・岩倉使節団」との鳥肌が立つ繋がり</span><a href="#meiji">Read →</a></li>
-                <li><span>IV. 天井ロビーに広がる「空を夢見た人類の歴史画」</span><a href="#rotunda">Read →</a></li>
-                <li><span>V. 絵画に命が吹き込まれるイマジニアの魔法</span><a href="#magic">Read →</a></li>
-            </ul>
-        </nav>
-        <div class="hero-img-container reveal"><img src="soarin-exterior.jpeg" alt="Fantastic Flight Museum Exterior" class="hero-img"></div>
-        <section class="article-block reveal" id="prologue">
-            <h2>I. 現代SFから「歴史ロマン」への大改変</h2>
-            <p>メディテレーニアンハーバーのなだらかな丘の上に建つ、美しいルネサンス様式の博物館「ファンタスティック・フライト・ミュージアム」。世界中のパークに存在する大人気アトラクション「ソアリン」ですが、ここ東京ディズニーシー（TDS）のものは、**世界で最も重厚な「歴史ロマンと魔法」のストーリー**が散りばめられています。</p>
-            <p>海外版の「現代的な空港やハンググライダー」というSFな設定から、TDS版は「19世紀を舞台にした飛行への情熱と、イマジネーションの旅」というエモーショナルな物語へ180度、驚異的なリビルドが行われました。</p>
-            <table class="comparison-table">
-                <thead><tr><th>比較項目</th><th>海外パーク（米国・上海）</th><th>東京ディズニーシー（日本）</th></tr></thead>
-                <tbody>
-                    <tr><td>舞台設定</td><td>現代的なハンググライダーツアー</td><td>19世紀の飛行博物館</td></tr>
-                    <tr><td>飛行具</td><td>アルミと金属の工業グライダー</td><td>木と布とハヤブサが織りなす「ドリームフライヤー」</td></tr>
-                    <tr><td>案内人</td><td>パトリック（現代の客室乗務員）</td><td>カメリア・ファルコ（19世紀の女性飛行家）</td></tr>
-                </tbody>
-            </table>
-        </section>
-        <section class="article-block reveal" id="conflict">
-            <h2>II. カメリア vs ハイタワー三世：S.E.A.の光と影</h2>
-            <!-- 【修正箇所】ハイタワー三世との確執のニュアンスを正確に修正 -->
-            <p>TDSのソアリンに隠された最大のミステリー。それは、カメリア・ファルコと、あの『タワー・オブ・テラー』の主人公**「ハリソン・ハイタワー三世」とのドロドロとした関係性**です。二人は1538年創設の歴史ある探検家学会「S.E.A.」において、19世紀の再興期を共に支えたメンバーでしたが、その思想は「光と影」のように正反対でした。</p>
-            <p>カメリアは「空を飛ぶ夢を、世界中の多くの人と分かち合いたい」と願った優しき女性。対して、強欲なハイタワー三世は「世界で偉大なのは自分だけ」と考え、手に入れた宝をホテルに独占・隠匿しました。ファンの間では、ハイタワー三世がカメリアの「ドリームフライヤーの設計図」や博物館のコレクションに目をつけ、S.E.A.の内部で激しく対立していたと考察されています。</p>
-            <div class="connection-card">
-                <h4>🔎 待ち列に遺された「確執の証拠」</h4>
-                <p>博物館のロビーに飾られたS.E.A.の大きな集合写真には、誇らしげに座る若きカメリアと、そのすぐ近くで傲慢な顔をして映るハイタワー三世の姿が描かれています。カメリアは彼の強欲な思想に決して屈せず、純粋な情熱でこの博物館を守り抜きました。この二人の対立を知ると、ソアリンの美しさと、タワー・オブ・テラーの恐ろしさが、ひとつの歴史として重厚に繋がります。</p>
-            </div>
-        </section>
-        <section class="article-block reveal" id="meiji">
-            <h2>III. 「岩倉使節団」が訪れた博物館</h2>
-            <p>メディテレーニアンハーバーというイタリアの地でありながら、この博物館には日本の近代化（明治維新）の歴史が美しく絡んでいます。博物館の中には、カメリアが晩年（1872年、当時71歳）に、**日本から訪れた使節団を迎えて挨拶をしている絵画**が飾られています。</p>
-            <p>この絵画に描かれている日本の紳士たちは、実在した**「岩倉使節団」**（岩倉具視や木戸孝允、伊藤博文、大久保利通など）です。ヨーロッパの優れた技術を学びに来ていた彼らは、カメリアの飛行への狂熱的な情熱とドリームフライヤーに深い感銘を受けました。そして彼らが日本に持ち帰った「空への夢」のバトンが巡り巡って、現代の私たちがこの地でドリームフライヤーに出会えるという、鳥肌が立つような時空を超えた歴史の伏線が張られているのです。</p>
-        </section>
-        <section class="article-block reveal" id="rotunda">
-            <h2>IV. 常設展示室に響く、空への祈り</h2>
-            <p>博物館の奥へと進むと広がる、息を呑むほどに美しい大天井のドーム型ロビー。ここには、カメリアの父チェザーレ・ファルコが世界中で集め、描いた「人類が太古より夢見た空への歴史画」が、東洋から西洋、中東の神話に至るまで、ドームを囲むように飾られています。</p>
-            <div class="hero-img-container"><img src="soarin-interior.jpeg" alt="Fantastic Flight Museum Rotunda" class="hero-img"></div>
-            <p>壁画をよく見ると、神話に登場する「空飛ぶカーペット」や「翼を持った馬（ペガサス）」、ダ・ヴィンチの飛行設計図、さらには空を飛ぼうとする「ゾウ」や「ライオン」の姿など、人類が抱いた空への憧れがユーモアと芸術性たっぷりに描き込まれています。このロビーで、頭上の美しい青空の天井画を見上げながら、世界中の歴史や魔法を感じる時間こそが、私たちの「イマジネーション（想像力）」を高め、次の部屋でドリームフライヤーを起動するための最も重要なプロローグなのです。</p>
-        </section>
-        <section class="article-block reveal" id="magic">
-            <h2>V. 絵画に命が吹き込まれるイマジニアの魔法</h2>
-            <p>カメリアの肖像画が飾られた「特別回顧室」で、白黒の絵から彼女が立体的に動き出すあの瞬間。ここにはイマジニアによる驚異的な最新プロジェクションマッピング技術が使われています。単に動画を絵の上に写すのではなく、**「油絵のキャンバスに描かれた独特の絵の具の凹凸や筆跡（キャンバスの質感）」**を完璧に維持したまま、彼女のスピリットを美しく動かしているのです。</p>
-            <p>また、彼女が放った愛鳥ハヤブサ「アレッタ」の影が天井を飛び回る演出では、立体的なサラウンド音響と同期させることで、本当にハヤブサの風が頭上を駆け抜けるような「リアルな気配」を五感に訴えかけています。すべては、科学ではなく、ゲストの「想像力」という名の魔法を信じさせるための、緻密な計算の結晶なのです。</p>
-        </section>
-        <div class="footer-link reveal"><a href="index.html">← HOMEへ戻る</a></div>
+
+<div class="site-wrap">
+<div class="content-box">
+
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
+
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Background Story</span>
+    <h1 class="masthead-title">Soarin'</h1>
+    <span class="masthead-subtitle">カメリアとハイタワー三世の確執、そして日本との因縁</span>
+  </header>
+
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="セクション目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
     </div>
-    <script>
-        const themeSwitch = document.getElementById('theme-switch');
-        themeSwitch.addEventListener('click', () => { document.body.classList.toggle('curse-mode'); themeSwitch.textContent = document.body.classList.contains('curse-mode') ? '☀️' : '🌙'; });
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('active'); observer.unobserve(entry.target); }); }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-        reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        setTimeout(() => { reveals[0].classList.add('active'); }, 100);
-    </script>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 現代SFから「歴史ロマン」への大改変（日米比較）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#conflict" class="toc-link"><span class="toc-text">II. カメリア vs ハイタワー三世（S.E.A.の光と影）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#meiji" class="toc-link"><span class="toc-text">III. 日本「明治維新・岩倉使節団」との鳥肌が立つ繋がり</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#rotunda" class="toc-link"><span class="toc-text">IV. 常設展示室に響く、空への祈り</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#magic" class="toc-link"><span class="toc-text">V. 絵画に命が吹き込まれるイマジニアの魔法</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="photo-frame reveal">
+    <img src="soarin-exterior.jpeg" alt="Fantastic Flight Museum Exterior" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
+
+  <!-- I. 現代SFから「歴史ロマン」への大改変 -->
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. 現代SFから「歴史ロマン」への大改変</h2>
+    <p class="article-p">メディテレーニアンハーバーのなだらかな丘の上に建つ、美しいルネサンス様式の博物館「ファンタスティック・フライト・ミュージアム」。世界中のパークに存在する大人気アトラクション「ソアリン」ですが、ここ東京ディズニーシー（TDS）のものは、<strong>世界で最も重厚な「歴史ロマンと魔法」のストーリー</strong>が散りばめられています。</p>
+    <p class="article-p">海外版の「現代的な空港やハンググライダー」というSFな設定から、TDS版は「19世紀を舞台にした飛行への情熱と、イマジネーションの旅」というエモーショナルな物語へ180度、驚異的なリビルドが行われました。</p>
+
+    <div class="data-table-wrap reveal">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            <th>海外パーク（米国・上海）</th>
+            <th>東京ディズニーシー（日本）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>舞台設定</td>
+            <td>現代的なハンググライダーツアー</td>
+            <td>19世紀の飛行博物館</td>
+          </tr>
+          <tr>
+            <td>飛行具</td>
+            <td>アルミと金属の工業グライダー</td>
+            <td>木と布とハヤブサが織りなす「ドリームフライヤー」</td>
+          </tr>
+          <tr>
+            <td>案内人</td>
+            <td>パトリック（現代の客室乗務員）</td>
+            <td>カメリア・ファルコ（19世紀の女性飛行家）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- II. カメリア vs ハイタワー三世 -->
+  <section class="article-block reveal" id="conflict">
+    <h2 class="article-h2">II. カメリア vs ハイタワー三世：S.E.A.の光と影</h2>
+    <p class="article-p">TDSのソアリンに隠された最大のミステリー。それは、カメリア・ファルコと、あの『タワー・オブ・テラー』の主人公<strong>「ハリソン・ハイタワー三世」とのドロドロとした関係性</strong>です。二人は1538年創設の歴史ある探検家学会「S.E.A.」において、19世紀の再興期を共に支えたメンバーでしたが、その思想は「光と影」のように正反対でした。</p>
+    <p class="article-p">カメリアは「空を飛ぶ夢を、世界中の多くの人と分かち合いたい」と願った優しき女性。対して、強欲なハイタワー三世は「世界で偉大なのは自分だけ」と考え、手に入れた宝をホテルに独占・隠匿しました。ファンの間では、ハイタワー三世がカメリアの「ドリームフライヤーの設計図」や博物館のコレクションに目をつけ、S.E.A.の内部で激しく対立していたと考察されています。</p>
+    
+    <div class="column-box reveal">
+      <h4>🔎 待ち列に遺された「確執の証拠」</h4>
+      <p>博物館のロビーに飾られたS.E.A.の大きな集合写真には、誇らしげに座る若きカメリアと、そのすぐ近くで傲慢な顔をして映るハイタワー三世의姿が描かれています。カメリアは彼の強欲な思想に決して屈せず、純粋な情熱でこの博物館を守り抜きました。この二人の対立を知ると、ソアリンの美しさと、タワー・オブ・テラーの恐ろしさが、ひとつの歴史として重厚に繋がります。</p>
+    </div>
+  </section>
+
+  <!-- III. 「岩倉使節団」が訪れた博物館 -->
+  <section class="article-block reveal" id="meiji">
+    <h2 class="article-h2">III. 「岩倉使節団」が訪れた博物館</h2>
+    <p class="article-p">メディテレーニアンハーバーというイタリアの地でありながら、この博物館には日本の近代化（明治維新）の歴史が美しく絡んでいます。博物館の中には、カメリアが晩年（1872年、当時71歳）に、<strong>日本から訪れた使節団を迎えて挨拶をしている絵画</strong>が飾られています。</p>
+    <p class="article-p">この絵画に描かれている日本の紳士たちは、実在した<strong>「岩倉使節団」</strong>（岩倉具視や木戸孝允、伊藤博文、大久保利通など）です。ヨーロッパの優れた技術を学びに来ていた彼らは、カメリアの飛行への狂熱的な情熱とドリームフライヤーに深い感銘を受けました。そして彼らが日本に持ち帰った「空への夢」のバトンが巡り巡って、現代の私たちがこの地でドリームフライヤーに出会えるという、鳥肌が立つような時空を超えた歴史の伏線が張られているのです。</p>
+  </section>
+
+  <!-- IV. 常設展示室に響く、空への祈り -->
+  <section class="article-block reveal" id="rotunda">
+    <h2 class="article-h2">IV. 常設展示室に響く、空への祈り</h2>
+    <p class="article-p">博物館の奥へと進むと広がる、息を呑むほどに美しい大天井のドーム型ロビー。ここには、カメリアの父チェザーレ・ファルコが世界中で集め、描いた「人類が太古より夢見た空への歴史画」が、東洋から西洋、中東の神話に至るまで、ドームを囲むように飾られています。</p>
+    
+    <div class="photo-frame reveal">
+      <img src="soarin-interior.jpeg" alt="Fantastic Flight Museum Rotunda" width="800" height="450" decoding="async" loading="lazy">
+    </div>
+
+    <p class="article-p">壁画をよく見ると、神話に登場する「空飛ぶカーペット」や「翼を持った馬（ペガサス）」、ダ・ヴィンチの飛行設計図、さらには空を飛ぼうとする「ゾウ」や「ライオン」の姿など、人類が抱いた空への憧れがユーモアと芸術性たっぷりに描き込まれています。このロビーで、頭上の美しい青空の天井画を見上げながら、世界中の歴史や魔法を感じる時間こそが、私たちの「イマジネーション（想像力）」を高め、次の部屋でドリームフライヤーを起動するための最も重要なプロローグなのです。</p>
+  </section>
+
+  <!-- V. 絵画に命が吹き込まれるイマジニアの魔法 -->
+  <section class="article-block reveal" id="magic">
+    <h2 class="article-h2">V. 絵画に命が吹き込まれるイマジニアの魔法</h2>
+    <p class="article-p">カメリアの肖像画が飾られた「特別回顧室」で、白黒の絵から彼女が立体的に動き出すあの瞬間。ここにはイマジニアによる驚異的な最新プロジェクションマッピング技術が使われています。単に動画を絵の上に写すのではなく、<strong>「油絵のキャンバスに描かれた独特の絵の具の凹凸や筆跡（キャンバスの質感）」</strong>を完璧に維持したまま、彼女のスピリットを美しく動かしているのです。</p>
+    <p class="article-p">また、彼女が放った愛鳥ハヤブサ「アレッタ」の影が天井を飛び回る演出では、立体的なサラウンド音響と同期させることで、本当にハヤブサの風が頭上を駆け抜けるような「リアルな気配」を五感に訴えかけています。すべては、科学ではなく、ゲストの「想像力」という名の魔法を信じさせるための、緻密な計算の結晶なのです。</p>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
