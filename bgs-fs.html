@@ -1,519 +1,535 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Fantasy Springs | teru_luce_</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400;600&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        /* ============================================
-           CSS Variables & Reset (index.htmlと完全同期)
-        ============================================ */
-        :root {
-            --parchment:     #E8DCC8;
-            --parchment-dark:#C9B99A;
-            --ink:           #1E1510;
-            --ink-mid:       #3D2B1F;
-            --sepia:         #6B4423;
-            --gold:          #9A6B2E;
-            --gold-light:    #C89B4A;
-            --gold-glow:     rgba(154,107,46,.35);
-            --vellum:        rgba(240,232,215,.72);
-            --border:        rgba(107,68,35,.28);
-            --border-strong: rgba(107,68,35,.55);
-            --shadow-deep:   rgba(15,8,3,.45);
-            --shadow-soft:   rgba(30,18,8,.2);
-            --bg-stain-size: 100% 2200px;
-            --tape-color:    rgba(215,190,148,.55);
-            --photo-border-bg: #FAF6ED;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Fantasy Springs | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        img {
-            max-width: 100%; height: auto;
-            -webkit-user-select: none; user-select: none;
-            -webkit-touch-callout: none; pointer-events: none;
-        }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        /* ============================================
-           Custom Cursor (ポータルと完全に同期させ、遷移時の違和感をゼロに)
-        ============================================ */
-        body { cursor: none; }
-        #cursor-outer {
-            position: fixed;
-            width: 36px; height: 36px;
-            border: 1.5px solid var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: opacity .3s ease, border-color .3s ease, width .2s ease, height .2s ease;
-            mix-blend-mode: multiply;
-            opacity: 0;
-        }
-        #cursor-inner {
-            position: fixed;
-            width: 6px; height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: opacity .3s ease;
-            opacity: 0;
-        }
-        #cursor-outer.hovering {
-            width: 52px; height: 52px;
-            border-color: var(--gold-light);
-            border-style: dashed;
-        }
-        #cursor-outer::before,
-        #cursor-outer::after {
-            content: '';
-            position: absolute;
-            background: var(--gold);
-            opacity: .5;
-        }
-        #cursor-outer::before { width: 1px; height: 6px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-        #cursor-outer::after { width: 6px; height: 1px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        @media (hover: none) {
-            body { cursor: auto !important; }
-            #cursor-outer, #cursor-inner { display: none !important; }
-        }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        /* ============================================
-           Body & Background (魔法の泉と妖精の粉をイメージした、ファンタジースプリングス特製背景)
-        ============================================ */
-        body {
-            font-family: 'Noto Serif JP', serif;
-            background-color: #E4DFD0; /* 温かいベージュに微量のアクアを加えたベース */
-            background-image:
-                /* FIX: 魔法の泉（スプリングス）から湧き出る澄んだアクアブルーの水たまりのにじみ */
-                radial-gradient(circle at 12% 20%, rgba(74, 144, 226, 0.18) 0%, rgba(74, 144, 226, 0.05) 35%, transparent 60%),
-                /* ターコイズブルーの魔法の水のゆらめき */
-                radial-gradient(circle at 88% 75%, rgba(0, 245, 255, 0.12) 0%, rgba(0, 245, 255, 0.03) 25%, transparent 55%),
-                /* ピクシーダストのような、きらきらと輝くゴールド of 光 of 塵 */
-                radial-gradient(circle at 50% 8%, rgba(200, 155, 74, 0.15) 0%, transparent 75%),
-                radial-gradient(ellipse at 95% 15%, rgba(100, 65, 35, 0.18) 0%, transparent 50%),
-                radial-gradient(circle at 5% 90%, rgba(110, 75, 45, 0.18) 0%, transparent 60%),
-                /* 煤け（ビネット） */
-                radial-gradient(circle at 50% 50%, transparent 20%, rgba(20, 10, 5, 0.38) 100%),
-                /* くしゃくしゃ of 羊皮紙テクスチャ */
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='6' result='n'/%3E%3CfeDiffuseLighting in='n' lighting-color='%23F5EDD8' surfaceScale='9'%3E%3CfeDistantLight azimuth='45' elevation='35'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
-            background-size: var(--bg-stain-size), var(--bg-stain-size), var(--bg-stain-size), var(--bg-stain-size), var(--bg-stain-size), 100% 100%, 500px 500px;
-            background-repeat: repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, no-repeat, repeat;
-            background-attachment: scroll;
-            color: var(--ink);
-            line-height: 2.2;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .noise-overlay {
-            position: fixed; inset: 0;
-            pointer-events: none; z-index: 3; opacity: .045;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        .vignette-overlay {
-            position: fixed; inset: 0;
-            pointer-events: none; z-index: 1;
-            background: radial-gradient(ellipse at center, transparent 40%, rgba(12,6,2,.55) 100%);
-        }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        /* ============================================
-           Page Progress Bar
-        ============================================ */
-        #progress-bar {
-            position: fixed; top: 0; left: 0; height: 2px;
-            background: linear-gradient(90deg, var(--sepia), var(--gold-light));
-            width: 0%; z-index: 9999;
-            transition: width .1s linear;
-            box-shadow: 0 0 8px var(--gold-glow);
-        }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        /* ============================================
-           Container (手帳 of 二重ダブルフレーム枠)
-        ============================================ */
-        .container {
-            position: relative; z-index: 4;
-            width: 100%; max-width: 560px;
-            margin: 60px auto 120px; padding: 55px 38px 110px;
-            background: var(--vellum);
-            border-radius: 2px;
-            border: 1px solid var(--border-strong);
-            outline: 3px double rgba(107,68,35,.22);
-            outline-offset: -10px;
-            box-shadow:
-                0 20px 60px var(--shadow-deep),
-                0  4px 12px var(--shadow-soft),
-                inset 0 1px 0 rgba(255,245,225,.35);
-        }
-        .container::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg,
-                transparent 0%, rgba(200,155,74,.4) 20%,
-                rgba(255,235,180,.7) 50%,
-                rgba(200,155,74,.4) 80%, transparent 100%);
-        }
-        .container::after {
-            content: '';
-            position: absolute; bottom: 0; right: 0;
-            width: 0; height: 0;
-            border-style: solid;
-            border-width: 0 0 28px 28px;
-            border-color: transparent transparent rgba(107,68,35,.18) transparent;
-        }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        /* ============================================
-           Reveal Animation
-        ============================================ */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        /* ============================================
-           Back Button
-        ============================================ */
-        .back-btn {
-            display: inline-block; text-decoration: none;
-            font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em;
-            color: var(--gold); border-bottom: 1px solid transparent;
-            margin-bottom: 40px; transition: color 0.3s, border-color 0.3s;
-        }
-        .back-btn:hover { color: var(--ink-mid); border-color: var(--ink-mid); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        /* ============================================
-           Header & Title
-        ============================================ */
-        .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 40px; }
-        .bgs-tag { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; }
-        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; font-weight: 400; margin: 15px 0 20px; letter-spacing: 0.02em; line-height: 1.6; text-align: center; color: var(--ink-mid); }
-        h1 span { display: block; font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
-        .subtitle-jp { font-size: 0.8rem; font-weight: 300; letter-spacing: 0.05em; opacity: 0.8; text-align: justify; margin-top: 25px; line-height: 2.2; border-left: 2px solid var(--gold); padding-left: 15px; }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        /* ============================================
-           TOC Box
-        ============================================ */
-        .toc-box { background: rgba(0,0,0,.02); border: 1px solid var(--border); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
-        .toc-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--sepia); text-align: center; margin-bottom: 20px; letter-spacing: 0.15em; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed var(--border); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--ink-mid); text-decoration: none; transition: color 0.3s; opacity: 0.8; }
-        .toc-list a:hover { color: var(--gold); }
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
 
-        /* ============================================
-           Scrapbook Photo Container (古写真ビネット・テープ留め)
-        ============================================ */
-        .hero-img-container { 
-            position: relative; 
-            margin: 55px auto 45px; 
-            padding: 12px 12px 18px 12px; 
-            background: var(--photo-border-bg); 
-            border-radius: 2px; 
-            max-width: 95%;
-            box-shadow: 2px 10px 24px rgba(0, 0, 0, 0.14); 
-            transform: rotate(-1.5deg); 
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.8s, box-shadow 0.8s;
-        }
-        .hero-img-container::before {
-            content: "";
-            position: absolute;
-            top: -15px; 
-            left: 50%;
-            transform: translateX(-50%) rotate(2.5deg); 
-            width: 105px;
-            height: 28px;
-            background-color: var(--tape-color);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            mask-image: linear-gradient(to right, transparent 0%, #fff 8%, #fff 92%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, #fff 8%, #fff 92%, transparent 100%);
-            pointer-events: none; 
-            z-index: 20;
-            opacity: 0.9;
-            transition: background-color 0.8s ease;
-        }
-        .hero-img-container:hover { 
-            transform: rotate(0deg) scale(1.02); 
-            box-shadow: 4px 15px 30px rgba(0, 0, 0, 0.18); 
-        }
-        .hero-img { 
-            width: 100%; 
-            height: auto; 
-            display: block; 
-            filter: var(--img-filter); 
-            mix-blend-mode: normal; 
-            transition: filter 0.8s ease; 
-            pointer-events: none;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
 
-        /* ============================================
-           Article Blocks & Dividers
-        ============================================ */
-        .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Noto Serif JP', serif; font-size: 1.15rem; font-weight: bold; color: var(--accent-gold); margin-top: 50px; margin-bottom: 25px; display: flex; align-items: center; line-height: 1.5; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border); margin-left: 15px; }
-        p { font-size: 0.85rem; font-weight: 300; margin-bottom: 20px; opacity: 0.95; }
-        p strong { font-weight: bold; color: var(--accent-gold); }
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .masthead-title-en {
+      display: block;
+      font-family: var(--f-display);
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      color: var(--bordeaux);
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
 
-        .connection-card { background: rgba(107,68,35,.03); border: 1px solid var(--border-strong); padding: 25px; border-radius: 4px; margin: 30px 0; }
-        .connection-card h4 { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; }
-        .connection-card p { font-size: 0.85rem; line-height: 2; margin-bottom: 0; }
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      display: block;
+      text-align: justify;
+      line-height: 2;
+      border-left: 2px solid var(--bordeaux);
+      padding-left: 14px;
+      margin-top: 24px;
+    }
 
-        .vintage-divider {
-            display: flex; align-items: center; gap: 0;
-            margin: 55px 0 38px;
-            user-select: none;
-        }
-        .vintage-divider::before, .vintage-divider::after {
-            content: '';
-            position: absolute; left: 38px; right: 38px; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
-            z-index: -1;
-        }
-        .vintage-divider span {
-            font-size: .9rem; color: var(--gold); letter-spacing: .5em;
-            padding: 0 16px; opacity: .75; background: var(--vellum);
-            margin: 0 auto;
-        }
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
 
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--ink-mid); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
 
-        /* ============================================
-           Reading Progress Tooltip
-        ============================================ */
-        #reading-tip {
-            position: fixed; bottom: 30px; right: 30px;
-            background: var(--ink-mid); color: var(--parchment);
-            font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .15em;
-            padding: 10px 18px; border-radius: 0;
-            border: 1px solid var(--border-strong);
-            opacity: 0; transform: translateY(8px);
-            transition: opacity .4s, transform .4s;
-            pointer-events: none; z-index: 1000;
-        }
-        #reading-tip.visible { opacity: 1; transform: translateY(0); }
-    </style>
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h3 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       RELATED LINK CARD
+    ============================================================ */
+    .related-link-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,252,245,0.5);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      padding: clamp(16px, 3vw, 20px);
+      margin: 24px 0;
+      transition: all 0.25s;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .related-link-card:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .related-link-title {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      color: var(--bordeaux);
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .related-link-desc {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 300;
+      font-size: clamp(0.75rem, 2vw, 0.78rem);
+      color: var(--ink-soft);
+      line-height: 1.8;
+      transition: color 0.2s;
+    }
+    .related-link-card:hover .related-link-title,
+    .related-link-card:hover .related-link-desc {
+      color: var(--paper);
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <div class="noise-overlay" aria-hidden="true"></div>
-    <div class="vignette-overlay" aria-hidden="true"></div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <!-- カスタムカーソル -->
-    <div id="cursor-outer" aria-hidden="true"></div>
-    <div id="cursor-inner" aria-hidden="true"></div>
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
 
-    <!-- スクロールプログレスバー -->
-    <div id="progress-bar" aria-hidden="true"></div>
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Background Story</span>
+    <h1 class="masthead-title">
+        <span class="masthead-title-en">Fantasy Springs</span>
+        Fantasy Springs：湧き出る精霊の記憶と、公爵夫人の招待状
+    </h1>
+    <span class="masthead-subtitle">
+        ディズニーシー最奥地にひっそりと佇む泉、ファンタジースプリングス。湧き出る澄んだ魔法の水と水の循環システム、精霊が岩に刻み込んだ感動の記憶、そして公爵夫人ダッチェスによる夏の別荘ホテルの誕生に迫ります。
+    </span>
+  </header>
 
-    <!-- 読書ヒントしおり -->
-    <div id="reading-tip" aria-hidden="true">↑ Top of Archives</div>
-
-    <div class="container">
-        <!-- メインポータルへ戻るリンク（作りを踏襲） -->
-        <a href="index.html" class="back-btn">← Back to Portal</a>
-        
-        <header class="header-section reveal">
-            <div class="bgs-tag">Background Story</div>
-            <h1>
-                <span>Fantasy Springs</span>
-                Fantasy Springs：湧き出る精霊の記憶と、公爵夫人の招待状
-            </h1>
-            <div class="subtitle-jp">
-                ディズニーシー最奥地にひっそりと佇む泉、ファンタジースプリングス。湧き出る澄んだ魔法の水と水の循環システム、精霊が岩に刻み込んだ感動の記憶、そして公爵夫人ダッチェスによる夏の別荘ホテルの誕生に迫ります。
-            </div>
-        </header>
-        
-        <!-- 目次 -->
-        <nav class="toc-box reveal" aria-label="セクション目次">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. 始まりの泉（全体のテーマと基本BGS）</span><a href="#prologue">Read →</a></li>
-                <li><span>II. 地理的帰結（ディズニーシー全体の水の循環）</span><a href="#water-cycle">Read →</a></li>
-                <li><span>III. 3つの物語世界への旅（各エリアの深掘り）</span><a href="#three-realms">Read →</a></li>
-                <li><span>IV. イマジニアが吹き込んだ「息づく世界」</span><a href="#imagineering">Read →</a></li>
-            </ul>
-        </nav>
-        
-        <!-- ドラッグでの保存行為を完全に防ぐため draggable="false" を画像に付与 -->
-        <div class="hero-img-container reveal">
-            <img src="IMG_1070_Original.jpeg" alt="Fantasy Springs Vintage Photo" class="hero-img" id="hero-img" draggable="false" loading="eager">
-        </div>
-
-        <!-- I. プロローグとテーマ -->
-        <section class="article-block reveal" id="prologue">
-            <h2>I. 始まりの泉</h2>
-            <p>東京ディズニーシーの最奥地、岩間を抜けた先に広がるのは、豊かな水と光に満ちた「ファンタジースプリングス」。このテーマポート全体の根底を支えるのは、<strong>「水の精霊」</strong>と、旅を愛した一人の高貴な女性<strong>「ダッチェス（公爵夫人）」</strong>の物語です。</p>
-            <p>かつて、この地に住んでいた「水の精霊」たちは、不思議な力に導かれて世界中を旅しました。精霊たちは旅先で、ピーターパンやラプンツェル、アナとエルサといった「感動的なファンタジーの物語」に出会います。故郷の泉に戻った精霊たちは、その魔法の力を使って、自分たちが見てきた感動の記憶を<strong>「石や木、水、そして滝」の形へと美しく彫り込んで再現</strong>しました。エリアに数多く点在するキャラクターのロックアートは、精霊たちが遺した感動の記憶なのです。</p>
-            
-            <div class="connection-card">
-                <h3>🏰 ファンタジースプリングスホテル誕生のBGS</h3>
-                <p>時が流れ、旅と冒険をこよなく愛する「ダッチェス」と呼ばれる一人の高貴な公爵夫人（※映画『おしゃれキャット』のキャラクターではなく、パークオリジナルの人物）が、この美しく湧き出る魔法の泉を発見します。彼女は小川をたどるうちに、この精霊が遺した物語の世界にすっかり魅了されてしまいました。彼女は泉の近くに小さな夏の別荘を建て、やがて彼女の多くの友人たちをこの美しい世界でもてなすために、壮麗な宮殿を建てました。これこそが、現在の<strong>「東京ディズニーシー・ファンタジースプリングスホテル」</strong>の始まりなのです。</p>
-            </div>
-        </section>
-
-        <!-- II. 地理的水の循環 -->
-        <section class="article-block reveal" id="water-cycle">
-            <h2>II. ディズニーシー「水の循環」の答え</h2>
-            <p>ファンタジースプリングスは、ディズニーシー開園から20年の時を経て完成したエリアですが、実は<strong>「ディズニーシー全体の空間コンセプトを美しく完結させる、パズルの最後の1ピース」</strong>という地理的な意味を持っています。</p>
-            <p>ディズニーシーは「海」をテーマにしていますが、パーク内の水は、完璧な地理的循環を描いています。</p>
-            
-            <p style="text-align: center; color: var(--accent-gold); font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 0.1em; margin: 30px 0;">
-                The Ocean ➔ The River ➔ The Springs
-            </p>
-            
-            <p>メディテレーニアンハーバーという「広大な海」から始まった水は、ロストリバーデルタという「川」となり、その川をさらに山奥へと遡った最果てに、すべての水が湧き出る始まりの場所<strong>「泉（スプリングス）」</strong>が存在します。つまり、ファンタジースプリングスがパークの最奥地に位置しているのは、「ディズニーシーのすべての水の源流（はじまりの場所）に、ついにゲストがたどり着いた」という壮大な空間ストーリーを意味しているのです。</p>
-        </section>
-
-        <!-- III. 3つのエリア深掘り -->
-        <section class="article-block reveal" id="three-realms">
-            <h2>III. Three Realms</h2>
-            <p>泉から流れ出る水は、精霊たちが愛した3つの異なる物語の世界へとゲストを誘います。</p>
-
-            <p><strong>フローズンキングダム（『アナと雪の女王』）</strong><br>
-            舞台は、映画第1作の『その後の世界』。エルサが氷の魔法をありのままに受け入れ、アレンデール王国が真の温かさを取り戻した幸福な時代です。お城の門を開放してゲストを迎え入れるレストラン「アレンデール・ロイヤルバンケット」や、サウナのオーケンが平和を祝して開いた「オーケンのオーケーフード」など、村全体に平和な日常と笑顔が息づいています。</p>
-
-            <p><strong>ラプンツェルの森（『塔の上のラプンツェル』）</strong><br>
-            ラプンツェルが18年間過ごした塔がそびえ立つ、静かな深い森。森の中にひっそりと佇む「スナグリーダックリング」は、かつての荒くれ者たちの酒場ですが、BGSとしては<strong>「夢を叶えた荒くれ者たちが、それぞれの特技（ピアノやパティシエの腕前など）を活かして経営している、愛にあふれたアットホームなレストラン」</strong>になっています。店内には彼らが夢を叶えた証（装飾や道具）がたくさん飾られており、ただの怖い酒場ではなく、温かい場所として描かれています。</p>
-
-            <p><strong>ピーターパンのネバーランド（『ピーター・パン』）</strong><br>
-            冒険心あふれる子供たちの国。ここでは、ゲスト自身が「ロストキッズ（迷子たち）」の一員となります。ロストキッズたちが漂流物や難配船の端切れ、おもちゃなどを集めて手作りした秘密基地のレストラン「ルックアウト・クックアウト」では、子供たちの無邪気な遊び心が細部まで再現されています。</p>
-        </section>
-
-        <!-- IV. イマジニアの努力 -->
-        <section class="article-block reveal" id="imagineering">
-            <h2>IV. Imagineers' Craft</h2>
-            <p>ディズニーの空間を作り上げる職人「イマジニア」たちは、ファンタジースプリングスを単なる「映画のセット」ではなく、<strong>「本当にそこに存在する、歴史の息づいた街」</strong>にするために、驚異的なこだわりを注ぎ込みました。</p>
-            <p>レストランの棚に置かれたコップや本、壁の傷、ルックアウト・クックアウトに脱ぎ散らかされた子供たちのパジャマに至るまで、すべてイマジニアが「誰が、なぜここにこれを置いたのか」の物語を1から考えて配置し、何千ものアイテムに手作業でエイジング（古びた加工）を施しました。</p>
-            
-            <p>また、キャラクターの岩や滝を作る「ロックワーク（彫刻技術）」では、水が流れたときの「音」や「しぶきの飛び方」まで何年もかけて綿密に計算。さらに、浦安の現実世界のビル群やパーク外の建物を絶対にゲストに見せないよう、植物の高さ、植える角度、密度に至るまで日本の造園チームと連携して極限まで計算し、完全に「深い森の奥底の泉」に包まれる世界を作り上げたのです。</p>
-
-            <!-- FIX: ここも同様に、全体コラム「TDS Spatial Epic」へ戻れるしおり（付箋）風マイクロ誘導を追加して、手帳としての繋がりを強固にします -->
-            <a href="bgs-spatial-epic.html" class="micro-nav-card">
-                <span class="micro-nav-card-title">📖 関連ストーリー：</span>
-                <span class="micro-nav-card-desc">全8テーマポートの地政学的な繋がりと、時空を調停するディズニーシーの圧倒的な空間設計に迫る総括コラムはこちら。</span>
-            </a>
-        </section>
-
-        <!-- メインポータルへ戻るリンク -->
-        <div class="footer-link reveal"><a href="index.html">← HOMEへ戻る</a></div>
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="セクション目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
     </div>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 始まりの泉（全体のテーマと基本BGS）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#water-cycle" class="toc-link"><span class="toc-text">II. 地理的帰結（ディズニーシー全体の水の循環）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#three-realms" class="toc-link"><span class="toc-text">III. 3つの物語世界への旅（各エリアの深掘り）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#imagineering" class="toc-link"><span class="toc-text">IV. イマジニアが吹き込んだ「息づく世界」</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
 
-    <script>
-    // ============================================
-    // Custom Cursor (ポータルと完全に同期させ、タッチデバイスでは自動無効化)
-    // ============================================
-    const cursorOuter = document.getElementById('cursor-outer');
-    const cursorInner = document.getElementById('cursor-inner');
-    let mouseX = 0, mouseY = 0;
-    let outerX = 0, outerY = 0;
-    let mouseActive = false;
+  <div class="photo-frame reveal">
+    <img src="IMG_1070_Original.jpeg" alt="Fantasy Springs Vintage Photo" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
 
-    document.addEventListener('mousemove', e => {
-        if (!mouseActive) {
-            mouseActive = true;
-            cursorOuter.style.opacity = '1';
-            cursorInner.style.opacity = '1';
-        }
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorInner.style.left = mouseX + 'px';
-        cursorInner.style.top  = mouseY + 'px';
+  <!-- I. プロローグとテーマ -->
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. 始まりの泉</h2>
+    <p class="article-p">東京ディズニーシーの最奥地、岩間を抜けた先に広がるのは、豊かな水と光に満ちた「ファンタジースプリングス」。このテーマポート全体の根底を支えるのは、<strong>「水の精霊」</strong>と、旅を愛した一人の高貴な女性<strong>「ダッチェス（公爵夫人）」</strong>の物語です。</p>
+    <p class="article-p">かつて、この地に住んでいた「水の精霊」たちは、不思議な力に導かれて世界中を旅しました。精霊たちは旅先で、ピーターパンやラプンツェル、アナとエルサといった「感動的なファンタジーの物語」に出会います。故郷の泉に戻った精霊たちは、その魔法の力を使って、自分たちが見てきた感動の記憶を<strong>「石や木、水、そして滝」の形へと美しく彫り込んで再現</strong>しました。エリアに数多く点在するキャラクターのロックアートは、精霊たちが遺した感動の記憶なのです。</p>
+    
+    <div class="column-box reveal">
+      <h3>🏰 ファンタジースプリングスホテル誕生のBGS</h3>
+      <p>時が流れ、旅と冒険をこよなく愛する「ダッチェス」と呼ばれる一人の高貴な公爵夫人（※映画『おしゃれキャット』のキャラクターではなく、パークオリジナルの人物）が、この美しく湧き出る魔法の泉を発見します。彼女は小川をたどるうちに、この精霊が遺した物語の世界にすっかり魅了されてしまいました。彼女は泉の近くに小さな夏の別荘を建て、やがて彼女の多くの友人たちをこの美しい世界でもてなすために、壮麗な宮殿を建てました。これこそが、現在の<strong>「東京ディズニーシー・ファンタジースプリングスホテル」</strong>の始まりなのです。</p>
+    </div>
+  </section>
+
+  <!-- II. 地理的水の循環 -->
+  <section class="article-block reveal" id="water-cycle">
+    <h2 class="article-h2">II. ディズニーシー「水の循環」の答え</h2>
+    <p class="article-p">ファンタジースプリングスは、ディズニーシー開園から20年の時を経て完成したエリアですが、実は<strong>「ディズニーシー全体の空間コンセプトを美しく完結させる、パズルの最後の1ピース」</strong>という地理的な意味を持っています。</p>
+    <p class="article-p">ディズニーシーは「海」をテーマにしていますが、パーク内の水は、完璧な地理的循環を描いています。</p>
+    
+    <p class="article-p" style="text-align: center; color: var(--gold); font-family: var(--f-display); font-size: 1.1rem; letter-spacing: 0.1em; margin: 30px 0;">
+      The Ocean ➔ The River ➔ The Springs
+    </p>
+    
+    <p class="article-p">メディテレーニアンハーバーという「広大な海」から始まった水は、ロストリバーデルタという「川」となり、その川をさらに山奥へと遡った最果てに、すべての水が湧き出る始まりの場所<strong>「泉（スプリングス）」</strong>が存在します。つまり、ファンタジースプリングスがパークの最奥地に位置しているのは、「ディズニーシーのすべての水の源流（はじまりの場所）に、ついにゲストがたどり着いた」という壮大な空間ストーリーを意味しているのです。</p>
+  </section>
+
+  <!-- III. 3つのエリア深掘り -->
+  <section class="article-block reveal" id="three-realms">
+    <h2 class="article-h2">III. 3つの物語世界への旅（各エリアの深掘り）</h2>
+    <p class="article-p">泉から流れ出る水は、精霊たちが愛した3つの異なる物語の世界へとゲストを誘います。</p>
+
+    <p class="article-p"><strong>フローズンキングダム（『アナと雪の女王』）</strong><br>
+    舞台は、映画第1作の『その後の世界』。エルサが氷の魔法をありのままに受け入れ、アレンデール王国が真の温かさを取り戻した幸福な時代です。お城の門を開放してゲストを迎え入れるレストラン「アレンデール・ロイヤルバンケット」や、サウナのオーケンが平和を祝して開いた「オーケンのオーケーフード」など、村全体に平和な日常と笑顔が息づいています。</p>
+
+    <p class="article-p"><strong>ラプンツェルの森（『塔の上のラプンツェル』）</strong><br>
+    ラプンツェルが18年間過ごした塔がそびえ立つ、静かな深い森。森の中にひっそりと佇む「スナグリーダックリング」は、かつての荒くれ者たちの酒場ですが、BGSとしては<strong>「夢を叶えた荒くれ者たちが、それぞれの特技（ピアノやパティシエの腕前など）を活かして経営している、愛にあふれたアットホームなレストラン」</strong>になっています。店内には彼らが夢を叶えた証（装飾や道具）がたくさん飾られており、ただの怖い酒場ではなく、温かい場所として描かれています。</p>
+
+    <p class="article-p"><strong>ピーターパンのネバーランド（『ピーター・パン』）</strong><br>
+    冒険心あふれる子供たちの国。ここでは、ゲスト自身が「ロストキッズ（迷子たち）」の一員となります。ロストキッズたちが漂流物や難配船の端切れ、おもちゃなどを集めて手作りした秘密基地のレストラン「ルックアウト・クックアウト」では、子供たちの無邪気な遊び心が細部まで再現されています。</p>
+  </section>
+
+  <!-- IV. イマジニアの努力 -->
+  <section class="article-block reveal" id="imagineering">
+    <h2 class="article-h2">IV. イマジニアが吹き込んだ「息づく世界」</h2>
+    <p class="article-p">ディズニーの空間を作り上げる職人「イマジニア」たちは、ファンタジースプリングスを単なる「映画のセット」ではなく、<strong>「本当にそこに存在する、歴史の息づいた街」</strong>にするために、驚異的なこだわりを注ぎ込みました。</p>
+    <p class="article-p">レストランの棚に置かれたコップや本、壁の傷、ルックアウト・クックアウトに脱ぎ散らかされた子供たちのパジャマに至るまで、すべてイマジニアが「誰が、なぜここにこれを置いたのか」の物語を1から考えて配置し、何千ものアイテムに手作業でエイジング（古びた加工）を施しました。</p>
+    
+    <p class="article-p">また、キャラクターの岩や滝を作る「ロックワーク（彫刻技術）」では、水が流れたときの「音」や「しぶきの飛び方」まで何年もかけて綿密に計算。さらに、浦安の現実世界のビル群やパーク外の建物を絶対にゲストに見せないよう、植物の高さ、植える角度、密度に至るまで日本の造園チームと連携して極限まで計算し、完全に「深い森の奥底の泉」に包まれる世界を作り上げたのです。</p>
+
+    <a href="bgs-spatial-epic.html" class="related-link-card reveal">
+        <span class="related-link-title">📖 関連ストーリー：</span>
+        <span class="related-link-desc">全8テーマポートの地政学的な繋がりと、時空を調停するディズニーシーの圧倒的な空間設計に迫る総括コラムはこちら。</span>
+    </a>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
     });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    document.addEventListener('mouseleave', () => {
-        cursorOuter.style.opacity = '0';
-        cursorInner.style.opacity = '0';
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
     });
-    document.addEventListener('mouseenter', () => {
-        if (mouseActive) {
-            cursorOuter.style.opacity = '1';
-            cursorInner.style.opacity = '1';
-        }
-    });
+  }, 50);
 
-    function animateCursor() {
-        outerX += (mouseX - outerX) * 0.14;
-        outerY += (mouseY - outerY) * 0.14;
-        cursorOuter.style.left = outerX + 'px';
-        cursorOuter.style.top  = outerY + 'px';
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    const hoverEls = document.querySelectorAll('a, button, .btn');
-    hoverEls.forEach(el => {
-        el.addEventListener('mouseenter', () => cursorOuter.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => cursorOuter.classList.remove('hovering'));
-    });
-
-    // ============================================
-    // Scroll Reveal
-    // ============================================
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // 最初から軽快に動くよう、ヒーロー要素を手動で即時アクティブに
-    const reveals = document.querySelectorAll('.reveal');
-    setTimeout(() => { reveals[0].classList.add('active'); }, 100);
-
-    // ============================================
-    // Progress Bar & Reading Tooltip
-    // ============================================
-    const progressBar = document.getElementById('progress-bar');
-    const readingTip = document.getElementById('reading-tip');
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const total    = document.body.scrollHeight - window.innerHeight;
-        
-        // 1. プログレスバーの更新
-        progressBar.style.width = Math.min(100, (scrolled / total) * 100) + '%';
-
-        // 2. 読書しおりヒントの表示判定
-        if (scrolled > 600) {
-            readingTip.classList.add('visible');
-            readingTip.setAttribute('aria-hidden', 'false');
-        } else {
-            readingTip.classList.remove('visible');
-            readingTip.setAttribute('aria-hidden', 'true');
-        }
-    });
-
-    readingTip.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    readingTip.style.pointerEvents = 'auto';
-    readingTip.style.cursor = 'none';
-    </script>
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
