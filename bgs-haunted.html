@@ -1,244 +1,549 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Haunted Mansion | teru_luce_</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* 霧深い真夜中の館をイメージした煤けたディープパープル */
-            --bg-color: #121016;
-            /* 古びた羊皮紙や古書を連想させる色褪せたアイボリー */
-            --text-main: #dfd8cb;
-            /* くすんだ真鍮のようなアンティークゴールド */
-            --accent-gold: #c3a15c;
-            --border-light: rgba(195, 161, 92, 0.22);
-            --img-filter: brightness(0.8) contrast(1.1) sepia(20%);
-            /* モバイルブラウザでの負荷を極限まで減らした超軽量ノイズテクスチャ */
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='1' result='noise'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Haunted Mansion | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        body {
-            font-family: 'Noto Serif JP', 'Georgia', 'Times New Roman', serif;
-            background-color: var(--bg-color); color: var(--text-main); line-height: 2; overflow-x: hidden; -webkit-font-smoothing: antialiased;
-        }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        .paper-bg { position: fixed; inset: 0; z-index: -2; background-image: var(--paper-texture); background-size: 150px 150px; opacity: 0.85; pointer-events: none; }
-        /* 幽霊屋敷の不気味で美しい微かなパープルグラデーション */
-        .noise-overlay { position: fixed; inset: 0; z-index: -1; background-image: radial-gradient(circle at 50% 50%, transparent 10%, rgba(20, 10, 30, 0.4) 100%); pointer-events: none; }
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .container {
-            position: relative; z-index: 1; width: 100%; max-width: 560px;
-            margin: 40px auto 80px; padding: 45px 30px 80px;
-            background: rgba(22, 19, 27, 0.93); border-radius: 4px; border: 1px solid var(--border-light);
-            outline: 2px double rgba(195, 161, 92, 0.2); outline-offset: -8px; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* 画像保存防止用の基本スタイル */
-        img { max-width: 100%; height: auto; -webkit-touch-callout: none; user-select: none; pointer-events: none; }
-        
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        .back-btn { display: inline-block; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--accent-gold); border-bottom: 1px solid transparent; margin-bottom: 40px; transition: color 0.3s; }
-        .back-btn:hover { color: var(--text-main); }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 40px; }
-        .bgs-tag { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; color: var(--accent-gold); text-transform: uppercase; }
-        h1 { font-family: 'Noto Serif JP', serif; font-size: 1.4rem; font-weight: 600; margin: 15px 0 20px; line-height: 1.6; text-align: center; }
-        h1 span { display: block; font-family: 'Cinzel', serif; font-size: 1rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 10px; }
-        .subtitle-jp { font-size: 0.8rem; font-weight: 300; letter-spacing: 0.05em; opacity: 0.85; text-align: justify; margin-top: 25px; line-height: 2.2; border-left: 2px solid var(--accent-gold); padding-left: 15px; }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        /* 画像を完全に保護するための重ね合わせコンテナ */
-        .hero-img-container { position: relative; margin: 40px 0; border-radius: 4px; overflow: hidden; }
-        /* 完全に透明なカバーを前面に配置して長押しやドラッグを物理的に防ぐ */
-        .img-overlay { position: absolute; inset: 0; z-index: 2; background: transparent; pointer-events: auto; }
-        .hero-img { width: 100%; height: auto; display: block; filter: var(--img-filter); transform: translate3d(0,0,0); backface-visibility: hidden; }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        .toc-box { background: rgba(255,255,255, 0.02); border: 1px solid var(--border-light); padding: 25px; border-radius: 6px; margin-bottom: 50px; }
-        .toc-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--text-main); text-align: center; margin-bottom: 20px; letter-spacing: .15em; font-weight: 600; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed var(--border-light); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.75; }
-        .toc-list a:hover { color: var(--accent-gold); }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: bold; color: var(--accent-gold); margin-top: 50px; margin-bottom: 25px; display: flex; align-items: center; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.82rem; margin-bottom: 20px; opacity: 0.85; }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        .ghost-card { background: rgba(195, 161, 92, 0.03); border: 1px solid var(--border-light); padding: 25px; border-radius: 4px; margin: 25px 0; }
-        .ghost-card h3 { font-family: 'Noto Serif JP', serif; font-size: 0.9rem; font-weight: bold; color: var(--accent-gold); margin-bottom: 5px; }
-        .ghost-location { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--text-main); opacity: 0.6; margin-bottom: 12px; display: block; border-bottom: 1px dashed var(--border-light); padding-bottom: 8px;}
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        .micro-nav-card {
-            display: block; text-decoration: none; background: rgba(18, 16, 22, 0.6);
-            border-left: 3px solid var(--accent-gold); padding: 15px;
-            margin: 15px 0; font-size: 0.75rem; line-height: 1.6; color: var(--text-main);
-            border-radius: 0 4px 4px 0; transition: transform 0.3s; border: 1px solid var(--border-light); border-left: 3px solid var(--accent-gold);
-        }
-        .micro-nav-card:hover { transform: translateX(3px); }
-        .micro-nav-card-title { font-weight: bold; color: var(--accent-gold); display: inline-block; margin-right: 5px; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; opacity: 0.8; }
-        .footer-link a:hover { color: var(--accent-gold); }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        /* スマートフォン向け（横幅が狭い画面）の最適化設定 */
-        @media (max-width: 480px) {
-            .container {
-                margin: 15px 10px 40px;
-                padding: 30px 20px 60px;
-                outline-offset: -6px;
-            }
-            body {
-                line-height: 1.85;
-            }
-            h1 {
-                font-size: 1.25rem;
-            }
-            h1 span {
-                font-size: 0.9rem;
-            }
-            .subtitle-jp {
-                font-size: 0.78rem;
-                line-height: 2;
-                padding-left: 10px;
-            }
-            h2 {
-                font-size: 1rem;
-                margin-top: 40px;
-            }
-            p {
-                font-size: 0.8rem;
-                margin-bottom: 15px;
-            }
-            .toc-box {
-                padding: 15px;
-                margin-bottom: 35px;
-            }
-            .toc-list li {
-                font-size: 0.75rem;
-                padding: 8px 0;
-            }
-            .ghost-card {
-                padding: 15px;
-                margin: 20px 0;
-            }
-        }
-    </style>
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
+
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .masthead-title-en {
+      display: block;
+      font-family: var(--f-display);
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      color: var(--bordeaux);
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      display: block;
+      text-align: justify;
+      line-height: 2;
+      border-left: 2px solid var(--bordeaux);
+      padding-left: 14px;
+      margin-top: 24px;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD (Ghost Info)
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h3 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 8px;
+    }
+    .column-box-meta {
+      display: block;
+      font-family: var(--f-jp);
+      font-size: clamp(0.65rem, 1.8vw, 0.7rem);
+      color: var(--muted);
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       RELATED LINK CARD
+    ============================================================ */
+    .related-link-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,252,245,0.5);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      padding: clamp(16px, 3vw, 20px);
+      margin: 32px 0;
+      transition: all 0.25s;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .related-link-card:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .related-link-title {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      color: var(--bordeaux);
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .related-link-desc {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 300;
+      font-size: clamp(0.75rem, 2vw, 0.78rem);
+      color: var(--ink-soft);
+      line-height: 1.8;
+      transition: color 0.2s;
+    }
+    .related-link-card:hover .related-link-title,
+    .related-link-card:hover .related-link-desc {
+      color: var(--paper);
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
-    <div class="paper-bg"></div>
-    <div class="noise-overlay"></div>
 
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back to Portal</a>
-        
-        <header class="header-section reveal">
-            <div class="bgs-tag">Featured Story</div>
-            <h1>
-                <span>Haunted Mansion</span>
-                Haunted Mansion：999人の亡霊が住まう、美しきゴシックの館
-            </h1>
-            <div class="subtitle-jp">
-                ファンタジーランドの片隅にそびえ立つ、重厚で古びたゴシック調の洋館。そこには、世界中から集まった999人の幽霊たちが、1000人目の仲間を待ちわびながら暮らしています。恐怖とユーモアが交差するこの館の知られざる物語を紐解きましょう。
-            </div>
-        </header>
+<div class="site-wrap">
+<div class="content-box">
 
-        <nav class="toc-box reveal">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. ファンタジーランドに佇む館</span><a href="#prologue">Read →</a></li>
-                <li><span>II. 恐怖と笑いが交差する魔法</span><a href="#magic">Read →</a></li>
-                <li><span>III. ゴーストレジストリー（記録）</span><a href="#ghosts">Read →</a></li>
-                <li><span>IV. ハロウィーン・タウンからの客人</span><a href="#holiday">Read →</a></li>
-                <li><span>V. 世界に広がる幽霊屋敷</span><a href="#world">Read →</a></li>
-            </ul>
-        </nav>
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
 
-        <div class="hero-img-container reveal">
-            <!-- 前面を保護するレイヤー -->
-            <div class="img-overlay"></div>
-            <!-- 保存防止属性（右クリック無効・ドラッグ無効）を付与 -->
-            <img src="haunted-exterior.jpg" alt="ホーンテッドマンションの外観" class="hero-img" draggable="false" decoding="async" loading="eager" fetchpriority="high" oncontextmenu="return false;">
-        </div>
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Featured Story</span>
+    <h1 class="masthead-title">
+        <span class="masthead-title-en">Haunted Mansion</span>
+        Haunted Mansion：999人の亡霊が住まう、美しきゴシックの館
+    </h1>
+    <span class="masthead-subtitle">
+        ファンタジーランドの片隅にそびえ立つ、重厚で古びたゴシック調の洋館。そこには、世界中から集まった999人の幽霊たちが、1000人目の仲間を待ちわびながら暮らしています。恐怖とユーモアが交差するこの館の知られざる物語を紐解きましょう。
+    </span>
+  </header>
 
-        <section class="article-block reveal" id="prologue">
-            <h2>I. ファンタジーランドに佇む館</h2>
-            <p>東京ディズニーランドにおいて、ホーンテッドマンションは中世ヨーロッパの童話世界を模した「ファンタジーランド」にひっそりと配置されています。アメリカのパークでは歴史的なエリアにあるこの館が、なぜ日本では童話の世界にあるのでしょうか。</p>
-            <p>理由の一つとして、日本には古くから、幽霊や妖怪が登場する「怪談」を、恐れながらも一つのエンターテインメント（おとぎ話）として楽しむ文化が根付いていたことが挙げられます。イマジニアたちはこの文化的背景を鋭く見抜き、ホーンテッドマンションを「ゴシックロマンを内包したダークファンタジー」としてファンタジーランドに配置しました。</p>
-            <p>さらに、視覚的な景観の調和（バランス）も最重視されました。隣接するウエスタンランドには、巨大な赤土の岩山「ビッグサンダー・マウンテン」がそびえ立つ計画が立てられていました。平坦なエリアと荒涼とした巨大な岩山が隣り合う境界において、ゴシック調の高い屋根やレンガ造りの重厚なシルエットを持つこの館を「緩衝地帯」として配置することにより、パーク全体の立体的な景観バランスを美しく保つという高度な計算がなされているのです。</p>
-        </section>
-
-        <section class="article-block reveal" id="magic">
-            <h2>II. 恐怖と笑いが交差する魔法</h2>
-            <p>このアトラクションの最大の魅力は、「決して誰も傷つかない、安全で楽しい死後の世界」であることです。前半部分は、誰もいない薄暗い廊下や不穏なライティングが続く「心理的な恐怖」の領域です。しかし、霊媒師マダム・レオタの降霊術のシーンを境に、館の空気は一変します。</p>
-            <p>後半は、名曲「グリム・グリニング・ゴースト」とともに亡霊たちが墓地で陽気に歌い踊る「ユーモアと笑い」の領域へと移行します。この見事な感情のコントラストこそが、ホーンテッドマンションの黄金比です。</p>
-
-            <div class="ghost-card">
-                <h3>💡 音響心理の魔法：日米で異なる恐怖の周波数</h3>
-                <p>なぜ東京版のホーンテッドマンションの前半部分は、これほど静かで、じっとりとした冷気が肌にまとわりつくような演出になっているのでしょうか。そこには音響心理学に基づいた意図的な設計があります。<br><br>
-                   一般的に西洋では、ホラー演出において**「高音域・不協和音・鋭い突発的な音」**が好まれ、叫び声のようなパニック演出が恐怖を掻き立てます。対して日本では、背後に何かが潜んでいるような**「低音域・静寂・低くじっとりとした持続音」**が最も心理的恐怖を煽るとされています。<br><br>
-                   東京ディズニーランドでは、あえて突発的な音響効果を控え、人間の脈拍に近い低周波の重低音と「静寂」を巧みに織り交ぜることで、日本人の感性に訴えかける心理的恐怖をロジカルに構築しているのです。</p>
-            </div>
-        </section>
-
-        <section class="article-block reveal" id="ghosts">
-            <h2>III. ゴーストレジストリー（記録）</h2>
-            <p>館には「ゴーストレジストリー（幽霊籍）」と呼ばれる古い記録が残されており、登場する亡霊たちにはそれぞれ細かな人生のドラマが秘められています。</p>
-
-            <div class="ghost-card">
-                <h3>サリー・スレーター（Sally Slater）</h3>
-                <span class="ghost-location">出現場所：ストレッチングルーム（伸びる部屋）の肖像画</span>
-                <p>生前は勇敢な綱渡りパフォーマーでした。彼女がワニの潜む川の上で, 傘を片手に平然と綱渡りを披露する、まさに絶体絶命の瞬間が肖像画に描かれています。</p>
-            </div>
-
-            <div class="ghost-card">
-                <h3>コンスタンス（Constance）</h3>
-                <span class="ghost-location">出現場所：屋根裏部屋</span>
-                <p>屋根裏で赤く光る心臓を持った花嫁。強い野望を抱き、生前に富豪たちと結婚を繰り返しては、その夫たち全員を手斧で殺害し、次々と非業の死へと追いやった、美しくも冷酷な殺人者です。彼女の苗字「ハチャウェイ（Hatchaway）」は、手斧（Hatchet）を隠し持っているというブラックユーモアでもあります。</p>
-            </div>
-
-            <div class="ghost-card">
-                <h3>ヒッチハイクゴースト（フィニアス、エズラ、ガス）</h3>
-                <span class="ghost-location">出現場所：アトラクション終盤</span>
-                <p>詐欺師のフィニアス、放浪者のエズラ、無実の罪で投獄された陽気なガス。境遇の異なる3人が意気投合し、あなたのバギーに同乗して館の外へとヒッチハイクを企てます。</p>
-            </div>
-        </section>
-
-        <section class="article-block reveal" id="holiday">
-            <h2>IV. ハロウィーン・タウンからの客人</h2>
-            <p>毎年秋から冬にかけて、ホーンテッドマンションは特別な魔法に包まれます。ティム・バートン監督の映画『ナイトメアー・ビフォア・クリスマス』をモチーフにしたスペシャルプログラム「ホリデーナイトメア」です。</p>
-            <p>ハロウィーン・タウンの王であるジャック・スケリントンがサンタクロースに扮して館を訪れ、999人の幽霊たちのために不気味で楽しいクリスマスの飾り付けを施します。ホラーとクリスマスの温かさが同居する季節限定の魔法です。</p>
-        </section>
-
-        <section class="article-block reveal" id="world">
-            <h2>V. 世界に広がる幽霊屋敷</h2>
-            <p>ホーンテッドマンションは、各国の文化的土壌に合わせて姿を変え、世界中のディズニーパークに存在しています。パリの「ファントム・マナー」では、花嫁メラニーを巡る凄惨な悲劇を描く、ヨーロッパ向けのダークな心理ホラーへと深化しています。</p>
-            <p>香港ディズニーランドでは、中国の死生観に配慮し、幽霊要素を完全に排除した「ミスティック・マナー」として存在しています。この館の主であるヘンリー・ミスティック卿は、ディズニーシーとも深い関わりを持つ秘密結社「S.E.A.」の著名なメンバーです。</p>
-            
-            <a href="bgs-sea.html" class="micro-nav-card">
-                <span class="micro-nav-card-title">📖 関連ストーリー：</span>
-                <span class="micro-nav-card-desc">世界中のパークを結ぶ巨大な冒険家ギルド「S.E.A. Archives」の完全解剖はこちら。</span>
-            </a>
-        </section>
-
-        <div class="footer-link reveal"><a href="index.html">← HOMEへ戻る</a></div>
+  <nav class="toc-wrap reveal" aria-label="目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
     </div>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. ファンタジーランドに佇む館</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#magic" class="toc-link"><span class="toc-text">II. 恐怖と笑いが交差する魔法</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#ghosts" class="toc-link"><span class="toc-text">III. ゴーストレジストリー（記録）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#holiday" class="toc-link"><span class="toc-text">IV. ハロウィーン・タウンからの客人</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#world" class="toc-link"><span class="toc-text">V. 世界に広がる幽霊屋敷</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="photo-frame reveal">
+    <img src="haunted-exterior.jpg" alt="ホーンテッドマンションの外観" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
+
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. ファンタジーランドに佇む館</h2>
+    <p class="article-p">東京ディズニーランドにおいて、ホーンテッドマンションは中世ヨーロッパの童話世界を模した「ファンタジーランド」にひっそりと配置されています。アメリカのパークでは歴史的なエリアにあるこの館が、なぜ日本では童話の世界にあるのでしょうか。</p>
+    <p class="article-p">理由の一つとして、日本には古くから、幽霊や妖怪が登場する「怪談」を、恐れながらも一つのエンターテインメント（おとぎ話）として楽しむ文化が根付いていたことが挙げられます。イマジニアたちはこの文化的背景を鋭く見抜き、ホーンテッドマンションを「ゴシックロマンを内包したダークファンタジー」としてファンタジーランドに配置しました。</p>
+    <p class="article-p">さらに、視覚的な景観の調和（バランス）も最重視されました。隣接するウエスタンランドには、巨大な赤土の岩山「ビッグサンダー・マウンテン」がそびえ立つ計画が立てられていました。平坦なエリアと荒涼とした巨大な岩山が隣り合う境界において、ゴシック調の高い屋根やレンガ造りの重厚なシルエットを持つこの館を「緩衝地帯」として配置することにより、パーク全体の立体的な景観バランスを美しく保つという高度な計算がなされているのです。</p>
+  </section>
+
+  <section class="article-block reveal" id="magic">
+    <h2 class="article-h2">II. 恐怖と笑いが交差する魔法</h2>
+    <p class="article-p">このアトラクションの最大の魅力は、「決して誰も傷つかない、安全で楽しい死後の世界」であることです。前半部分は、誰もいない薄暗い廊下や不穏なライティングが続く「心理的な恐怖」の領域です。しかし、霊媒師マダム・レオタの降霊術のシーンを境に、館の空気は一変します。</p>
+    <p class="article-p">後半は、名曲「グリム・グリニング・ゴースト」とともに亡霊たちが墓地で陽気に歌い踊る「ユーモアと笑い」の領域へと移行します。この見事な感情のコントラストこそが、ホーンテッドマンションの黄金比です。</p>
+
+    <div class="column-box reveal">
+      <h3>💡 音響心理の魔法：日米で異なる恐怖の周波数</h3>
+      <p>なぜ東京版のホーンテッドマンションの前半部分は、これほど静かで、じっとりとした冷気が肌にまとわりつくような演出になっているのでしょうか。そこには音響心理学に基づいた意図的な設計があります。<br><br>
+         一般的に西洋では、ホラー演出において<strong>「高音域・不協和音・鋭い突発的な音」</strong>が好まれ、叫び声のようなパニック演出が恐怖を掻き立てます。対して日本では、背後に何かが潜んでいるような<strong>「低音域・静寂・低くじっとりとした持続音」</strong>が最も心理的恐怖を煽るとされています。<br><br>
+         東京ディズニーランドでは、あえて突発的な音響効果を控え、人間の脈拍に近い低周波の重低音と「静寂」を巧みに織り交ぜることで、日本人の感性に訴えかける心理的恐怖をロジカルに構築しているのです。</p>
+    </div>
+  </section>
+
+  <section class="article-block reveal" id="ghosts">
+    <h2 class="article-h2">III. ゴーストレジストリー（記録）</h2>
+    <p class="article-p">館には「ゴーストレジストリー（幽霊籍）」と呼ばれる古い記録が残されており、登場する亡霊たちにはそれぞれ細かな人生のドラマが秘められています。</p>
+
+    <div class="column-box reveal">
+      <h3>サリー・スレーター（Sally Slater）</h3>
+      <span class="column-box-meta">出現場所：ストレッチングルーム（伸びる部屋）の肖像画</span>
+      <p>生前は勇敢な綱渡りパフォーマーでした。彼女がワニの潜む川の上で, 傘を片手に平然と綱渡りを披露する、まさに絶体絶命の瞬間が肖像画に描かれています。</p>
+    </div>
+
+    <div class="column-box reveal">
+      <h3>コンスタンス（Constance）</h3>
+      <span class="column-box-meta">出現場所：屋根裏部屋</span>
+      <p>屋根裏で赤く光る心臓を持った花嫁。強い野望を抱き、生前に富豪たちと結婚を繰り返しては、その夫たち全員を手斧で殺害し、次々と非業の死へと追いやった、美しくも冷酷な殺人者です。彼女の苗字「ハチャウェイ（Hatchaway）」は、手斧（Hatchet）を隠し持っているというブラックユーモアでもあります。</p>
+    </div>
+
+    <div class="column-box reveal">
+      <h3>ヒッチハイクゴースト（フィニアス、エズラ、ガス）</h3>
+      <span class="column-box-meta">出現場所：アトラクション終盤</span>
+      <p>詐欺師のフィニアス、放浪者のエズラ、無実の罪で投獄された陽気なガス。境遇の異なる3人が意気投合し、あなたのバギーに同乗して館の外へとヒッチハイクを企てます。</p>
+    </div>
+  </section>
+
+  <section class="article-block reveal" id="holiday">
+    <h2 class="article-h2">IV. ハロウィーン・タウンからの客人</h2>
+    <p class="article-p">毎年秋から冬にかけて、ホーンテッドマンションは特別な魔法に包まれます。ティム・バートン監督の映画『ナイトメアー・ビフォア・クリスマス』をモチーフにしたスペシャルプログラム「ホリデーナイトメア」です。</p>
+    <p class="article-p">ハロウィーン・タウンの王であるジャック・スケリントンがサンタクロースに扮して館を訪れ、999人の幽霊たちのために不気味で楽しいクリスマスの飾り付けを施します。ホラーとクリスマスの温かさが同居する季節限定の魔法です。</p>
+  </section>
+
+  <section class="article-block reveal" id="world">
+    <h2 class="article-h2">V. 世界に広がる幽霊屋敷</h2>
+    <p class="article-p">ホーンテッドマンションは、各国の文化的土壌に合わせて姿を変え、世界中のディズニーパークに存在しています。パリの「ファントム・マナー」では、花嫁メラニーを巡る凄惨な悲劇を描く、ヨーロッパ向けのダークな心理ホラーへと深化しています。</p>
+    <p class="article-p">香港ディズニーランドでは、中国の死生観に配慮し、幽霊要素を完全に排除した「ミスティック・マナー」として存在しています。この館の主であるヘンリー・ミスティック卿は、ディズニーシーとも深い関わりを持つ秘密結社「S.E.A.」の著名なメンバーです。</p>
     
-    <script>
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); } });
-        }, { threshold: 0.1 });
-        reveals.forEach(el => revealObserver.observe(el));
-    </script>
+    <a href="bgs-sea.html" class="related-link-card reveal">
+        <span class="related-link-title">📖 関連ストーリー：</span>
+        <span class="related-link-desc">世界中のパークを結ぶ巨大な冒険家ギルド「S.E.A. Archives」の完全解剖はこちら。</span>
+    </a>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
