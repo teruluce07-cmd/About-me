@@ -1,355 +1,486 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Splash Mountain | teru_luce_</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <style>
-        /* --- 湿った土の古紙・クリッターカントリーの温もりを感じるカラー設定 --- */
-        :root {
-            /* 暖かな日差しと赤土、古いクラフト紙を調和させたベースカラー */
-            --bg-color: #d8cdba; 
-            /* 小動物たちの深い森や湿った草木を感じるモスダークグリーン */
-            --text-main: #27311d; 
-            /* 暖かみのある赤土やリス・ウサギの毛並みをイメージしたアンバーブラウン */
-            --accent-gold: #a17849; 
-            --border-light: rgba(39, 49, 29, 0.15);
-            --img-filter: brightness(0.95) contrast(1.05);
-            --glow-color: rgba(39, 49, 29, 0.05);
-            
-            /* アンティークな和紙風マスキングテープ（付箋）のカラー */
-            --tape-color: rgba(206, 178, 134, 0.65);
-            /* 写真用紙のフチの色 */
-            --photo-border-bg: #FAF6ED;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Splash Mountain | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-            /* モバイルブラウザでの表示が圧倒的に軽い、高精細かつ低負荷なSVG紙繊維ノイズ */
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' result='noise'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        body {
-            font-family: 'Noto Serif JP', serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 2.2;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        /* ログハウスの木漏れ日を感じる、多重グラデーション背景 */
-        .paper-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: 
-                radial-gradient(circle at 50% 30%, transparent 20%, rgba(39, 49, 29, 0.08) 100%),
-                linear-gradient(to bottom, rgba(216, 205, 186, 0.9), rgba(197, 182, 155, 0.9)),
-                var(--paper-texture);
-            background-size: cover;
-            transform: translate3d(0, 0, 0);
-            pointer-events: none;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        /* クラフト紙を重ねたような、上質な立体感の演出 */
-        .container { 
-            position: relative; z-index: 10;
-            max-width: 580px; margin: 40px auto 80px; padding: 60px 40px 100px; 
-            background: rgba(253, 251, 246, 0.94); border-radius: 6px; 
-            box-shadow: 
-                0 20px 50px rgba(43, 31, 21, 0.08), 
-                0 4px 15px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--border-light);
-            /* 手作り感を演出する繊細な内枠ダブルボーダー */
-            outline: 1px solid rgba(161, 120, 73, 0.12);
-            outline-offset: -8px;
-        }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .reveal {
-            opacity: 0;
-            transform: translate3d(0, 20px, 0);
-            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1),
-                        transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .reveal.active {
-            opacity: 1; 
-            transform: translate3d(0, 0, 0);
-        }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        .back-btn {
-            display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em;
-            color: var(--accent-gold); text-decoration: none; text-transform: uppercase; margin-bottom: 40px;
-            border-bottom: 1px solid transparent; transition: color 0.3s, border-color 0.3s;
-        }
-        .back-btn:hover { border-color: var(--accent-gold); color: var(--text-main); }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        .header-section { text-align: center; margin-bottom: 45px; border-bottom: 1px solid var(--border-light); padding-bottom: 45px; }
-        .bgs-tag { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 0.35em; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 5px; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; margin: 10px 0 20px; letter-spacing: 0.08em; line-height: 1.2; }
-        .subtitle-jp { font-size: 0.9rem; font-weight: 300; letter-spacing: 0.12em; opacity: 0.85; line-height: 2; }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        /* 目次 (古いゲストブックのような上品なレイアウト) */
-        .toc-box { background: rgba(161, 120, 73, 0.03); border: 1px solid var(--border-light); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
-        .toc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-style: italic; color: var(--accent-gold); text-align: center; margin-bottom: 20px; letter-spacing: 0.15em; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed rgba(39, 49, 29, 0.12); padding: 12px 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s, opacity 0.3s; opacity: 0.75; font-weight: bold; }
-        .toc-list a:hover { color: var(--accent-gold); opacity: 1; }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        /* 本文セクション */
-        .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 400; font-style: italic; color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; letter-spacing: 0.06em; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.86rem; font-weight: 300; margin-bottom: 22px; opacity: 0.9; }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        /* 古いアルバムにラフに貼られているような質感の印画紙調デザイン */
-        .hero-img-container { 
-            position: relative; 
-            margin: 55px auto 45px; 
-            padding: 14px 14px 24px 14px; /* アンティークなポラロイド風プロポーション */
-            background: var(--photo-border-bg); 
-            border-radius: 2px; 
-            max-width: 95%;
-            box-shadow: 2px 12px 28px rgba(43, 31, 21, 0.12); 
-            /* 手作り感を出すために少し斜めに傾ける */
-            transform: rotate(-1.5deg); 
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.8s, box-shadow 0.8s;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        /* 斜めにペタッと貼られた、半透明の和紙製付箋（テープ） */
-        .hero-img-container::before {
-            content: "";
-            position: absolute;
-            top: -15px; 
-            left: 50%;
-            transform: translateX(-50%) rotate(2.5deg); 
-            width: 105px;
-            height: 28px;
-            background-color: var(--tape-color);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            /* テープ越しに写真と古紙がうっすら透けるすりガラス質感 */
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            mask-image: linear-gradient(to right, transparent 0%, #fff 8%, #fff 92%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, #fff 8%, #fff 92%, transparent 100%);
-            pointer-events: none; 
-            z-index: 20;
-            opacity: 0.9;
-        }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        /* 写真ホバー時、ふわりと角度が戻りつつ自然に浮き上がるインタラクション */
-        .hero-img-container:hover { 
-            transform: rotate(-0.5deg) scale(1.02); 
-            box-shadow: 4px 18px 36px rgba(43, 31, 21, 0.16); 
-        }
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
 
-        /* 写真の保存防止設定 */
-        .hero-img { 
-            width: 100%; 
-            height: auto; 
-            display: block; 
-            filter: var(--img-filter); 
-            mix-blend-mode: normal; 
-            transition: filter 0.8s ease; 
-            pointer-events: none;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-        
-        .connection-card { background: rgba(161, 120, 73, 0.04); border: 1px solid var(--border-light); border-left: 3px solid var(--accent-gold); padding: 25px; border-radius: 4px; margin: 30px 0; }
-        .connection-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; }
-        .connection-card p { font-size: 0.82rem; line-height: 2; margin-bottom: 0; }
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
 
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; opacity: 0.7; transition: opacity 0.3s, color 0.3s; }
-        .footer-link a:hover { opacity: 1; color: var(--accent-gold); }
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 8vw, 3.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
 
-        /* スマートフォン向けの完全レスポンシブ最適化 */
-        @media (max-width: 480px) {
-            .container {
-                margin: 15px 10px 40px;
-                padding: 40px 18px 60px;
-                outline-offset: -5px;
-            }
-            h1 {
-                font-size: 2.1rem;
-            }
-            .subtitle-jp {
-                font-size: 0.8rem;
-                line-height: 1.9;
-                margin-top: 10px;
-            }
-            h2 {
-                font-size: 1.25rem;
-                margin-top: 40px;
-            }
-            p {
-                font-size: 0.8rem;
-                line-height: 2;
-                margin-bottom: 16px;
-            }
-            .toc-box {
-                padding: 20px 15px;
-                margin-bottom: 45px;
-            }
-            .toc-list li {
-                font-size: 0.72rem;
-                padding: 10px 0;
-            }
-            .hero-img-container {
-                padding: 8px 8px 16px 8px;
-                margin: 45px auto;
-            }
-            .hero-img-container::before {
-                width: 80px;
-                height: 22px;
-                top: -11px;
-            }
-            .connection-card {
-                padding: 18px;
-                margin: 20px 0;
-            }
-            .connection-card p {
-                font-size: 0.78rem;
-            }
-        }
-    </style>
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h4 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <div class="noise-overlay" aria-hidden="true"></div>
-    <div class="paper-bg" aria-hidden="true"></div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back to Portal</a>
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
 
-        <header class="header-section reveal">
-            <div class="bgs-tag">Background Story</div>
-            <h1>Splash Mountain</h1>
-            <div class="subtitle-jp">泥地に根づく知恵と、大洪水の忘れ物</div>
-        </header>
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Background Story</span>
+    <h1 class="masthead-title">Splash Mountain</h1>
+    <span class="masthead-subtitle">泥地に根づく知恵と、大洪水の忘れ物</span>
+  </header>
 
-        <!-- 目次 -->
-        <nav class="toc-box reveal">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. 密造酒が生んだ大洪水（エリアの歴史）</span><a href="#prologue">Read →</a></li>
-                <li><span>II. うさぎどんと「ブレア（Br'er）」の謎</span><a href="#brer">Read →</a></li>
-                <li><span>III. ビーバーの建築術とクリッターの家（施設紹介）</span><a href="#spots">Read →</a></li>
-                <li><span>IV. ウエスタンランドからの「グラデーション」</span><a href="#boundaries">Read →</a></li>
-                <li><span>V. 小動物目線で作られた「スケールの魔術」</span><a href="#scale">Read →</a></li>
-                <li><span>VI. 世界で唯一、東京に遺された「奇跡」</span><a href="#legacy">Read →</a></li>
-            </ul>
-        </nav>
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
+    </div>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 密造酒が生んだ大洪水（エリアの歴史）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#brer" class="toc-link"><span class="toc-text">II. うさぎどんと「ブレア（Br'er）」の謎</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#spots" class="toc-link"><span class="toc-text">III. ビーバーの建築術とクリッターの家（施設紹介）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#boundaries" class="toc-link"><span class="toc-text">IV. ウエスタンランドからの「グラデーション」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#scale" class="toc-link"><span class="toc-text">V. 小動物目線で作られた「スケールの魔術」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#legacy" class="toc-link"><span class="toc-text">VI. 世界で唯一、東京に遺された「奇跡」</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
 
-        <div class="hero-img-container reveal">
-            <img src="sm-day.jpeg" alt="Splash Mountain Day View" class="hero-img" id="hero-img" draggable="false" loading="eager" oncontextmenu="return false;">
-        </div>
+  <div class="photo-frame reveal">
+    <img src="sm-day.jpeg" alt="Splash Mountain Day View" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
 
-        <!-- I. プロローグ -->
-        <section class="article-block reveal" id="prologue">
-            <h2>I. 密造酒が生んだ大洪水</h2>
-            <p>アメリカ河の最奥にひっそりと佇む、緑豊かでユーモラスな小動物たちの国「クリッターカントリー」。その象徴である「スプラッシュ・マウンテン」の頂から流れ落ちる激しい滝には、かつてのどかな丘だったこの地を襲った大洪水の歴史が刻まれています。</p>
-            <p>もともとこの山は「チカピンヒル」と呼ばれる穏やかな丘でした。しかしある日、丘の奥で密造酒を作っていたアライグマの「ラケッティ」が、調合を誤り自家製の蒸留器を大爆発させてしまいます。その衝撃でビーバーたちの頑丈なダムが決壊し、大量の水が一気に溢れ出してふもとを水浸しにしました。この大洪水以降、クリッターたちはこの丘を「スプラッシュ・マウンテン（水しぶきの山）」と呼ぶようになったのです。</p>
-            <p>大洪水により開拓途中だった人間たちは退去していきましたが、水分をたっぷり含んだ肥沃な泥地は、小動物たちにとって絶好のフロンティアとなりました。彼らは人間が残していった道具や大自然の木の根を再利用して家や作業場を作り始め、独自の文明を持つ小さな国が完成したのです。</p>
-        </section>
+  <!-- I. プロローグ -->
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. 密造酒が生んだ大洪水</h2>
+    <p class="article-p">アメリカ河の最奥にひっそりと佇む、緑豊かでユーモラスな小動物たちの国「クリッターカントリー」。その象徴である「スプラッシュ・マウンテン」の頂から流れ落ちる激しい滝には、かつてのどかな丘だったこの地を襲った大洪水の歴史が刻まれています。</p>
+    <p class="article-p">もともとこの山は「チカピンヒル」と呼ばれる穏やかな丘でした。しかしある日、丘の奥で密造酒を作っていたアライグマの「ラケッティ」が、調合を誤り自家製の蒸留器を大爆発させてしまいます。その衝撃でビーバーたちの頑丈なダムが決壊し、大量の水が一気に溢れ出してふもとを水浸しにしました。この大洪水以降、クリッターたちはこの丘を「スプラッシュ・マウンテン（水しぶきの山）」と呼ぶようになったのです。</p>
+    <p class="article-p">大洪水により開拓途中だった人間たちは退去していきましたが、水分をたっぷり含んだ肥沃な泥地は、小動物たちにとって絶好のフロンティアとなりました。彼らは人間が残していった道具や大自然の木の根を再利用して家や作業場を作り始め、独自の文明を持つ小さな国が完成したのです。</p>
+  </section>
 
-        <!-- II. うさぎどんとブレア（Br'er）の謎 -->
-        <section class="article-block reveal" id="brer">
-            <h2>II. うさぎどんと「ブレア」の正体</h2>
-            <p>ゲストが乗り込む丸太のボートは、チカピンヒルの内部を進みながら、日本ではおなじみの<strong>「うさぎどん」</strong>の冒険を追体験していきます。これは、退屈な我が家を飛び出し「笑いの国」を探し求めた彼の、知恵と故郷の物語です。</p>
-            <p>旅の途中で彼を狙うのは、ずる賢い<strong>「きつねどん」</strong>と、力持ちだけど少し間抜けな<strong>「くまどん」</strong>。うさぎどんは持ち前の機転で罠を何度もかいくぐりますが、ついにきつねどんに捕まり、丘の頂上で絶体絶命の危機を迎えます。</p>
-            
-            <div class="connection-card">
-                <h4>💡 「うさぎどん」と「ブレア（Br'er）」：単なる直訳ではない名前の魔法</h4>
-                <p>私たちが親しみを持って呼んでいる「うさぎどん」「きつねどん」「くまどん」という名前。実は英語のオリジナル版では、それぞれ<strong>「Br'er Rabbit（ブレア・ラビット）」「Br'er Fox（ブレア・フォックス）」「Br'er Bear（ブレア・ベア）」</strong>と呼ばれています。<br><br>
-                   この「ブレア（Br'er）」という言葉、実はアメリカ南部の方言（なまり）で<strong>「Brother（お兄さん・兄弟）」</strong>を意味する言葉が縮まったものです。<br><br>
-                   つまり、そのまま英語通りに直訳すると「うさぎのお兄さん」「きつねの兄貴」となります。しかし、日本のディズニーに導入される際、翻訳家たちはこれを単に「うさぎ兄さん」と直訳するのをやめ、日本の昔話のような温かみと愛嬌を込めて、親しみやすい<strong>「〜どん」</strong>という言葉でローカライズしました。単なる言葉の置き換えではなく、日本の子供たちにもスッと馴染むように計算された、素晴らしい「言葉の魔法」なのです。</p>
-            </div>
-
-            <p>きつねどんの罠にかかり絶体絶命のうさぎどんは、命がけの「最後のはっぱり（嘘）」をつきました。「煮るなり焼くなり好きにしてくれ。でも、あそこの『茨の茂み（Briar Patch）』にだけは放り込まないでくれ！」と。間抜けな彼らは、うさぎどんが最も嫌がることをしようと、彼を茨の茂みへと投げ落とします。この落下こそが、ゲストが体験する最大傾斜45度のスリリングな急降下なのです。</p>
-            <p>実はうさぎである彼にとって、トゲに囲まれた茨の茂みは「自分が生まれ育った最も安全な我が家」でした。彼らの裏をかいて無事生還したうさぎどんは、やっぱり自分が元いた故郷こそが最高の「笑いの国」だったと気づき、クリッターたちが総出で彼の帰還を歓迎する、お祝いに満ちたフィナーレ（Zip-A-Dee-Doo-Dah）で幕を閉じます。</p>
-        </section>
-
-        <!-- III. 施設詳細 -->
-        <section class="article-block reveal" id="spots">
-            <h2>III. 泥地に建てられた街</h2>
-            <p>クリッターカントリーにあるすべての施設は、大洪水の歴史とキャラクターたちの物語の中にシームレスに組み込まれています。</p>
-            <p><strong>グランマ・サラのキッチン（レストラン）</strong><br>
-            ジャコウネズミの「サラ・オズボーン（サラおばあちゃん）」が営むレストラン。彼女はクリッターで一番の料理の達人であり、自宅を開放しました。この建物は、大洪水のあとに腕利きの建築家である「ビーバーブラザーズ」が、頑丈な木の根や泥を巧みに利用して建てた2階建ての巣の構造をしています。</p>
-            <p><strong>ラケッティのラクーンサルーン（軽食）</strong><br>
-            かつて大爆発を起こしたアライグマの「ラケッティ」のお店。彼はあの大事故のあと深く反省し、密造酒造りから完全に足を洗いました。現在は、訪れるゲストのために爽やかで安全なソフトクリームやチュロスを販売しています。看板に自分の顔を描いているのは、彼の誠実な決意の証なのです。</p>
-            <p><strong>フート＆ハラー・ハイドアウト（ショップ跡）</strong><br>
-            ここはもともと、クリッターの子供たちが大人の目を盗んで集まる「秘密基地（ハイドアウト）」でした。店名の「フート（フクロウの鳴き真似）」と「ハラー（大声の叫び）」は、子供たちが秘密基地に入るための「合言葉」からきており、ショップとしての営業を終えた今も、子供たちの遊び場であった痕跡をその場所に残しています。</p>
-        </section>
-
-        <!-- IV. 境界線 -->
-        <section class="article-block reveal" id="boundaries">
-            <h2>IV. ウエスタンランドからの境界線</h2>
-            <p>クリッターカントリーは、隣接する「ウエスタンランド」と地続きのアメリカ開拓史のグラデーションを持っています。</p>
-            <p>ウエスタンランドは「19世紀後半のアメリカ西部の開拓街」であり、人間が作った文明の賑やかさがあります。そこからビッグサンダー・マウンテン側を抜け、クリッターカントリーへと歩みを進めると、だんだんと植物の緑が深く、濃くなっていきます。「人間が開拓したフロンティアの街」のすぐ隣には、「野生の小動物たちが独自の知恵で生きる深い森」が広がっているという、アメリカの大自然の圧倒的な奥行きが、歩くだけで体感できるように設計されているのです。</p>
-        </section>
-
-        <!-- V. イマジニアの魔術 -->
-        <section class="article-block reveal" id="scale">
-            <h2>V. 小動物たちの「スケール魔術」</h2>
-            <p>ディズニーの空間デザイナー「イマジニア」たちは、このエリアを「本当に小動物たちが暮らしている場所」にするため、驚異的なギミックを仕込みました。エリアに入ると分かりますが、小動物たちが作ったドア、窓、階段、看板、さらには街灯にいたるまで、すべて人間のサイズより一回りも二回りも小さく作られています。これにより、ゲストはエリアに足を踏み入れた瞬間、自分自身が絵本の中のクリッターサイズに縮んでしまったかのような錯覚（強制遠近法）を覚えます。</p>
-            <p>また、道端のあちこちには、人間（ハンター）のブーツの足跡が残されています。クリッターたちはハンターに怯えるどころか、彼らの仕掛けたトラップを生活道具に改造し、残された大きなブーツを「植木鉢」や「看板」としてユーモアたっぷりに再利用して暮らしています。このような高い知性とたくましさが、エリアの至る所で表現されています。</p>
-        </section>
-
-        <!-- VI. 世界で唯一の「スプラッシュ」 -->
-        <section class="article-block reveal" id="legacy">
-            <h2>VI. 世界で唯一、東京に遺された「奇跡」</h2>
-            <p>これまで、世界中の複数のディズニーパークに存在したスプラッシュ・マウンテン。しかし現在、その歴史は極めて大きな変革期を迎えています。</p>
-            <p>アメリカ・フロリダのウォルト・ディズニー・ワールドおよび、カリフォルニアのディズニーランドでは、長年親しまれたスプラッシュ・マウンテンが完全にクローズされ、映画『プリンセスと魔法のキス』をテーマにした<strong>「ティアナのバイユー・アドベンチャー（Tiana's Bayou Adventure）」</strong>というまったく新しいアトラクションへと生まれ変わりました。</p>
-            
-            <div class="hero-img-container">
-                <img src="sm-night.jpeg" alt="Splash Mountain Night Lit View" class="hero-img" draggable="false" loading="lazy" oncontextmenu="return false;">
-            </div>
-
-            <p>これにより、1946年の映画『南部の唄』をベースにしたクラシックなスプラッシュ・マウンテンと、名曲<strong>「ジッパ・ディー・ドゥー・ダー（Zip-A-Dee-Doo-Dah）」</strong>を乗車中に聴くことができるアトラクションは、<strong>全世界で唯一、この「東京ディズニーランド」だけに遺されることになった</strong>のです。アメリカのオリジナルが新時代へと移行する中で、ここ日本のクリッターカントリーだけが、うさぎどんたちの陽気で心優しい冒険の歴史を今もそのまま守り続けている、世界でも極めて貴重な「約束の地」となっています。</p>
-        </section>
-
-        <div class="footer-link reveal">
-            <a href="index.html">← HOMEへ戻る</a>
-        </div>
+  <!-- II. うさぎどんとブレア（Br'er）の謎 -->
+  <section class="article-block reveal" id="brer">
+    <h2 class="article-h2">II. うさぎどんと「ブレア」の正体</h2>
+    <p class="article-p">ゲストが乗り込む丸太のボートは、チカピンヒルの内部を進みながら、日本ではおなじみの<strong>「うさぎどん」</strong>の冒険を追体験していきます。これは、退屈な我が家を飛び出し「笑いの国」を探し求めた彼の、知恵と故郷の物語です。</p>
+    <p class="article-p">旅の途中で彼を狙うのは、ずる賢い<strong>「きつねどん」</strong>と、力持ちだけど少し間抜けな<strong>「くまどん」</strong>。うさぎどんは持ち前の機転で罠を何度もかいくぐりますが、ついにきつねどんに捕まり、丘の頂上で絶体絶命の危機を迎えます。</p>
+    
+    <div class="column-box reveal">
+      <h4>💡 「うさぎどん」と「ブレア（Br'er）」：単なる直訳ではない名前の魔法</h4>
+      <p>私たちが親しみを持って呼んでいる「うさぎどん」「きつねどん」「くまどん」という名前。実は英語のオリジナル版では、それぞれ<strong>「Br'er Rabbit（ブレア・ラビット）」「Br'er Fox（ブレア・フォックス）」「Br'er Bear（ブレア・ベア）」</strong>と呼ばれています。<br><br>
+         この「ブレア（Br'er）」という言葉、実はアメリカ南部の方言（なまり）で<strong>「Brother（お兄さん・兄弟）」</strong>を意味する言葉が縮まったものです。<br><br>
+         つまり、そのまま英語通りに直訳すると「うさぎのお兄さん」「きつねの兄貴」となります。しかし、日本のディズニーに導入される際、翻訳家たちはこれを単に「うさぎ兄さん」と直訳するのをやめ、日本の昔話のような温かみと愛嬌を込めて、親しみやすい<strong>「〜どん」</strong>という言葉でローカライズしました。単なる言葉の置き換えではなく、日本の子供たちにもスッと馴染むように計算された、素晴らしい「言葉の魔法」なのです。</p>
     </div>
 
-    <script>
-        const reveals = document.querySelectorAll('.reveal');
+    <p class="article-p">きつねどんの罠にかかり絶体絶命のうさぎどんは、命がけの「最後のはっぱり（嘘）」をつきました。「煮るなり焼くなり好きにしてくれ。でも、あそこの『茨の茂み（Briar Patch）』にだけは放り込まないでくれ！」と。間抜けな彼らは、うさぎどんが最も嫌がることをしようと、彼を茨の茂みへと投げ落とします。この落下こそが、ゲストが体験する最大傾斜45度のスリリングな急降下なのです。</p>
+    <p class="article-p">実はうさぎである彼にとって、トゲに囲まれた茨の茂みは「自分が生まれ育った最も安全な我が家」でした。彼らの裏をかいて無事生還したうさぎどんは、やっぱり自分が元いた故郷こそが最高の「笑いの国」だったと気づき、クリッターたちが総出で彼の帰還を歓迎する、お祝いに満ちたフィナーレ（Zip-A-Dee-Doo-Dah）で幕を閉じます。</p>
+  </section>
 
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                const el = entry.target;
-                el.style.willChange = 'transform, opacity';
-                el.classList.add('active');
-                el.addEventListener('transitionend', () => {
-                    el.style.willChange = 'auto';
-                }, { once: true });
-                observer.unobserve(el);
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+  <!-- III. 施設詳細 -->
+  <section class="article-block reveal" id="spots">
+    <h2 class="article-h2">III. 泥地に建てられた街</h2>
+    <p class="article-p">クリッターカントリーにあるすべての施設は、大洪水の歴史とキャラクターたちの物語の中にシームレスに組み込まれています。</p>
+    <p class="article-p"><strong>グランマ・サラのキッチン（レストラン）</strong><br>
+    ジャコウネズミの「サラ・オズボーン（サラおばあちゃん）」が営むレストラン。彼女はクリッターで一番の料理の達人であり、自宅を開放しました。この建物は、大洪水のあとに腕利きの建築家である「ビーバーブラザーズ」が、頑丈な木の根や泥を巧みに利用して建てた2階建ての巣の構造をしています。</p>
+    <p class="article-p"><strong>ラケッティのラクーンサルーン（軽食）</strong><br>
+    かつて大爆発を起こしたアライグマの「ラケッティ」のお店。彼はあの大事故のあと深く反省し、密造酒造りから完全に足を洗いました。現在は、訪れるゲストのために爽やかで安全なソフトクリームやチュロスを販売しています。看板に自分の顔を描いているのは、彼の誠実な決意の証なのです。</p>
+    <p class="article-p"><strong>フート＆ハラー・ハイドアウト（ショップ跡）</strong><br>
+    ここはもともと、クリッターの子供たちが大人の目を盗んで集まる「秘密基地（ハイドアウト）」でした。店名の「フート（フクロウの鳴き真似）」と「ハラー（大声の叫び）」は、子供たちが秘密基地に入るための「合言葉」からきており、ショップとしての営業を終えた今も、子供たちの遊び場であった痕跡をその場所に残しています。</p>
+  </section>
 
-        reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        setTimeout(() => {
-            const first = reveals[0];
-            if (first) {
-                first.style.willChange = 'transform, opacity';
-                first.classList.add('active');
-                first.addEventListener('transitionend', () => {
-                    first.style.willChange = 'auto';
-                }, { once: true });
-            }
-        }, 100);
-    </script>
+  <!-- IV. 境界線 -->
+  <section class="article-block reveal" id="boundaries">
+    <h2 class="article-h2">IV. ウエスタンランドからの境界線</h2>
+    <p class="article-p">クリッターカントリーは、隣接する「ウエスタンランド」と地続きのアメリカ開拓史のグラデーションを持っています。</p>
+    <p class="article-p">ウエスタンランドは「19世紀後半のアメリカ西部の開拓街」であり、人間が作った文明の賑やかさがあります。そこからビッグサンダー・マウンテン側を抜け、クリッターカントリーへと歩みを進めると、だんだんと植物の緑が深く、濃くなっていきます。「人間が開拓したフロンティアの街」のすぐ隣には、「野生の小動物たちが独自の知恵で生きる深い森」が広がっているという、アメリカの大自然の圧倒的な奥行きが、歩くだけで体感できるように設計されているのです。</p>
+  </section>
+
+  <!-- V. イマジニアの魔術 -->
+  <section class="article-block reveal" id="scale">
+    <h2 class="article-h2">V. 小動物たちの「スケール魔術」</h2>
+    <p class="article-p">ディズニーの空間デザイナー「イマジニア」たちは、このエリアを「本当に小動物たちが暮らしている場所」にするため、驚異的なギミックを仕込みました。エリアに入ると分かりますが、小動物たちが作ったドア、窓、階段、看板、さらには街灯にいたるまで、すべて人間のサイズより一回りも二回りも小さく作られています。これにより、ゲストはエリアに足を踏み入れた瞬間、自分自身が絵本の中のクリッターサイズに縮んでしまったかのような錯覚（強制遠近法）を覚えます。</p>
+    <p class="article-p">また、道端のあちこちには、人間（ハンター）のブーツの足跡が残されています。クリッターたちはハンターに怯えるどころか、彼らの仕掛けたトラップを生活道具に改造し、残された大きなブーツを「植木鉢」や「看板」としてユーモアたっぷりに再利用して暮らしています。このような高い知性とたくましさが、エリアの至る所で表現されています。</p>
+  </section>
+
+  <!-- VI. 世界で唯一の「スプラッシュ」 -->
+  <section class="article-block reveal" id="legacy">
+    <h2 class="article-h2">VI. 世界で唯一、東京に遺された「奇跡」</h2>
+    <p class="article-p">これまで、世界中の複数のディズニーパークに存在したスプラッシュ・マウンテン。しかし現在、その歴史は極めて大きな変革期を迎えています。</p>
+    <p class="article-p">アメリカ・フロリダのウォルト・ディズニー・ワールドおよび、カリフォルニアのディズニーランドでは、長年親しまれたスプラッシュ・マウンテンが完全にクローズされ、映画『プリンセスと魔法のキス』をテーマにした<strong>「ティアナのバイユー・アドベンチャー（Tiana's Bayou Adventure）」</strong>というまったく新しいアトラクションへと生まれ変わりました。</p>
+    
+    <div class="photo-frame reveal">
+      <img src="sm-night.jpeg" alt="Splash Mountain Night Lit View" width="800" height="450" decoding="async" loading="lazy">
+    </div>
+
+    <p class="article-p">これにより、1946年の映画『南部の唄』をベースにしたクラシックなスプラッシュ・マウンテンと、名曲<strong>「ジッパ・ディー・ドゥー・ダー（Zip-A-Dee-Doo-Dah）」</strong>を乗車中に聴くことができるアトラクションは、<strong>全世界で唯一、この「東京ディズニーランド」だけに遺されることになった</strong>のです。アメリカのオリジナルが新時代へと移行する中で、ここ日本のクリッターカントリーだけが、うさぎどんたちの陽気で心優しい冒険の歴史を今もそのまま守り続けている、世界でも極めて貴重な「約束の地」となっています。</p>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
