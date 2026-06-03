@@ -1,1226 +1,1373 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Chronicles | 東京ディズニーリゾート バックグラウンドストーリー資料集</title>
+  <meta name="description" content="東京ディズニーランド・ディズニーシーのアトラクションBGS（背景設定）の決定版。スプラッシュ・マウンテンやホーンテッドマンション、スモワの都市伝説・仕組み・歴史。">
+  <meta name="author" content="TERU_LUCE_">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://teruluce07-cmd.github.io/disney-bgs/index.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://teruluce07-cmd.github.io/disney-bgs/index.html">
+  <meta property="og:title" content="BGS Chronicles | 東京ディズニーリゾート バックグラウンドストーリー資料集">
+  <meta property="og:description" content="TDL・TDSのBGS（背景設定）アーカイブ。スモワ・ホーンテッド・タワテラの都市伝説・歴史を深掘り。">
+  <meta property="og:image" content="https://teruluce07-cmd.github.io/disney-bgs/tot-exterior.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="BGS Chronicles">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <!-- 検索結果で上位に乗りやすくするため、狙うキーワードを自然に、かつ強力に詰め込んだ裏設定タイトル -->
-    <title>BGS Chronicles | ディズニーBGS・スモワ・スプラッシュ・ホーンテッド等アトラクション背景設定の都市伝説・仕組み・歴史を紐解くBGSコラム資料集</title>
-    <meta name="description" content="東京ディズニーランド・ディズニーシーのアトラクションBGS（背景設定コラム）の決定版。スプラッシュ・マウンテンやホーンテッドマンション、スモワはいつからある？都市伝説やドール人形、からくりの仕組み、歴史の豆知識など幅広く網羅した背景設定資料集。">
-    <meta name="keywords" content="東京ディズニーリゾート BGS, ディズニー バックグラウンドストーリー, ディズニーランド, ディズニーシー, 舞浜, スモワ, 人形, いつからある, 都市伝説, 仕組み, コラム, 豆知識, スプラッシュマウンテン, ホーンテッドマンション, S.E.A., タワーオブテラー">
-    <meta name="author" content="TERU_LUCE_">
-    <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="tot-exterior.jpg" fetchpriority="high">
 
-    <link rel="canonical" href="https://teruluce07-cmd.github.io/disney-bgs/index.html">
+  <!-- 1920s typography: Playfair Display (editorial serif) + Special Elite (typewriter) + Noto Serif JP -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-    <!-- サイトアイコン（SVGファビコン）の読み込み設定 -->
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — 1920s Art Deco / Jazz Age / Newspaper Press
+    ============================================================ */
+    :root {
+      /* Palette: aged newsprint + deep bordeaux + warm gold + ink */
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://teruluce07-cmd.github.io/disney-bgs/index.html">
-    <meta property="og:title" content="BGS Chronicles | ディズニーBGS・スモワ・スプラッシュ・ホーンテッド等の都市伝説・仕組み・歴史コラム資料集">
-    <meta property="og:description" content="東京ディズニーランド・ディズニーシーのアトラクションBGS（背景設定）。スモワやホーンテッドの都市伝説、人形の仕組み、いつからある歴史の豆知識コラムを網羅。">
-    <meta property="og:image" content="https://teruluce07-cmd.github.io/disney-bgs/tot-exterior.jpg">
-    <meta property="og:image:width" content="800">
-    <meta property="og:image:height" content="343">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:site_name" content="BGS Chronicles">
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BGS Chronicles | ディズニーBGS・スモワ・スプラッシュ・ホーンテッド等の都市伝説・仕組み・歴史コラム資料集">
-    <meta name="twitter:description" content="東京ディズニーランド・ディズニーシーのBGS（背景設定）。スモワやホーンテッドの都市伝説、人形の仕組み、いつからある歴史の豆知識コラムを網羅。">
-    <meta name="twitter:image" content="https://teruluce07-cmd.github.io/disney-bgs/tot-exterior.jpg">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "BGS Chronicles",
-      "url": "https://teruluce07-cmd.github.io/disney-bgs/",
-      "description": "ディズニーアトラクションのBGS（背景設定）。スモワ, スプラッシュ, ホーンテッドマンションはいつからある？都市伝説やドール人形, からくり仕組み, 歴史の豆知識コラムを解説した個人アーカイブ資料集。",
-      "inLanguage": "ja",
-      "author": {
-        "@type": "Person",
-        "name": "TERU_LUCE_"
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": "TERU_LUCE_"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://teruluce07-cmd.github.io/disney-bgs/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      --max-w: 980px;
+      --pad-x: clamp(16px, 5vw, 56px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
-    </script>
 
-    <!-- ===== Critical resource hints ===== -->
-    <!-- ヒーロー画像を最優先でプリロード -->
-    <link rel="preload" as="image" href="tot-exterior.jpg" fetchpriority="high">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-    <!-- フォント接続を早める -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-    <!--
-      フォント読み込み戦略:
-      - display=swap を使い、FOUT（フォント置き換えのちらつき）を許容しつつ初期描画をブロックしない
-      - onload パターンで非同期読み込みし、<noscript> でフォールバック
-    -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;500&display=swap"></noscript>
+    /* ============================================================
+       BODY — aged newsprint background
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-    <style>
-        :root {
-            --parchment:      #EAD9BC;
-            --parchment-mid:  #DFC9A8;
-            --bg-abyss:       #130E0A;
-            --bg-dark:        #E2D5BA;
-            --bg-card:        rgba(244, 238, 226, 0.85);
-            --accent-copper:  #7C4E2D;
-            --accent-copper-muted: rgba(124, 78, 45, 0.08);
-            --text-light:     #2B1E16;
-            --text-muted:     #6E5A4E;
-            --border-light:   rgba(80, 50, 30, 0.12);
-            --border-copper:  rgba(124, 78, 45, 0.35);
-            --img-filter: sepia(40%) brightness(0.88);
-            --content-max: 900px;
-            --content-pad: clamp(16px, 4vw, 60px);
-        }
+    /* Paper texture via repeating subtle lines — letterpress feel */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Corner vignette */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        html {
-            overflow-x: hidden;
-            width: 100%;
-        }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        body {
-            overflow-x: hidden;
-            width: 100%;
-            background-color: var(--parchment);
-            color: var(--text-light);
-            line-height: 1.9;
-            letter-spacing: 0.03em;
-            -webkit-font-smoothing: antialiased;
-            font-family: 'Noto Serif JP', serif;
-        }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(20px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        .paper-wrinkle-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background:
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(120, 80, 40, 0.016) 2px,
-                    rgba(120, 80, 40, 0.016) 3px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 5px,
-                    rgba(100, 65, 30, 0.01) 5px,
-                    rgba(100, 65, 30, 0.01) 6px
-                ),
-                radial-gradient(ellipse 140% 80% at 15% 25%, rgba(215, 190, 148, 0.55) 0%, transparent 58%),
-                radial-gradient(ellipse 110% 65% at 85% 75%, rgba(200, 168, 125, 0.38) 0%, transparent 52%),
-                radial-gradient(ellipse 80% 90% at 50% 50%, rgba(226, 213, 186, 0.3) 0%, transparent 70%),
-                var(--bg-dark);
-        }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        .ambient-vignette {
-            position: fixed; inset: 0; z-index: -1;
-            background: radial-gradient(circle at 50% 30%, transparent 40%, rgba(100, 70, 40, 0.18) 100%);
-            pointer-events: none;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            border-left: 1px solid rgba(80, 50, 30, 0.08);
-            border-right: 1px solid rgba(80, 50, 30, 0.08);
-        }
+    /* ============================================================
+       MASTHEAD — Newspaper front page style
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 24px 0 20px;
+      margin-bottom: 0;
+      text-align: center;
+      position: relative;
+    }
 
-        .page-wrapper::before,
-        .page-wrapper::after {
-            content: '';
-            position: fixed;
-            top: 0; bottom: 0;
-            width: max(0px, calc((100vw - var(--content-max)) / 2 - 40px));
-            background: linear-gradient(to right, rgba(120,80,40,0.06), transparent);
-            z-index: 0;
-            pointer-events: none;
-        }
-        .page-wrapper::before { left: 0; }
-        .page-wrapper::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(120,80,40,0.06), transparent);
-        }
+    /* Thick rule at very top — newspaper masthead bar */
+    .masthead-top-rule {
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 16px;
+    }
+    .masthead-top-rule::before,
+    .masthead-top-rule::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    .masthead-dateline {
+      font-family: var(--f-type);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      padding: 0 14px;
+      white-space: nowrap;
+    }
 
-        .parchment-content {
-            width: 100%;
-            max-width: var(--content-max);
-            margin: 0 auto;
-            padding: clamp(28px, 5vw, 80px) var(--content-pad) clamp(50px, 8vw, 100px);
-            box-sizing: border-box;
-        }
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 10px;
+    }
 
-        /* ===== Reveal animation ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .masthead-title-link {
+      text-decoration: none;
+      display: block;
+    }
 
-        /* ===== Header ===== */
-        .header {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 12px; padding: 10px 0 30px; margin-bottom: 35px;
-            border-bottom: 1px solid var(--border-light);
-            text-align: center;
-        }
-        .header-logo {
-            text-decoration: none;
-            display: flex; flex-direction: column;
-            align-items: center; gap: 4px;
-        }
-        .logo-sub {
-            font-family: 'Cinzel', serif; font-size: .65rem;
-            letter-spacing: .4em; color: var(--accent-copper);
-            font-weight: 500; text-transform: uppercase;
-        }
-        .logo-main {
-            font-family: 'Alex Brush', cursive; font-size: 3.4rem;
-            font-weight: 400; color: var(--text-light);
-            line-height: 0.95;
-        }
-        .logo-tagline {
-            font-family: 'Cormorant Garamond', serif; font-size: .8rem;
-            font-style: italic; color: var(--text-muted);
-            letter-spacing: 0.05em; margin-top: 4px;
-        }
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(2.8rem, 10vw, 5.8rem);
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .masthead-title em {
+      font-style: italic;
+      color: var(--bordeaux);
+    }
 
-        .profile-btn {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .75rem; font-weight: 500;
-            letter-spacing: .2em; color: var(--text-light);
-            text-transform: uppercase;
-            padding: 10px 24px;
-            text-decoration: none;
-            display: inline-block;
-            border: 1px solid var(--border-light);
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-        .profile-btn:hover {
-            border-color: var(--accent-copper);
-            color: var(--accent-copper);
-            background: var(--accent-copper-muted);
-        }
+    .masthead-subtitle {
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.8vw, 0.78rem);
+      letter-spacing: 0.35em;
+      color: var(--muted);
+      display: block;
+      margin-top: 8px;
+    }
 
-        /* ===== Hero ===== */
-        .cinematic-hero-container {
-            position: relative; width: 100%; aspect-ratio: 21/9;
-            margin: 30px auto; overflow: hidden;
-            border: 1px solid var(--border-light);
-            box-shadow: inset 0 0 0 5px rgba(80, 50, 30, 0.15);
-            background: #1C1510;
-        }
-        .hero-img-wrapper {
-            width: 100%; height: 100%;
-            position: relative;
-        }
-        .hero-img-wrapper img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: var(--img-filter);
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-            pointer-events: none;
-        }
-        .hero-img-wrapper::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(234,222,201,0.95) 0%, rgba(234,222,201,0.1) 60%, transparent 100%),
-                        radial-gradient(circle at 50% 50%, transparent 40%, rgba(80,50,30,0.3) 100%);
-            z-index: 1;
-        }
-        .hero-label {
-            position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
-            font-family: 'Alex Brush', cursive; font-size: 2.1rem;
-            color: var(--accent-copper);
-            white-space: nowrap;
-            z-index: 2;
-        }
+    .masthead-bottom-rules {
+      margin-top: 16px;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .masthead-bottom-rules span {
+      display: block; height: 1px;
+      background: var(--border-strong);
+    }
+    .masthead-bottom-rules span:first-child { height: 3px; background: var(--ink); }
 
-        .intro-message {
-            font-family: 'Noto Serif JP', serif;
-            font-size: .82rem; font-weight: 300; line-height: 2.1;
-            margin: 30px auto; max-width: 600px;
-            color: var(--text-light); text-align: center;
-        }
+    .profile-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: var(--f-sc);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 20px;
+      border: 1px solid var(--border-strong);
+      transition: all 0.25s;
+    }
+    .profile-link:hover {
+      background: var(--ink); color: var(--paper);
+      border-color: var(--ink);
+    }
 
-        /* ===== Divider ===== */
-        .vintage-divider {
-            display: flex; align-items: center;
-            margin: 40px 0; user-select: none;
-        }
-        .vintage-divider::before, .vintage-divider::after {
-            content: ''; flex: 1; height: 1px;
-            background: linear-gradient(to right, transparent, var(--border-light), transparent);
-        }
-        .vintage-divider span {
-            font-size: .8rem; color: var(--accent-copper);
-            letter-spacing: .6em; padding: 0 20px; opacity: .75;
-        }
+    /* ============================================================
+       HERO — newspaper photo with caption
+    ============================================================ */
+    .hero-section {
+      margin: 28px 0 0;
+    }
 
-        /* ===== Table of Contents ===== */
-        .toc-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            box-shadow: 0 1px 3px rgba(80, 50, 30, 0.05);
-            padding: 24px; margin-bottom: 40px;
-        }
-        .toc-title {
-            font-family: 'Cinzel', serif; font-size: .8rem;
-            color: var(--accent-copper); text-align: center;
-            margin-bottom: 20px; letter-spacing: .2em; font-weight: 500;
-        }
-        .toc-section { margin-bottom: 20px; }
-        .toc-section:last-of-type { margin-bottom: 0; }
-        .toc-section-title {
-            font-family: 'Cinzel', serif; font-size: .55rem;
-            letter-spacing: .2em; text-transform: uppercase;
-            color: var(--text-muted); display: block;
-            margin-bottom: 10px; font-weight: 600;
-        }
-        .toc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .toc-tags a {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            padding: 8px 14px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .7rem; letter-spacing: 0.05em;
-            color: var(--text-light); text-decoration: none;
-            transition: all .25s ease;
-        }
-        .toc-tags a:hover {
-            border-color: var(--accent-copper);
-            color: var(--accent-copper);
-            background: var(--accent-copper-muted);
-        }
+    /* Photo credit / section label */
+    .hero-section-label {
+      font-family: var(--f-type);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--bordeaux);
+      border-left: 3px solid var(--bordeaux);
+      padding-left: 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
 
-        /* ===== List header & controls ===== */
-        .list-header {
-            display: flex; flex-direction: column; gap: 15px;
-            margin: 40px 0 25px;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 15px;
-        }
-        .list-header-top {
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .section-title {
-            font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;
-            font-weight: 300; color: var(--text-light);
-            margin: 0; letter-spacing: .05em;
-        }
+    .hero-photo-frame {
+      position: relative;
+      aspect-ratio: 21/8;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      /* Art deco double-border effect */
+      outline: 4px solid var(--paper);
+      outline-offset: -8px;
+    }
+    @media (max-width: 600px) {
+      .hero-photo-frame { aspect-ratio: 16/9; outline-offset: -5px; }
+    }
 
-        .layout-toggle {
-            display: flex; gap: 1px;
-            background: var(--border-light);
-            padding: 1px;
-        }
-        .layout-toggle button {
-            background: rgba(234, 224, 203, 0.9);
-            border: none;
-            color: var(--text-muted); font-family: 'Cormorant Garamond', serif;
-            font-size: .7rem; padding: 8px 14px;
-            cursor: pointer; transition: all .2s; text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        .layout-toggle button.active-toggle {
-            background: var(--bg-card);
-            color: var(--accent-copper);
-            font-weight: 500;
-        }
+    .hero-photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+      /* Aged photo: high contrast, desaturated, slight sepia */
+      filter: grayscale(35%) sepia(30%) contrast(1.1) brightness(0.82);
+      transition: transform 7s var(--ease);
+      display: block;
+    }
+    .hero-photo-frame.loaded img { transform: scale(1.03); }
 
-        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+    /* Gradient fade to paper at bottom */
+    .hero-photo-frame::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, var(--paper) 0%, rgba(245,237,216,0.15) 40%, transparent 65%),
+        linear-gradient(to bottom, rgba(245,237,216,0.25) 0%, transparent 20%);
+      pointer-events: none;
+    }
 
-        .filter-btn {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-light);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .7rem; padding: 8px 16px;
-            cursor: pointer; text-transform: uppercase; transition: all .25s ease;
-            letter-spacing: 0.1em;
-        }
-        .filter-btn.active-toggle {
-            background: var(--accent-copper-muted);
-            color: var(--accent-copper);
-            border-color: var(--accent-copper);
-        }
-        .filter-btn:hover:not(.active-toggle) {
-            border-color: var(--text-muted);
-        }
+    .hero-caption-block {
+      border-bottom: 1px solid var(--border);
+      padding: 8px 4px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-caption-text {
+      font-family: var(--f-type);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      font-style: normal;
+    }
+    .hero-photo-credit {
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      color: var(--muted-2);
+      white-space: nowrap;
+    }
 
-        /* ===== Article cards ===== */
-        .article-list { display: flex; flex-direction: column; gap: 30px; }
+    /* ============================================================
+       HORIZONTAL RULE ORNAMENTS
+    ============================================================ */
+    .rule-deco {
+      display: flex; align-items: center; gap: 0;
+      margin: 32px 0; user-select: none;
+    }
+    .rule-deco::before, .rule-deco::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    .rule-deco-center {
+      padding: 0 16px;
+      font-family: var(--f-display);
+      font-size: 1.1rem;
+      color: var(--bordeaux);
+      line-height: 1;
+      letter-spacing: 0.3em;
+    }
 
-        .article-card {
-            text-decoration: none; color: var(--text-light); display: block;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(80, 50, 30, 0.05);
-            transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
-            position: relative;
-            min-width: 0;
-            /*
-              content-visibility: auto を使うと、ビューポート外のカードの
-              レンダリングをブラウザがスキップできる。
-              contain-intrinsic-size はレイアウトシフト防止のための目安サイズ。
-            */
-            content-visibility: auto;
-            contain-intrinsic-size: auto 380px;
-        }
-        .article-card:hover {
-            border-color: var(--border-copper);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(80, 50, 30, 0.08);
-        }
+    /* Simple double rule */
+    .double-rule {
+      margin: 24px 0;
+      border: none;
+      border-top: 3px double var(--border-strong);
+    }
 
-        /* ===== Image wrapper ===== */
-        .img-wrapper {
-            width: 100%;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            margin-bottom: 20px; background: #241D17;
-            position: relative;
-            border: 1px solid var(--border-light);
-            box-shadow: inset 0 0 0 5px rgba(80, 50, 30, 0.15);
-        }
-        .img-wrapper img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: var(--img-filter);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-            pointer-events: none;
-        }
-        .img-wrapper::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(80,50,30,0.3) 100%);
-            z-index: 1;
-        }
-        .article-card:hover .img-wrapper img { transform: scale(1.03); }
+    /* ============================================================
+       INTRO — Editorial lede paragraph
+    ============================================================ */
+    .intro-col {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 8px 0 4px;
+      text-align: center;
+    }
+    .intro-drop-cap-line {
+      font-family: var(--f-sc);
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      color: var(--bordeaux);
+      display: block;
+      margin-bottom: 14px;
+    }
+    .intro-body {
+      font-family: var(--f-jp);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+    }
 
-        /* ===== S.E.A. crest (CSS-only placeholder) ===== */
-        .sea-crest {
-            width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
-            background: radial-gradient(circle, #2a2018 0%, #1c1510 100%);
-            text-align: center; position: relative;
-        }
-        .crest-inner {
-            border: 1px solid var(--border-copper);
-            padding: 15px 20px; position: relative; z-index: 2;
-        }
-        .crest-inner::before {
-            content: ''; position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border: 1px solid var(--border-light); pointer-events: none;
-        }
-        .crest-letters {
-            display: block; font-family: 'Cinzel', serif;
-            font-size: 2.2rem; color: var(--accent-copper);
-            line-height: 1; letter-spacing: 0.2em;
-            margin-bottom: 10px; font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .crest-motto {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.65rem; color: var(--text-muted);
-            letter-spacing: 0.15em; line-height: 1.6;
-            text-transform: uppercase; font-weight: 500;
-        }
-        .article-list.grid-mode .crest-letters { font-size: 1.8rem; }
-        .article-list.grid-mode .crest-motto { font-size: 0.55rem; }
+    /* ============================================================
+       NAV / TABLE OF CONTENTS
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: 20px 22px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-sc);
+      font-size: 0.72rem;
+      letter-spacing: 0.35em;
+      color: var(--ink);
+    }
+    .toc-group { margin-bottom: 14px; }
+    .toc-group:last-child { margin-bottom: 0; }
+    .toc-group-label {
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--bordeaux);
+      display: block;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .toc-links { display: flex; flex-wrap: wrap; gap: 5px; }
+    .toc-links a {
+      font-family: var(--f-body);
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      background: rgba(255,252,245,0.5);
+    }
+    .toc-links a:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
 
-        /* ===== TDL History crest ===== */
-        .tdl-crest {
-            width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
-            background:
-                radial-gradient(circle at 50% 35%, rgba(245, 215, 130, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 15% 15%, rgba(130, 180, 245, 0.06) 0%, transparent 35%),
-                radial-gradient(circle at 85% 85%, rgba(245, 130, 180, 0.04) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, #0d1a29 0%, #04080d 100%);
-            text-align: center; position: relative;
-        }
-        .tdl-crest-inner {
-            border: 1px solid rgba(245, 215, 130, 0.45);
-            padding: 10px 18px;
-            position: relative; z-index: 2;
-            background: rgba(8, 16, 26, 0.55);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .tdl-crest-inner::before {
-            content: ''; position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            border: 1px solid rgba(243, 208, 120, 0.22);
-            pointer-events: none;
-        }
-        .tdl-castle-svg {
-            width: 54px; height: auto;
-            margin: 0 auto 6px;
-            display: block;
-            opacity: 0.85;
-            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
-        }
-        .tdl-crest-script {
-            display: block;
-            font-family: 'Alex Brush', cursive;
-            font-size: 1.6rem; color: #F5D782;
-            line-height: 1;
-            margin-bottom: 2px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-        .tdl-crest-title {
-            font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
-            color: #FAF4E5;
-            letter-spacing: 0.18em; font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-        .tdl-crest-sub {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.52rem; color: #E8D5A5;
-            letter-spacing: 0.15em; line-height: 1.2;
-            text-transform: uppercase; font-weight: 500;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
+    /* ============================================================
+       LIST CONTROLS
+    ============================================================ */
+    .controls-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 3px double var(--border-strong);
+      margin-bottom: 16px;
+    }
+    .controls-heading {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .view-toggle {
+      display: flex; gap: 1px;
+      border: 1px solid var(--border-strong);
+    }
+    .view-btn {
+      font-family: var(--f-sc);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      padding: 6px 13px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-btn.on, .view-btn:hover {
+      background: var(--ink); color: var(--paper);
+    }
 
-        .article-list.grid-mode .tdl-crest-inner { padding: 8px 14px; }
-        .article-list.grid-mode .tdl-castle-svg { width: 44px; margin-bottom: 4px; }
-        .article-list.grid-mode .tdl-crest-script { font-size: 1.3rem; }
-        .article-list.grid-mode .tdl-crest-title { font-size: 0.8rem; letter-spacing: 0.15em; }
-        .article-list.grid-mode .tdl-crest-sub { font-size: 0.48rem; }
+    .filter-row {
+      display: flex; gap: 5px; flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .filter-btn {
+      font-family: var(--f-sc);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      padding: 6px 16px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.22s;
+      text-transform: uppercase;
+    }
+    .filter-btn.on, .filter-btn:hover {
+      background: var(--ink); color: var(--paper);
+      border-color: var(--ink);
+    }
 
-        @media (max-width: 768px) {
-            .article-list.grid-mode .tdl-crest-inner { padding: 6px 10px; }
-            .article-list.grid-mode .tdl-castle-svg { width: 28px; margin-bottom: 2px; }
-            .article-list.grid-mode .tdl-crest-script { font-size: 0.95rem; }
-            .article-list.grid-mode .tdl-crest-title { font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 0; }
-            .article-list.grid-mode .tdl-crest-sub { display: none; }
+    /* ============================================================
+       ARTICLE GRID
+    ============================================================ */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+      gap: 1px; /* newspaper column gutter feel */
+      background: var(--border); /* gap becomes border lines */
+    }
 
-            .article-list.grid-mode .crest-inner { padding: 8px 12px; }
-            .article-list.grid-mode .crest-letters { font-size: 1.2rem; margin-bottom: 4px; }
-            .article-list.grid-mode .crest-motto { font-size: 0.45rem; line-height: 1.3; }
-        }
+    /* List view */
+    .article-grid.list-view {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
 
-        /* ===== Card content ===== */
-        .card-tag-wrapper {
-            display: flex; justify-content: space-between;
-            align-items: center; margin-bottom: 6px;
-        }
-        .card-tag {
-            font-family: 'Cinzel', serif; font-size: .6rem;
-            letter-spacing: .25em; color: var(--accent-copper);
-            font-weight: 500; text-transform: uppercase;
-        }
-        .card-meta { font-family: 'Cormorant Garamond', serif; font-size: .65rem; color: var(--text-muted); font-weight: 500; }
+    /* ============================================================
+       CARD
+    ============================================================ */
+    .card {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--paper);
+      transition: background 0.25s;
+      position: relative;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 360px;
+    }
+    .card:hover { background: rgba(255, 252, 243, 1); }
 
-        .new-badge {
-            position: absolute; top: 12px; right: 12px;
-            background: var(--accent-copper); color: #FFF8EE;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .55rem; font-weight: 500;
-            letter-spacing: .1em; padding: 2px 8px;
-            z-index: 10;
-        }
+    /* Hover: left border accent */
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--bordeaux);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s var(--ease);
+    }
+    .card:hover::before { transform: scaleY(1); }
 
-        .article-card h2 {
-            font-family: 'Alex Brush', cursive;
-            font-size: 2.2rem; font-weight: 400;
-            margin-bottom: 6px; color: var(--text-light);
-            line-height: 1.1;
-            letter-spacing: 0.02em;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
-        }
-        .article-card p {
-            font-family: 'Noto Serif JP', serif;
-            font-size: .78rem; color: var(--text-muted);
-            line-height: 1.85; margin-bottom: 20px;
-            font-weight: 300;
-        }
+    /* NEW badge */
+    .badge-new {
+      position: absolute; top: 8px; right: 8px; z-index: 5;
+      background: var(--bordeaux);
+      color: var(--paper);
+      font-family: var(--f-sc);
+      font-size: 0.48rem;
+      letter-spacing: 0.2em;
+      padding: 3px 7px;
+      text-transform: uppercase;
+    }
 
-        .read-btn {
-            font-family: 'Cormorant Garamond', serif; font-size: .7rem;
-            letter-spacing: .15em; color: var(--accent-copper);
-            text-transform: uppercase; font-weight: 500;
-            display: inline-block;
-            border-bottom: 1px solid var(--accent-copper);
-            padding-bottom: 2px;
-            transition: all .25s ease;
-        }
-        .article-card:hover .read-btn {
-            color: var(--text-light);
-            border-color: var(--text-light);
-        }
+    /* Card image */
+    .card-img {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      flex-shrink: 0;
+    }
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      /* Vintage press photo: high contrast, newspaper-like */
+      filter: grayscale(45%) sepia(25%) contrast(1.12) brightness(0.88);
+      transition: transform 0.7s var(--ease), filter 0.4s;
+      display: block;
+    }
+    .card:hover .card-img img {
+      transform: scale(1.05);
+      filter: grayscale(20%) sepia(20%) contrast(1.08) brightness(0.92);
+    }
+    /* Thin line border inside image */
+    .card-img::before {
+      content: '';
+      position: absolute; inset: 6px;
+      border: 1px solid rgba(245,237,216,0.2);
+      z-index: 2; pointer-events: none;
+    }
+    /* Gradient at bottom */
+    .card-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,18,9,0.5) 0%, transparent 45%);
+      z-index: 1; pointer-events: none;
+    }
 
-        /* 画像の object-position 微調整 */
-        .fs-img-align      { object-position: center 15%; }
-        .btm-img-align     { object-position: center 90%; }
-        .bb-img-align      { object-position: center 55%; }
-        .cinderella-img-align { object-position: center 30%; }
-        .sm-img-align      { object-position: center 45%; }
-        .soarin-img-align  { object-position: center 65%; }
-        .tl-img-align      { object-position: center 50%; }
-        .indy-img-align    { object-position: center 30%; }
-        .raging-img-align  { object-position: center 10%; }
-        .haunted-img-align { object-position: center 65%; }
-        .smallworld-img-align { object-position: center 35%; }
+    /* Placeholder panels */
+    .card-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sea-placeholder {
+      background: var(--ink-2);
+    }
+    .tdl-placeholder {
+      background: linear-gradient(160deg, #0b1520 0%, #06090f 100%);
+    }
 
-        /* ===== Grid mode ===== */
-        .article-list.grid-mode {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 16px;
-        }
-        .article-list.grid-mode .article-card { padding: 16px; }
-        .article-list.grid-mode .img-wrapper { aspect-ratio: 16/10; margin-bottom: 12px; }
-        .article-list.grid-mode .article-card h2 { font-size: 2.1rem; margin-bottom: 6px; }
-        .article-list.grid-mode .article-card p {
-            font-size: .72rem; line-height: 1.7; margin-bottom: 16px;
-            display: -webkit-box; -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical; overflow: hidden;
-        }
+    /* SEA Crest — art deco frame */
+    .sea-crest-box {
+      border: 1px solid rgba(180,150,80,0.6);
+      padding: 14px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .sea-crest-box::before {
+      content: '';
+      position: absolute; inset: 4px;
+      border: 1px solid rgba(180,150,80,0.25);
+      pointer-events: none;
+    }
+    .sea-letters {
+      font-family: var(--f-sc);
+      font-size: 1.8rem;
+      color: #C8A84A;
+      letter-spacing: 0.3em;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .sea-motto {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.58rem;
+      color: rgba(200,168,100,0.7);
+      letter-spacing: 0.1em;
+      line-height: 1.7;
+    }
 
-        /* ===== Chronicle (details/summary) card ===== */
-        .chronicle-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            box-shadow: 0 1px 3px rgba(80, 50, 30, 0.05);
-            padding: 24px; margin-top: 60px;
-        }
-        .chronicle-summary {
-            cursor: pointer; outline: none; list-style: none;
-            text-align: center; user-select: none;
-        }
-        .chronicle-summary::-webkit-details-marker { display: none; }
+    /* TDL Crest */
+    .tdl-crest-box {
+      border: 1px solid rgba(212,169,75,0.5);
+      padding: 12px 18px;
+      text-align: center;
+      background: rgba(6,12,22,0.4);
+    }
+    .tdl-castle { width: 44px; margin: 0 auto 5px; display: block; }
+    .tdl-script {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #F0D06A;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .tdl-name {
+      font-family: 'Playfair Display SC', serif;
+      font-size: 0.6rem;
+      color: rgba(235,220,190,0.9);
+      letter-spacing: 0.25em;
+    }
+    .tdl-est {
+      font-family: var(--f-type);
+      font-size: 0.5rem;
+      color: rgba(200,168,100,0.65);
+      letter-spacing: 0.12em;
+      margin-top: 4px;
+      display: block;
+    }
 
-        .chronicle-card h3 {
-            font-family: 'Cinzel', serif; font-size: 1.05rem;
-            font-weight: 500; color: var(--text-light);
-            margin-bottom: 6px; letter-spacing: .15em;
-        }
-        .chronicle-subtitle {
-            font-family: 'Noto Serif JP', serif;
-            font-size: .75rem; font-weight: 300;
-            color: var(--accent-copper); letter-spacing: 0.05em;
-        }
-        .chronicle-expand-indicator {
-            display: inline-block; margin-top: 14px;
-            font-family: 'Cormorant Garamond', serif; font-size: .65rem;
-            color: var(--text-light); font-weight: 500;
-            letter-spacing: 0.15em;
-            padding: 8px 20px;
-            border: 1px solid var(--border-light);
-            transition: all 0.2s ease;
-        }
-        .chronicle-summary:hover .chronicle-expand-indicator {
-            border-color: var(--accent-copper);
-            color: var(--accent-copper);
-            background: var(--accent-copper-muted);
-        }
-        details.chronicle-card[open] .chronicle-expand-indicator { display: none; }
+    /* Card body */
+    .card-body { padding: 14px 16px 16px; }
 
-        .chronicle-content {
-            margin-top: 24px; border-top: 1px solid var(--border-light);
-            padding-top: 24px;
-        }
-        .chronicle-card h4 {
-            font-family: 'Noto Serif JP', serif;
-            font-size: .85rem; font-weight: 500;
-            margin: 24px 0 12px;
-            color: var(--accent-copper);
-            border-left: 2px solid var(--accent-copper);
-            padding-left: 10px;
-        }
-        .chronicle-card p {
-            font-family: 'Noto Serif JP', serif;
-            font-size: .78rem; color: var(--text-muted);
-            line-height: 1.9; margin-bottom: 16px;
-            font-weight: 300;
-        }
+    .card-meta-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 5px;
+    }
+    .card-cat {
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      color: var(--bordeaux);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .card-time {
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      color: var(--muted-2);
+    }
 
-        /* ===== Footer ===== */
-        footer {
-            text-align: center; font-family: 'Cormorant Garamond', serif;
-            font-size: .65rem; letter-spacing: .15em;
-            color: var(--text-muted); padding-top: 60px;
-        }
+    /* Card headline — newspaper style */
+    .card-title {
+      font-family: var(--f-display);
+      font-size: clamp(1rem, 2.8vw, 1.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+      /* Underline rule like newspaper headline */
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .site-notice-trigger-btn {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-muted);
-            padding: 10px 24px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .65rem; font-weight: 500;
-            letter-spacing: 0.15em;
-            cursor: pointer; margin-top: 16px;
-            transition: all .25s ease;
-        }
-        .site-notice-trigger-btn:hover {
-            border-color: var(--accent-copper);
-            color: var(--accent-copper);
-        }
+    .card-desc {
+      font-family: var(--f-jp);
+      font-size: 0.74rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
-        /* ===== Modal ===== */
-        .modal-overlay {
-            position: fixed; inset: 0;
-            background: rgba(18, 12, 8, 0.6);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 10000; opacity: 0; visibility: hidden;
-            transition: opacity .3s, visibility .3s;
-        }
-        @supports (backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px)) {
-            .modal-overlay {
-                background: rgba(18, 12, 8, 0.4);
-                -webkit-backdrop-filter: blur(4px);
-                backdrop-filter: blur(4px);
-            }
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
+    .card-cta {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--bordeaux);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.2s;
+    }
+    .card:hover .card-cta { gap: 9px; }
 
-        .modal-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-copper);
-            padding: 30px;
-            width: 90%; max-width: 420px;
-            position: relative; color: var(--text-light);
-        }
-        .modal-close {
-            position: absolute; top: 16px; right: 16px;
-            cursor: pointer; font-family: 'Cormorant Garamond', serif;
-            font-size: .75rem; font-weight: 300;
-            color: var(--text-muted); border: none;
-            background: transparent;
-            padding: 8px;
-            transition: color .2s;
-        }
-        .modal-close:hover { color: var(--accent-copper); }
+    /* List view */
+    .list-view .card { display: flex; flex-direction: row; }
+    .list-view .card-img { width: 200px; aspect-ratio: unset; min-height: 150px; }
+    .list-view .card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .list-view .card-desc { -webkit-line-clamp: 4; }
+    @media (max-width: 560px) {
+      .list-view .card { flex-direction: column; }
+      .list-view .card-img { width: 100%; aspect-ratio: 16/9; min-height: unset; }
+    }
 
-        .modal-heading {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .9rem; color: var(--accent-copper);
-            margin-bottom: 20px; font-weight: 500;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 12px; letter-spacing: 0.1em;
-        }
-        .modal-body-text {
-            font-size: .8rem; line-height: 2;
-            color: var(--text-muted); font-weight: 300;
-        }
-        .modal-body-text + .modal-body-text { margin-top: 16px; }
-        .modal-sns-links {
-            display: flex; gap: 10px;
-            margin-top: 24px; justify-content: center;
-        }
-        .sns-btn {
-            display: inline-block; text-decoration: none;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: .75rem; font-weight: 500; letter-spacing: 0.1em;
-            padding: 10px 24px;
-            background: transparent;
-            color: var(--accent-copper);
-            border: 1px solid var(--border-copper);
-            transition: all .25s ease;
-        }
-        .sns-btn:hover {
-            background: var(--accent-copper-muted);
-            color: var(--text-light);
-        }
-        .modal-copyright {
-            margin-top: 24px;
-            border-top: 1px dashed var(--border-light);
-            padding-top: 16px;
-            color: var(--text-muted);
-            font-size: .65rem;
-            opacity: 0.75;
-            text-align: center;
-            font-family: 'Noto Serif JP', serif;
-        }
+    /* ============================================================
+       CHRONICLE ACCORDION
+    ============================================================ */
+    .chronicle-wrap { margin-top: 56px; }
 
-        /* ===== Responsive ===== */
-        @media (max-width: 768px) {
-            .parchment-content { padding: 32px 14px 50px; }
-            .article-list.grid-mode {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            .article-list.grid-mode .article-card { padding: 8px; }
-            .article-list.grid-mode .img-wrapper {
-                aspect-ratio: 4/3; margin-bottom: 8px;
-                box-shadow: inset 0 0 0 3px rgba(80, 50, 30, 0.15);
-            }
-            .article-list.grid-mode .article-card h2 { font-size: 1.25rem; margin-bottom: 4px; }
-            .article-list.grid-mode .article-card p { font-size: .62rem; -webkit-line-clamp: 3; }
-            .article-list.grid-mode .read-btn { font-size: .6rem; }
-            .cinematic-hero-container { aspect-ratio: 16/9; }
-            .logo-main { font-size: 2.8rem; }
-        }
+    .chronicle-head-rule {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .chronicle-head-rule span {
+      font-family: var(--f-sc);
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      color: var(--bordeaux);
+    }
 
-        @media (max-width: 400px) {
-            .parchment-content { padding: 28px 10px 40px; }
-            .article-list.grid-mode .article-card h2 { font-size: 1.1rem; }
-            .article-list.grid-mode .article-card p { font-size: .58rem; -webkit-line-clamp: 2; }
-        }
+    .chronicle-details {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.55);
+      margin-top: 2px;
+    }
 
-        @media (min-width: 1200px) {
-            .article-list.grid-mode {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-        }
-    </style>
+    .chronicle-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 28px 24px;
+      text-align: center;
+      user-select: none;
+      outline: none;
+      transition: background 0.2s;
+    }
+    .chronicle-summary::-webkit-details-marker { display: none; }
+    .chronicle-summary:hover { background: rgba(107,30,42,0.04); }
+
+    .chronicle-pre {
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      color: var(--bordeaux);
+      letter-spacing: 0.15em;
+      display: block;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .chronicle-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.3rem, 4.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink);
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 5px;
+    }
+    .chronicle-sub {
+      font-family: var(--f-jp);
+      font-size: 0.76rem;
+      font-weight: 300;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 18px;
+    }
+    .chronicle-open-btn {
+      display: inline-block;
+      font-family: var(--f-sc);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--bordeaux);
+      border: 1px solid var(--bordeaux);
+      padding: 8px 18px;
+      transition: all 0.22s;
+      text-transform: uppercase;
+    }
+    .chronicle-summary:hover .chronicle-open-btn {
+      background: var(--bordeaux);
+      color: var(--paper);
+    }
+    details[open] .chronicle-open-btn { display: none; }
+
+    .chronicle-body {
+      padding: 0 28px 32px;
+      border-top: 1px solid var(--border);
+    }
+    .chronicle-body h4 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin: 26px 0 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .chronicle-body h4::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .chronicle-body p {
+      font-family: var(--f-jp);
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 2;
+      margin-bottom: 12px;
+    }
+    .chronicle-body strong {
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+    @media (max-width: 480px) {
+      .chronicle-summary { padding: 22px 16px; }
+      .chronicle-body { padding: 0 16px 24px; }
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      margin-top: 56px;
+      border-top: 3px double var(--border-strong);
+      padding-top: 24px;
+      text-align: center;
+    }
+    .footer-copy {
+      font-family: var(--f-type);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+    .footer-notice-btn {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: var(--f-sc);
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      padding: 7px 18px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.22s;
+      text-transform: uppercase;
+    }
+    .footer-notice-btn:hover {
+      background: var(--ink); color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    /* ============================================================
+       MODAL
+    ============================================================ */
+    .modal-wrap {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      background: rgba(28,18,9,0.55);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    .modal-wrap.open { opacity: 1; visibility: visible; }
+
+    .modal-panel {
+      background: var(--paper);
+      border: 1px solid var(--border-strong);
+      border-top: 4px solid var(--bordeaux);
+      padding: 30px;
+      width: 100%; max-width: 400px;
+      position: relative;
+      transform: translateY(10px);
+      transition: transform 0.3s var(--ease);
+    }
+    .modal-wrap.open .modal-panel { transform: none; }
+
+    .modal-close-btn {
+      position: absolute; top: 12px; right: 14px;
+      background: transparent; border: none;
+      font-family: var(--f-sc);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      cursor: pointer; padding: 5px 8px;
+      transition: color 0.2s;
+    }
+    .modal-close-btn:hover { color: var(--bordeaux); }
+
+    .modal-title {
+      font-family: var(--f-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-text {
+      font-family: var(--f-jp);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 2;
+      margin-bottom: 18px;
+    }
+    .modal-actions { display: flex; justify-content: center; }
+    .modal-sns-link {
+      font-family: var(--f-sc);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--bordeaux);
+      text-decoration: none;
+      padding: 9px 22px;
+      border: 1px solid var(--bordeaux);
+      transition: all 0.22s;
+      text-transform: uppercase;
+    }
+    .modal-sns-link:hover { background: var(--bordeaux); color: var(--paper); }
+
+    .modal-copyright {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-family: var(--f-type);
+      font-size: 0.6rem;
+      color: var(--muted-2);
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 480px) {
+      .article-grid { grid-template-columns: 1fr; }
+      .masthead-title { font-size: 2.6rem; }
+    }
+    @media (min-width: 600px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 860px) {
+      .article-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <div class="paper-wrinkle-bg"></div>
-    <div class="ambient-vignette"></div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <div class="page-wrapper">
-        <div class="parchment-content">
-
-            <header class="header">
-                <h1>
-                    <a href="index.html" class="header-logo">
-                        <span class="logo-sub">Tokyo Disney Resort</span>
-                        <span class="logo-main">BGS Chronicles</span>
-                        <span class="logo-tagline">An archival record of theme park history &amp; lore</span>
-                    </a>
-                </h1>
-                <a href="profile.html" class="profile-btn">Curator's Profile</a>
-            </header>
-
-            <section class="intro-hero" aria-label="サイト紹介">
-                <div class="cinematic-hero-container">
-                    <div class="hero-img-wrapper">
-                        <!-- ヒーロー画像のaltにBGS、都市伝説、仕組み、いつからある、コラムなどの検索キーワードを裏側から埋め込み -->
-                        <img
-                            src="tot-exterior.jpg"
-                            alt="東京ディズニーシー タワー・オブ・テラー：ホテルハイタワー外観。アトラクションBGS（背景設定）、都市伝説、いつからある仕組みを紐解くBGSコラム用画像"
-                            width="800"
-                            height="343"
-                            decoding="sync"
-                            loading="eager"
-                            fetchpriority="high"
-                        >
-                    </div>
-                    <div class="hero-label">The Archive Entry</div>
-                </div>
-                <div class="intro-content">
-                    <p class="intro-message">
-                        東京ディズニーリゾートのアトラクションに付随する背景設定（BGS）や歴史を客観的にまとめた、個人の資料集です。<br>
-                        待ち時間の読み物や、パークの景観に隠されたディテールを観察する一助としてお使いください。
-                    </p>
-                </div>
-            </section>
-
-            <div class="vintage-divider reveal"><span>✦</span></div>
-
-            <nav class="toc-box reveal" aria-label="コンテンツ目次">
-                <div class="toc-title">Quick Navigation</div>
-                <div class="toc-section">
-                    <span class="toc-section-title">Tokyo Disneyland (TDL)</span>
-                    <div class="toc-tags">
-                        <a href="#sm-card">Splash Mt.</a>
-                        <a href="#btm-card">Big Thunder</a>
-                        <a href="#haunted-card">Haunted Mansion</a>
-                        <a href="#bb-card">Beauty &amp; Beast</a>
-                        <a href="#cinderella-card">Cinderella</a>
-                        <a href="#tl-card">Tomorrowland</a>
-                        <a href="#smallworld-card">Small World</a>
-                        <a href="#tdlhistory-card">TDL History</a>
-                    </div>
-                </div>
-                <div class="toc-section">
-                    <span class="toc-section-title">Tokyo DisneySea (TDS)</span>
-                    <div class="toc-tags">
-                        <a href="#spatial-epic-card">Spatial Epic</a>
-                        <a href="#tot-card">Tower of Terror</a>
-                        <a href="#sindbad-card">Sindbad's Voyage</a>
-                        <a href="#fs-card">Fantasy Springs</a>
-                        <a href="#soarin-card">Soarin'</a>
-                        <a href="#sea-card">S.E.A. Archives</a>
-                        <a href="#raging-card">Raging Spirits</a>
-                        <a href="#indy-card">Indiana Jones</a>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="vintage-divider reveal"><span>✦</span></div>
-
-            <div class="list-header reveal">
-                <div class="list-header-top">
-                    <h2 class="section-title">Archived Records</h2>
-                    <div class="layout-toggle" role="group" aria-label="表示切替">
-                        <button id="view-list" aria-pressed="false">List</button>
-                        <button id="view-grid" class="active-toggle" aria-pressed="true">Grid</button>
-                    </div>
-                </div>
-                <div class="filter-bar" role="group" aria-label="カテゴリフィルター">
-                    <button class="filter-btn active-toggle" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="tdl">Disneyland</button>
-                    <button class="filter-btn" data-filter="tds">DisneySea</button>
-                </div>
-            </div>
-
-            <div class="article-list grid-mode" id="article-list">
-
-                <a href="bgs-sm.html" class="article-card reveal" id="sm-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- スプラッシュのaltにBGS、都市伝説、仕組み、いつからあるなどの検索キーワードを裏側から埋め込み -->
-                        <img src="sm-day.jpeg" alt="東京ディズニーランド スプラッシュ・マウンテン：うさぎどんの冒険、いばらの茂みや都市伝説、いつからある歴史仕組みを解説するBGSコラム画像" class="sm-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>Splash Mountain</h2>
-                    <p>小動物たちの暮らす泥地を襲った大洪水と、ブレア・ラビットにまつわる数々の伝承と旅の物語。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-btm.html" class="article-card reveal" id="btm-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- ビッグサンダーのaltにBGS、都市伝説、仕組み、歴史などの検索キーワードを裏側から埋め込み -->
-                        <img src="btm-exterior.jpeg" alt="東京ディズニーランド ビッグサンダー・マウンテン：開拓史、暴走する鉱山列車、都市伝説や仕組み、歴史を解説するBGSコラム" class="btm-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">3 min</span></div>
-                    <h2>Big Thunder Mountain</h2>
-                    <p>無人鉱山を暴走する鉱山列車と、開拓者たちの歴史。大自然の精霊の警告を無視したゴールドラッシュの末路。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-haunted.html" class="article-card reveal" id="haunted-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- ホーンテッドマンションのaltにBGS、都市伝説、仕組み、いつからある歴史などの検索キーワードを裏側から埋め込み -->
-                        <img src="haunted-exterior.jpg" alt="東京ディズニーランド ホーンテッドマンション：999人の亡霊、からくり仕組みやいつからある歴史、都市伝説を深掘りするBGSコラム" class="haunted-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Featured Story</span><span class="card-meta">5 min</span></div>
-                    <h2>Haunted Mansion</h2>
-                    <p>999人の亡霊が暮らすゴシック様式の館。代々の居住者にまつわるエピソードと、奇妙な仕掛けの数々。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-bb.html" class="article-card reveal" id="bb-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- 美女と野獣のaltにBGS、エリア、城などの検索キーワードを裏側から埋め込み -->
-                        <img src="bb-castle.jpeg" alt="東京ディズニーランド 美女と野獣エリア：ニューファンタジーランド、野獣の城やBGS背景設定のコラム" class="bb-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>Beauty and the Beast</h2>
-                    <p>深い森に佇むお城と魔法の薔薇の伝説。フランスの片田舎を再現した美しい造形と建築様式。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="cinderella-castle.html" class="article-card reveal" id="cinderella-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- シンデレラ城のaltにBGS、城、仕組み、歴史、いつからある背景などの検索キーワードを裏側から埋め込み -->
-                        <img src="cinderella-castle-sunny.jpg" alt="東京ディズニーランド シンデレラ城：城の仕組み、歴史、いつからある背景設定の都市伝説と魔法を紐解くBGSコラム用" class="cinderella-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>Cinderella Castle</h2>
-                    <p>時を刻む魔法と、青き尖塔のファンタジー。お城の色彩に秘められた意図と、優美な空間に宿るロマンチックな奇跡の記録。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-tl.html" class="article-card reveal" id="tl-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- トゥモローランドのaltにBGS、宇宙、都市、仕組み、歴史などの検索キーワードを裏側から埋め込み -->
-                        <img src="tl-space-day.jpeg" alt="東京ディズニーランド トゥモローランド・スペースマウンテン：宇宙旅行、スペースポートの仕組みや歴史、近未来都市BGSコラム" class="tl-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">3 min</span></div>
-                    <h2>Tomorrowland</h2>
-                    <p>近未来の都市デザインと宇宙開発への夢。銀河系を結ぶスペースポートに課せられたルールと条例。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-smallworld.html" class="article-card reveal" id="smallworld-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <!-- スモワのaltにBGS、仕組み、人形、いつからある歴史、都市伝説、豆知識などの検索キーワードを裏側から埋め込み -->
-                        <img src="smallworld-exterior-day.jpeg" alt="東京ディズニーランド イッツ・ア・スモールワールド（スモワ）：人形が同じ顔をしている仕組みや都市伝説、いつからある歴史・豆知識を解説するBGSコラム" class="smallworld-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>It's a Small World</h2>
-                    <p>世界をつなぐ平和のメッセージ。メアリー・ブレアの色彩設計、アリス・デイヴィスの衣裳デザイン、同じ顔の人形たちが奏でる調和の祈りの記録。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-tdlhistory.html" class="article-card reveal" id="tdlhistory-card" data-category="tdl">
-                    <div class="img-wrapper">
-                        <div class="tdl-crest">
-                            <div class="tdl-crest-inner">
-                                <svg class="tdl-castle-svg" viewBox="0 0 100 55" fill="none" stroke="#F5D782" stroke-width="0.95" stroke-linejoin="round" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M50 2 L50 12 M47 12 L50 2 L53 12 M45 12 H55 V28 H45 Z" />
-                                  <path d="M38 15 L40 15 L39 8 L38 15 M37 15 H42 V31 H37 Z" />
-                                  <path d="M62 15 L60 15 L61 8 L62 15 M58 15 H63 V31 H58 Z" />
-                                  <path d="M28 31 H72 V48 H28 Z" />
-                                  <path d="M44 48 C44 40, 56 40, 56 48" />
-                                  <path d="M50 1 L50 2 M49.5 1.5 H50.5" stroke-width="0.6"/>
-                                  <path d="M39 7 L39 8 M38.5 7.5 H39.5" stroke-width="0.6"/>
-                                  <path d="M61 7 L61 8 M60.5 7.5 H61.5" stroke-width="0.6"/>
-                                </svg>
-                                <span class="tdl-crest-script">Dream &amp; Magic</span>
-                                <div class="tdl-crest-title">Tokyo Disneyland</div>
-                                <div class="tdl-crest-sub">EST. 1983 &bull; THE KINGDOM OF DREAMS</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Chronicle</span><span class="card-meta">5 min</span></div>
-                    <h2>Tokyo Disneyland</h2>
-                    <p>砂上の荒野に夢の王国を築いた先駆者たち。浦安の漁民交渉と高橋政知の剛腕、日本独自の「ワールドバザール」に隠された気候の美学の記録。</p>
-                    <div class="read-btn">Explore Chronicle →</div>
-                </a>
-
-                <a href="bgs-spatial-epic.html" class="article-card reveal" id="spatial-epic-card" data-category="tds">
-                    <span class="new-badge">NEW</span>
-                    <div class="img-wrapper">
-                        <!-- TDSマップのaltにBGS、いつからある歴史、仕組みなどの検索キーワードを裏側から埋め込み -->
-                        <img src="tds-map.jpg" alt="東京ディズニーシー テーマポートマップ：全テーマポートのいつからある歴史、仕組みやBGS背景設定を総括したコラム用画像" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Chronicle</span><span class="card-meta">5 min</span></div>
-                    <h2>TDS Spatial Epic</h2>
-                    <p>「海のテーマパーク」に広がる、全 8 つのテーマポートにおける固有の歴史と時代背景 of の考察。</p>
-                    <div class="read-btn">Explore Chronicle →</div>
-                </a>
-
-                <a href="bgs-tot.html" class="article-card reveal" id="tot-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <!-- タワテラのaltにBGS、失踪事件、都市伝説、仕組みなどの検索キーワードを裏側から埋め込み -->
-                        <img src="tot-exterior.jpg" alt="東京ディズニーシー タワー・オブ・テラー：ハリソンハイタワー三世失踪事件、偶像シリキウトゥンドゥの都市伝説と呪いの仕組みを解説するBGSコラム" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">5 min</span></div>
-                    <h2>Tower of Terror</h2>
-                    <p>1912年のニューヨーク。ホテル・ハイタワーで起きたオーナー失踪事件と、謎の偶像を巡る社会的背景。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-sindbad.html" class="article-card reveal" id="sindbad-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <!-- シンドバッドのaltにBGS、コンパス、人形、仕組み、豆知識などの検索キーワードを裏側から埋め込み -->
-                        <img src="DSC00234_Original.jpeg" alt="東京ディズニーシー シンドバッド・ストーリーブック・ヴォヤッジ：心のコンパス、人形やアトラクションいつからある仕組み、豆知識コラム用" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">3 min</span></div>
-                    <h2>Sindbad's Voyage</h2>
-                    <p>船乗りシンドバッドと相棒チャンドゥの航海記。エリアのリニューアルに伴う、演出と音楽の変遷史。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-fs.html" class="article-card reveal" id="fs-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <!-- ファンタジースプリングスのaltにBGS、エリア、泉などの検索キーワードを裏側から埋め込み -->
-                        <img src="IMG_1070_Original.jpeg" alt="東京ディズニーシー ファンタジースプリングス：フローズンジャーニー、ラプンツェルのランタンフェスティバル、ピーターパンBGSコラム" class="fs-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>Fantasy Springs</h2>
-                    <p>精霊が宿る魔法の泉の伝承と、その泉を発見した公爵夫人の別荘にまつわる土地の記録。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-soarin.html" class="article-card reveal" id="soarin-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <!-- ソアリンのaltにBGS、飛行、仕組みなどの検索キーワードを裏側から埋め込み -->
-                        <img src="soarin-exterior.jpeg" alt="東京ディズニーシー ソアリン：カメリアファルコ、ファンタスティックフライトミュージアム、ドリームフライヤー飛行の仕組みBGSコラム" class="soarin-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>Soarin'</h2>
-                    <p>探検家学会（S.E.A.）初の女性会員カメリアの功績と、飛行への執念を展示するファンタスティック・フライト・ミュージアムの全容。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-sea.html" class="article-card reveal" id="sea-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <div class="sea-crest">
-                            <div class="crest-inner">
-                                <span class="crest-letters">S.E.A.</span>
-                                <div class="crest-motto">
-                                    ADVENTURE &bull; ROMANCE<br>
-                                    DISCOVERY &bull; INVENTION
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Special Story</span><span class="card-meta">4 min</span></div>
-                    <h2>S.E.A. Archives</h2>
-                    <p>1538年の創設から連なる、大航海時代と近代を繋ぐ秘密結社S.E.A.の軌跡。4つの崇高なる理念と冒険の記録。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-raging.html" class="article-card reveal" id="raging-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <!-- レイジングのaltにBGS、神像、仕組み、都市伝説などの検索キーワードを裏側から埋め込み -->
-                        <img src="raging-altar.jpeg" alt="東京ディズニーシー レイジングスピリッツ：古代神像、360度ループコースターの仕組みや都市伝説を解説するBGSコラム" class="raging-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">3 min</span></div>
-                    <h2>Raging Spirits</h2>
-                    <p>中央アメリカの古代遺跡で発見された祭壇。対立する「火」と「水」の神々の偶像と、調査隊の足跡の記録。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-                <a href="bgs-indy.html" class="article-card reveal" id="indy-card" data-category="tds">
-                    <div class="img-wrapper">
-                        <!-- インディのaltにBGS、泉、神殿、仕組み、都市伝説などの検索キーワードを裏側から埋め込み -->
-                        <img src="indy-temple.jpeg" alt="東京ディズニーシー インディ・ジョーンズ・アドベンチャー：若さの泉、クリスタルスカル、神殿の罠仕組みや都市伝説を解説するBGSコラム" class="indy-img-align" width="800" height="450" loading="lazy" decoding="async">
-                    </div>
-                    <div class="card-tag-wrapper"><span class="card-tag">Story</span><span class="card-meta">4 min</span></div>
-                    <h2>Indiana Jones</h2>
-                    <p>ロストリバーデルタに隠された「失われた若さの泉」。ジョーンズ博士の調査活動とパコによる神殿ツアーの全貌。</p>
-                    <div class="read-btn">Explore Story →</div>
-                </a>
-
-            </div>
-
-            <details class="chronicle-card reveal">
-                <summary class="chronicle-summary">
-                    <h3>The Maihama Chronicle</h3>
-                    <p class="chronicle-subtitle">舞浜に息づく、夢と空間づくりの物語</p>
-                    <span class="chronicle-expand-indicator">Read Chronicle</span>
-                </summary>
-                <div class="chronicle-content">
-                    <p>私たちが何気なく歩いている舞浜の美しい小道や、潮風がそよぐ港町。その一歩一歩には、この地に「夢の国」を築き上げようとした先人たちと、海を越えてやってきたディズニーのクリエイターたちが紡ぎ上げた、温かく真摯な対話の歴史が刻まれています。</p>
-
-                    <h4>I. 空から見つめた、はじまりの海</h4>
-                    <p>1983年の穏やかな春の日、東京ディズニーランドは開園しました。<br>
-                    かつて、静かな漁師町だったこの広大な埋立地に夢の国を構想した日本の開拓者たちは、アメリカから視察に訪れたディズニーの創案者たちをヘリコプターに乗せ、上空から案内したといいます。霧の向こうに広がるきらめく海と、そこからすぐ近くに見える東京の街並み。その美しさと可能性を信じた人々の情熱が、海を越えて初めての「魔法の王国」をこの地に呼び寄せたのです。</p>
-
-                    <h4>II. 幻の「映画スタジオ」と、海を渡ったもう一つの夢</h4>
-                    <p>2つ目の新しいパークをつくろうと計画が始まったとき、最初に提案されたのは、アメリカで人気を博していた「映画スタジオ」のテーマでした。<br>
-                    しかし、日本のクリエイターたちは<strong>「日本のゲストに、もっと時代を超えて愛される、唯一無二の物語を届けたい」</strong>と願いました。<br>
-                    ちょうどその頃、アメリカのカリフォルニアで計画されながらも、惜しくも実現に至らなかった幻の海洋テーマパーク「ポート・ディズニー」の構想がありました。その美しい海のアイデアが太平洋を渡り、私たちの愛する「東京ディズニーシー」として生まれ変わることになったのです。</p>
-
-                    <h4>III. 幻の灯台と、エントランスにかけられた「心の魔法」</h4>
-                    <p>ディズニーシーのデザインを考えているとき、最初に提案されたパークのシンボルは、堂々とそびえ立つ「巨大な灯台」でした。<br>
-                    しかし、<strong>「日本の皆様にとって、灯台は少し寂しさや哀愁を感じさせてしまうかもしれない」</strong>という優しい心遣いから、灯台に代わるシンボルとして、水に満ちた青い地球「アクアスフィア」が生まれました。そして、冒険者たちを温かく導くもう一つの目印として、プロメテウス火山が中央に据えられたのです。</p>
-                    <p>さらに、ホテル・ミラコスタの薄暗い下部通路を歩くとき、心が高鳴るのを感じたことはないでしょうか。これは「圧縮と開放」と呼ばれる演出の魔法です。<br>
-                    一度、暗く低いトンネルを通ることで心がすっと静まり、そこを抜けた瞬間に、陽光に輝く壮大なメディテレーニアンハーバーと火山が一気に目の前に広がります。この劇的な景色の変化が、私たちの心を一瞬にして日常から「冒険の旅」へと切り替えてくれるのです。</p>
-
-                    <h4>IV. 歳月を重ねるほど愛おしくなる、本物のこだわり</h4>
-                    <p>ディズニーシーの美しさは、新しさだけではありません。クリッターたちが最も大切にしたのは、年月を重ねるほど美しくなる<strong>「経年美化」</strong>という考え方でした。<br>
-                    お城や街並みをただペンキで塗るのではなく、ヨーロッパやアメリカから実際に本物のレンガや天然石、重厚な木材を取り寄せました。</p>
-                    <p>職人たちの手によって、潮風にさらされた錆や、雨だれの跡が優しく描かれ、歳月とともに本物の風合いへと育っていくように設計されています。ゲストの皆様が優しく手を触れ、舞浜の潮風を浴びることで、街並みは日々「本物のアンティーク」へと育っていきます。いつでも温かく, 深いぬくもりを感じられるのは、こうした目に見えないこだわりがあるからなのです。</p>
-
-                    <h4>V. すべての源流へ、自然が紡ぐ「水の物語」</h4>
-                    <p>ディズニーシーの広大な世界をつなぐ、澄んだ水。実は、2024年に誕生した「ファンタジースプリングス（魔法の泉）」は、パークのすべての水の<strong>「源流」</strong>という美しい物語を持っています。</p>
-                    <!-- 韓国語の助詞「の」の誤字（変な日本語）を自然な「の」に完全修正 -->
-                    <p>美しい緑に囲まれた魔法の泉から湧き出た水は、川となってジャングル（ロストリバーデルタ）の奥地を潤し、やがて未来の港（ポートディスカバリー）を経て、壮大なハーバーへと流れ込みます。この広大な自然の循環が完成したことで、パークのすべての場所が一本の美しい「水のストーリー」で結ばれることになりました。港町をそぞろ歩くとき、その水の流れに耳を澄ませてみるのも、素敵な冒険の始まりになるかもしれません。</p>
-                </div>
-            </details>
-
-            <footer>
-                &copy; 2026 TERU_LUCE_
-                <div class="footer-notice-box">
-                    <button class="site-notice-trigger-btn" id="notice-trigger">Notes &amp; Contacts</button>
-                </div>
-            </footer>
-        </div>
+  <!-- ===== MASTHEAD ===== -->
+  <header class="masthead reveal">
+    <div class="masthead-top-rule">
+      <span class="masthead-dateline">Tokyo, Japan &nbsp;·&nbsp; The BGS Archive &nbsp;·&nbsp; Est. 2024</span>
     </div>
 
-    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
-        <div class="modal-box">
-            <button class="modal-close" id="modal-close" aria-label="閉じる">✕ Close</button>
-            <h3 class="modal-heading" id="modal-heading">Site Notes &amp; Contacts</h3>
-            <p class="modal-body-text">このサイトで紹介しているバックグラウンドストーリー（BGS）は正確な情報を集めておりますが、時に誤りや相違が生じる場合がございます。誤りを発見された場合は、InstagramのDMにてご報告いただけますと幸いです。</p>
-            <div class="modal-sns-links">
-                <a href="https://www.instagram.com/teru_luce_" target="_blank" rel="noopener noreferrer" class="sns-btn">Instagram (DM)</a>
-            </div>
-            <p class="modal-copyright">＊ 掲載写真データの著作権は管理者に帰属します。</p>
-        </div>
+    <span class="masthead-kicker">Tokyo Disney Resort — Background Story Archive</span>
+
+    <a href="index.html" class="masthead-title-link">
+      <h1>
+        <span class="masthead-title">BGS <em>Chronicles</em></span>
+      </h1>
+    </a>
+    <span class="masthead-subtitle">An Archival Record of Theme Park History &amp; Lore</span>
+
+    <div class="masthead-bottom-rules">
+      <span></span><span></span>
     </div>
+    <a href="profile.html" class="profile-link">Curator's Profile</a>
+  </header>
 
-    <script>
-    // ===== レイアウト切替 =====
-    const listEl  = document.getElementById('article-list');
-    const btnList = document.getElementById('view-list');
-    const btnGrid = document.getElementById('view-grid');
+  <!-- ===== HERO ===== -->
+  <section class="hero-section reveal">
+    <div class="hero-section-label">Archive Photo — Tokyo DisneySea</div>
+    <div class="hero-photo-frame" id="hero-frame">
+      <img
+        src="tot-exterior.jpg"
+        alt="東京ディズニーシー タワー・オブ・テラー外観"
+        width="1200" height="400"
+        decoding="sync" loading="eager" fetchpriority="high"
+        onload="document.getElementById('hero-frame').classList.add('loaded')"
+      >
+    </div>
+    <div class="hero-caption-block">
+      <span class="hero-caption-text">Tower of Terror — Hotel Hightower, Mysterious Island, Tokyo DisneySea</span>
+      <span class="hero-photo-credit">Photo Archive / BGS Chronicles</span>
+    </div>
+  </section>
 
-    function setView(mode) {
-        if (mode === 'grid') {
-            listEl.classList.add('grid-mode');
-            btnGrid.classList.add('active-toggle');
-            btnGrid.setAttribute('aria-pressed', 'true');
-            btnList.classList.remove('active-toggle');
-            btnList.setAttribute('aria-pressed', 'false');
-        } else {
-            listEl.classList.remove('grid-mode');
-            btnList.classList.add('active-toggle');
-            btnList.setAttribute('aria-pressed', 'true');
-            btnGrid.classList.remove('active-toggle');
-            btnGrid.setAttribute('aria-pressed', 'false');
-        }
-    }
+  <!-- ===== INTRO ===== -->
+  <div class="rule-deco reveal" aria-hidden="true">
+    <div class="rule-deco-center">❧ ❧ ❧</div>
+  </div>
 
-    btnList.addEventListener('click', () => setView('list'));
-    btnGrid.addEventListener('click', () => setView('grid'));
+  <section class="intro-col reveal">
+    <span class="intro-drop-cap-line">— &nbsp; Maihama, Urayasu, Chiba &nbsp; —</span>
+    <p class="intro-body">
+      東京ディズニーリゾートのアトラクションに付随する背景設定（BGS）や歴史を<br>
+      客観的にまとめた、個人の資料集です。<br>
+      待ち時間の読み物や、パークに隠されたディテールを観察する<br>
+      一助としてお使いください。
+    </p>
+  </section>
 
-    // ===== カテゴリフィルター =====
-    const filterBtns   = document.querySelectorAll('.filter-btn');
-    const articleCards = document.querySelectorAll('.article-card');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active-toggle'));
-            btn.classList.add('active-toggle');
-            const filter = btn.dataset.filter;
-            articleCards.forEach(card => {
-                card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
-            });
-        });
+  <hr class="double-rule reveal">
+
+  <!-- ===== TOC / NAV ===== -->
+  <nav class="toc-wrap reveal" aria-label="クイックナビゲーション">
+    <div class="toc-head">
+      <span class="toc-head-title">Table of Contents</span>
+    </div>
+    <div class="toc-group">
+      <span class="toc-group-label">— Tokyo Disneyland</span>
+      <div class="toc-links">
+        <a href="#sm-card">Splash Mt.</a>
+        <a href="#btm-card">Big Thunder</a>
+        <a href="#haunted-card">Haunted Mansion</a>
+        <a href="#bb-card">Beauty &amp; Beast</a>
+        <a href="#cinderella-card">Cinderella</a>
+        <a href="#tl-card">Tomorrowland</a>
+        <a href="#smallworld-card">Small World</a>
+        <a href="#tdlhistory-card">TDL History</a>
+      </div>
+    </div>
+    <div class="toc-group">
+      <span class="toc-group-label">— Tokyo DisneySea</span>
+      <div class="toc-links">
+        <a href="#spatial-epic-card">Spatial Epic</a>
+        <a href="#tot-card">Tower of Terror</a>
+        <a href="#sindbad-card">Sindbad's Voyage</a>
+        <a href="#fs-card">Fantasy Springs</a>
+        <a href="#soarin-card">Soarin'</a>
+        <a href="#sea-card">S.E.A. Archives</a>
+        <a href="#raging-card">Raging Spirits</a>
+        <a href="#indy-card">Indiana Jones</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="rule-deco reveal" aria-hidden="true">
+    <div class="rule-deco-center">✦</div>
+  </div>
+
+  <!-- ===== CONTROLS ===== -->
+  <div class="controls-bar reveal">
+    <h2 class="controls-heading">Archived Records</h2>
+    <div class="view-toggle" role="group" aria-label="表示切替">
+      <button class="view-btn" id="btn-list" aria-pressed="false">List</button>
+      <button class="view-btn on" id="btn-grid" aria-pressed="true">Grid</button>
+    </div>
+  </div>
+
+  <div class="filter-row reveal" role="group" aria-label="フィルター">
+    <button class="filter-btn on" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="tdl">Disneyland</button>
+    <button class="filter-btn" data-filter="tds">DisneySea</button>
+  </div>
+
+  <!-- ===== ARTICLE GRID ===== -->
+  <div class="article-grid" id="article-grid">
+
+    <a href="bgs-sm.html" class="card reveal" id="sm-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="sm-day.jpeg" alt="スプラッシュ・マウンテン" loading="lazy" decoding="async" style="object-position:center 45%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
+        <div class="card-title">Splash Mountain</div>
+        <p class="card-desc">小動物たちの暮らす泥地を襲った大洪水と、ブレア・ラビットにまつわる数々の伝承と旅の物語。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-btm.html" class="card reveal" id="btm-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="btm-exterior.jpeg" alt="ビッグサンダー・マウンテン" loading="lazy" decoding="async" style="object-position:center 90%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">3 min</span></div>
+        <div class="card-title">Big Thunder Mountain</div>
+        <p class="card-desc">無人鉱山を暴走する鉱山列車と、開拓者たちの歴史。大自然の精霊の警告を無視したゴールドラッシュの末路。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-haunted.html" class="card reveal" id="haunted-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="haunted-exterior.jpg" alt="ホーンテッドマンション" loading="lazy" decoding="async" style="object-position:center 65%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Featured · TDL</span><span class="card-time">5 min</span></div>
+        <div class="card-title">Haunted Mansion</div>
+        <p class="card-desc">999人の亡霊が暮らすゴシック様式の館。代々の居住者にまつわるエピソードと、奇妙な仕掛けの数々。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-bb.html" class="card reveal" id="bb-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="bb-castle.jpeg" alt="美女と野獣エリア" loading="lazy" decoding="async" style="object-position:center 55%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
+        <div class="card-title">Beauty and the Beast</div>
+        <p class="card-desc">深い森に佇むお城と魔法の薔薇の伝説。フランスの片田舎を再現した美しい造形と建築様式。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="cinderella-castle.html" class="card reveal" id="cinderella-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="cinderella-castle-sunny.jpg" alt="シンデレラ城" loading="lazy" decoding="async" style="object-position:center 30%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
+        <div class="card-title">Cinderella Castle</div>
+        <p class="card-desc">時を刻む魔法と、青き尖塔のファンタジー。お城の色彩に秘められた意図と、優美な空間に宿るロマンチックな奇跡の記録。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-tl.html" class="card reveal" id="tl-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="tl-space-day.jpeg" alt="トゥモローランド" loading="lazy" decoding="async" style="object-position:center 50%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">3 min</span></div>
+        <div class="card-title">Tomorrowland</div>
+        <p class="card-desc">近未来の都市デザインと宇宙開発への夢。銀河系を結ぶスペースポートに課せられたルールと条例。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-smallworld.html" class="card reveal" id="smallworld-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="smallworld-exterior-day.jpeg" alt="イッツ・ア・スモールワールド" loading="lazy" decoding="async" style="object-position:center 35%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
+        <div class="card-title">It's a Small World</div>
+        <p class="card-desc">世界をつなぐ平和のメッセージ。メアリー・ブレアの色彩設計と、同じ顔の人形たちが奏でる調和の祈りの記録。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-tdlhistory.html" class="card reveal" id="tdlhistory-card" data-cat="tdl">
+      <div class="card-img">
+        <div class="card-placeholder tdl-placeholder">
+          <div class="tdl-crest-box">
+            <svg class="tdl-castle" viewBox="0 0 100 55" fill="none" stroke="#F5D782" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M50 2L50 12M47 12L50 2L53 12M45 12H55V28H45Z"/>
+              <path d="M38 15L40 15L39 8L38 15M37 15H42V31H37Z"/>
+              <path d="M62 15L60 15L61 8L62 15M58 15H63V31H58Z"/>
+              <path d="M28 31H72V48H28Z"/>
+              <path d="M44 48C44 40,56 40,56 48"/>
+            </svg>
+            <span class="tdl-script">Dream &amp; Magic</span>
+            <div class="tdl-name">Tokyo Disneyland</div>
+            <span class="tdl-est">Est. 1983 · The Kingdom of Dreams</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Chronicle · TDL</span><span class="card-time">5 min</span></div>
+        <div class="card-title">Tokyo Disneyland</div>
+        <p class="card-desc">砂上の荒野に夢の王国を築いた先駆者たち。浦安の漁民交渉と高橋政知の剛腕、日本独自の「ワールドバザール」に隠された気候の美学。</p>
+        <div class="card-cta">Read Chronicle →</div>
+      </div>
+    </a>
+
+    <a href="bgs-spatial-epic.html" class="card reveal" id="spatial-epic-card" data-cat="tds">
+      <span class="badge-new">New</span>
+      <div class="card-img">
+        <img src="tds-map.jpg" alt="東京ディズニーシー テーマポートマップ" loading="lazy" decoding="async">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Chronicle · TDS</span><span class="card-time">5 min</span></div>
+        <div class="card-title">TDS Spatial Epic</div>
+        <p class="card-desc">「海のテーマパーク」に広がる、全8つのテーマポートにおける固有の歴史と時代背景の考察。</p>
+        <div class="card-cta">Read Chronicle →</div>
+      </div>
+    </a>
+
+    <a href="bgs-tot.html" class="card reveal" id="tot-card" data-cat="tds">
+      <div class="card-img">
+        <img src="tot-exterior.jpg" alt="タワー・オブ・テラー" loading="lazy" decoding="async">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">5 min</span></div>
+        <div class="card-title">Tower of Terror</div>
+        <p class="card-desc">1912年のニューヨーク。ホテル・ハイタワーで起きたオーナー失踪事件と、謎の偶像を巡る社会的背景。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-sindbad.html" class="card reveal" id="sindbad-card" data-cat="tds">
+      <div class="card-img">
+        <img src="DSC00234_Original.jpeg" alt="シンドバッド・ストーリーブック・ヴォヤッジ" loading="lazy" decoding="async">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">3 min</span></div>
+        <div class="card-title">Sindbad's Voyage</div>
+        <p class="card-desc">船乗りシンドバッドと相棒チャンドゥの航海記。エリアのリニューアルに伴う、演出と音楽の変遷史。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-fs.html" class="card reveal" id="fs-card" data-cat="tds">
+      <div class="card-img">
+        <img src="IMG_1070_Original.jpeg" alt="ファンタジースプリングス" loading="lazy" decoding="async" style="object-position:center 15%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">4 min</span></div>
+        <div class="card-title">Fantasy Springs</div>
+        <p class="card-desc">精霊が宿る魔法の泉の伝承と、その泉を発見した公爵夫人の別荘にまつわる土地の記録。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-soarin.html" class="card reveal" id="soarin-card" data-cat="tds">
+      <div class="card-img">
+        <img src="soarin-exterior.jpeg" alt="ソアリン：ファンタスティック・フライト" loading="lazy" decoding="async" style="object-position:center 65%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">4 min</span></div>
+        <div class="card-title">Soarin'</div>
+        <p class="card-desc">S.E.A.初の女性会員カメリアの功績と、飛行への執念を展示するファンタスティック・フライト・ミュージアムの全容。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-sea.html" class="card reveal" id="sea-card" data-cat="tds">
+      <div class="card-img">
+        <div class="card-placeholder sea-placeholder">
+          <div class="sea-crest-box">
+            <span class="sea-letters">S.E.A.</span>
+            <div class="sea-motto">Adventure · Romance<br>Discovery · Invention</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Special · TDS</span><span class="card-time">4 min</span></div>
+        <div class="card-title">S.E.A. Archives</div>
+        <p class="card-desc">1538年の創設から連なる、大航海時代と近代を繋ぐ秘密結社S.E.A.の軌跡。4つの崇高なる理念と冒険の記録。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-raging.html" class="card reveal" id="raging-card" data-cat="tds">
+      <div class="card-img">
+        <img src="raging-altar.jpeg" alt="レイジングスピリッツ" loading="lazy" decoding="async" style="object-position:center 10%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">3 min</span></div>
+        <div class="card-title">Raging Spirits</div>
+        <p class="card-desc">中央アメリカの古代遺跡で発見された祭壇。対立する「火」と「水」の神々の偶像と、調査隊の足跡の記録。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+    <a href="bgs-indy.html" class="card reveal" id="indy-card" data-cat="tds">
+      <div class="card-img">
+        <img src="indy-temple.jpeg" alt="インディ・ジョーンズ・アドベンチャー" loading="lazy" decoding="async" style="object-position:center 30%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">4 min</span></div>
+        <div class="card-title">Indiana Jones</div>
+        <p class="card-desc">ロストリバーデルタに隠された「失われた若さの泉」。ジョーンズ博士の調査活動とパコによる神殿ツアーの全貌。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
+  </div><!-- /article-grid -->
+
+  <!-- ===== CHRONICLE ===== -->
+  <div class="chronicle-wrap reveal">
+    <div class="chronicle-head-rule">
+      <span>❦ &nbsp; Special Archive &nbsp; ❦</span>
+    </div>
+    <details class="chronicle-details">
+      <summary class="chronicle-summary">
+        <span class="chronicle-pre">— The Maihama Record —</span>
+        <span class="chronicle-title">The Maihama Chronicle</span>
+        <span class="chronicle-sub">舞浜に息づく、夢と空間づくりの物語</span>
+        <span class="chronicle-open-btn">Read Chronicle</span>
+      </summary>
+      <div class="chronicle-body">
+        <p>私たちが何気なく歩いている舞浜の美しい小道や、潮風がそよぐ港町。その一歩一歩には、この地に「夢の国」を築き上げようとした先人たちと、海を越えてやってきたディズニーのクリエイターたちが紡ぎ上げた、温かく真摯な対話の歴史が刻まれています。</p>
+        <h4>I. 空から見つめた、はじまりの海</h4>
+        <p>1983年の穏やかな春の日、東京ディズニーランドは開園しました。かつて静かな漁師町だったこの広大な埋立地に夢の国を構想した日本の開拓者たちは、アメリカから視察に訪れたディズニーの創案者たちをヘリコプターに乗せ、上空から案内したといいます。霧の向こうに広がるきらめく海と、そこからすぐ近くに見える東京の街並み。その美しさと可能性を信じた人々の情熱が、海を越えて初めての「魔法の王国」をこの地に呼び寄せたのです。</p>
+        <h4>II. 幻の「映画スタジオ」と、海を渡ったもう一つの夢</h4>
+        <p>2つ目の新しいパークをつくろうと計画が始まったとき、最初に提案されたのは「映画スタジオ」のテーマでした。しかし、日本のクリエイターたちは<strong>「日本のゲストに、もっと時代を超えて愛される、唯一無二の物語を届けたい」</strong>と願いました。カリフォルニアで計画されながらも実現に至らなかった幻の海洋テーマパーク「ポート・ディズニー」の構想が太平洋を渡り、私たちの愛する「東京ディズニーシー」として生まれ変わることになったのです。</p>
+        <h4>III. 幻の灯台と、エントランスにかけられた「心の魔法」</h4>
+        <p>ディズニーシーのデザインを考えているとき、最初に提案されたシンボルは「巨大な灯台」でした。しかし<strong>「日本の皆様にとって、灯台は少し寂しさや哀愁を感じさせてしまうかもしれない」</strong>という優しい心遣いから、「アクアスフィア」が生まれました。そして、プロメテウス火山が中央に据えられたのです。</p>
+        <p>ホテル・ミラコスタの薄暗い下部通路を歩くとき、心が高鳴るのを感じたことはないでしょうか。これは「圧縮と開放」と呼ばれる演出の魔法です。一度、暗く低いトンネルを通ることで心がすっと静まり、そこを抜けた瞬間に陽光に輝く壮大なメディテレーニアンハーバーが一気に広がります。</p>
+        <h4>IV. 歳月を重ねるほど愛おしくなる、本物のこだわり</h4>
+        <p>ディズニーシーの美しさは、新しさだけではありません。クリエイターたちが最も大切にしたのは<strong>「経年美化」</strong>という考え方でした。ヨーロッパやアメリカから本物のレンガや天然石を取り寄せ、職人たちの手によって潮風にさらされた錆や雨だれの跡が描かれ、歳月とともに本物の風合いへと育っていくように設計されています。</p>
+        <h4>V. すべての源流へ、自然が紡ぐ「水の物語」</h4>
+        <p>2024年に誕生した「ファンタジースプリングス（魔法の泉）」は、パークのすべての水の<strong>「源流」</strong>という美しい物語を持っています。魔法の泉から湧き出た水は川となってジャングルの奥地を潤し、やがて壮大なハーバーへと流れ込みます。この広大な自然の循環が完成したことで、パークのすべての場所が一本の美しい「水のストーリー」で結ばれることになりました。</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer reveal">
+    <p class="footer-copy">&copy; 2026 TERU_LUCE_ &nbsp;·&nbsp; BGS Chronicles &nbsp;·&nbsp; All Rights Reserved</p>
+    <button class="footer-notice-btn" id="notice-trigger">Notes &amp; Contacts</button>
+  </footer>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-wrap" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-panel">
+    <button class="modal-close-btn" id="modal-close" aria-label="閉じる">✕ Close</button>
+    <div class="modal-title" id="modal-title">Site Notes &amp; Contacts</div>
+    <p class="modal-text">このサイトで紹介しているバックグラウンドストーリー（BGS）は正確な情報を集めておりますが、時に誤りや相違が生じる場合がございます。誤りを発見された場合は、InstagramのDMにてご報告いただけますと幸いです。</p>
+    <div class="modal-actions">
+      <a href="https://www.instagram.com/teru_luce_" target="_blank" rel="noopener noreferrer" class="modal-sns-link">Instagram (DM)</a>
+    </div>
+    <p class="modal-copyright">＊ 掲載写真データの著作権は管理者に帰属します。</p>
+  </div>
+</div>
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* View toggle */
+  const grid = document.getElementById('article-grid');
+  const btnL = document.getElementById('btn-list');
+  const btnG = document.getElementById('btn-grid');
+  function setView(v) {
+    grid.classList.toggle('list-view', v === 'list');
+    btnL.classList.toggle('on', v === 'list'); btnL.setAttribute('aria-pressed', v === 'list');
+    btnG.classList.toggle('on', v === 'grid'); btnG.setAttribute('aria-pressed', v === 'grid');
+  }
+  btnL.addEventListener('click', () => setView('list'));
+  btnG.addEventListener('click', () => setView('grid'));
+
+  /* Filter */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.card').forEach(c => {
+        c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none';
+      });
     });
+  });
 
-    // ===== スクロールで要素をフェードイン =====
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  /* Modal */
+  const modal = document.getElementById('modal');
+  document.getElementById('notice-trigger').addEventListener('click', () => modal.classList.add('open'));
+  document.getElementById('modal-close').addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('open'); });
 
-    // ===== モーダル =====
-    const modalOverlay = document.getElementById('modal-overlay');
-    function openModal()  { modalOverlay.classList.add('active'); }
-    function closeModal() { modalOverlay.classList.remove('active'); }
-    document.getElementById('notice-trigger').addEventListener('click', openModal);
-    document.getElementById('modal-close').addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); }, { passive: true });
-
-    // ===== 画像の右クリック・ドラッグ禁止 =====
-    document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    </script>
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
