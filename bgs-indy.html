@@ -1,252 +1,529 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Indiana Jones | teru_luce_</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <style>
-        /* --- 昼夜（砂岩の古紙・クリスタルスカルの怒り）カラー設定 --- */
-        :root {
-            /* デフォルト：ジャングルの奥地に眠る、乾いた砂岩の古紙モード */
-            --bg-color: #E2D7C5; 
-            --text-main: #2D231E; 
-            --accent-gold: #8C6239; /* アンティーク・真鍮ゴールド */
-            --border-light: rgba(45, 35, 30, 0.2);
-            --img-filter: brightness(0.95) contrast(1.05) sepia(10%);
-            --glow-color: rgba(140, 98, 57, 0.2);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='strong-paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='6' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23f5eee0' surfaceScale='5'%3E%3CfeDistantLight azimuth='50' elevation='45'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23strong-paper)'/%3E%3C/svg%3E");
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Indiana Jones | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-        body.curse-mode {
-            /* スイッチON：クリスタルスカルの呪いが満ちた、神秘的な青の魔宮モード */
-            --bg-color: #050E1A; 
-            --text-main: #E2E8F0; 
-            --accent-gold: #00E5FF; /* 呪いによって輝くネオンブルー */
-            --border-light: rgba(0, 229, 255, 0.25);
-            --img-filter: brightness(0.7) contrast(1.25) saturate(1.2);
-            --glow-color: rgba(0, 229, 255, 0.45);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='burnt'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23101d33' surfaceScale='2.5'%3E%3CfeDistantLight azimuth='45' elevation='40'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23burnt)'/%3E%3C/svg%3E");
-        }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        body {
-            font-family: 'Noto Serif JP', serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.25) 100%), var(--paper-texture);
-            background-size: cover; background-attachment: fixed;
-            color: var(--text-main); line-height: 2.2; overflow-x: hidden;
-            transition: background-color 0.8s ease, color 0.8s ease; -webkit-font-smoothing: antialiased;
-        }
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* 背景固定レイヤー（GPU高速化） */
-        .paper-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.22) 100%), var(--paper-texture);
-            background-size: cover; transform: translate3d(0, 0, 0); will-change: transform; pointer-events: none;
-        }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        .container { 
-            position: relative; z-index: 10;
-            max-width: 600px; margin: 0 auto; padding: 60px 25px 120px; 
-            background: rgba(245, 240, 230, 0.45); border-radius: 8px; box-shadow: inset 0 0 40px rgba(0,0,0,0.03); transition: background 0.8s ease;
-        }
-        body.curse-mode .container { background: rgba(10, 15, 25, 0.45); box-shadow: inset 0 0 40px rgba(0,229,255,0.03); }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .reveal {
-            opacity: 0; transform: translate3d(0, 30px, 0); will-change: transform, opacity;
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .reveal.active { opacity: 1; transform: translate3d(0, 0, 0); }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        .back-btn {
-            display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
-            color: var(--accent-gold); text-decoration: none; text-transform: uppercase; margin-bottom: 40px;
-            border-bottom: 1px solid transparent; transition: color 0.3s;
-        }
-        .back-btn:hover { border-color: var(--accent-gold); }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        .theme-switch {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%;
-            background-color: var(--accent-gold); color: var(--bg-color); display: flex; justify-content: center; align-items: center;
-            font-size: 1.5rem; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease;
-        }
-        .theme-switch:hover { transform: scale(1.1); }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 40px; }
-        .bgs-tag { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--accent-gold); text-transform: uppercase; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; margin: 10px 0 20px; letter-spacing: 0.05em; }
-        .subtitle-jp { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.1em; opacity: 0.9; }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        /* 目次 */
-        .toc-box { background: rgba(0, 0, 0, 0.02); border: 1px solid var(--border-light); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
-        .toc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--accent-gold); text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed var(--border-light); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.8; }
-        .toc-list a:hover { color: var(--accent-gold); }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        /* 本文セクション */
-        .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; font-style: italic; color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.9rem; font-weight: 300; margin-bottom: 20px; opacity: 0.9; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        /* 仕切り線 */
-        .section-divider { display: flex; align-items: center; justify-content: center; margin: 80px 0; opacity: 0.7; user-select: none; pointer-events: none; }
-        .section-divider::before, .section-divider::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-light), transparent); }
-        .section-divider span { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--accent-gold); letter-spacing: 0.3em; margin: 0 20px; font-weight: bold; }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        /* 写真をなじませる手帳・ポラロイド風加工 */
-        .hero-img-container { 
-            margin: 45px auto; padding: 10px; background: #FAF7F0; border-radius: 4px; 
-            box-shadow: 0 12px 30px rgba(62, 76, 85, 0.15); border: 1px solid rgba(139, 115, 85, 0.15);
-            transform: rotate(-1.2deg); transition: transform 0.3s ease;
-        }
-        .hero-img-container:nth-of-type(even) { transform: rotate(1.5deg); }
-        .hero-img-container:hover { transform: scale(1.02) rotate(0deg); }
-        .hero-img { width: 100%; height: auto; display: block; border-radius: 2px; filter: var(--img-filter); }
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
 
-        .connection-card { background: rgba(58, 127, 147, 0.05); border: 1px solid var(--accent-gold); padding: 25px; border-radius: 4px; margin: 30px 0; }
-        body.curse-mode .connection-card { background: rgba(0, 229, 255, 0.03); }
-        .connection-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; }
-        .connection-card p { font-size: 0.85rem; line-height: 2; margin-bottom: 0; }
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
 
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; }
-    </style>
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 7vw, 3.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h4 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       RELATED LINK CARD
+    ============================================================ */
+    .related-link-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,252,245,0.5);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      padding: clamp(16px, 3vw, 20px);
+      margin: 24px 0;
+      transition: all 0.25s;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .related-link-card:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .related-link-title {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      color: var(--bordeaux);
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .related-link-desc {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 300;
+      font-size: clamp(0.75rem, 2vw, 0.78rem);
+      color: var(--ink-soft);
+      line-height: 1.8;
+      transition: color 0.2s;
+    }
+    .related-link-card:hover .related-link-title,
+    .related-link-card:hover .related-link-desc {
+      color: var(--paper);
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <div class="noise-overlay"></div>
-    <div class="paper-bg"></div>
-    <div class="theme-switch" id="theme-switch">🧭</div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back to Portal</a>
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
 
-        <header class="header-section reveal">
-            <div class="bgs-tag">Background Story</div>
-            <h1>Indiana Jones</h1>
-            <div class="subtitle-jp">若さの泉を守る守護神と、冒険家が遺した足跡</div>
-        </header>
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Background Story</span>
+    <h1 class="masthead-title">Indiana Jones</h1>
+    <span class="masthead-subtitle">若さの泉を守る守護神と、冒険家が遺した足跡</span>
+  </header>
 
-        <!-- 目次 -->
-        <nav class="toc-box reveal">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. 失われた河と、若さの泉の伝説（プロローグ）</span><a href="#prologue">Read →</a></li>
-                <li><span>II. 脱出用水上飛行機と、インディ博士の「足跡」</span><a href="#escape">Read →</a></li>
-                <li><span>III. 忍び寄る魔宮の罠：生贄の祭壇の恐怖</span><a href="#altar">Read →</a></li>
-                <li><span>IV. 遺跡に残る「略奪王ハイタワー三世」の物証</span><a href="#crossover">Read →</a></li>
-            </ul>
-        </nav>
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="セクション目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
+    </div>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 失われた河と、若さの泉の伝説（プロローグ）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#escape" class="toc-link"><span class="toc-text">II. 脱出用水上飛行機と、インディ博士の「足跡」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#altar" class="toc-link"><span class="toc-text">III. 忍び寄る魔宮の罠：生贄の祭壇の恐怖</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#crossover" class="toc-link"><span class="toc-text">IV. 遺跡に残る「略奪王ハイタワー三世」の物証</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
 
-        <!-- 1枚目：神殿のそびえ立つ外観（indy-temple.jpeg） -->
-        <div class="hero-img-container reveal">
-            <img src="indy-temple.jpeg" alt="Temple of the Crystal Skull Exterior" class="hero-img">
-        </div>
+  <div class="photo-frame reveal">
+    <img src="indy-temple.jpeg" alt="Temple of the Crystal Skull Exterior" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
 
-        <!-- I. プロローグ -->
-        <section class="article-block reveal" id="prologue">
-            <h2>I. 失われた河の伝説</h2>
-            <p>1930年代の中央アメリカ、うっそうと生い茂るジャングルの奥地に広がる遺跡発掘現場「ロストリバーデルタ」。かつて1880年代にこの地を襲った大ハリケーンによって、せき止められていた川が氾濫し、突如として出現した「エル・リオ・ペルディード（失われた河）」がすべての始まりでした。</p>
-            <p>この河の出現によってジャングルが切り拓かれ、探検家や一獲千金を狙う冒険家たちが続々と拠点を築き始めます。その中で、考古学者インディ・ジョーンズ博士は、神聖な神殿に隠された禁断の伝説**「若さの泉（Fountain of Youth）」**を発見したのです。私たちは、彼の助手であるパコが密かに企画した「若さの泉を探す魔宮ツアー」の観光客として、この神秘的な地へ足を踏み入れることになります。</p>
-        </section>
+  <!-- I. プロローグ -->
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. 失われた河の伝説</h2>
+    <p class="article-p">1930年代の中央アメリカ、うっそうと生い茂るジャングルの奥地に広がる遺跡発掘現場「ロストリバーデルタ」。かつて1880年代にこの地を襲った大ハリケーンによって、せき止められていた川が氾濫し、突如として出現した「エル・リオ・ペルディード（失われた河）」がすべての始まりでした。</p>
+    <p class="article-p">この河の出現によってジャングルが切り拓かれ、探検家や一獲千金を狙う冒険家たちが続々と拠点を築き始めます。その中で、考古学者インディ・ジョーンズ博士は、神聖な神殿に隠された禁断の伝説<strong>「若さの泉（Fountain of Youth）」</strong>を発見したのです。私たちは、彼の助手であるパコが密かに企画した「若さの泉を探す魔宮ツアー」の観光客として、この神秘的な地へ足を踏み入れることになります。</p>
+  </section>
 
-        <!-- 仕切り線 1 -->
-        <div class="section-divider reveal"><span>✦ ✦ ✦</span></div>
-
-        <!-- II. 水上飛行機と足跡 -->
-        <section class="article-block reveal" id="escape">
-            <h2>II. 水上飛行機とインディ博士の「足跡」</h2>
-            <p>ロストリバーに浮かぶ、かつてインディ博士がこの地へやってくる際（そして危険から逃れる際）に使用した1機の水上飛行機。写真にしっかりと捉えられているこの機体には、ジョージ・ルーカスとディズニーの粋な「映画の枠を超えた仕掛け」が隠されています。</p>
-            
-            <!-- 2枚目：水上飛行機（indy-plane.jpeg） -->
-            <div class="hero-img-container reveal">
-                <img src="indy-plane.jpeg" alt="Dr. Jones Escape Floatplane" class="hero-img">
-            </div>
-
-            <div class="connection-card">
-                <h4>✈️ 機体に刻まれた「C-3PO」の機体番号</h4>
-                <p>よく見ると、水上飛行機の機体の側面には、はっきりと青い文字で**「C-3PO」**とペイントされています。これは映画『スター・ウォーズ』の同名ドロイドから名付けられた、有名なイースターエッグ（隠しネタ）です。<br><br>
-                   さらに驚くべきことに、映画『レイダース/失われたアーク《聖櫃》』の冒頭で、原住民の襲撃から逃れるためにインディ博士が飛び乗ったあの水上飛行機の登録番号が、実際に「OB-C3PO」だったのです。映画とアトラクションの時間が、この機体によって現実のものとなっています。</p>
-            </div>
-
-            <!-- 3枚目：インディ博士の足跡（indy-footprint.jpeg） -->
-            <div class="hero-img-container reveal">
-                <img src="indy-footprint.jpeg" alt="Dr. Indiana Jones Footprint in Mud" class="hero-img">
-            </div>
-
-            <p>さらに、この水上飛行機が停泊する川岸の粘土質の地面をよく見ると、**「ぽつんと遺された、インディ博士のブーツの足跡」**（上の写真）を見つけることができます。これは、水上飛行機から降り立ったインディ博士が、急いで神殿へと向かった際に泥に埋まった本物の足跡です。彼がさっきまでここにいたという、生々しい冒険の息吹を感じさせるイマジニアの素晴らしい演出です。</p>
-        </section>
-
-        <!-- 仕切り線 2 -->
-        <div class="section-divider reveal"><span>✦ ✦ ✦</span></div>
-
-        <!-- III. 生贄の祭壇 -->
-        <section class="article-block reveal" id="altar">
-            <h2>III. 魔宮の罠と「生贄の祭壇」</h2>
-            <p>観光用ジープに乗り込んだ私たちは、ジョーンズ博士の警告「守護神クリスタルスカルを怒らせるな！」という言葉もむなしく、魔宮の最深部へと迷い込んでしまいます。行く手を阻むのは、何千年も張り巡らされた古代の防衛システムと、クリスタルスカルの呪いです。</p>
-
-            <!-- 4枚目：神殿内部のキューライン（indy-queue.jpeg） -->
-            <div class="hero-img-container reveal">
-                <img src="indy-queue.jpeg" alt="Temple Inner Bridge Queue" class="hero-img">
-            </div>
-
-            <!-- 5枚目：骸骨に囲まれた生贄の祭壇（indy-altar.jpeg） -->
-            <div class="hero-img-container reveal">
-                <img src="indy-altar.jpeg" alt="Terrifying Altar of Sacrifice" class="hero-img">
-            </div>
-
-            <p>写真に記録されている不気味な骸骨と大蛇に囲まれた部屋、それこそが古代の部族が神への捧げ物を行ったとされる**「生贄の祭壇（Altar of Sacrifice）」**です。天井からは気味の悪い蔦が垂れ下がり、石壁には生贄の儀式の様子が赤や青のフレスコ画で鮮やかに描かれています。この呪われた祭壇の空気に触れた瞬間、ジープは制御を失い、クリスタルスカルの放つ不気味なレーザー光線や、巨大な岩石が転がり落ちる罠の恐怖へと巻き込まれていくのです。</p>
-        </section>
-
-        <!-- 仕切り線 3 -->
-        <div class="section-divider reveal"><span>✦ ✦ ✦</span></div>
-
-        <!-- IV. 伏線 -->
-        <section class="article-block reveal" id="crossover">
-            <h2>IV. 歴史への敬意、そして「略奪王」との決定的対比</h2>
-            <p>ロストリバーデルタの物語を語る上で欠かせないのが、お隣の遺跡「レイジングスピリッツ」や、アメリカンウォーターフロントの『タワー・オブ・テラー』との対比です。</p>
-            <p>レイジングスピリッツの現場には、あの強欲な大富豪**「ハリソン・ハイタワー三世」がこの地の貴重なコレクションを略奪して運ばせようとした「HOTEL HIGHTOWER（ホテル・ハイタワー行き）」**の木箱が今も置き去りにされています。</p>
-            
-            <div class="connection-card">
-                <h4>🔎 二人の「探検家」が描く、ディズニーの真意</h4>
-                <p>インディ・ジョーンズ博士は、「歴史を守り、現地の文化や神聖なルールに最大の敬意を払いながら学術的に調査する」という**「本物の考古学者」**です。対して、ハイタワー三世は「現地の信仰を嘲笑し、すべてを盗み去り、自分の富を誇示する」という**「強欲な略奪者」**でした。<br><br>
-                   同じロストリバーデルタに遺されたふたつの発掘現場は、**「歴史への敬意（インディ）」**と、**「歴史への冒涜（ハイタワー三世）」**という、ディズニーシー全体の光と影のメッセージとして描かれています。インディ博士は精霊の怒りを買いながらも九死に一生を得て生き延びましたが、掟を破り続けたハイタワー三世は、のちにシリキ・ウトゥンドゥの呪いによって行方不明（失踪）となります。この人間性の対比を知っていると、パークの景色がさらに深く見えてくるはずです。</p>
-            </div>
-        </section>
-
-        <div class="footer-link reveal">
-            <a href="index.html">← HOMEへ戻る</a>
-        </div>
+  <!-- II. 脱出用水上飛行機と、インディ博士の「足跡」 -->
+  <section class="article-block reveal" id="escape">
+    <h2 class="article-h2">II. 脱出用水上飛行機と、インディ博士の「足跡」</h2>
+    <p class="article-p">ロストリバーに浮かぶ、かつてインディ博士がこの地へやってくる際（そして危険から逃れる際）に使用した1機の水上飛行機。写真にしっかりと捉えられているこの機体には、ジョージ・ルーカスとディズニーの粋な「映画の枠を超えた仕掛け」が隠されています。</p>
+    
+    <div class="photo-frame reveal">
+      <img src="indy-plane.jpeg" alt="Dr. Jones Escape Floatplane" width="800" height="450" decoding="async" loading="lazy">
     </div>
 
-    <script>
-        const themeSwitch = document.getElementById('theme-switch');
-        themeSwitch.addEventListener('click', () => {
-            document.body.classList.toggle('curse-mode');
-            themeSwitch.textContent = document.body.classList.contains('curse-mode') ? '☀️' : '🧭';
-        });
+    <div class="column-box reveal">
+      <h4>✈️ 機体に刻まれた「C-3PO」の機体番号</h4>
+      <p>よく見ると、水上飛行機の機体の側面には、はっきりと青い文字で<strong>「C-3PO」</strong>とペイントされています。これは映画『スター・ウォーズ』の同名ドロイドから名付けられた、有名なイースターエッグ（隠しネタ）です。<br><br>
+         さらに驚くべきことに、映画『レイダース/失われたアーク《聖櫃》』の冒頭で、原住民の襲撃から逃れるためにインディ博士が飛び乗ったあの水上飛行機の登録番号が、実際に「OB-C3PO」だったのです。映画とアトラクションの時間が、この機体によって現実のものとなっています。</p>
+    </div>
 
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-        reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        setTimeout(() => { reveals[0].classList.add('active'); }, 100);
-    </script>
+    <div class="photo-frame reveal">
+      <img src="indy-footprint.jpeg" alt="Dr. Indiana Jones Footprint in Mud" width="800" height="450" decoding="async" loading="lazy">
+    </div>
+
+    <p class="article-p">さらに、この水上飛行機が停泊する川岸の粘土質の地面をよく見ると、<strong>「ぽつんと遺された、インディ博士のブーツの足跡」</strong>を見つけることができます。これは、水上飛行機から降り立ったインディ博士が、急いで神殿へと向かった際に泥に埋まった本物の足跡です。彼がさっきまでここにいたという、生々しい冒険の息吹を感じさせるイマジニアの素晴らしい演出です。</p>
+  </section>
+
+  <!-- III. 忍び寄る魔宮の罠 -->
+  <section class="article-block reveal" id="altar">
+    <h2 class="article-h2">III. 魔宮の罠と「生贄の祭壇」</h2>
+    <p class="article-p">観光用ジープに乗り込んだ私たちは、ジョーンズ博士の警告「守護神クリスタルスカルを怒らせるな！」という言葉もむなしく、魔宮の最深部へと迷い込んでしまいます。行く手を阻むのは、何千年も張り巡らされた古代の防衛システムと、クリスタルスカルの呪いです。</p>
+
+    <div class="photo-frame reveal">
+      <img src="indy-queue.jpeg" alt="Temple Inner Bridge Queue" width="800" height="450" decoding="async" loading="lazy">
+    </div>
+
+    <div class="photo-frame reveal">
+      <img src="indy-altar.jpeg" alt="Terrifying Altar of Sacrifice" width="800" height="450" decoding="async" loading="lazy">
+    </div>
+
+    <p class="article-p">写真に記録されている不気味な骸骨と大蛇に囲まれた部屋、それこそが古代の部族が神への捧げ物を行ったとされる<strong>「生贄の祭壇（Altar of Sacrifice）」</strong>です。天井からは気味の悪い蔦が垂れ下がり、石壁には生贄の儀式の様子が赤や青のフレスコ画で鮮やかに描かれています。この呪われた祭壇の空気に触れた瞬間、ジープは制御を失い、クリスタルスカルの放つ不気味なレーザー光線や、巨大な岩石が転がり落ちる罠の恐怖へと巻き込まれていくのです。</p>
+  </section>
+
+  <!-- IV. 遺跡に残る「略奪王ハイタワー三世」の物証 -->
+  <section class="article-block reveal" id="crossover">
+    <h2 class="article-h2">IV. 歴史への敬意、そして「略奪王」との決定的対比</h2>
+    <p class="article-p">ロストリバーデルタの物語を語る上で欠かせないのが、お隣の遺跡「レイジングスピリッツ」や、アメリカンウォーターフロントの『タワー・オブ・テラー』との対比です。</p>
+    <p class="article-p">レイジングスピリッツの現場には、あの強欲な大富豪<strong>「ハリソン・ハイタワー三世」がこの地の貴重なコレクションを略奪して運ばせようとした「HOTEL HIGHTOWER（ホテル・ハイタワー行き）」</strong>の木箱が今も置き去りにされています。</p>
+    
+    <div class="column-box reveal">
+      <h4>🔎 二人の「探検家」が描く、ディズニーの真意</h4>
+      <p>インディ・ジョーンズ博士は、「歴史を守り、現地の文化や神聖なルールに最大の敬意を払いながら学術的に調査する」という<strong>「本物の考古学者」</strong>です。対して、ハイタワー三世は「現地の信仰を嘲笑し、すべてを盗み去り、自分の富を誇示する」という<strong>「強欲な略奪者」</strong>でした。<br><br>
+         同じロストリバーデルタに遺されたふたつの発掘現場は、<strong>「歴史への敬意（インディ）」</strong>と、<strong>「歴史への冒涜（ハイタワー三世）」</strong>という、ディズニーシー全体の光と影のメッセージとして描かれています。インディ博士は精霊の怒りを買いながらも九死に一生を得て生き延びましたが、掟を破り続けたハイタワー三世は、のちにシリキ・ウトゥンドゥの呪いによって行方不明（失踪）となります。この人間性の対比を知っていると、パークの景色がさらに深く見えてくるはずです。</p>
+
+      <a href="bgs-tot.html" class="related-link-card" style="margin-top: 24px;">
+        <span class="related-link-title">➔ 関連資料：</span>
+        <span class="related-link-desc">略奪者ハイタワー三世の最期。ホテル・ハイタワーの惨劇はこちら。</span>
+      </a>
+      <a href="bgs-indy.html" class="related-link-card" style="margin-top: 12px;">
+        <span class="related-link-title">➔ 関連資料：</span>
+        <span class="related-link-desc">インディ・ジョーンズ博士の魔宮探険記はこちら。</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
