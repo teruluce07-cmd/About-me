@@ -1,324 +1,620 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Beauty and the Beast | teru_luce_</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #E2D7C5; 
-            --text-main: #2D231E; 
-            --accent-gold: #3B5998; 
-            --border-light: rgba(59, 89, 152, 0.2);
-            --img-filter: brightness(0.95) contrast(1.05);
-            --glow-color: rgba(59, 89, 152, 0.25);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='strong-paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='6' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23f5eee0' surfaceScale='5'%3E%3CfeDistantLight azimuth='50' elevation='45'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23strong-paper)'/%3E%3C/svg%3E");
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Beauty and the Beast | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-        img { 
-            max-width: 100% !important; 
-            height: auto; 
-            display: block; 
-            /* 画像の長押し・右クリック・ドラッグによる保存を防ぐスタイル */
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            pointer-events: none;
-        }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        body {
-            font-family: 'Noto Serif JP', serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.25) 100%), var(--paper-texture);
-            background-size: cover; background-attachment: fixed;
-            color: var(--text-main); line-height: 2.2; overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        .paper-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.2) 100%), var(--paper-texture);
-            background-size: cover; transform: translate3d(0, 0, 0); will-change: transform; pointer-events: none;
-        }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        .container { 
-            position: relative; z-index: 10;
-            max-width: 600px; margin: 0 auto; padding: 60px 25px 120px; 
-            background: rgba(245, 240, 230, 0.45); border-radius: 8px; box-shadow: inset 0 0 40px rgba(0,0,0,0.03);
-        }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .reveal {
-            opacity: 0; transform: translate3d(0, 30px, 0); will-change: transform, opacity;
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .reveal.active { opacity: 1; transform: translate3d(0, 0, 0); }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        .back-btn {
-            display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
-            color: var(--accent-gold); text-decoration: none; text-transform: uppercase; margin-bottom: 40px;
-            border-bottom: 1px solid transparent; transition: color 0.3s;
-        }
-        .back-btn:hover { border-color: var(--accent-gold); }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 40px; }
-        .bgs-tag { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--accent-gold); text-transform: uppercase; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; margin: 10px 0 20px; letter-spacing: 0.05em; }
-        .subtitle-jp { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.1em; opacity: 0.9; }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        .toc-box { background: rgba(0, 0, 0, 0.02); border: 1px solid var(--border-light); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
-        .toc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--accent-gold); text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed var(--border-light); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.8; }
-        .toc-list a:hover { color: var(--accent-gold); }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        .article-block { margin-bottom: 30px; text-align: justify; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; font-style: italic; color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.9rem; font-weight: 300; margin-bottom: 20px; opacity: 0.9; }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        .hero-img-container { 
-            margin: 45px auto; 
-            padding: 10px; 
-            background: #FAF7F0; 
-            border-radius: 4px; 
-            box-shadow: 0 12px 30px rgba(62, 56, 48, 0.15); 
-            border: 1px solid rgba(139, 115, 85, 0.15);
-            transform: rotate(-1.2deg);
-            transition: transform 0.3s ease;
-        }
-        .hero-img-container:nth-of-type(even) {
-            transform: rotate(1.5deg);
-        }
-        .hero-img-container:hover {
-            transform: scale(1.02) rotate(0deg); 
-        }
-        .hero-img { 
-            width: 100%; height: auto; display: block; 
-            border-radius: 2px;
-            filter: var(--img-filter); 
-        }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        .comparison-table {
-            width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 0.8rem;
-            border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);
-        }
-        .comparison-table th, .comparison-table td {
-            padding: 10px 12px; text-align: left; border-bottom: 1px dashed var(--border-light);
-        }
-        .comparison-table th {
-            font-family: 'Montserrat', sans-serif; color: var(--accent-gold); letter-spacing: 0.1em; font-size: 0.75rem;
-        }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        .connection-card { background: rgba(59, 89, 152, 0.05); border: 1px solid var(--accent-gold); padding: 25px; border-radius: 4px; margin: 30px 0; }
-        .connection-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; }
-        .connection-card p { font-size: 0.85rem; line-height: 2; margin-bottom: 0; }
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
 
-        .insta-btn-wrapper { text-align: center; margin: 60px 0; }
-        .insta-link-btn {
-            display: inline-block; text-decoration: none; color: var(--text-main); border: 1px solid var(--border-light); padding: 18px 30px; border-radius: 40px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.4s ease; background: rgba(255,255,255,0.05);
-        }
-        .insta-link-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); box-shadow: 0 0 20px var(--glow-color); transform: translateY(-3px); }
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
 
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; }
-    </style>
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 7vw, 3.2rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h4 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       DATA TABLE
+    ============================================================ */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+      text-align: left;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px dashed var(--border);
+      font-family: var(--f-jp);
+      font-size: clamp(0.7rem, 2vw, 0.75rem);
+      line-height: 1.8;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table th {
+      font-family: var(--f-sc);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      background: rgba(245,237,216,0.5);
+      border-bottom: 1px solid var(--border-strong);
+      font-weight: 400;
+    }
+    .data-table td strong {
+      color: var(--ink);
+      font-family: var(--f-sc);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       INSTAGRAM ACTION BUTTON
+    ============================================================ */
+    .action-btn-wrap {
+      text-align: center;
+      margin: 48px 0;
+    }
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      padding: 16px 32px;
+      border: 1px solid var(--border-strong);
+      background: transparent;
+      transition: all 0.25s;
+      text-transform: uppercase;
+      min-height: 48px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .action-btn:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <div class="noise-overlay"></div>
-    <div class="paper-bg"></div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back to Portal</a>
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
 
-        <header class="header-section reveal">
-            <div class="bgs-tag">Background Story</div>
-            <h1>Beauty and the Beast</h1>
-            <div class="subtitle-jp">魔法の薔薇が紡ぐ、光と影のフレンチ・ゴシック</div>
-        </header>
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Background Story</span>
+    <h1 class="masthead-title">Beauty and the Beast</h1>
+    <span class="masthead-subtitle">魔法の薔薇が紡ぐ、光と影のフレンチ・ゴシック</span>
+  </header>
 
-        <!-- 目次 -->
-        <nav class="toc-box reveal">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. 呪われた城への空間演出（プロローグ）</span><a href="#prologue">Read →</a></li>
-                <li><span>II. 野獣の城に秘められた歳月と「アダム」の謎</span><a href="#beast-mystery">Read →</a></li>
-                <li><span>III. 城内を巡る「6つの部屋」とBモードの秘密</span><a href="#six-rooms">Read →</a></li>
-                <li><span>IV. ベルの村に隠された「6つの蹄鉄」</span><a href="#village">Read →</a></li>
-                <li><span>V. 日本の所作を宿した技術と、奇跡の復活劇</span><a href="#imagineering">Read →</a></li>
-            </ul>
-        </nav>
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
+    </div>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 呪われた城への空間演出（プロローグ）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#beast-mystery" class="toc-link"><span class="toc-text">II. 野獣の城に秘められた歳月と「アダム」の謎</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#six-rooms" class="toc-link"><span class="toc-text">III. 城内を巡る「6つの部屋」とBモードの秘密</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#village" class="toc-link"><span class="toc-text">IV. ベルの村に隠された「6つの蹄鉄」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#imagineering" class="toc-link"><span class="toc-text">V. 日本の所作を宿した技術と、奇跡の復活劇</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
 
-        <!-- 1枚目：城の外観 -->
-        <div class="hero-img-container reveal">
-            <img src="bb-castle.jpeg" alt="Beast's Castle Exterior" class="hero-img" draggable="false" oncontextmenu="return false;">
-        </div>
+  <!-- 1枚目：城の外観 -->
+  <div class="photo-frame reveal">
+    <img src="bb-castle.jpeg" alt="Beast's Castle Exterior" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
 
-        <!-- I. プロローグ -->
-        <section class="article-block reveal" id="prologue">
-            <h2>I. 呪われた城への空間演出</h2>
-            <p>2020年、ファンタジーランドに誕生した『美女と野獣』のエリア。ここは単に映画のセットを美しく再現しただけではなく、エリアに足を踏み入れた瞬間から映画のストーリー順に景色や空気感が変化していく、計算され尽くした**「歩く映画体験」**の仕掛けが施されています。</p>
-            <p>エントランスに佇むベルの父の家「モーリスのコテージ」を抜けると、のどかで活気ある「村の広場」へと出ます。ここでは映画の「朝の風景」が聞こえてきそうな、陽気なフランスの片田舎が広がっていますが、村を抜けて野獣の城へと進むにつれ、景色は一変して薄暗い「深い森」へと変わります。映画でモーリスが狼に襲われ迷い込んだ、あのひんやりとした不気味な森が、緻密な植栽と岩組によって見事に演出されているのです。城の前に架かる石橋を渡ることで、ゲストは「人間の世界（日常）」から「魔法の世界（非日常）」へと完全に引き離されます。</p>
-        </section>
+  <!-- I. プロローグ -->
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. 呪われた城への空間演出</h2>
+    <p class="article-p">2020年、ファンタジーランドに誕生した『美女と野獣』のエリア。ここは単に映画のセットを美しく再現しただけではなく、エリアに足を踏み入れた瞬間から映画のストーリー順に景色や空気感が変化していく、計算され尽くした<strong>「歩く映画体験」</strong>の仕掛けが施されています。</p>
+    <p class="article-p">エントランスに佇むベルの父の家「モーリスのコテージ」を抜けると、のどかで活気ある「村の広場」へと出ます。ここでは映画の「朝の風景」が聞こえてきそうな、陽気なフランスの片田舎が広がっていますが、村を抜けて野獣の城へと進むにつれ、景色は一変して薄暗い「深い森」へと変わります。映画でモーリスが狼に襲われ迷い込んだ、あのひんやりとした不気味な森が、緻密な植栽と岩組によって見事に演出されているのです。城の前に架かる石橋を渡ることで、ゲストは「人間の世界（日常）」から「魔法の世界（非日常）」へと完全に引き離されます。</p>
+  </section>
 
-        <!-- 2枚目：不気味な森の入り口 -->
-        <div class="hero-img-container reveal">
-            <img src="bb-entrance.jpeg" alt="Maurice's Cottage and Forest Path" class="hero-img" draggable="false" oncontextmenu="return false;">
-        </div>
+  <!-- 2枚目：不気味な森の入り口 -->
+  <div class="photo-frame reveal">
+    <img src="bb-entrance.jpeg" alt="Maurice's Cottage and Forest Path" width="800" height="450" decoding="async" loading="lazy">
+  </div>
 
-        <!-- II. 野獣の城に秘められた歳月と「アダム」の謎 -->
-        <section class="article-block reveal" id="beast-mystery">
-            <h2>II. 野獣の城に秘められた歳月と「アダム」の謎</h2>
-            <p>アトラクションの主役である「野獣」。ディズニーの書籍などでは便宜上「アダム王子」と呼ばれることもありますが、映画本編やアトラクション内では一切その名は登場せず、常に「ご主人様」や「野獣」という名義のみで語られる謎めいた存在です。彼の年齢にまつわるバックグラウンドを紐解くと、極めて切ない設定が浮き彫りになります。</p>
-            <p>彼が魔女の呪いを解かなければならない期限は「21歳の誕生日」。そして、お城の召使いたちが語る「呪われてから10年が経った」という事実。これらを組み合わせると、彼が傲慢さの罰として野獣の姿に変えられてしまったのは、**わずか11歳の少年期（現代でいう小学5年生前後）**だったことが示唆されています。幼くして、心を閉ざしたまま冷たい城に幽閉されていた彼の孤独が、この物語の真の深みなのです。</p>
-            
-            <div class="connection-card">
-                <h4>🧠 野獣が「文字」や「マナー」を忘れた3つの仮説</h4>
-                <p>劇中、ベルと野獣がスープを器から直接すする、ぎこちない朝食のシーンがあります。なぜ彼は人間の言葉や、スプーンの使い方を忘れてしまっていたのでしょうか。イマジニアたちは空間をデザインする際、以下の3つの解釈を込めて野獣の動き（モーション）を設計しました。<br><br>
-                   1. **教育の未熟説：** 11歳という幼さで呪われたため、高貴な教育を十分に受けられないまま成長してしまった説。<br>
-                   2. **野生化説：** 野獣の強靭な身体を得たことで、道具やマナーを必要としない獣としての生活に甘んじていた説。<br>
-                   3. **記憶の喪失説：** 呪いを受けた時の凄まじいショックにより、人間としての理性や記憶が一部欠落してしまった説。<br><br>
-                   ベルとの出会いを通じて、野獣が不器用に、しかし愛おしく人間らしさを取り戻していく歩みこそが、このお城の凍りついた時間を溶かしていくのです。</p>
-            </div>
-        </section>
+  <!-- II. 野獣の城に秘められた歳月と「アダム」の謎 -->
+  <section class="article-block reveal" id="beast-mystery">
+    <h2 class="article-h2">II. 野獣の城に秘められた歳月と「アダム」の謎</h2>
+    <p class="article-p">アトラクションの主役である「野獣」。ディズニーの書籍などでは便宜上「アダム王子」と呼ばれることもありますが、映画本編やアトラクション内では一切その名は登場せず、常に「ご主人様」や「野獣」という名義のみで語られる謎めいた存在です。彼の年齢にまつわるバックグラウンドを紐解くと、極めて切ない設定が浮き彫りになります。</p>
+    <p class="article-p">彼が魔女の呪いを解かなければならない期限は「21歳の誕生日」。そして、お城の召使いたちが語る「呪われてから10年が経った」という事実。これらを組み合わせると、彼が傲慢さの罰として野獣の姿に変えられてしまったのは、<strong>わずか11歳の少年期（現代でいう小学5年生前後）</strong>だったことが示唆されています。幼くして、心を閉ざしたまま冷たい城に幽閉されていた彼の孤独が、この物語の真の深みなのです。</p>
+    
+    <div class="column-box reveal">
+      <h4>🧠 野獣が「文字」や「マナー」を忘れた3つの仮説</h4>
+      <p>劇中、ベルと野獣がスープを器から直接すする、ぎこちない朝食のシーンがあります。なぜ彼は人間の言葉や、スプーンの使い方を忘れてしまっていたのでしょうか。イマジニアたちは空間をデザインする際、以下の3つの解釈を込めて野獣の動き（モーション）を設計しました。<br><br>
+         1. <strong>教育の未熟説：</strong> 11歳という幼さで呪われたため、高貴な教育を十分に受けられないまま成長してしまった説。<br>
+         2. <strong>野生化説：</strong> 野獣の強靭な身体を得たことで、道具やマナーを必要としない獣としての生活に甘んじていた説。<br>
+         3. <strong>記憶の喪失説：</strong> 呪いを受けた時の凄まじいショックにより、人間としての理性や記憶が一部欠落してしまった説。<br><br>
+         ベルとの出会いを通じて、野獣が不器用に、しかし愛おしく人間らしさを取り戻していく歩みこそが、このお城の凍りついた時間を溶かしていくのです。</p>
+    </div>
+  </section>
 
-        <!-- III. キューライン「6つの部屋」とBモードの秘密 -->
-        <section class="article-block reveal" id="six-rooms">
-            <h2>III. 城内を巡る「6つの部屋」とBモードの秘密</h2>
-            <p>城内に足を踏み入れたゲストは、ただアトラクションを待つのではなく、お城に遺された記憶をめぐる「6つの空間」を通過します。</p>
-            <p>
-                <strong>1. 応接室：</strong> 天井の高い不気味なロビー。よく見ると、呪いで家具に変えられたルミエールやコグスワースの気配が、暖炉の彫刻装飾のなかに隠されています。<br>
-                <strong>2. 朝食部屋：</strong> ベルと野獣が少しずつ心の距離を縮め始めた、温かな光の差し込む小さなプライベートダイニング。<br>
-                <strong>3. 鎧の廊下：</strong> ひとりぼっちの晩餐会の後、コグスワースの案内で通りかかった中世の甲冑が立ち並ぶ通路。<br>
-                <strong>4. 玄関の広間：</strong> 大きな折り返し大階段が印象的な、アトラクション全体の導入部となる巨大な吹き抜けのプレショーエリア。
-            </p>
-        </section>
+  <!-- III. キューライン「6つの部屋」とBモードの秘密 -->
+  <section class="article-block reveal" id="six-rooms">
+    <h2 class="article-h2">III. 城内を巡る「6つの部屋」とBモードの秘密</h2>
+    <p class="article-p">城内に足を踏み入れたゲストは、ただアトラクションを待つのではなく、お城に遺された記憶をめぐる「6つの空間」を通過します。</p>
+    <p class="article-p">
+      <strong>1. 応接室：</strong> 天井の高い不気味なロビー。よく見ると、呪いで家具に変えられたルミエールやコグスワースの気配が、暖炉の彫刻装飾のなかに隠されています。<br>
+      <strong>2. 朝食部屋：</strong> ベルと野獣が少しずつ心の距離を縮め始めた、温かな光の差し込む小さなプライベートダイニング。<br>
+      <strong>3. 鎧の廊下：</strong> ひとりぼっちの晩餐会の後、コグスワースの案内で通りかかった中世の甲冑が立ち並ぶ通路。<br>
+      <strong>4. 玄関の広間：</strong> 大きな折り返し大階段が印象的な、アトラクション全体の導入部となる巨大な吹き抜けのプレショーエリア。
+    </p>
+  </section>
 
-        <!-- 3枚目：大階段 -->
-        <div class="hero-img-container reveal">
-            <img src="bb-staircase.jpeg" alt="Enchanted Castle Grand Staircase" class="hero-img" draggable="false" oncontextmenu="return false;">
-        </div>
+  <!-- 3枚目：大階段 -->
+  <div class="photo-frame reveal">
+    <img src="bb-staircase.jpeg" alt="Enchanted Castle Grand Staircase" width="800" height="450" decoding="async" loading="lazy">
+  </div>
 
-        <section class="article-block reveal">
-            <p>
-                <strong>5. 洗濯場：</strong> ベルを温かくもてなすために、お城の召使いたちが忙しく立ち働いている作業場。<br>
-                <strong>6. 生活エリア：</strong> 乗り場の直前、野獣のプライベートスペース「西の塔」の入り口へと繋がる不気味な回廊。
-            </p>
+  <section class="article-block reveal">
+    <p class="article-p">
+      <strong>5. 洗濯場：</strong> ベルを温かくもてなすために、お城の召使いたちが忙しく立ち働いている作業場。<br>
+      <strong>6. 生活エリア：</strong> 乗り場の直前、野獣のプライベートスペース「西の塔」の入り口へと繋がる不気味な回廊。
+    </p>
 
-            <div class="connection-card">
-                <h4>🔮 システム調整時の「Bモード」特別上映</h4>
-                <p>プレショーが行われる「玄関の広間」では、バルコニーにベルと野獣のアニマトロニクスが登場しますが、システムメンテナンスの際などには、アニマトロニクスが登場しない**「Bモード」**と呼ばれる特別プログラムが作動します。<br><br>
-                   このBモードが始動するとバルコニーのカーテンは閉じたままになりますが、中央のステンドグラスの映像投影システムが自動的に変更。通常時では絶対に上映されない**「2つの追加ステンドグラスシーン」**が美しく映し出され、物語を完璧に補完する特別な演出に切り替わります。もし出会えたら、非常に幸運な瞬間です。</p>
-            </div>
-            
-            <p>そしてアトラクション本編でゲストを乗せるのは、床にレールのない「トラックレスライド」を採用した魔法のカップ。2000年に同じ東京ディズニーランドの『プーさんのハニーハント』が世界で初めて実用化したトラックレスライド（LPSシステム）の技術を20年かけて極限まで進化させ、まるで本当にダンスを踊っているかのような息の合った動きを実現させました。ゲストは食器たちの宴に招かれた「主賓」として、彼らと共に踊る体験をします。</p>
-        </section>
+    <div class="column-box reveal">
+      <h4>🔮 システム調整時の「Bモード」特別上映</h4>
+      <p>プレショーが行われる「玄関の広間」では、バルコニーにベルと野獣のアニマトロニクスが登場しますが、システムメンテナンスの際などには、アニマトロニクスが登場しない<strong>「Bモード」</strong>と呼ばれる特別プログラムが作動します。<br><br>
+         このBモードが始動するとバルコニーのカーテンは閉じたままになりますが、中央のステンドグラスの映像投影システムが自動的に変更。通常時では絶対に上映されない<strong>「2つの追加ステンドグラスシーン」</strong>が美しく映し出され、物語を完璧に補完する特別な演出に切り替わります。もし出会えたら、非常に幸運な瞬間です。</p>
+    </div>
+    
+    <p class="article-p">そしてアトラクション本編でゲストを乗せるのは、床にレールのない「トラックレスライド」を採用した魔法のカップ。2000年に同じ東京ディズニーランドの『プーさんのハニーハント』が世界で初めて実用化したトラックレスライド（LPSシステム）の技術を20年かけて極限まで進化させ、まるで本当にダンスを踊っているかのような息の合った動きを実現させました。ゲストは食器たちの宴に招かれた「主賓」として、彼らと共に踊る体験をします。</p>
+  </section>
 
-        <!-- IV. ベルの村と6つの蹄鉄 -->
-        <section class="article-block reveal" id="village">
-            <h2>IV. ベルの村に隠された「6つの蹄鉄」</h2>
-            <p>アトラクションを降りた後も、ベルの村には映画ファンを魅了する仕掛けが多数隠されています。「ラ・タベルヌ・ド・ガストン」では、彼の傲慢さと自己顕示欲を象徴する巨大な鹿の角の椅子や肖像画がゲストを迎えます。</p>
+  <!-- IV. ベルの村と6つの蹄鉄 -->
+  <section class="article-block reveal" id="village">
+    <h2 class="article-h2">IV. ベルの村に隠された「6つの蹄鉄」</h2>
+    <p class="article-p">アトラクションを降りた後も、ベルの村には映画ファンを魅了する仕掛けが多数隠されています。「ラ・タベルヌ・ド・ガストン」では、彼の傲慢さと自己顕示欲を象徴する巨大な鹿の角の椅子や肖像画がゲストを迎えます。</p>
 
-            <div class="connection-card" style="border-color: #8C6239; background: rgba(140, 98, 57, 0.05);">
-                <h4>🍎 【Curator's Recommend】お気に入りの甘い誘惑</h4>
-                <p>ガストンの酒場やその周辺で販売されている**『ル・フウズ・チュロス（アップルキャラメル味）』**。サクサクの香ばしい生地から、甘酸っぱいリンゴのフルーティーな香りとキャラメルの上品な甘さがふわっと広がる、パークを訪れるたびに必ず買い求める一押しメニューです！待ち時間の小さなお供にぜひ味わってみてください。</p>
-            </div>
-
-            <p>さらに、地面の泥道（コンクリート）を注意深く見つめると、ディズニー映画に登場する「名馬たち」が残した、それぞれ形の異なる**「6つの蹄鉄（ひづめ）の足跡」**がリアルに刻まれています。これらを踏みしめながら、その先の冒険へ思いを馳せてみてください。</p>
-
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>刻まれた馬の名前</th>
-                        <th>登場作品</th>
-                        <th>蹄鉄のデザインとキャラクター背景</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>PHILIPPE</strong>（フィリップ）</td>
-                        <td>『美女と野獣』</td>
-                        <td>ベルとモーリスの愛馬。本エリアに最も馴染み深く、標準的で実用的な蹄鉄。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>ACHILLES</strong>（アキレス）</td>
-                        <td>『ノートルダムの鐘』</td>
-                        <td>白馬。軍馬らしく幅広で、非常に頑強かつ重厚な鋼鉄製。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>FROU-FROU</strong>（フルー・フルー）</td>
-                        <td>『おしゃれキャット』</td>
-                        <td>パリの街を走る馬。細身でスマートな美しい装飾が施された蹄鉄。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>KHAN</strong>（カーン）</td>
-                        <td>『ムーラン』</td>
-                        <td>戦場を翔けた黒馬。異国風の武骨で引き締まった機能美のある蹄鉄。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>HORACE</strong>（ホーレス）</td>
-                        <td>クラシック・ミッキー</td>
-                        <td>ミッキーの最初期からの友人。ややコミカルで丸みを帯びた形状。</td>
-                    </tr>
-                    <tr>
-                        <td><strong>ANGUS</strong>（アンガス）</td>
-                        <td>『メリダとおそろしの森』</td>
-                        <td>超大型の作業馬。他の馬を圧倒する桁違いの大きさを誇る。</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- V. 日本の所作と、最新イリュージョン技術 -->
-        <section class="article-block reveal" id="imagineering">
-            <h2>V. 「日本の美しい所作」が宿るアニマトロニクス</h2>
-            <p>アトラクション最大の見どころは、ウォルト・ディズニー・イマジニアリング（WDI）の最新技術によって作られたベルや野獣たちの「オーディオ・アニマトロニクス（動くロボット）」です。開発初期から東京向けに完全オリジナルとして設計された本施設では、ベルの滑らかな動きに、**日本人の持つ繊細な「所作や身のこなし」**（丁寧なお辞儀や、静かなうつむき方、気品あふれる手の動き）が細部まで取り入れられています。だからこそ、彼女の動きは私たち日本のゲストの目にも信じられないほど自然で、胸を打つようなリアリティを持って心に迫るのです。</p>
-        </section>
-
-        <!-- 4枚目：ボールルームのダンス -->
-        <div class="hero-img-container reveal">
-            <img src="bb-dance.jpeg" alt="Belle and the Beast Dancing" class="hero-img" draggable="false" oncontextmenu="return false;">
-        </div>
-
-        <section class="article-block reveal">
-            <p>そしてクライマックスの、瀕死の野獣が魔法の力によって人間に戻る復活の瞬間。プロジェクションマッピング、光学トリック、そして高度なロボット工学が寸分の狂いもなく完全に融合した、目の前で「本物の魔法」が起こる奇跡のイリュージョン。魔法が解け、二人が踊る広間のラストシーンは、私たち自身が魔法の目撃者となったことを確信させてくれます。</p>
-        </section>
-
-        <div class="insta-btn-wrapper reveal">
-            <a href="https://www.instagram.com/p/DX1XYFcGJi8/?igsh=MWhjMTRycXo0dWh3dg==" class="insta-link-btn" target="_blank">
-                View on Instagram (まほもの投稿) 📸
-            </a>
-        </div>
-
-        <div class="footer-link reveal">
-            <a href="index.html">← HOMEへ戻る</a>
-        </div>
+    <div class="column-box reveal">
+      <h4>🍎 【Curator's Recommend】お気に入りの甘い誘惑</h4>
+      <p>ガストンの酒場やその周辺で販売されている<strong>『ル・フウズ・チュロス（アップルキャラメル味）』</strong>。サクサクの香ばしい生地から、甘酸っぱいリンゴのフルーティーな香りとキャラメルの上品な甘さがふわっと広がる、パークを訪れるたびに必ず買い求める一押しメニューです！待ち時間の小さなお供にぜひ味わってみてください。</p>
     </div>
 
-    <script>
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-        reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        setTimeout(() => { reveals[0].classList.add('active'); }, 100);
-    </script>
-</body>
-</html>
+    <p class="article-p">さらに、地面の泥道（コンクリート）を注意深く見つめると、ディズニー映画に登場する「名馬たち」が残した、それぞれ形の異なる<strong>「6つの蹄鉄（ひづめ）の足跡」</strong>がリアルに刻まれています。これらを踏みしめながら、その先の冒険へ思いを馳せてみてください。</p>
+
+    <div class="data-table-wrap reveal">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>刻まれた馬の名前</th>
+            <th>登場作品</th>
+            <th>蹄鉄のデザインとキャラクター背景</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PHILIPPE</strong>（フィリップ）</td>
+            <td>『美女と野獣』</td>
+            <td>ベルとモーリスの愛馬。本エリアに最も馴染み深く、標準的で実用的な蹄鉄。</td>
+          </tr>
+          <tr>
+            <td><strong>ACHILLES</strong>（アキレス）</td>
+            <td>『ノートルダムの鐘』</td>
+            <td>白馬。軍馬らしく幅広で、非常に頑強かつ重厚な鋼鉄製。</td>
+          </tr>
+          <tr>
+            <td><strong>FROU-FROU</strong>（フルー・フルー）</td>
+            <td>『おしゃれキャット』</td>
+            <td>パリの街を走る馬。細身でスマートな美しい装飾が施された蹄鉄。</td>
+          </tr>
+          <tr>
+            <td><strong>KHAN</strong>（カーン）</td>
+            <td>『ムーラン』</td>
+            <td>戦場を翔けた黒馬。異国風の武骨で引き締まった機能美のある蹄鉄。</td>
+          </tr>
+          <tr>
+            <td><strong>HORACE</strong>（ホーレス）</td>
+            <td>クラシック・ミッキー</td>
+            <td>ミッキーの最初期からの友人。ややコミカルで丸みを帯びた形状。</td>
+          </tr>
+          <tr>
+            <td><strong>ANGUS</strong>（アンガス）</td>
+            <td>『メリダとおそろしの森』</td>
+            <td>超大型の作業馬。他の馬を圧倒する桁違いの大きさを誇る。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- V. 日本の所作と、最新イリュージョン技術 -->
+  <section class="article-block reveal" id="imagineering">
+    <h2 class="article-h2">V. 「日本の美しい所作」が宿るアニマトロニクス</h2>
+    <p class="article-p">アトラクション最大の見どころは、ウォルト・ディズニー・イマジニアリング（WDI）の最新技術によって作られたベルや野獣たちの「オーディオ・アニマトロニクス（動くロボット）」です。開発初期から東京向けに完全オリジナルとして設計された本施設では、ベルの滑らかな動きに、<strong>日本人の持つ繊細な「所作や身のこなし」</strong>（丁寧なお辞儀や、静かなうつむき方、気品あふれる手の動き）が細部まで取り入れられています。だからこそ、彼女の動きは私たち日本のゲストの目にも信じられないほど自然で、胸を打つようなリアリティを持って心に迫るのです。</p>
+  </section>
+
+  <!-- 4枚目：ボールルームのダンス -->
+  <div class="photo-frame reveal">
+    <img src="bb-dance.jpeg" alt="Belle and the Beast Dancing" width="800" height="450" decoding="async" loading="lazy">
+  </div>
+
+  <section class="article-block reveal">
+    <p class="article-p">そしてクライマックスの、瀕死の野獣が魔法の力によって人間に戻る復活の瞬間。プロジェクションマッピング、光学トリック、そして高度なロボット工学が寸分の狂いもなく完全に融合した、目の前で「本物の魔法」が起こる奇跡のイリュージョン。魔法が解け、二人が踊る広間のラストシーンは、私たち自身が魔法の目撃者となったことを確信させてくれます。</p>
+  </section>
+
+  <div class="action-btn-wrap reveal">
+    <a href="https://www.instagram.com/p/DX1XYFcGJi8/?igsh=MWhjMTRycXo0dWh3dg==" class="action-btn" target="_blank" rel="noopener noreferrer">
+      View on Instagram (まほもの投稿) 📸
+    </a>
+  </div>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEac
