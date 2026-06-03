@@ -169,7 +169,7 @@
 
     .masthead-title {
       font-family: var(--f-display);
-      font-size: clamp(2rem, 8vw, 3.4rem);
+      font-size: clamp(1.8rem, 7vw, 3.2rem);
       font-weight: 700;
       color: var(--ink);
       line-height: 1.1;
@@ -277,6 +277,16 @@
       content: ''; flex: 1; height: 1px;
       background: var(--border-strong);
     }
+
+    .article-h3 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin: 40px 0 16px;
+      border-left: 3px solid var(--bordeaux);
+      padding-left: 12px;
+    }
     
     .article-p {
       font-family: var(--f-jp);
@@ -292,6 +302,18 @@
       color: var(--ink);
     }
 
+    .blockquote {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-style: italic;
+      background: rgba(245,237,216,0.4);
+      padding: 20px 24px;
+      border-left: 3px solid var(--gold);
+      line-height: 2.1;
+      margin-bottom: 24px;
+      color: var(--ink-soft);
+    }
+
     /* ============================================================
        COLUMN CARD
     ============================================================ */
@@ -302,7 +324,7 @@
       padding: clamp(20px, 4vw, 28px);
       margin: 32px 0;
     }
-    .column-box h4 {
+    .column-box h3 {
       font-family: var(--f-jp);
       font-size: clamp(0.85rem, 2vw, 0.9rem);
       font-weight: 700;
@@ -317,6 +339,88 @@
       color: var(--ink-soft);
       line-height: 2;
       margin-bottom: 0;
+    }
+
+    /* ============================================================
+       DATA TABLE
+    ============================================================ */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 500px;
+      text-align: left;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px dashed var(--border);
+      font-family: var(--f-jp);
+      font-size: clamp(0.7rem, 2vw, 0.75rem);
+      line-height: 1.8;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table th {
+      font-family: var(--f-sc);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      background: rgba(245,237,216,0.5);
+      border-bottom: 1px solid var(--border-strong);
+      font-weight: 400;
+    }
+    .data-table td strong {
+      color: var(--ink);
+      font-family: var(--f-sc);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       RELATED LINK CARD
+    ============================================================ */
+    .related-link-card {
+      display: block;
+      text-decoration: none;
+      background: rgba(255,252,245,0.5);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      padding: clamp(16px, 3vw, 20px);
+      margin: 24px 0;
+      transition: all 0.25s;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .related-link-card:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .related-link-title {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 700;
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      color: var(--bordeaux);
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .related-link-desc {
+      display: block;
+      font-family: var(--f-jp);
+      font-weight: 300;
+      font-size: clamp(0.75rem, 2vw, 0.78rem);
+      color: var(--ink-soft);
+      line-height: 1.8;
+      transition: color 0.2s;
+    }
+    .related-link-card:hover .related-link-title,
+    .related-link-card:hover .related-link-desc {
+      color: var(--paper);
     }
 
     /* ============================================================
@@ -369,16 +473,16 @@
   </header>
 
   <!-- 目次 -->
-  <nav class="toc-wrap reveal" aria-label="目次">
+  <nav class="toc-wrap reveal" aria-label="セクション目次">
     <div class="toc-head">
       <span class="toc-head-title">Index</span>
     </div>
     <ul class="toc-list">
-      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 黄金に沸いた荒野の歴史（プロローグ）</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#collapse" class="toc-link"><span class="toc-text">II. 鉱山の崩壊と「無人列車の暴走」</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#tumbleweed" class="toc-link"><span class="toc-text">III. 水没したゴーストタウン（ウエスタンランドの謎）</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#imagineering" class="toc-link"><span class="toc-text">IV. 1898年製の本物：スチームトラクターの交渉劇</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#locomotives" class="toc-link"><span class="toc-text">V. 機観車たちに名付けられた「6つの決意」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 放置された鉱山と、消えた開拓者たち（プロローグ）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#collapse" class="toc-link"><span class="toc-text">II. 禁忌を犯したゴールドラッシュの末路（鉱山の崩壊）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#spirit-physics" class="toc-link"><span class="toc-text">III. 「山の怒り」を体現する地質学的・物理的演出</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#negotiation" class="toc-link"><span class="toc-text">IV. 1898年製の本物：スチームトラクターの交渉劇と生活の痕跡</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#locomotives" class="toc-link"><span class="toc-text">V. 暴走機関車たちに名付けられた「6つの決意」</span><span class="toc-action">Read →</span></a></li>
       <li><a href="#cactus" class="toc-link"><span class="toc-text">VI. 数十年に一度だけ咲き、枯れる「幻の花」</span><span class="toc-action">Read →</span></a></li>
     </ul>
   </nav>
@@ -387,57 +491,87 @@
     <img src="btm-exterior.jpeg" alt="Big Thunder Mountain View" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
   </div>
 
-  <!-- I. プロローグ -->
+  <!-- I. 放置された鉱山と、消えた開拓者たち -->
   <section class="article-block reveal" id="prologue">
-    <h2 class="article-h2">I. 黄金に沸いた荒野</h2>
-    <p class="article-p">1800年代後半、アメリカ西部のゴールドラッシュ時代。未開の荒野に異様な姿でそびえ立つ赤土の岩山「ビッグサンダー・マウンテン」。一見、ただの荒涼とした廃鉱を猛スピードで駆け抜けるスリリングなコースターに見えますが、その背景には、かつて黄金に目を眩まされた白人たちの強欲と、山に宿る「精霊の怒り」の物語が隠されています。</p>
-    <p class="article-p">この山の周辺には、古くからその土地を神聖な神の領域として崇めるネイティブ・アメリカンが暮らしていました。彼らはこの山を「ビッグサンダー（偉大なる雷）」と呼び、「山には恐ろしい精霊（怪鳥サンダーバード）が住んでおり、山の金塊を荒らす者には恐ろしい災いが降りかかる」と警告し、決して足を踏み入れませんでした。</p>
-    <p class="article-p">しかし1849年、この山から純度の高い金塊が発見されると事態は一変します。一獲千金を狙う白人の採掘者たちが大挙して押し寄せ、ゴールドラッシュの波に乗って山を丸ごと買い取り、大規模な採掘会社「ビッグサンダー・マイニング・カンパニー」を設立した大富豪、セドナ・ローウェル社長によって、山肌は容赦なく削られ、最新鋭の蒸気機関が導入されていきました。</p>
+    <h2 class="article-h2">I. 放置された鉱山と、消えた開拓者たち</h2>
+    <p class="article-p">ウエスタンランドの最奥に足を踏み入れると、アドベンチャーランドの瑞々しい密林や、クリッターカントリーの温かな森の気配は消え失せ、乾いた風と赤茶けた孤立丘（ビュート）が支配する荒涼たる景色が目の前に広がります。そこには、かつてアメリカ西部開拓時代に一攫千金を夢見た男たちが築いた、ビッグサンダー・マイニング・カンパニー（ビッグサンダー鉱山会社）の残骸が、まるで巨大な墓標のように佇んでいます。</p>
+    <p class="article-p">1848年、カリフォルニアのサッターズミルで金が発見されたことに端を発するゴールドラッシュ。人々は狂熱に浮かされ、未開の荒野へとなだれ込みました。このビッグサンダー・マウンテンもまた、莫大な金を内包する「約束の地」として、最新の蒸気機関や掘削技術、ダイナマイトを携えた開拓者たちによって瞬く間に乱開発の渦へと巻き込まれていくことになります。</p>
+    <p class="article-p">しかし、現在の鉱山は静寂に包まれています。かつて数百人の鉱夫（マイナー）たちが汗を流し、歓声を上げ、あるいは欲望をぶつけ合った炭鉱施設には、ただ砂塵が舞うのみ。彼らはある日を境に、忽然と姿を消してしまったのです。</p>
+    <p class="article-p">いま、この放置された廃坑で起きているのは、この世のものとは思えない奇妙な現象にほかなりません。無人のはずの鉱山列車（マイントレイン）が、突如として蒸気機関を轟かせ、凄まじい速度で岩肌を暴走し続けているのです。</p>
+    <p class="article-p">それらの列車には、かつての開発者たちの不敵なユーモア、あるいは自らを鼓舞するための言葉が皮肉にも刻まれています。これらは暴走する列車に乗り込むゲストに向けられたメッセージであると同時に、自然の力を侮り、科学の力を信じ切っていた当時の「人間の熱狂」そのものを表しています。</p>
+
+    <div class="column-box reveal">
+      <h3>❖ Curator's Note：岩山を走る列車の車体名</h3>
+      <p>次にウエスタンランドを訪れた際は、ぜひ離れた位置から岩山を走るマイントレイン（列車）に注目してみてください。時折、先頭車両の側面に小さく刻まれた「U.B. Bold」や「I.M. Brave」などの車体名を確認することができます。これらは、アトラクションをより細部まで観察して楽しむための、イマジニアによるこだわりのディテールです。</p>
+    </div>
   </section>
 
-  <!-- II. 鉱山の崩壊 -->
+  <!-- II. 禁忌を犯したゴールドラッシュの末路 -->
   <section class="article-block reveal" id="collapse">
-    <h2 class="article-h2">II. 崩壊と「無人の暴走」</h2>
-    <p class="article-p">セドナ社長の乱開発によってふもとには鉱山都市「タンブルウィード」が形成され、掘り出した金塊を運ぶための鉱山列車（マイントレイン）の線路が山全体に張り巡らされました。しかし、人間の強欲な略奪がピークに達したとき、ついにネイティブ・アメリカンの警告が現実となります。</p>
-    <p class="article-p">採掘が山の奥深くに及ぶにつれ、誰もいない坑道から不気味な地鳴りが響き、不可解な事故が相次ぐようになります。そして1880年代のある日、不気味な雷鳴とともに凄まじい大地震が山とタンブルウィードの街を襲い、多くの鉱夫が生き埋めになりました。精霊の怒りに恐怖した人々は、一瞬にして道具を捨てて山から逃げ出し、街はゴーストタウンと化したのです。</p>
-    <p class="article-p">しかし、物語はここで終わりません。無人となった数年後、誰もいないはずの山から、突然「シュッシュッ、ポッポッ」という蒸気機関の音が聞こえ始めました。なんと、機関士も誰も乗っていないはずの鉱山列車が、まるで山に宿る精霊に操られるかのように、凄まじいスピードで今もなお山中を暴走し続けているのです。現在のゲストは、この「呪われた無人の暴走列車」にスリルを求めて乗り込む、命知らずな冒険家なのです。</p>
+    <h2 class="article-h2">II. 禁忌を犯したゴールドラッシュの末路（鉱山の崩壊）</h2>
+    <p class="article-p">なぜ、この鉱山は無人となったのか。その背景には、人間の傲慢さと、大自然の精霊が持つ畏るべき力との衝突という、深く重い歴史が横たわっています。</p>
+    <p class="article-p">この赤茶けた岩山は、もともとこの地に暮らしていた先住民（ネイティブ・アメリカン）にとって、大自然の強力な精霊「ビッグサンダー（偉大なる雷神）」が宿る、決して足を踏み入れてはならない神聖な地でした。彼らは、山を削り、傷つける者には恐ろしい祟り（天罰）が下ると、開拓者たちに繰り返し警告を発していたのです。</p>
+    <p class="article-p">しかし、金という悪魔的な魔力に目が眩んだビッグサンダー・マイニング・カンパニーの役員や投資家たちは、その警告を「未開の迷信」として冷笑し、切り捨てました。ダイナマイトが静寂を爆破し、スチームトラクターが聖なる大地を蹂躙し、巨大な削岩機が山の骨組みを容赦なく削り取っていきました。科学技術の勝利と、果てしない富の獲得。人々がその黄金の頂点に達したかに思えたその時、精霊の怒りは爆発したのです。</p>
+    <p class="article-p">突如として襲いかかった未曾有の大地震、次々と崩落する鉱坑、地下深くから噴き出す水。機械は破壊され、掘り進めた坑道は一瞬にして闇に葬り去られました。超自然的な脅威を前にして、ようやく自らの愚かさと禁忌の重さを知った人々は、すべてを投げ出し、着の身着のままこの山から逃げ散ったのです。</p>
+    <p class="article-p">そうして残されたのが、今私たちが目にする水没したゴーストタウン「タンブルウィード」であり、主を失ったまま動き続ける「暴走列車」の正体です。精霊は人間を追い払った後も、彼らが持ち込んだ近代技術の象徴である列車を、まるで自然の怒りを永劫に誇示するかのように、いまなお狂暴に走らせ続けているのです。</p>
+
+    <div class="column-box reveal">
+      <h3>❖ Curator's Note：駅舎内に残された炭鉱地図</h3>
+      <p>アトラクションの乗車エリア手前にある駅舎内のオフィス（事務所）には、机の上の調度品や壁に掛けられた「古びた炭鉱地図」が置かれています。そこには、崩壊事故が起きる直前まで人間がどれほど山の奥深くまで採掘を進めていたかを示す、緻密な計画のプロットが残されています。</p>
+    </div>
   </section>
 
-  <!-- III. ゴーストタウン -->
-  <section class="article-block reveal" id="tumbleweed">
-    <h2 class="article-h2">III. 水没したタンブルウィードの残骸</h2>
-    <p class="article-p">ビッグサンダー・マウンテンのBGSは、アトラクションの外にまで地続きに繋がっています。アトラクションの周囲や、蒸気船マークトウェイン号、ウエスタンランド鉄道に乗って金鉱の裏側に回ると、<strong>水に浸かって半分沈んでしまった家屋や、誰もいない寂れた建物</strong>が見えます。</p>
-    <p class="article-p">これこそが、大地震と洪水によって一夜にして水没し、滅び去ったゴーストタウン「タンブルウィード」の現在の姿です。また、アトラクションの待ち列（Qライン）の途中には、ビッグサンダー・マイニング・カンパニーの事務所跡があり、かつて使われていた採掘の計画図や、セドナ社長の私物、ゴールドラッシュ当時の古い書類などが生々しく残されており、数分前まで誰かがそこで働いていたかのような臨場感を漂わせています。</p>
+  <!-- III. 「大自然の精霊」とイマジニアリングの物理的演出 -->
+  <section class="article-block reveal" id="spirit-physics">
+    <h2 class="article-h2">III. 「大自然の精霊」とイマジニアリングの物理的演出</h2>
+    <p class="article-p">ウォルト・ディズニー・イマジニアリング（WDI）のクリエイターたちは、この「大自然の精霊（超自然的な力）」という抽象的なテーマを、目に見えるファンタジックな魔法やキャラクターとして安易に描写することはありませんでした。彼らが用いたのは、極めて「地質学的」かつ「物理的」な演出アプローチです。</p>
+    <p class="article-p">ゲストを乗せた列車が、最初の巻き上げ（第1のリフトヒル）に差し掛かる時、暗闇の中で無数のコウモリが羽ばたく音を聞き、不気味に明滅する燐光を放つ鉱石を目にします。これは、地中深くの未知なる領域、すなわち精霊の懐へと侵入していくことへの視覚的・聴覚的な警告です。</p>
+    <p class="article-p">さらに、第2、第3のリフトヒルにおいて、轟音と共に岩肌が揺れ動き、蒸気や水が噴き出す演出は、人間の「視覚、聴覚、重力（物理的Gフォース）」に直接訴えかけます。イマジニアリングの妙技は、精霊そのものの実体を描くことなく、引き起こされる地殻変動や物理現象を通じて、「目に見えない巨大な意志（山の怒り）」をリアルに体感させることにあります。開発を指揮した伝説的イマジニア、トニー・バクスターをはじめとするスタッフ陣の「引き算の美学」がここに息づいているのです。</p>
+    <p class="article-p">また、この山の「もう一つの日常」を描く演出として、隣接するウエスタンリバー鉄道の車窓からのみ確認できる光景が存在します。鉱山が放棄された後もなお、この山の麓に住み着き、愛犬と共にのんびりと隠居生活を送る風変わりな老人「セドナ・サム」の姿です。彼は、自然の富を強欲に貪ろうとした探鉱者たちとは異なり、山の怒りに触れることなく、静かに自然と共生しています。この対比こそが、イマジニアたちが物語に持たせた多層的な奥行きと言えるでしょう。</p>
+
+    <div class="column-box reveal">
+      <h3>❖ Curator's Note：風の音と演出の連動</h3>
+      <p>次回、列車が最高到達点に達し、一気に荒野へと降下していく瞬間、全身を叩く風の音に耳を澄ませてみてください。この激しい風の音響効果と疾走感の連動により、アトラクションのスピード感と、荒野の大自然の厳しさがリアルに表現されています。</p>
+    </div>
   </section>
 
-  <!-- IV. 本物のスチームトラクターの物語 -->
-  <section class="article-block reveal" id="imagineering">
-    <h2 class="article-h2">IV. 1898年製の本物：スチームトラクターの交渉劇</h2>
+  <!-- IV. 1898年製の本物：スチームトラクターの交渉劇 -->
+  <section class="article-block reveal" id="negotiation">
+    <h2 class="article-h2">IV. 1898年製の本物：スチームトラクターの交渉劇と生活の痕跡</h2>
     <p class="article-p">ディズニーの空間デザイナー「イマジニア」たちは、この広大なゴールドラッシュの舞台を100%本物にするため、驚異的な執念を注ぎ込みました。エントランスの左側に置かれている、アンティークな赤と緑の車体を持つ重厚な<strong>「スチームトラクター（蒸気トラクター）」</strong>。多くの人は精巧に作られたレプリカだと思って通り過ぎますが、実はこれ、<strong>1898年（今から120年以上前）にアメリカで製造され、実際に鉱山で食料や物資を運んでいた「本物のトラクター」</strong>なのです。現在、世界に数台しか残っていない極めて貴重な歴史的遺物です。</p>
     
     <div class="column-box reveal">
       <h4>💡 ウォルトの執念と、奥さんの大激怒による奇跡の交渉</h4>
-      <p>なぜこのような世界的なお宝が, 東京ディズニーランドにあるのでしょうか。そこにはイマジニアとウォルト・ディズニーの並外れた執念が隠されています。<br><br>
+      <p>なぜこのような世界的なお宝が、東京ディズニーランドにあるのでしょうか。そこにはイマジニアとウォルト・ディズニーの並外れた執念が隠されています。<br><br>
          このトラクターは、もともとアメリカのディズニーランド建設時、ウォルト・ディズニーが目をつけ「売ってくれ」と頼み込みましたが、頑なに拒否されてしまいます。その後、1971年のフロリダ建設時や、他の映画撮影チームが頼んだ時も、頑固な農場主はすべて拒否し続けました。<br><br>
          しかし1980年代、東京ディズニーランドの建設に向けてイマジニアが再び交渉に向かった際、隣で話を聞いていた<strong>農場主の奥さんが大激怒</strong>したのです。<br>
          「いい加減にして！30年間うちで一度も使っていないこのポンコツを売り飛ばして、そのお金で私をどこか旅行に連れて行ってよ！」と。<br>
          奥さんの一喝にシュンとなった農場主はついに首を縦に振り、ディズニーは悲願を達成し、トラクターを日本へ運ぶことができました。この「意味のないほど本物にこだわる」イマジニアの情熱こそが、Qラインに本物の息吹を与えています。</p>
+    </div>
+
+    <p class="article-p">さらに、ビッグサンダー・マウンテンのQライン（待ち列）は、単に順番を待つための通路ではなく、19世紀末の空気感をそのまま保存したオープンエア・ミュージアムとしての顔も持っています。削岩用のドリル、火薬を保管していた木箱、鉱山事務所の散らかった机、煤けたランタンなど、無数の生活の断片が視界に入ります。これらは単なるデコレーションではなく、ある日突然、精霊の怒りによって日常を奪われた男たちの「生活の臭い」をそのまま留めているのです。</p>
+    <p class="article-p">数時間前まで、そこには男たちの高笑いや、泥にまみれた夢が確かに存在していた――そう思わせるほどのディテールの集積が、このエリアを本物の遺跡たらしめています。かつて金の輝きに目を奪われ、そして夢破れて去っていった無名の開拓者たち。彼らが残した錆びついた道具の数々は、富を追い求めた人間の哀愁と、それらを飲み込んで風化させていく大自然の悠久さを、私たちに無言で伝えているのです。</p>
+
+    <div class="column-box reveal">
+      <h3>❖ Curator's Note：Qラインに遺された足元のディテール</h3>
+      <p>アトラクションの出口付近の通路脇には、当時使われていたとされる工具箱や、錆びついた機械のプレートなどが放置されています。これら細かな文字や記号を観察してみるのも、Qラインの緻密な作り込みを楽しむ贅沢な方法の一つです。</p>
     </div>
   </section>
 
   <!-- V. 6台の列車 -->
   <section class="article-block reveal" id="locomotives">
     <h2 class="article-h2">V. 暴走機関車たちに名付けられた「6つの決意」</h2>
-    <p class="article-p">ゲストが乗り込む6台 of 鉱山列車には、それぞれゴールドラッシュや西部の荒野をユーモラスに表現した、異なる名前がつけられています。これらは、これから暴走列車に挑むゲストを鼓舞する（あるいはちょっと皮肉った）イマジニアの遊び心が隠されたネーミングです。</p>
+    <p class="article-p">ゲストが乗り込む6台の鉱山列車には、それぞれゴールドラッシュや西部の荒野をユーモラスに表現した、異なる名前がつけられています。これらは、これから暴走列車に挑むゲストを鼓舞する（あるいはちょっと皮肉った）イマジニアの遊び心が隠されたネーミングです。</p>
     
     <div class="column-box reveal">
-      <h4>🚂 機観車たちの名前と意味</h4>
+      <h4>🚂 機関車たちの名前と意味</h4>
       <p><strong>・I.B. Hearty</strong>（I be hearty：私は元気だ / 頑丈な心臓）<br>
-         <strong>・U.B. Bold</strong>（You be bold：大胆にいこう）<br>
+         <strong>・U.B. Bold</strong>（You be bold：大胆にいこう / 勇敢であれ）<br>
          <strong>・U.R. Courageous</strong>（You are courageous：お前は勇敢だ）<br>
          <strong>・C.W. Brave</strong>（See who's brave：誰が勇敢か見てみろ）<br>
          <strong>・B.V. Brave</strong>（Be very brave：非常に勇敢であれ）<br>
-         <strong>・I.M. Brave</strong>（I am brave：私は勇敢だ）</p>
+         <strong>・I.M. Brave</strong>（I am brave：私は勇敢だ）<br><br>
+         ※他にも、西部の開拓スピリットを表現する<strong>「U.R. Daring（大胆であれ）」</strong>や<strong>「I.M. Fearless（私は恐れ知らずだ）」</strong>といった不敵なユーモアを秘めた車体名も、この荒野を走るマイントレインの歴史に深く刻まれています。</p>
     </div>
 
     <p class="article-p">この名前に恥じぬ「勇気」を持って、赤土の岩山を暴走するマイントレインへと足を踏み入れてください。精霊は、今もあなたの心の中にある「強欲」を試しているかもしれません。</p>
@@ -449,7 +583,7 @@
 
     <div class="column-box reveal">
       <h4>🌵 アオノリュウゼツランの奇跡のサイクル</h4>
-      <p>ビッグサンダー・マウンテンの周囲に植えられているサボテンや植物は、すべて「本物」です。ウエスタンリバー鉄道に乗って山の裏側に差しかかった際、左手の崖に見える<strong>「アオノリュウゼツラン」</strong>という植物は、日本ではなんと<strong>30〜50年に一度（1世紀に一度とも言われ、英名はセンチュリー・プラント）しか花を咲かせない奇跡の植物</strong>です。<br><br>
+      <p>ビッグサンダー・マウンテン of 周囲に植えられているサボテンや植物は、すべて「本物」です。ウエスタンリバー鉄道に乗って山の裏側に差しかかった際、左手の崖に見える<strong>「アオノリュウゼツラン」</strong>という植物は、日本ではなんと<strong>30〜50年に一度（1世紀に一度とも言われ、英名はセンチュリー・プラント）しか花を咲かせない奇跡の植物</strong>です。<br><br>
          開花期になると、高さ10メートルほどのアスパラガスのような巨大な花茎を一気に伸ばし、黄色い美しい花を咲かせ、<strong>花が咲き終わると自らの全てのエネルギーを使い果たしてパタッと倒れて枯死（枯れてしまう）</strong>してしまいます。2024年の夏、パーク内でこのリュウゼツランが開花した際は、全国ニュース（TBS「ゴゴスマ」など）で中継されるほどの大騒ぎとなりました。この奇跡の花を見られたら、あなたの人生にも最大の幸運が訪れるかもしれません。</p>
     </div>
   </section>
