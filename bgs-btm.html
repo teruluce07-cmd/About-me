@@ -1,247 +1,489 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGS Deep Report: Big Thunder Mountain | teru_luce_</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif+JP:wght@200;300;400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
-    <style>
-        /* --- 昼夜（赤土の古紙・雷撃とゴールドラッシュの闇）カラー設定 --- */
-        :root {
-            --bg-color: #D3B99F; 
-            --text-main: #331A0F; 
-            --accent-gold: #B25329; 
-            --border-light: rgba(178, 83, 41, 0.2);
-            --img-filter: brightness(0.95) contrast(1.05) sepia(20%);
-            --glow-color: rgba(178, 83, 41, 0.25);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='strong-paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='6' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23f9ede0' surfaceScale='5.5'%3E%3CfeDistantLight azimuth='50' elevation='45'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23strong-paper)'/%3E%3C/svg%3E");
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGS Deep Report: Big Thunder Mountain | teru_luce_</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
 
-        body.curse-mode {
-            --bg-color: #0D0B09; 
-            --text-main: #E2E8F0; 
-            --accent-gold: #FFA500; 
-            --border-light: rgba(255, 165, 0, 0.25);
-            --img-filter: brightness(0.7) contrast(1.3) saturate(1.2);
-            --glow-color: rgba(255, 165, 0, 0.45);
-            --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='burnt'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.018' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%232b1e10' surfaceScale='2.5'%3E%3CfeDistantLight azimuth='45' elevation='40'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23burnt)'/%3E%3C/svg%3E");
-        }
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
 
-        html { scroll-behavior: smooth; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
 
-        body {
-            font-family: 'Noto Serif JP', serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.2) 100%), var(--paper-texture);
-            background-size: cover; background-attachment: fixed;
-            color: var(--text-main); line-height: 2.2; overflow-x: hidden;
-            transition: background-color 0.8s ease, color 0.8s ease; -webkit-font-smoothing: antialiased;
-        }
+      /* 記事用コンテンツ幅 */
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* --- 背景を固定して軽くする仕様 --- */
-        .paper-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background-image: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.2) 100%), var(--paper-texture);
-            background-size: cover;
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
-            pointer-events: none;
-        }
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-        .container { 
-            position: relative; z-index: 10;
-            max-width: 600px; margin: 0 auto; padding: 60px 25px 120px; 
-            background: rgba(245, 237, 222, 0.45); border-radius: 8px; box-shadow: inset 0 0 40px rgba(0,0,0,0.03); transition: background 0.8s ease;
-        }
-        body.curse-mode .container { background: rgba(15, 12, 10, 0.45); box-shadow: inset 0 0 40px rgba(255,165,0,0.02); }
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
-        .reveal {
-            opacity: 0; 
-            transform: translate3d(0, 30px, 0);
-            will-change: transform, opacity;
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .reveal.active {
-            opacity: 1; 
-            transform: translate3d(0, 0, 0);
-        }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-        .back-btn {
-            display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em;
-            color: var(--accent-gold); text-decoration: none; text-transform: uppercase; margin-bottom: 40px;
-            border-bottom: 1px solid transparent; transition: color 0.3s;
-        }
-        .back-btn:hover { border-color: var(--accent-gold); }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
 
-        .theme-switch {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; border-radius: 50%;
-            background-color: var(--accent-gold); color: var(--bg-color); display: flex; justify-content: center; align-items: center;
-            font-size: 1.5rem; cursor: pointer; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease;
-        }
-        .theme-switch:hover { transform: scale(1.1); }
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
 
-        .header-section { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 40px; }
-        .bgs-tag { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 0.3em; color: var(--accent-gold); text-transform: uppercase; }
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; margin: 10px 0 20px; letter-spacing: 0.05em; }
-        .subtitle-jp { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.1em; opacity: 0.9; }
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
 
-        /* 目次 */
-        .toc-box { background: rgba(0, 0, 0, 0.02); border: 1px solid var(--border-light); padding: 30px; border-radius: 4px; margin-bottom: 60px; }
-        .toc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--accent-gold); text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
-        .toc-list { list-style: none; padding: 0; }
-        .toc-list li { border-bottom: 1px dashed var(--border-light); padding: 10px 0; display: flex; justify-content: space-between; font-size: 0.8rem; }
-        .toc-list a { color: var(--text-main); text-decoration: none; transition: color 0.3s; opacity: 0.8; }
-        .toc-list a:hover { color: var(--accent-gold); }
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
 
-        /* 本文セクション */
-        .article-block { margin-bottom: 70px; text-align: justify; }
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; font-style: italic; color: var(--accent-gold); margin-bottom: 25px; display: flex; align-items: center; }
-        h2::after { content: ""; flex: 1; height: 1px; background: var(--border-light); margin-left: 15px; }
-        p { font-size: 0.9rem; font-weight: 300; margin-bottom: 20px; opacity: 0.9; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
 
-        .hero-img-container { margin: 40px 0; border-radius: 4px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .hero-img { width: 100%; height: auto; display: block; filter: var(--img-filter); transition: transform 2s ease, filter 0.8s ease; }
-        .hero-img-container:hover .hero-img { transform: scale(1.03); }
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
 
-        .connection-card { background: rgba(178, 83, 41, 0.05); border: 1px solid var(--accent-gold); padding: 25px; border-radius: 4px; margin: 30px 0; }
-        body.curse-mode .connection-card { background: rgba(255, 165, 0, 0.03); }
-        .connection-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 15px; text-transform: uppercase; }
-        .connection-card p { font-size: 0.85rem; line-height: 2; margin-bottom: 0; }
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
 
-        .footer-link { text-align: center; margin-top: 80px; }
-        .footer-link a { color: var(--text-main); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; letter-spacing: 0.1em; border-bottom: 1px solid var(--border-light); padding-bottom: 5px; }
-    </style>
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 8vw, 3.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ============================================================
+       COLUMN CARD
+    ============================================================ */
+    .column-box {
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4);
+      padding: clamp(20px, 4vw, 28px);
+      margin: 32px 0;
+    }
+    .column-box h4 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .column-box p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
 </head>
 <body>
 
-    <div class="noise-overlay"></div>
-    <div class="paper-bg"></div>
-    <div class="theme-switch" id="theme-switch">🌙</div>
+<div class="site-wrap">
+<div class="content-box">
 
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back to Portal</a>
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
 
-        <header class="header-section reveal">
-            <div class="bgs-tag">Background Story</div>
-            <h1>Big Thunder Mountain</h1>
-            <div class="subtitle-jp">警告を破りし蒸気の咆哮と、黄金の呪い</div>
-        </header>
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Background Story</span>
+    <h1 class="masthead-title">Big Thunder Mountain</h1>
+    <span class="masthead-subtitle">警告を破りし蒸気の咆哮と、黄金の呪い</span>
+  </header>
 
-        <!-- 目次 -->
-        <nav class="toc-box reveal">
-            <div class="toc-title">Index</div>
-            <ul class="toc-list">
-                <li><span>I. 黄金に沸いた荒野の歴史（プロローグ）</span><a href="#prologue">Read →</a></li>
-                <li><span>II. 鉱山の崩壊と「無人列車の暴走」</span><a href="#collapse">Read →</a></li>
-                <li><span>III. 水没したゴーストタウン（ウエスタンランドの謎）</span><a href="#tumbleweed">Read →</a></li>
-                <li><span>IV. 1898年製の本物：スチームトラクターの交渉劇</span><a href="#imagineering">Read →</a></li>
-                <li><span>V. 機観車たちに名付けられた「6つの決意」</span><a href="#locomotives">Read →</a></li>
-                <li><span>VI. 数十年に一度だけ咲き、枯れる「幻の花」</span><a href="#cactus">Read →</a></li>
-            </ul>
-        </nav>
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Index</span>
+    </div>
+    <ul class="toc-list">
+      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 黄金に沸いた荒野の歴史（プロローグ）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#collapse" class="toc-link"><span class="toc-text">II. 鉱山の崩壊と「無人列車の暴走」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#tumbleweed" class="toc-link"><span class="toc-text">III. 水没したゴーストタウン（ウエスタンランドの謎）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#imagineering" class="toc-link"><span class="toc-text">IV. 1898年製の本物：スチームトラクターの交渉劇</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#locomotives" class="toc-link"><span class="toc-text">V. 機観車たちに名付けられた「6つの決意」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#cactus" class="toc-link"><span class="toc-text">VI. 数十年に一度だけ咲き、枯れる「幻の花」</span><span class="toc-action">Read →</span></a></li>
+    </ul>
+  </nav>
 
-        <!-- メインビジュアル -->
-        <div class="hero-img-container reveal">
-            <img src="btm-exterior.jpeg" alt="Big Thunder Mountain View" class="hero-img">
-        </div>
+  <div class="photo-frame reveal">
+    <img src="btm-exterior.jpeg" alt="Big Thunder Mountain View" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+  </div>
 
-        <!-- I. プロローグ -->
-        <section class="article-block reveal" id="prologue">
-            <h2>I. 黄金に沸いた荒野</h2>
-            <p>1800年代後半、アメリカ西部のゴールドラッシュ時代。未開の荒野に異様な姿でそびえ立つ赤土の岩山「ビッグサンダー・マウンテン」。一見、ただの荒涼とした廃鉱を猛スピードで駆け抜けるスリリングなコースターに見えますが、その背景には、かつて黄金に目を眩まされた白人たちの強欲と、山に宿る「精霊の怒り」の物語が隠されています。</p>
-            <p>この山の周辺には、古くからその土地を神聖な神の領域として崇めるネイティブ・アメリカンが暮らしていました。彼らはこの山を「ビッグサンダー（偉大なる雷）」と呼び、「山には恐ろしい精霊（怪鳥サンダーバード）が住んでおり、山の金塊を荒らす者には恐ろしい災いが降りかかる」と警告し、決して足を踏み入れませんでした。</p>
-            <p>しかし1849年、この山から純度の高い金塊が発見されると事態は一変します。一獲千金を狙う白人の採掘者たちが大挙して押し寄せ、ゴールドラッシュの波に乗って山を丸ごと買い取り、大規模な採掘会社「ビッグサンダー・マイニング・カンパニー」を設立した大富豪、セドナ・ローウェル社長によって、山肌は容赦なく削られ、最新鋭の蒸気機関が導入されていきました。</p>
-        </section>
+  <!-- I. プロローグ -->
+  <section class="article-block reveal" id="prologue">
+    <h2 class="article-h2">I. 黄金に沸いた荒野</h2>
+    <p class="article-p">1800年代後半、アメリカ西部のゴールドラッシュ時代。未開の荒野に異様な姿でそびえ立つ赤土の岩山「ビッグサンダー・マウンテン」。一見、ただの荒涼とした廃鉱を猛スピードで駆け抜けるスリリングなコースターに見えますが、その背景には、かつて黄金に目を眩まされた白人たちの強欲と、山に宿る「精霊の怒り」の物語が隠されています。</p>
+    <p class="article-p">この山の周辺には、古くからその土地を神聖な神の領域として崇めるネイティブ・アメリカンが暮らしていました。彼らはこの山を「ビッグサンダー（偉大なる雷）」と呼び、「山には恐ろしい精霊（怪鳥サンダーバード）が住んでおり、山の金塊を荒らす者には恐ろしい災いが降りかかる」と警告し、決して足を踏み入れませんでした。</p>
+    <p class="article-p">しかし1849年、この山から純度の高い金塊が発見されると事態は一変します。一獲千金を狙う白人の採掘者たちが大挙して押し寄せ、ゴールドラッシュの波に乗って山を丸ごと買い取り、大規模な採掘会社「ビッグサンダー・マイニング・カンパニー」を設立した大富豪、セドナ・ローウェル社長によって、山肌は容赦なく削られ、最新鋭の蒸気機関が導入されていきました。</p>
+  </section>
 
-        <!-- II. 鉱山の崩壊 -->
-        <section class="article-block reveal" id="collapse">
-            <h2>II. 崩壊と「無人の暴走」</h2>
-            <p>セドナ社長の乱開発によってふもとには鉱山都市「タンブルウィード」が形成され、掘り出した金塊を運ぶための鉱山列車（マイントレイン）の線路が山全体に張り巡らされました。しかし、人間の強欲な略奪がピークに達したとき、ついにネイティブ・アメリカンの警告が現実となります。</p>
-            <p>採掘が山の奥深くに及ぶにつれ、誰もいない坑道から不気味な地鳴りが響き、不可解な事故が相次ぐようになります。そして1880年代のある日、不気味な雷鳴とともに凄まじい大地震が山とタンブルウィードの街を襲い、多くの鉱夫が生き埋めになりました。精霊の怒りに恐怖した人々は、一瞬にして道具を捨てて山から逃げ出し、街はゴーストタウンと化したのです。</p>
-            <p>しかし、物語はここで終わりません。無人となった数年後、誰もいないはずの山から、突然「シュッシュッ、ポッポッ」という蒸気機関の音が聞こえ始めました。なんと、機関士も誰も乗っていないはずの鉱山列車が、まるで山に宿る精霊に操られるかのように、凄まじいスピードで今もなお山中を暴走し続けているのです。現在のゲストは、この「呪われた無人の暴走列車」にスリルを求めて乗り込む、命知らずな冒険家なのです。</p>
-        </section>
+  <!-- II. 鉱山の崩壊 -->
+  <section class="article-block reveal" id="collapse">
+    <h2 class="article-h2">II. 崩壊と「無人の暴走」</h2>
+    <p class="article-p">セドナ社長の乱開発によってふもとには鉱山都市「タンブルウィード」が形成され、掘り出した金塊を運ぶための鉱山列車（マイントレイン）の線路が山全体に張り巡らされました。しかし、人間の強欲な略奪がピークに達したとき、ついにネイティブ・アメリカンの警告が現実となります。</p>
+    <p class="article-p">採掘が山の奥深くに及ぶにつれ、誰もいない坑道から不気味な地鳴りが響き、不可解な事故が相次ぐようになります。そして1880年代のある日、不気味な雷鳴とともに凄まじい大地震が山とタンブルウィードの街を襲い、多くの鉱夫が生き埋めになりました。精霊の怒りに恐怖した人々は、一瞬にして道具を捨てて山から逃げ出し、街はゴーストタウンと化したのです。</p>
+    <p class="article-p">しかし、物語はここで終わりません。無人となった数年後、誰もいないはずの山から、突然「シュッシュッ、ポッポッ」という蒸気機関の音が聞こえ始めました。なんと、機関士も誰も乗っていないはずの鉱山列車が、まるで山に宿る精霊に操られるかのように、凄まじいスピードで今もなお山中を暴走し続けているのです。現在のゲストは、この「呪われた無人の暴走列車」にスリルを求めて乗り込む、命知らずな冒険家なのです。</p>
+  </section>
 
-        <!-- III. ゴーストタウン -->
-        <section class="article-block reveal" id="tumbleweed">
-            <h2>III. 水没したタンブルウィードの残骸</h2>
-            <p>ビッグサンダー・マウンテンのBGSは、アトラクションの外にまで地続きに繋がっています。アトラクションの周囲や、蒸気船マークトウェイン号、ウエスタンランド鉄道に乗って金鉱の裏側に回ると、**水に浸かって半分沈んでしまった家屋や、誰もいない寂れた建物**が見えます。</p>
-            <p>これこそが、大地震と洪水によって一夜にして水没し、滅び去ったゴーストタウン「タンブルウィード」の現在の姿です。また、アトラクションの待ち列（Qライン）の途中には、ビッグサンダー・マイニング・カンパニーの事務所跡があり、かつて使われていた採掘の計画図や、セドナ社長の私物、ゴールドラッシュ当時の古い書類などが生々しく残されており、数分前まで誰かがそこで働いていたかのような臨場感を漂わせています。</p>
-        </section>
+  <!-- III. ゴーストタウン -->
+  <section class="article-block reveal" id="tumbleweed">
+    <h2 class="article-h2">III. 水没したタンブルウィードの残骸</h2>
+    <p class="article-p">ビッグサンダー・マウンテンのBGSは、アトラクションの外にまで地続きに繋がっています。アトラクションの周囲や、蒸気船マークトウェイン号、ウエスタンランド鉄道に乗って金鉱の裏側に回ると、<strong>水に浸かって半分沈んでしまった家屋や、誰もいない寂れた建物</strong>が見えます。</p>
+    <p class="article-p">これこそが、大地震と洪水によって一夜にして水没し、滅び去ったゴーストタウン「タンブルウィード」の現在の姿です。また、アトラクションの待ち列（Qライン）の途中には、ビッグサンダー・マイニング・カンパニーの事務所跡があり、かつて使われていた採掘の計画図や、セドナ社長の私物、ゴールドラッシュ当時の古い書類などが生々しく残されており、数分前まで誰かがそこで働いていたかのような臨場感を漂わせています。</p>
+  </section>
 
-        <!-- IV. 本物のスチームトラクターの物語 -->
-        <section class="article-block reveal" id="imagineering">
-            <h2>IV. 1898年製の本物：スチームトラクターの交渉劇</h2>
-            <p>ディズニーの空間デザイナー「イマジニア」たちは、この広大なゴールドラッシュの舞台を100%本物にするため、驚異的な執念を注ぎ込みました。エントランスの左側に置かれている、アンティークな赤と緑の車体を持つ重厚な**「スチームトラクター（蒸気トラクター）」**。多くの人は精巧に作られたレプリカだと思って通り過ぎますが、実はこれ、**1898年（今から120年以上前）にアメリカで製造され、実際に鉱山で食料や物資を運んでいた「本物のトラクター」**なのです。現在、世界に数台しか残っていない極めて貴重な歴史的遺物です。</p>
-            
-            <div class="connection-card">
-                <h4>💡 ウォルトの執念と、奥さんの大激怒による奇跡の交渉</h4>
-                <p>なぜこのような世界的なお宝が, 東京ディズニーランドにあるのでしょうか。そこにはイマジニアとウォルト・ディズニーの並外れた執念が隠されています。<br><br>
-                   このトラクターは、もともとアメリカのディズニーランド建設時、ウォルト・ディズニーが目をつけ「売ってくれ」と頼み込みましたが、頑なに拒否されてしまいます。その後、1971年のフロリダ建設時や、他の映画撮影チームが頼んだ時も、頑固な農場主はすべて拒否し続けました。<br><br>
-                   しかし1980年代、東京ディズニーランドの建設に向けてイマジニアが再び交渉に向かった際、隣で話を聞いていた**農場主の奥さんが大激怒**したのです。<br>
-                   「いい加減にして！30年間うちで一度も使っていないこのポンコツを売り飛ばして、そのお金で私をどこか旅行に連れて行ってよ！」と。<br>
-                   奥さんの一喝にシュンとなった農場主はついに首を縦に振り、ディズニーは悲願を達成し、トラクターを日本へ運ぶことができました。この「意味のないほど本物にこだわる」イマジニアの情熱こそが、Qラインに本物の息吹を与えています。</p>
-            </div>
-        </section>
+  <!-- IV. 本物のスチームトラクターの物語 -->
+  <section class="article-block reveal" id="imagineering">
+    <h2 class="article-h2">IV. 1898年製の本物：スチームトラクターの交渉劇</h2>
+    <p class="article-p">ディズニーの空間デザイナー「イマジニア」たちは、この広大なゴールドラッシュの舞台を100%本物にするため、驚異的な執念を注ぎ込みました。エントランスの左側に置かれている、アンティークな赤と緑の車体を持つ重厚な<strong>「スチームトラクター（蒸気トラクター）」</strong>。多くの人は精巧に作られたレプリカだと思って通り過ぎますが、実はこれ、<strong>1898年（今から120年以上前）にアメリカで製造され、実際に鉱山で食料や物資を運んでいた「本物のトラクター」</strong>なのです。現在、世界に数台しか残っていない極めて貴重な歴史的遺物です。</p>
+    
+    <div class="column-box reveal">
+      <h4>💡 ウォルトの執念と、奥さんの大激怒による奇跡の交渉</h4>
+      <p>なぜこのような世界的なお宝が, 東京ディズニーランドにあるのでしょうか。そこにはイマジニアとウォルト・ディズニーの並外れた執念が隠されています。<br><br>
+         このトラクターは、もともとアメリカのディズニーランド建設時、ウォルト・ディズニーが目をつけ「売ってくれ」と頼み込みましたが、頑なに拒否されてしまいます。その後、1971年のフロリダ建設時や、他の映画撮影チームが頼んだ時も、頑固な農場主はすべて拒否し続けました。<br><br>
+         しかし1980年代、東京ディズニーランドの建設に向けてイマジニアが再び交渉に向かった際、隣で話を聞いていた<strong>農場主の奥さんが大激怒</strong>したのです。<br>
+         「いい加減にして！30年間うちで一度も使っていないこのポンコツを売り飛ばして、そのお金で私をどこか旅行に連れて行ってよ！」と。<br>
+         奥さんの一喝にシュンとなった農場主はついに首を縦に振り、ディズニーは悲願を達成し、トラクターを日本へ運ぶことができました。この「意味のないほど本物にこだわる」イマジニアの情熱こそが、Qラインに本物の息吹を与えています。</p>
+    </div>
+  </section>
 
-        <!-- V. 6台の列車 -->
-        <section class="article-block reveal" id="locomotives">
-            <h2>V. 暴走機関車たちに名付けられた「6つの決意」</h2>
-            <p>ゲストが乗り込む6台 of 鉱山列車には、それぞれゴールドラッシュや西部の荒野をユーモラスに表現した、異なる名前がつけられています。これらは、これから暴走列車に挑むゲストを鼓舞する（あるいはちょっと皮肉った）イマジニアの遊び心が隠されたネーミングです。</p>
-            
-            <div class="connection-card">
-                <h4>🚂 機観車たちの名前と意味</h4>
-                <p><strong>・I.B. Hearty</strong>（I be hearty：私は元気だ / 頑丈な心臓）<br>
-                   <strong>・U.B. Bold</strong>（You be bold：大胆にいこう）<br>
-                   <strong>・U.R. Courageous</strong>（You are courageous：お前は勇敢だ）<br>
-                   <strong>・C.W. Brave</strong>（See who's brave：誰が勇敢か見てみろ）<br>
-                   <strong>・B.V. Brave</strong>（Be very brave：非常に勇敢であれ）<br>
-                   <strong>・I.M. Brave</strong>（I am brave：私は勇敢だ）</p>
-            </div>
-
-            <p>この名前に恥じぬ「勇気」を持って、赤土の岩山を暴走するマイントレインへと足を踏み入れてください。精霊は、今もあなたの心の中にある「強欲」を試しているかもしれません。</p>
-        </section>
-
-        <!-- VI. 数十年に一度だけ咲き、枯れる「幻の花」 -->
-        <section class="article-block reveal" id="cactus">
-            <h2>VI. 数十年に一度だけ咲き、枯れる「幻の花」</h2>
-
-            <div class="connection-card" style="border-color: #00FF7F; background: rgba(0, 255, 127, 0.03);">
-                <h4>🌵 アオノリュウゼツランの奇跡のサイクル</h4>
-                <p>ビッグサンダー・マウンテンの周囲に植えられているサボテンや植物は、すべて「本物」です。ウエスタンリバー鉄道に乗って山の裏側に差しかかった際、左手の崖に見える**「アオノリュウゼツラン」**という植物は、日本ではなんと**30〜50年に一度（1世紀に一度とも言われ、英名はセンチュリー・プラント）しか花を咲かせない奇跡の植物**です。<br><br>
-                   開花期になると、高さ10メートルほどのアスパラガスのような巨大な花茎を一気に伸ばし、黄色い美しい花を咲かせ、**花が咲き終わると自らの全てのエネルギーを使い果たしてパタッと倒れて枯死（枯れてしまう）**してしまいます。2024年の夏、パーク内でこのリュウゼツランが開花した際は、全国ニュース（TBS「ゴゴスマ」など）で中継されるほどの大騒ぎとなりました。この奇跡の花を見られたら、あなたの人生にも最大の幸運が訪れるかもしれません。</p>
-            </div>
-        </section>
-
-        <div class="footer-link reveal">
-            <a href="index.html">← HOMEへ戻る</a>
-        </div>
+  <!-- V. 6台の列車 -->
+  <section class="article-block reveal" id="locomotives">
+    <h2 class="article-h2">V. 暴走機関車たちに名付けられた「6つの決意」</h2>
+    <p class="article-p">ゲストが乗り込む6台 of 鉱山列車には、それぞれゴールドラッシュや西部の荒野をユーモラスに表現した、異なる名前がつけられています。これらは、これから暴走列車に挑むゲストを鼓舞する（あるいはちょっと皮肉った）イマジニアの遊び心が隠されたネーミングです。</p>
+    
+    <div class="column-box reveal">
+      <h4>🚂 機観車たちの名前と意味</h4>
+      <p><strong>・I.B. Hearty</strong>（I be hearty：私は元気だ / 頑丈な心臓）<br>
+         <strong>・U.B. Bold</strong>（You be bold：大胆にいこう）<br>
+         <strong>・U.R. Courageous</strong>（You are courageous：お前は勇敢だ）<br>
+         <strong>・C.W. Brave</strong>（See who's brave：誰が勇敢か見てみろ）<br>
+         <strong>・B.V. Brave</strong>（Be very brave：非常に勇敢であれ）<br>
+         <strong>・I.M. Brave</strong>（I am brave：私は勇敢だ）</p>
     </div>
 
-    <script>
-        const themeSwitch = document.getElementById('theme-switch');
-        themeSwitch.addEventListener('click', () => {
-            document.body.classList.toggle('curse-mode');
-            themeSwitch.textContent = document.body.classList.contains('curse-mode') ? '☀️' : '🌙';
-        });
+    <p class="article-p">この名前に恥じぬ「勇気」を持って、赤土の岩山を暴走するマイントレインへと足を踏み入れてください。精霊は、今もあなたの心の中にある「強欲」を試しているかもしれません。</p>
+  </section>
 
-        const reveals = document.querySelectorAll('.reveal');
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-        reveals.forEach(reveal => revealOnScroll.observe(reveal));
-        setTimeout(() => { reveals[0].classList.add('active'); }, 100);
-    </script>
+  <!-- VI. 数十年に一度だけ咲き、枯れる「幻の花」 -->
+  <section class="article-block reveal" id="cactus">
+    <h2 class="article-h2">VI. 数十年に一度だけ咲き、枯れる「幻の花」</h2>
+
+    <div class="column-box reveal">
+      <h4>🌵 アオノリュウゼツランの奇跡のサイクル</h4>
+      <p>ビッグサンダー・マウンテンの周囲に植えられているサボテンや植物は、すべて「本物」です。ウエスタンリバー鉄道に乗って山の裏側に差しかかった際、左手の崖に見える<strong>「アオノリュウゼツラン」</strong>という植物は、日本ではなんと<strong>30〜50年に一度（1世紀に一度とも言われ、英名はセンチュリー・プラント）しか花を咲かせない奇跡の植物</strong>です。<br><br>
+         開花期になると、高さ10メートルほどのアスパラガスのような巨大な花茎を一気に伸ばし、黄色い美しい花を咲かせ、<strong>花が咲き終わると自らの全てのエネルギーを使い果たしてパタッと倒れて枯死（枯れてしまう）</strong>してしまいます。2024年の夏、パーク内でこのリュウゼツランが開花した際は、全国ニュース（TBS「ゴゴスマ」など）で中継されるほどの大騒ぎとなりました。この奇跡の花を見られたら、あなたの人生にも最大の幸運が訪れるかもしれません。</p>
+    </div>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← HOMEへ戻る</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<script>
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </body>
 </html>
