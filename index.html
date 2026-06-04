@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BGS Chronicles | 東京ディズニーリゾート バックグラウンドストーリー資料集</title>
-  <meta name="description" content="東京ディズニーランド・ディズニーシーのアトラクションBGS（背景設定）の決定版。スプラッシュ・マウンテンやホーンテッドマンション、スモワの都市伝説・仕組み・歴史。">
+  <meta name="description" content="東京ディズニーランド・ディズニーシーのアトラクションBGS（背景設定）の決定版。スプラッシュ・マウンテンやホーンテッドマンション、イッツ・ア・スモールワールドの都市伝説・歴史。">
   <meta name="author" content="TERU_LUCE_">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://teruluce07-cmd.github.io/disney-bgs/index.html">
@@ -224,7 +224,8 @@
     .masthead-bottom-rules span:first-child { height: 3px; background: var(--ink); }
 
     .profile-link {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       margin-top: 14px;
       font-family: var(--f-sc);
       font-size: 0.6rem;
@@ -233,11 +234,9 @@
       text-decoration: none;
       padding: 8px 20px;
       border: 1px solid var(--border-strong);
-      transition: all 0.25s;
       /* タップしやすい最小サイズ */
       min-height: 40px;
-      display: inline-flex;
-      align-items: center;
+      transition: all 0.25s;
     }
     .profile-link:hover {
       background: var(--ink); color: var(--paper);
@@ -269,7 +268,7 @@
       overflow: hidden;
       background: var(--ink-2);
       border: 1px solid var(--border-strong);
-      /* Art deco inner frame — box-shadowで代替（outline-offsetはSafariで不安定） */
+      /* Art deco inner frame */
       box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--border-strong);
     }
 
@@ -509,7 +508,6 @@
       position: relative;
       border-bottom: 1px solid var(--border-strong);
       border-right: 1px solid var(--border-strong);
-      /* content-visibilityを削除 → レイアウトシフトの原因になりうる */
     }
 
     /* 2列時: 右端のカードはborder-rightが重複しないように */
@@ -781,7 +779,8 @@
       margin-bottom: 18px;
     }
     .chronicle-open-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-family: var(--f-sc);
       font-size: 0.58rem;
       letter-spacing: 0.25em;
@@ -791,8 +790,6 @@
       transition: all 0.22s;
       text-transform: uppercase;
       min-height: 40px;
-      display: inline-flex;
-      align-items: center;
     }
     .chronicle-summary:hover .chronicle-open-btn {
       background: var(--bordeaux);
@@ -918,7 +915,7 @@
       margin-bottom: 14px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
-      padding-right: 40px; /* close buttonと重ならないように */
+      padding-right: 40px;
     }
     .modal-text {
       font-family: var(--f-jp);
@@ -974,7 +971,7 @@
 
     <span class="masthead-kicker">Tokyo Disney Resort — Background Story Archive</span>
 
-    <a href="index.html" class="masthead-title-link">
+    <a href="index.html" class="masthead-title-link" aria-label="BGS Chronicles トップページ">
       <h1>
         <span class="masthead-title">BGS <em>Chronicles</em></span>
       </h1>
@@ -1092,7 +1089,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">3 min</span></div>
         <div class="card-title">Big Thunder Mountain</div>
-        <p class="card-desc">無人鉱山を暴走する鉱山列車と、開拓者たちの歴史。大自然の精霊の警告を無視したゴールドラッシュの末路。</p>
+        <p class="card-desc">無人の鉱山を暴走する鉱山列車と、開拓者たちの歴史。大自然の精霊の警告を無視した、ゴールドラッシュの末路。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1104,7 +1101,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Featured · TDL</span><span class="card-time">5 min</span></div>
         <div class="card-title">Haunted Mansion</div>
-        <p class="card-desc">999人の亡霊が暮らすゴシック様式の館。代々の居住者にまつわるエピソードと、奇妙な仕掛けの数々。</p>
+        <p class="card-desc">999人の亡霊が暮らすゴシック様式の館。歴代の居住者にまつわるエピソードと、奇妙な仕掛けの数々。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1116,7 +1113,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
         <div class="card-title">Beauty and the Beast</div>
-        <p class="card-desc">深い森に佇むお城と魔法の薔薇の伝説。フランスの片田舎を再現した美しい造形と建築様式。</p>
+        <p class="card-desc">深い森に佇む城と魔法の薔薇の伝説。フランスの片田舎を再現した美しい造形と建築様式。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1128,7 +1125,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
         <div class="card-title">Cinderella Castle</div>
-        <p class="card-desc">時を刻む魔法と、青き尖塔のファンタジー。お城の色彩に秘められた意図と、優美な空間に宿るロマンチックな奇跡の記録。</p>
+        <p class="card-desc">時を刻む魔法と、青き尖塔のファンタジー。城の色彩に秘められた意図と、優美な空間に宿るロマンチックな奇跡の記録。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1140,7 +1137,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">3 min</span></div>
         <div class="card-title">Tomorrowland</div>
-        <p class="card-desc">近未来の都市デザインと宇宙開発への夢。銀河系を結ぶスペースポートに課せられたルールと条例。</p>
+        <p class="card-desc">近未来の都市デザインと宇宙開発への夢。銀河系を結ぶスペースポートに課せられた、規則と条例の記録。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1152,7 +1149,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">4 min</span></div>
         <div class="card-title">It's a Small World</div>
-        <p class="card-desc">世界をつなぐ平和のメッセージ。メアリー・ブレアの色彩設計と、同じ顔の人形たちが奏でる調和の祈りの記録。</p>
+        <p class="card-desc">世界をつなぐ平和のメッセージ。メアリー・ブレアの色彩設計と、同じ顔の人形たちが奏でる調和と祈りの記録。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1177,7 +1174,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Chronicle · TDL</span><span class="card-time">5 min</span></div>
         <div class="card-title">Tokyo Disneyland</div>
-        <p class="card-desc">砂上の荒野に夢の王国を築いた先駆者たち。浦安の漁民交渉と高橋政知の剛腕、日本独自の「ワールドバザール」に隠された気候の美学。</p>
+        <p class="card-desc">荒野の埋立地に夢の王国を築いた先駆者たち。浦安の漁業権交渉と高橋政知の剛腕、日本独自の「ワールドバザール」に隠された気候への配慮。</p>
         <div class="card-cta">Read Chronicle →</div>
       </div>
     </a>
@@ -1190,7 +1187,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Chronicle · TDS</span><span class="card-time">5 min</span></div>
         <div class="card-title">TDS Spatial Epic</div>
-        <p class="card-desc">「海のテーマパーク」に広がる、全8つのテーマポートにおける固有の歴史と時代背景の考察。</p>
+        <p class="card-desc">「海のテーマパーク」に広がる、全8つのテーマポートそれぞれの歴史的背景と時代設定の考察。</p>
         <div class="card-cta">Read Chronicle →</div>
       </div>
     </a>
@@ -1202,7 +1199,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">5 min</span></div>
         <div class="card-title">Tower of Terror</div>
-        <p class="card-desc">1912年のニューヨーク。ホテル・ハイタワーで起きたオーナー失踪事件と、謎の偶像を巡る社会的背景。</p>
+        <p class="card-desc">1912年のニューヨーク。ホテル・ハイタワーで起きたオーナー失踪事件と、謎の偶像をめぐる社会的背景。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1214,7 +1211,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">3 min</span></div>
         <div class="card-title">Sindbad's Voyage</div>
-        <p class="card-desc">船乗りシンドバッドと相棒チャンドゥの航海記。エリアのリニューアルに伴う、演出と音楽の変遷史。</p>
+        <p class="card-desc">船乗りシンドバッドと相棒チャンドゥの航海記。リニューアルに伴う演出と楽曲の変遷史。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1255,7 +1252,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Special · TDS</span><span class="card-time">4 min</span></div>
         <div class="card-title">S.E.A. Archives</div>
-        <p class="card-desc">1538年の創設から連なる、大航海時代と近代を繋ぐ秘密結社S.E.A.の軌跡。4つの崇高なる理念と冒険の記録。</p>
+        <p class="card-desc">1538年の創設から連なる、大航海時代と近代をつなぐ秘密結社S.E.A.の軌跡。4つの崇高なる理念と冒険の記録。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1279,7 +1276,7 @@
       <div class="card-body">
         <div class="card-meta-row"><span class="card-cat">Story · TDS</span><span class="card-time">4 min</span></div>
         <div class="card-title">Indiana Jones</div>
-        <p class="card-desc">ロストリバーデルタに隠された「失われた若さの泉」。ジョーンズ博士の調査活動とパコによる神殿ツアーの全貌。</p>
+        <p class="card-desc">ロストリバーデルタに眠る「失われた若さの泉」。ジョーンズ博士の調査活動とパコによる神殿ツアーの全貌。</p>
         <div class="card-cta">Read Story →</div>
       </div>
     </a>
@@ -1301,16 +1298,16 @@
       <div class="chronicle-body">
         <p>私たちが何気なく歩いている舞浜の美しい小道や、潮風がそよぐ港町。その一歩一歩には、この地に「夢の国」を築き上げようとした先人たちと、海を越えてやってきたディズニーのクリエイターたちが紡ぎ上げた、温かく真摯な対話の歴史が刻まれています。</p>
         <h4>I. 空から見つめた、はじまりの海</h4>
-        <p>1983年の穏やかな春の日、東京ディズニーランドは開園しました。かつて静かな漁師町だったこの広大な埋立地に夢の国を構想した日本の開拓者たちは、アメリカから視察に訪れたディズニーの創案者たちをヘリコプターに乗せ、上空から案内したといいます。霧の向こうに広がるきらめく海と、そこからすぐ近くに見える東京の街並み。その美しさと可能性を信じた人々の情熱が、海を越えて初めての「魔法の王国」をこの地に呼び寄せたのです。</p>
+        <p>1983年の穏やかな春の日、東京ディズニーランドは開園しました。かつて静かな漁師町だったこの広大な埋立地に夢の国を構想した日本の開拓者たちは、アメリカから視察に訪れたディズニーの関係者をヘリコプターに乗せ、上空から案内したといいます。霧の向こうに広がるきらめく海と、そこからすぐ近くに見える東京の街並み。その美しさと可能性を信じた人々の情熱が、海を越えてはじめての「魔法の王国」をこの地に呼び寄せたのです。</p>
         <h4>II. 幻の「映画スタジオ」と、海を渡ったもう一つの夢</h4>
-        <p>2つ目の新しいパークをつくろうと計画が始まったとき、最初に提案されたのは「映画スタジオ」のテーマでした。しかし、日本のクリエイターたちは<strong>「日本のゲストに、もっと時代を超えて愛される、唯一無二の物語を届けたい」</strong>と願いました。カリフォルニアで計画されながらも実現に至らなかった幻の海洋テーマパーク「ポート・ディズニー」の構想が太平洋を渡り、私たちの愛する「東京ディズニーシー」として生まれ変わることになったのです。</p>
-        <h4>III. 幻の灯台と、エントランスにかけられた「心の魔法」</h4>
-        <p>ディズニーシーのデザインを考えているとき、最初に提案されたシンボルは「巨大な灯台」でした。しかし<strong>「日本の皆様にとって、灯台は少し寂しさや哀愁を感じさせてしまうかもしれない」</strong>という優しい心遣いから、「アクアスフィア」が生まれました。そして、プロメテウス火山が中央に据えられたのです。</p>
+        <p>2つ目の新しいパークをつくろうと計画が始まったとき、最初に提案されたのは「映画スタジオ」のテーマでした。しかし、日本のクリエイターたちは<strong>「日本のゲストに、時代を超えて愛される唯一無二の物語を届けたい」</strong>と願いました。カリフォルニアで計画されながらも実現に至らなかった幻の海洋テーマパーク「ポート・ディズニー」の構想が太平洋を渡り、私たちの愛する「東京ディズニーシー」として生まれ変わることになったのです。</p>
+        <h4>III. 幻の灯台と、エントランスに込められた「心の魔法」</h4>
+        <p>ディズニーシーのデザインを考えていたとき、最初に提案されたシンボルは「巨大な灯台」でした。しかし<strong>「日本の皆様にとって、灯台は少し寂しさや哀愁を感じさせてしまうかもしれない」</strong>という優しい心遣いから、「アクアスフィア」が生まれました。そして、プロメテウス火山が中央に据えられたのです。</p>
         <p>ホテル・ミラコスタの薄暗い下部通路を歩くとき、心が高鳴るのを感じたことはないでしょうか。これは「圧縮と開放」と呼ばれる演出の魔法です。一度、暗く低いトンネルを通ることで心がすっと静まり、そこを抜けた瞬間に陽光に輝く壮大なメディテレーニアンハーバーが一気に広がります。</p>
-        <h4>IV. 歳月を重ねるほど愛おしくなる、本物のこだわり</h4>
+        <h4>IV. 歳月を重ねるほど愛おしくなる、本物へのこだわり</h4>
         <p>ディズニーシーの美しさは、新しさだけではありません。クリエイターたちが最も大切にしたのは<strong>「経年美化」</strong>という考え方でした。ヨーロッパやアメリカから本物のレンガや天然石を取り寄せ、職人たちの手によって潮風にさらされた錆や雨だれの跡が描かれ、歳月とともに本物の風合いへと育っていくように設計されています。</p>
         <h4>V. すべての源流へ、自然が紡ぐ「水の物語」</h4>
-        <p>2024年に誕生した「ファンタジースプリングス（魔法の泉）」は、パークのすべての水の<strong>「源流」</strong>という美しい物語を持っています。魔法の泉から湧き出た水は川となってジャングルの奥地を潤し、やがて壮大なハーバーへと流れ込みます。この広大な自然の循環が完成したことで、パークのすべての場所が一本の美しい「水のストーリー」で結ばれることになりました。</p>
+        <p>2024年に誕生した「ファンタジースプリングス（魔法の泉）」は、パークのすべての水の<strong>「源流」</strong>という美しい物語を持っています。魔法の泉から湧き出た水は川となってジャングルの奥地を潤し、やがて壮大なハーバーへと流れ込みます。この広大な自然の循環が完成したことで、パーク内のすべての場所が一本の美しい「水のストーリー」で結ばれることになりました。</p>
       </div>
     </details>
   </div>
@@ -1346,7 +1343,7 @@
   }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* Filter — visibility制御でグリッドレイアウトを維持しつつ非表示 */
+  /* Filter */
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
