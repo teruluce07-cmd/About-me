@@ -438,7 +438,7 @@
         TDS Spatial Epic：冒険とイマジネーションの海を巡る物語
     </h1>
     <span class="masthead-subtitle">
-        世界で唯一「海」をコンセプトとし、訪れる者を遥かなる航海へと誘う東京ディズニーシー。ここは単なる遊び場ではなく、8つの固有の「港（テーマポート）」が、歴史や人々の祈り、空間の境界、 tenderlyそして魔法によって結ばれた壮大な冒険の舞台です。
+        世界で唯一「海」をコンセプトとし、訪れる者を遥かなる航海へと誘う東京ディズニーシー。ここは単なる遊び場ではなく、8つの固有の「港（テーマポート）」が、歴史や人々の祈り、空間の境界、そして魔法によって結ばれた壮大な冒険の舞台です。
     </span>
   </header>
 
@@ -458,13 +458,14 @@
   </nav>
 
   <div class="photo-frame reveal">
-    <img src="tds-map.jpg" alt="Tokyo DisneySea Map" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+    <!-- 修正：decoding="sync" → "async"（メインスレッドのブロックを回避）、fetchpriority="high" のみで十分なため loading 属性を削除 -->
+    <img src="tds-map.jpg" alt="Tokyo DisneySea Map" width="800" height="450" decoding="async" fetchpriority="high">
   </div>
 
   <!-- I. プロローグ -->
   <section class="article-block reveal" id="prologue">
     <h2 class="article-h2">I. 時空を超える8つの港</h2>
-    <p class="article-p">東京ディズニーシーのエリアは、すべて「テーマランド」ではなく「テーマポート（港）」と呼ばれています。この呼び名こそが、私たちの冒険の旅の出発点です。すべての港は、独自の時代設定と国を持ちながらも、お互いに歴史的・物理的、順序、とくに精神的な深い繋がりを持っています。何気なく通り過ぎる建物、ふと耳にする波の音、それらすべてが、大きな一本の物語（大河神話）へと収束していくのです。</p>
+    <p class="article-p">東京ディズニーシーのエリアは、すべて「テーマランド」ではなく「テーマポート（港）」と呼ばれています。この呼び名こそが、私たちの冒険の旅の出発点です。すべての港は、独自の時代設定と国を持ちながらも、お互いに歴史的・物理的、そして精神的な深い繋がりを持っています。何気なく通り過ぎる建物、ふと耳にする波の音、それらすべてが、大きな一本の物語（大河神話）へと収束していくのです。</p>
   </section>
 
   <!-- II. マッピング -->
@@ -619,7 +620,6 @@
 
   /* Image protection */
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
 </body>
 </html>
