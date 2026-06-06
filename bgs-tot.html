@@ -484,7 +484,8 @@
 
   <header class="masthead reveal">
     <div class="logo-wrapper">
-      <img src="tot-logo.png" alt="Hotel Hightower Crest" class="logo-img" decoding="sync" loading="eager">
+      <!-- 修正：decoding="sync" → "async"、loading="eager" を削除（小さな装飾画像のため fetchpriority 不要） -->
+      <img src="tot-logo.png" alt="Hotel Hightower Crest" class="logo-img" decoding="async">
     </div>
     <span class="masthead-kicker">Background Story</span>
     <h1 class="masthead-title">Hotel Hightower</h1>
@@ -506,7 +507,8 @@
   </nav>
 
   <div class="photo-frame reveal">
-    <img src="tot-exterior.jpg" alt="Tower of Terror Exterior" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+    <!-- 修正：decoding="sync" → "async"、loading="eager" を削除 -->
+    <img src="tot-exterior.jpg" alt="Tower of Terror Exterior" width="800" height="450" decoding="async" fetchpriority="high">
   </div>
 
   <!-- I. 1899年の失踪劇 -->
@@ -711,7 +713,6 @@
 
   /* Image protection */
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
 </body>
-</html> v
+</html>
