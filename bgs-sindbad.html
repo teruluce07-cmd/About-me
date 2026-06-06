@@ -15,9 +15,6 @@
   </noscript>
 
   <style>
-    /* ============================================================
-       DESIGN TOKENS (Synced with index.html)
-    ============================================================ */
     :root {
       --paper:       #F5EDD8;
       --paper-2:     #EDE0C4;
@@ -44,7 +41,6 @@
       --f-type:    'Special Elite', 'Courier New', monospace;
       --f-jp:      'Noto Serif JP', serif;
 
-      /* 記事用コンテンツ幅 */
       --max-w: 720px;
       --pad-x: clamp(16px, 5vw, 48px);
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,9 +49,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
 
-    /* ============================================================
-       IMAGE PROTECTION
-    ============================================================ */
     img {
       -webkit-user-select: none; user-select: none;
       -webkit-touch-callout: none;
@@ -63,9 +56,6 @@
       -webkit-user-drag: none;
     }
 
-    /* ============================================================
-       BODY & BACKGROUND
-    ============================================================ */
     body {
       background-color: var(--paper);
       color: var(--ink);
@@ -101,9 +91,6 @@
       pointer-events: none;
     }
 
-    /* ============================================================
-       LAYOUT
-    ============================================================ */
     .site-wrap { position: relative; z-index: 1; }
 
     .content-box {
@@ -112,9 +99,6 @@
       padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
     }
 
-    /* ============================================================
-       REVEAL
-    ============================================================ */
     .reveal {
       opacity: 0; transform: translateY(16px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
@@ -125,12 +109,7 @@
       .reveal { transition: none; opacity: 1; transform: none; }
     }
 
-    /* ============================================================
-       BACK LINK
-    ============================================================ */
-    .back-link-wrap {
-      margin-bottom: 24px;
-    }
+    .back-link-wrap { margin-bottom: 24px; }
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -145,9 +124,6 @@
     }
     .back-link:hover { color: var(--bordeaux); }
 
-    /* ============================================================
-       MASTHEAD / HEADER
-    ============================================================ */
     .masthead {
       border-top: 4px double var(--ink);
       border-bottom: 1px solid var(--border-strong);
@@ -156,7 +132,6 @@
       text-align: center;
       position: relative;
     }
-
     .masthead-kicker {
       font-family: var(--f-sc);
       font-size: clamp(0.5rem, 1.3vw, 0.6rem);
@@ -166,7 +141,6 @@
       display: block;
       margin-bottom: 12px;
     }
-
     .masthead-title {
       font-family: var(--f-display);
       font-size: clamp(1.4rem, 5vw, 2.2rem);
@@ -185,7 +159,6 @@
       margin-bottom: 6px;
       font-style: italic;
     }
-
     .masthead-subtitle {
       font-family: var(--f-jp);
       font-size: clamp(0.8rem, 2vw, 0.9rem);
@@ -200,9 +173,6 @@
       margin-top: 24px;
     }
 
-    /* ============================================================
-       TOC (INDEX)
-    ============================================================ */
     .toc-wrap {
       border: 1px solid var(--border-strong);
       background: rgba(245,237,216,0.6);
@@ -252,9 +222,6 @@
     .toc-link:hover .toc-text { color: var(--bordeaux); }
     .toc-link:hover .toc-action { color: var(--bordeaux); }
 
-    /* ============================================================
-       PHOTO FRAME
-    ============================================================ */
     .photo-frame {
       position: relative;
       width: 100%;
@@ -272,11 +239,8 @@
       display: block;
     }
 
-    /* ============================================================
-       ARTICLE BODY
-    ============================================================ */
     .article-block { margin-bottom: 56px; }
-    
+
     .article-h2 {
       font-family: var(--f-display);
       font-style: italic;
@@ -291,7 +255,17 @@
       content: ''; flex: 1; height: 1px;
       background: var(--border-strong);
     }
-    
+
+    .article-h3 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin: 40px 0 16px;
+      border-left: 3px solid var(--bordeaux);
+      padding-left: 12px;
+    }
+
     .article-p {
       font-family: var(--f-jp);
       font-size: clamp(0.8rem, 2vw, 0.85rem);
@@ -306,9 +280,46 @@
       color: var(--ink);
     }
 
-    /* ============================================================
-       COLUMN CARD
-    ============================================================ */
+    /* 比較テーブル */
+    .compare-table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 480px;
+      text-align: left;
+    }
+    .compare-table th, .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px dashed var(--border);
+      font-family: var(--f-jp);
+      font-size: clamp(0.7rem, 2vw, 0.75rem);
+      line-height: 1.9;
+      vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table th {
+      font-family: var(--f-sc);
+      font-size: 0.63rem;
+      letter-spacing: 0.15em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      background: rgba(245,237,216,0.5);
+      border-bottom: 1px solid var(--border-strong);
+      font-weight: 400;
+    }
+    .compare-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .compare-table .original { color: var(--muted-2); }
+    .compare-table .disney   { color: var(--bordeaux); font-weight: 500; }
+
     .column-box {
       border: 1px solid var(--border-strong);
       border-left: 3px solid var(--bordeaux);
@@ -333,9 +344,35 @@
       margin-bottom: 0;
     }
 
-    /* ============================================================
-       RELATED LINK CARD
-    ============================================================ */
+    /* 航海ログ風リスト */
+    .voyage-log {
+      list-style: none;
+      margin: 24px 0;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+    }
+    .voyage-log li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      padding: 14px 16px;
+      border-bottom: 1px dashed var(--border);
+      font-family: var(--f-jp);
+      font-size: clamp(0.72rem, 2vw, 0.78rem);
+      line-height: 1.9;
+      color: var(--ink-soft);
+    }
+    .voyage-log li:last-child { border-bottom: none; }
+    .voyage-log .scene-label {
+      font-family: var(--f-sc);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
     .related-link-card {
       display: block;
       text-decoration: none;
@@ -348,10 +385,7 @@
       min-height: 44px;
       -webkit-tap-highlight-color: transparent;
     }
-    .related-link-card:hover {
-      background: var(--ink);
-      border-color: var(--ink);
-    }
+    .related-link-card:hover { background: var(--ink); border-color: var(--ink); }
     .related-link-title {
       display: block;
       font-family: var(--f-jp);
@@ -371,13 +405,8 @@
       transition: color 0.2s;
     }
     .related-link-card:hover .related-link-title,
-    .related-link-card:hover .related-link-desc {
-      color: var(--paper);
-    }
+    .related-link-card:hover .related-link-desc { color: var(--paper); }
 
-    /* ============================================================
-       FOOTER LINK
-    ============================================================ */
     .footer-link-wrap {
       text-align: center;
       margin-top: 64px;
@@ -398,14 +427,8 @@
       padding-bottom: 4px;
       -webkit-tap-highlight-color: transparent;
     }
-    .footer-link:hover {
-      color: var(--bordeaux);
-      border-bottom-color: var(--bordeaux);
-    }
-    
-    /* ============================================================
-       FOCUS STYLES
-    ============================================================ */
+    .footer-link:hover { color: var(--bordeaux); border-bottom-color: var(--bordeaux); }
+
     :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
   </style>
 </head>
@@ -421,77 +444,205 @@
   <header class="masthead reveal">
     <span class="masthead-kicker">Background Story</span>
     <h1 class="masthead-title">
-        <span class="masthead-title-en">Storybook Voyage</span>
-        Storybook Voyage：優しき冒険者の船出と、心のコンパス
+      <span class="masthead-title-en">Storybook Voyage</span>
+      Storybook Voyage：優しき冒険者の船出と、心のコンパス
     </h1>
     <span class="masthead-subtitle">
-        ディズニーシー最奥のアラビアンコースト。心のコンパスを信じて進むシンドバッドの温かい冒険の裏には、一度は「不気味な暗黒期」を経験し、アラン・メンケンの魔法とチャンドゥの愛らしさによって奇跡的な復活を遂げたイマジニアたちの挑戦の歴史がありました。
+      ディズニーシー最奥のアラビアンコースト。心のコンパスを信じて進むシンドバッドの温かい冒険の裏には、一度は「不気味な暗黒期」を経験し、アラン・メンケンの魔法とチャンドゥの愛らしさによって奇跡的な復活を遂げたイマジニアたちの挑戦の歴史がありました。そして、その挑戦の核心には「千夜一夜物語（アラビアンナイト）」の原典から何を残し、何を捨てるか、という深い問いがありました。
     </span>
   </header>
 
-  <!-- 目次 -->
   <nav class="toc-wrap reveal" aria-label="セクション目次">
     <div class="toc-head">
       <span class="toc-head-title">Index</span>
     </div>
     <ul class="toc-list">
-      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 砂漠の宮殿に響く歌声（プロローグ）</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#dark-past" class="toc-link"><span class="toc-text">II. かつて存在した暗黒期「セブンヴォヤッジ」</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#music" class="toc-link"><span class="toc-text">III. 天才アラン・メンケンがかけた音楽の魔法</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#chandu" class="toc-link"><span class="toc-text">IV. 奇跡の相棒「チャンドゥ」の誕生</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#sultan" class="toc-link"><span class="toc-text">V. アラビアンコーストのもう一つの真実</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#prologue"  class="toc-link"><span class="toc-text">I. 砂漠の宮殿に響く歌声（プロローグ）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#origin"   class="toc-link"><span class="toc-text">II. 原典「千夜一夜物語」の船乗りシンドバッド</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#dark-past" class="toc-link"><span class="toc-text">III. かつて存在した暗黒期「セブンヴォヤッジ」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#compare"  class="toc-link"><span class="toc-text">IV. 原典 vs. ディズニー版：7つの航海を読み解く</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#music"    class="toc-link"><span class="toc-text">V. 天才アラン・メンケンがかけた音楽の魔法</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#chandu"   class="toc-link"><span class="toc-text">VI. 奇跡の相棒「チャンドゥ」の誕生</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#sultan"   class="toc-link"><span class="toc-text">VII. アラビアンコーストのもう一つの真実</span><span class="toc-action">Read →</span></a></li>
     </ul>
   </nav>
 
   <div class="photo-frame reveal">
-    <img src="DSC00234_Original.jpeg" alt="アラビアンコーストの美しい夕暮れ景観" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+    <img src="DSC00234_Original.jpeg" alt="アラビアンコーストの美しい夕暮れ景観" width="800" height="450" decoding="async" fetchpriority="high">
   </div>
 
   <!-- I. プロローグ -->
   <section class="article-block reveal" id="prologue">
     <h2 class="article-h2">I. Prologue</h2>
     <p class="article-p">東京ディズニーシーの奥深くに広がる、エキゾチックな「アラビアンコースト」。その広場でひときわ大きな存在感を放つ黄金のドームが、ボートライド「シンドバッド・ストーリーブック・ヴォヤッジ」の入り口です。</p>
-    <p class="article-p">ゲストはシンドバッドと、子トラのチャンドゥと共に、黄金の財宝よりも価値のある「本当の宝（友情や勇気）」を求めて、心のコンパスに従い未知なる海へと船出します。しかし、この優しさに満ち溢れた今のストーリーの裏には、ディズニーのクリエイター（イマジニア）たちによる、壮絶な挑戦とリニューアルの歴史が眠っています。</p>
+    <p class="article-p">ゲストはシンドバッドと、子トラのチャンドゥと共に、黄金の財宝よりも価値のある「本当の宝（友情や勇気）」を求めて、心のコンパスに従い未知なる海へと船出します。しかし、この優しさに満ち溢れた今のストーリーの裏には、ディズニーのクリエイター（イマジニア）たちによる壮絶な挑戦とリニューアルの歴史が眠っています。そして、その挑戦の起点にあったのは、1000年以上の時を経て語り継がれてきた「千夜一夜物語」の原典との、真剣な向き合いでした。</p>
   </section>
 
-  <!-- II. 暗黒期 -->
+  <!-- II. 原典 -->
+  <section class="article-block reveal" id="origin">
+    <h2 class="article-h2">II. The Original Sindbad</h2>
+    <p class="article-p">「シンドバッド」とは、8〜9世紀頃にアラビア語圏で成立したとされる説話集「千夜一夜物語（アルフ・ライラ・ワ・ライラ）」に登場する、バグダッドの商人・船乗りです。物語の中でシンドバッドは、合計7回の航海に出かけ、毎回死の淵をさまよいながら生き延び、莫大な富を持ち帰ります。</p>
+    <p class="article-p">しかしその原典の姿は、現在のアトラクションのシンドバッドとは大きく異なります。原典のシンドバッドは純粋に「強欲で野心的な男」です。財宝への執着心から何度も命がけの航海に出かけ、巨人を騙して殺し、老人を背負って奴隷のように働かされ、それでも富への渇望を捨てられない。彼はいわば、人間の本能的な欲望を体現した存在として描かれているのです。</p>
+
+    <h3 class="article-h3">原典に登場する7つの航海と怪物たち</h3>
+    <p class="article-p">原典の7回の航海は、それぞれに強烈な「恐怖と生存」の物語です。巨鳥「ロック」の卵を割って脱出するエピソード、一つ目の巨人（サイクロプス）に仲間を食われながら必死に逃げるエピソード、脚の悪い老人に背中に乗られたまま離れられなくなるエピソード——これらはいずれも、シンドバッドが「生き残るために知恵を絞る」という、サバイバルの色濃い物語です。登場する生き物たちは友情の象徴ではなく、すべてシンドバッドの命を狙う「脅威」として描かれています。</p>
+
+    <div class="column-box reveal">
+      <h4>📜 原典「千夜一夜物語」シンドバッドの主な航海</h4>
+      <p>
+        <strong>第1航海：</strong>巨大な岩（実はロックの卵）の上で眠り、目覚めたら船が去っていた。ロックの足につかまって脱出。<br>
+        <strong>第2航海：</strong>宝石の谷に転落。ワシの足に肉ごとしがみつき脱出する。<br>
+        <strong>第3航海：</strong>一つ目の巨人に仲間を食われる。火で目を焼いて撃退し、いかだで逃亡。<br>
+        <strong>第4航海：</strong>島の住民に強制的に結婚させられ、妻が死ぬと生きたまま墓に埋められる。<br>
+        <strong>第5航海：</strong>ロックの雛を殺したことで親鳥に報復される。老人の海に遭遇。<br>
+        <strong>第6航海：</strong>難破し無人島に流される。川を地下でくぐり抜けて王国へ到達。<br>
+        <strong>第7航海：</strong>象に連れられて象の墓場を発見し、象牙を財宝として持ち帰る。
+      </p>
+    </div>
+
+    <p class="article-p">これらの物語において一貫しているのは「危機→知恵や運による脱出→財宝の獲得」という構造です。シンドバッドが危機を乗り越えるのは、怪物と「友達になる」からではなく、怪物を出し抜くか逃げ切るからです。原典の7つの航海の物語には、現代的な意味での「友情」や「自己犠牲」の精神は、ほとんど登場しません。</p>
+  </section>
+
+  <!-- III. 暗黒期 -->
   <section class="article-block reveal" id="dark-past">
-    <h2 class="article-h2">II. The Dark Past</h2>
-    <p class="article-p">実は、2001年の開園当初、このアトラクションは今とは全く異なる<strong>「シンドバッド・セブンヴォヤッジ（七つの航海）」</strong>という、暗く恐ろしいアトラクションでした。設定は、アラビアンナイトに登場するオリジナルのシンドバッドをモチーフにしており、彼が「巨人の宝を奪う」といった、人間の『強欲さ』を軸にした不気味な冒険譚だったのです。</p>
-    
+    <h2 class="article-h2">III. The Dark Past</h2>
+    <p class="article-p">2001年の開園当初、このアトラクションは今とは全く異なる<strong>「シンドバッド・セブンヴォヤッジ（七つの航海）」</strong>という名称で、暗く重厚な世界観を持つアトラクションでした。原典のシンドバッドに忠実に、「巨人の宝を奪う」といった人間の『強欲さ』を軸にした不気味な冒険譚として設計されていたのです。</p>
+    <p class="article-p">原典の精神を忠実に再現しようとした旧バージョンは、イマジニアたちの真摯な挑戦の産物でした。しかし結果として、その世界観はファミリー向けのテーマパークとの相性が悪く、深刻な問題を引き起こします。</p>
+
     <div class="column-box reveal">
       <h4>幻の「旧バージョン」の不気味なポイント</h4>
-      <p>・巨人は獰猛で凶暴。人間を食べようとし、目を不気味に光らせて激怒していた。<br>
-         ・シンドバッドを嵐で誘惑する人魚（サイレン）たちは、妖しく薄気味悪い歌を歌いながらニヤリと笑う、完全な「敵キャラ」だった。<br>
-         ・シンドバッドの相棒である可愛い子トラの「チャンドゥ」は、当時まだ存在すらしていなかった。</p>
+      <p>
+        ・巨人は獰猛で凶暴。人間を食べようとし、目を不気味に光らせて激怒していた。<br>
+        ・シンドバッドを嵐で誘惑する人魚（サイレン）たちは、妖しく薄気味悪い歌を歌いながらニヤリと笑う、完全な「敵キャラ」だった。これは原典の「サイレン（船乗りを惑わす魔物）」の描写に忠実な表現だった。<br>
+        ・シンドバッドの相棒である可愛い子トラの「チャンドゥ」は、当時まだ存在すらしていなかった。<br>
+        ・全体のトーンが暗く、BGMも重厚で不安を煽るものだった。
+      </p>
     </div>
-    
-    <p class="article-p">このあまりにダークで不気味な世界観は、小さなお子様たちを泣かせ、ボートがいつもガラガラに空いてしまうというディズニーシー屈指の「不人気アトラクション」という暗黒期を作ってしまいました。そこで2006年、イマジニアたちは「強欲を捨てる旅」への、前代未聞の全面リニューアルを決意します。</p>
+
+    <p class="article-p">このあまりにダークな世界観は、小さなお子様たちを泣かせ、ボートがいつもガラガラに空いてしまうというディズニーシー屈指の「不人気アトラクション」という不名誉な状況を生み出しました。そこで2006年、イマジニアたちは前代未聞の全面リニューアルを決意します。その決断の核心にあった問いは「原典の何を残し、何を変えるか」でした。</p>
   </section>
 
-  <!-- III. 音楽 -->
+  <!-- IV. 原典 vs ディズニー比較 -->
+  <section class="article-block reveal" id="compare">
+    <h2 class="article-h2">IV. Original vs. Disney</h2>
+    <p class="article-p">リニューアルにあたってイマジニアたちが行ったのは、原典の7つの航海を徹底的に研究し、「どの要素を残し、どの要素を読み替えるか」を一つひとつ判断していく作業でした。その結果として生まれた現在のアトラクションは、原典への深いリスペクトを保ちながらも、全く異なるテーマへと昇華されています。</p>
+
+    <div class="compare-table-wrap reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>登場する要素</th>
+            <th>原典（千夜一夜物語）</th>
+            <th>ディズニー版（現行）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>シンドバッドの動機</td>
+            <td class="original">財宝への強欲。生き延びるためなら手段を選ばない。</td>
+            <td class="disney">「本当の宝物」＝友情や勇気を求める純粋な冒険心。</td>
+          </tr>
+          <tr>
+            <td>巨人（サイクロプス）</td>
+            <td class="original">仲間を食い殺す凶悪な怪物。目を焼いて撃退する。</td>
+            <td class="disney">シンドバッドと楽器で交流し、友達になる穏やかな存在へ。</td>
+          </tr>
+          <tr>
+            <td>ロック（巨鳥）</td>
+            <td class="original">雛を殺されて復讐する猛禽。生命の脅威。</td>
+            <td class="disney">雛のロックと仲良く遊ぶ愛らしいシーンに転換。</td>
+          </tr>
+          <tr>
+            <td>人魚・サイレン</td>
+            <td class="original">船乗りを惑わして嵐へ誘い込む妖しい魔物。</td>
+            <td class="disney">美しく歌い踊る友好的な存在。見せ場の一つに。</td>
+          </tr>
+          <tr>
+            <td>象</td>
+            <td class="original">第7航海で墓場に連れていかれる。象牙＝財宝の源。</td>
+            <td class="disney">シンドバッドを助け、共に旅する仲間的な存在として登場。</td>
+          </tr>
+          <tr>
+            <td>猿の島</td>
+            <td class="original">（直接の対応エピソードなし）</td>
+            <td class="disney">バナナを分け合って交流する、友情の象徴シーンとして新設。</td>
+          </tr>
+          <tr>
+            <td>旅の結末</td>
+            <td class="original">莫大な財宝を得てバグダッドへ帰還。次の航海への欲望は消えない。</td>
+            <td class="disney">「心のコンパス」＝信じる心こそが真の宝だと悟って帰還。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="article-h3">「強欲の旅」から「友情の旅」へ——何が変わったのか</h3>
+    <p class="article-p">この比較表が示す通り、ディズニー版のリニューアルは単なる「怖い要素の削除」ではありませんでした。登場するすべての怪物・生き物を「敵」から「友達の候補」へと読み替えることで、物語の根幹にある問いそのものを変えたのです。原典の問いが「どう生き延びるか」であったのに対し、現行版の問いは「誰と出会い、何を学ぶか」に変わっています。</p>
+    <p class="article-p">興味深いのは、原典に登場する生き物たちの「種類」そのものは残されていることです。巨人も、ロックも、サイレンも、象も、すべて原典由来の存在です。イマジニアたちは原典のキャストを丸ごと書き換えるのではなく、それぞれの生き物に「友達になれる可能性」を見出し、シンドバッドとの関係性だけを根本から変えました。これは千夜一夜物語という文化的な遺産への、深いリスペクトの表れといえるでしょう。</p>
+
+    <h3 class="article-h3">ボートライドの各シーン順に読み解く</h3>
+    <p class="article-p">現行アトラクションに乗車しながら、各シーンの原典との対応を意識すると、また別の味わいが生まれます。</p>
+
+    <ul class="voyage-log reveal">
+      <li>
+        <span class="scene-label">Scene 01</span>
+        <span>出港シーン。心のコンパスを手にしたシンドバッドが、チャンドゥと共に船出する。原典では「財宝への欲求」が出航の動機だが、ディズニー版では「本当の宝を探したい」という純粋な好奇心が動機として置き換えられている。</span>
+      </li>
+      <li>
+        <span class="scene-label">Scene 02</span>
+        <span>嵐・サイレンのシーン。原典では船乗りを誘惑して難破させる魔物だったサイレンが、美しく歌い踊る友好的な存在として登場。旧バージョンでは原典に近い「薄気味悪い妖しさ」が残っていたとされる。</span>
+      </li>
+      <li>
+        <span class="scene-label">Scene 03</span>
+        <span>ロック（大鳥）のシーン。原典第2・5航海では生存の脅威として機能する巨鳥が、雛との微笑ましい交流シーンへと転換。チャンドゥが雛と遊ぶ場面は、アトラクション中でも特に人気が高い。</span>
+      </li>
+      <li>
+        <span class="scene-label">Scene 04</span>
+        <span>巨人のシーン。原典第3航海の「一つ目の巨人（サイクロプス）」が原型。仲間を食い殺す凶悪な存在から、楽器を通じてシンドバッドと心を通わせる穏やかな存在へと、最も大胆な読み替えが行われたシーン。</span>
+      </li>
+      <li>
+        <span class="scene-label">Scene 05</span>
+        <span>象のシーン。原典第7航海では象牙＝財宝の源として登場する象が、シンドバッドを助け共に旅する仲間として再解釈されている。財宝を「手に入れるもの」ではなく「与え合うもの」として描き直した象徴的なシーン。</span>
+      </li>
+      <li>
+        <span class="scene-label">Scene 06</span>
+        <span>宝の谷・フィナーレ。原典では莫大な財宝を積んでバグダッドへ帰還するシンドバッドが、ディズニー版では「心のコンパス」＝信じる心こそが本当の宝であると気づいて帰還する。旅の意味が根本から変わる瞬間。</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- V. 音楽 -->
   <section class="article-block reveal" id="music">
-    <h2 class="article-h2">III. Alan Menken's Magic</h2>
+    <h2 class="article-h2">V. Alan Menken's Magic</h2>
     <p class="article-p">アトラクションを蘇らせるために、ディズニーが頼ったのが、映画『アラジン』や『美女と野獣』などの音楽を手掛けた世紀の天才作曲家、<strong>アラン・メンケン</strong>でした。イマジニアたちは彼に直接交渉し、このアトラクションのためだけにオリジナル楽曲を書き下ろすよう依頼します。</p>
     <p class="article-p">こうして生まれたのが、一度聴いたら忘れられない大名曲<strong>「コンパス・オブ・ユア・ハート」</strong>です。劇中で力強く歌い上げる坂元健児氏（劇団四季の初代ライオンキング・シンバ役など）の圧倒的な歌声と合わさり、この歌こそがアトラクションの主役となりました。「心のコンパス（信じる心）を信じて進めば、本当の宝物が見つかる」という強烈なメッセージが、ボートを進めるたびに私たちの心に語りかけてきます。</p>
+    <p class="article-p">注目すべきは、メンケンが「アラビア音楽の語法」を巧みに取り入れながら、ディズニーらしい明るさと力強さを両立させている点です。弦楽器のアラベスク風の装飾音や、打楽器のリズムパターンには、原典の文化的背景への敬意が込められています。原典のシンドバッドが生きた8〜9世紀バグダッドの空気を音楽に乗せながら、物語のテーマは現代的な「友情と勇気」へと昇華させる——まさにアラン・メンケンだけが成し得た魔法といえます。</p>
+
+    <div class="column-box reveal">
+      <h4>🎵 「コンパス・オブ・ユア・ハート」の構造</h4>
+      <p>楽曲はアトラクション全体を通じて様々なアレンジで繰り返されます。出港時には期待感あふれる明るいイントロとして、嵐のシーンでは不安を煽る短調のアレンジとして、そしてフィナーレでは全員で歌い上げる壮大な合唱として。一つの主題が旅を通じて「成長」していく構造は、シンドバッド自身の内面の変化と完全にシンクロしており、聴くたびに新たな発見がある精巧な設計になっています。</p>
+    </div>
   </section>
 
-  <!-- IV. チャンドゥ -->
+  <!-- VI. チャンドゥ -->
   <section class="article-block reveal" id="chandu">
-    <h2 class="article-h2">IV. Chandu</h2>
+    <h2 class="article-h2">VI. Chandu</h2>
     <p class="article-p">暗黒期を抜け出すためのもう一つの隠し玉。それが、リニューアル時に新しく追加された子トラの相棒<strong>「チャンドゥ」</strong>の存在でした。獰猛な大人のトラではなく、あえて「お調子者で愛くるしい赤ちゃんトラ」にすることで、アトラクション全体のトーンを一気にマイルドにすることに成功しました。</p>
-    <p class="article-p">チャンドゥはシンドバッドの行く先々で、おもちゃ箱に隠れたり、財宝の山に埋もれてバナナを咥えたりと、愛嬌たっぷりに動き回ります。この可愛い演出によって、以前は子供たちが怖がっていた巨人のシーンや猿の島も「シンドバッドが彼らと友達になり、楽器やバナナを分け合う温かいシーン」へと劇的に生まれ変わりました。</p>
+    <p class="article-p">原典の千夜一夜物語において、シンドバッドに「動物の相棒」は登場しません。チャンドゥはディズニーが新たに創造したオリジナルキャラクターです。なぜ「トラ」だったのか。それはアラビア文化圏においてトラが「勇気と強さの象徴」として古くから崇められてきた動物だからです。しかし「大人のトラ」では威圧感が生まれてしまう。「赤ちゃんトラ」にすることで、勇気のシンボルでありながら誰もが抱きしめたくなる愛らしさを両立させたのです。</p>
+    <p class="article-p">チャンドゥはシンドバッドの行く先々で、おもちゃ箱に隠れたり、財宝の山に埋もれてバナナを咥えたりと、愛嬌たっぷりに動き回ります。この可愛い演出によって、以前は子供たちが怖がっていた巨人のシーンや猿の島も「シンドバッドが彼らと友達になり、楽器やバナナを分け合う温かいシーン」へと劇的に生まれ変わりました。チャンドゥの存在そのものが、アトラクション全体の「読み替え」を体現するキャラクターなのです。</p>
   </section>
 
-  <!-- V. アラビアンコーストの真実 -->
+  <!-- VII. アラビアンコーストの真実 -->
   <section class="article-block reveal" id="sultan">
-    <h2 class="article-h2">V. The Sultan's Wish</h2>
+    <h2 class="article-h2">VII. The Sultan's Wish</h2>
     <p class="article-p">このアトラクションが位置する「アラビアンコースト」というエリア自体にも、深く優しいバックグラウンドストーリーが設定されています。</p>
-    <p class="article-p">映画『アラジン』のラストで、ランプの魔人ジーニーは自由になり、アラジンとジャスミン姫は結ばれました。ジャスミンの父であるサルタン国王は、この若者たちの偉大な愛と奇跡を祝うために、ジーニーにお願いをして<strong>「誰もが平和に、異国の者とも友情を結べる、魔法の楽園（アラビアンコースト）」</strong>を作り出したのです。つまり、シンドバッドの「他者と手を取り合って進む旅」は、まさにこのエリアが作られた理念そのものなのです。</p>
+    <p class="article-p">映画『アラジン』のラストで、ランプの魔人ジーニーは自由になり、アラジンとジャスミン姫は結ばれました。ジャスミンの父であるサルタン国王は、この若者たちの偉大な愛と奇跡を祝うために、ジーニーにお願いをして<strong>「誰もが平和に、異国の者とも友情を結べる、魔法の楽園（アラビアンコースト）」</strong>を作り出したのです。</p>
+    <p class="article-p">この設定は、シンドバッドの物語と鮮やかに呼応しています。原典のシンドバッドが追い求めたのは「財宝」でした。ジーニーが魔法で作り出した「アラビアンコースト」が体現するのは「友情と共存」です。そしてリニューアル後のシンドバッドが辿り着く答えもまた「友情こそが本当の宝」です。エリアの成り立ちとアトラクションのテーマが、まるで一冊の本のように重なり合っているのです。</p>
+    <p class="article-p">千夜一夜物語の原典から遥かな時を経て、ここアラビアンコーストでは「強欲な冒険者」シンドバッドの物語が「友情の航海者」の物語へと生まれ変わっています。それはイマジニアたちが原典と向き合い続けた末に見つけた、1000年の物語への独自の答えなのかもしれません。</p>
 
     <a href="bgs-spatial-epic.html" class="related-link-card reveal">
-        <span class="related-link-title">📖 関連ストーリー：</span>
-        <span class="related-link-desc">全8テーマポートの地政学的な繋がりと、時空を調停するディズニーシーの圧倒的な空間設計に迫る総括コラムはこちら。</span>
+      <span class="related-link-title">📖 関連ストーリー：</span>
+      <span class="related-link-desc">全8テーマポートの地政学的な繋がりと、時空を調停するディズニーシーの圧倒的な空間設計に迫る総括コラムはこちら。</span>
     </a>
   </section>
 
@@ -499,32 +650,25 @@
     <a href="index.html" class="footer-link">← HOMEへ戻る</a>
   </div>
 
-</div><!-- /content-box -->
-</div><!-- /site-wrap -->
+</div>
+</div>
 
 <script>
-  /* Reveal on scroll */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { 
-        e.target.classList.add('on'); 
-        io.unobserve(e.target); 
-      }
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
     });
   }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
-  
+
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ファーストビューの要素を即時表示 */
   setTimeout(() => {
     document.querySelectorAll('.reveal').forEach((el, index) => {
-      if(index < 3) el.classList.add('on');
+      if (index < 3) el.classList.add('on');
     });
   }, 50);
 
-  /* Image protection */
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
 </body>
 </html>
