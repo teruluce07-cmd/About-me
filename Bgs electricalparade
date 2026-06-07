@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokyo Disneyland Electrical Parade | 光と色彩が紡ぐ夜空の叙事詩 — BGS Chronicles</title>
+  <meta name="description" content="1971年のきらめく水上ショーから始まった、光と音楽の魔法。ゲストに純粋なときめきを届けるため、裏側でイマジニアたちが重ねた情熱と、奇跡の技術史。">
+  <meta name="keywords" content="エレクトリカルパレード BGS, ドリームライツ, バロック・ホウダウン, ナイトフォール・グロウ 終了, イマジニアの努力, BIPROGY, ディズニー 世代のループ">
+  <meta name="author" content="TERU_LUCE_">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://teruluce07-cmd.github.io/disney-bgs/bgs-electricalparade.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://teruluce07-cmd.github.io/disney-bgs/bgs-electricalparade.html">
+  <meta property="og:title" content="Tokyo Disneyland Electrical Parade | 光と色彩が紡ぐ夜空の叙事詩">
+  <meta property="og:description" content="暗闇をまばゆいキャンバスに変えたイマジニアたちの挑戦。電球ひとつひとつに宿るこだわりと、語り継がれる夜の魔法。">
+  <meta property="og:image" content="https://teruluce07-cmd.github.io/disney-bgs/tdl-ep-bluefairy.jpeg">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="BGS Chronicles">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tokyo Disneyland Electrical Parade | 光と色彩が紡ぐ夜空の叙事詩">
+  <meta name="twitter:description" content="暗闇をまばゆいキャンバスに変えたイマジニアたちの挑戦。電球ひとつひとつに宿るこだわりと、語り継がれる夜の魔法。">
+  <meta name="twitter:image" content="https://teruluce07-cmd.github.io/disney-bgs/tdl-ep-bluefairy.jpeg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Tokyo Disneyland Electrical Parade — 光と色彩が紡ぐ夜空の叙事詩：開発秘話と技術変遷のアーカイブ",
+    "description": "エレクトリカルパレードの誕生から最新の『ドリームライツ』まで、光響・音響制御工学の進化とグローバルな展開比較。",
+    "inLanguage": "ja",
+    "author": { "@type": "Person", "name": "TERU_LUCE_" },
+    "publisher": { "@type": "Person", "name": "TERU_LUCE_" },
+    "url": "https://teruluce07-cmd.github.io/disney-bgs/bgs-electricalparade.html"
+  }
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
+  </noscript>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS (Synced with index.html)
+    ============================================================ */
+    :root {
+      --paper:       #F5EDD8;
+      --paper-2:     #EDE0C4;
+      --paper-3:     #E0CFB0;
+      --paper-dark:  #D4BF98;
+      --ink:         #1C1209;
+      --ink-2:       #2E1F10;
+      --ink-soft:    #3D2D1A;
+      --bordeaux:    #6B1E2A;
+      --bordeaux-2:  #8A2535;
+      --gold:        #8A6820;
+      --gold-2:      #B08A30;
+      --gold-rule:   rgba(138,104,32,0.5);
+      --gold-dim:    rgba(138,104,32,0.1);
+      --muted:       #7A6048;
+      --muted-2:     #9C7E58;
+      --border:      rgba(60,40,15,0.22);
+      --border-strong: rgba(60,40,15,0.45);
+      --shadow:      rgba(20,10,3,0.18);
+
+      --f-display: 'Playfair Display', 'Georgia', serif;
+      --f-sc:      'Playfair Display SC', 'Georgia', serif;
+      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-type:    'Special Elite', 'Courier New', monospace;
+      --f-jp:      'Noto Serif JP', serif;
+
+      --max-w: 720px;
+      --pad-x: clamp(16px, 5vw, 48px);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    /* ============================================================
+       IMAGE PROTECTION
+    ============================================================ */
+    img {
+      -webkit-user-select: none; user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    /* ============================================================
+       BODY & BACKGROUND
+    ============================================================ */
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--f-jp);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 28px,
+          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
+        ),
+        radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%,
+        transparent 55%, rgba(50,28,8,0.14) 100%);
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .site-wrap { position: relative; z-index: 1; }
+
+    .content-box {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
+    }
+
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+    .reveal.on { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+    }
+
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link-wrap {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.6rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover { color: var(--bordeaux); }
+
+    /* ============================================================
+       MASTHEAD / HEADER
+    ============================================================ */
+    .masthead {
+      border-top: 4px double var(--ink);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 32px 0 24px;
+      margin-bottom: 48px;
+      text-align: center;
+      position: relative;
+    }
+
+    .masthead-kicker {
+      font-family: var(--f-sc);
+      font-size: clamp(0.5rem, 1.3vw, 0.6rem);
+      letter-spacing: 0.35em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .masthead-title {
+      font-family: var(--f-display);
+      font-size: clamp(1.8rem, 6.5vw, 3rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      display: block;
+      line-height: 1.8;
+    }
+
+    /* ============================================================
+       TOC (INDEX)
+    ============================================================ */
+    .toc-wrap {
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.6);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 48px;
+    }
+    .toc-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .toc-head-title {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      text-decoration: none;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .toc-list li:last-child .toc-link { border-bottom: none; }
+    .toc-text {
+      font-family: var(--f-jp);
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      color: var(--ink-soft);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .toc-action {
+      font-family: var(--f-body);
+      font-style: italic;
+      font-size: 0.7rem;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 12px;
+      transition: color 0.2s;
+    }
+    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-link:hover .toc-action { color: var(--bordeaux); }
+
+    /* ============================================================
+       PHOTO FRAME
+    ============================================================ */
+    .photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--ink-2);
+      border: 1px solid var(--border-strong);
+      box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
+      margin: 48px 0;
+    }
+    .photo-frame-portrait {
+      aspect-ratio: 3/4;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(10%) sepia(10%) contrast(1.05) brightness(0.95);
+      display: block;
+    }
+
+    /* ============================================================
+       ARTICLE TABLES
+    ============================================================ */
+    .article-table-wrap {
+      overflow-x: auto;
+      margin: 32px 0;
+      border: 1px solid var(--border-strong);
+      background: rgba(245,237,216,0.4);
+    }
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--f-jp);
+      font-size: clamp(0.7rem, 2vw, 0.78rem);
+      line-height: 1.6;
+      text-align: left;
+    }
+    .article-table th {
+      background: var(--paper-2);
+      border-bottom: 1px solid var(--border-strong);
+      border-right: 1px solid var(--border);
+      color: var(--ink);
+      font-weight: 500;
+      padding: 10px 14px;
+    }
+    .article-table th:last-child { border-right: none; }
+    .article-table td {
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      color: var(--ink-soft);
+      padding: 10px 14px;
+      vertical-align: top;
+    }
+    .article-table td:last-child { border-right: none; }
+    .article-table tr:last-child td { border-bottom: none; }
+    .article-table tr:nth-child(even) { background: rgba(237,224,196,0.25); }
+
+    /* ============================================================
+       ARTICLE BODY
+    ============================================================ */
+    .article-block { margin-bottom: 56px; }
+    
+    .article-h2 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+      letter-spacing: 0.02em;
+    }
+    .article-h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--border-strong);
+    }
+    
+    .article-h3 {
+      font-family: var(--f-jp);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-weight: 700;
+      color: var(--bordeaux);
+      margin: 40px 0 16px;
+      border-left: 3px solid var(--bordeaux);
+      padding-left: 12px;
+    }
+    
+    .article-p {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .article-p strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .blockquote {
+      font-family: var(--f-jp);
+      font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-style: italic;
+      background: rgba(245,237,216,0.4);
+      padding: 20px 24px;
+      border-left: 3px solid var(--gold);
+      line-height: 2.1;
+      margin-bottom: 24px;
+      color: var(--ink-soft);
+    }
+
+    /* ============================================================
+       CREATOR GRID
+    ============================================================ */
+    .creator-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 32px 0;
+    }
+    @media (max-width: 599px) {
+      .creator-grid { grid-template-columns: 1fr; }
+    }
+    
+    .creator-card {
+      background: var(--paper);
+      border: 1px solid var(--border-strong);
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .creator-card:hover {
+      background: rgba(255, 252, 243, 1);
+      border-color: var(--bordeaux);
+    }
+    .card-en {
+      font-family: var(--f-display);
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .card-ja {
+      font-family: var(--f-jp);
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+    .card-role {
+      font-family: var(--f-sc);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       MODAL
+    ============================================================ */
+    .modal-wrap {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      background: rgba(28,18,9,0.55);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    .modal-wrap.open { opacity: 1; visibility: visible; }
+
+    .modal-panel {
+      background: var(--paper);
+      border: 1px solid var(--border-strong);
+      border-top: 4px solid var(--bordeaux);
+      padding: clamp(24px, 6vw, 36px);
+      width: 100%; max-width: 500px;
+      position: relative;
+      transform: translateY(10px);
+      transition: transform 0.3s var(--ease);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-wrap.open .modal-panel { transform: none; }
+
+    .modal-close-btn {
+      position: absolute; top: 12px; right: 14px;
+      background: transparent; border: none;
+      font-family: var(--f-sc);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      cursor: pointer; padding: 8px;
+      min-width: 44px; min-height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s;
+    }
+    .modal-close-btn:hover { color: var(--bordeaux); }
+
+    .modal-name-en {
+      font-family: var(--f-display);
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+      margin-top: 8px;
+      padding-right: 40px;
+    }
+    .modal-name-ja {
+      font-family: var(--f-jp);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-desc {
+      font-family: var(--f-jp);
+      font-size: clamp(0.78rem, 2vw, 0.85rem);
+      font-weight: 300;
+      color: var(--ink-soft);
+      line-height: 2.1;
+    }
+
+    /* ============================================================
+       FOOTER LINK
+    ============================================================ */
+    .footer-link-wrap {
+      text-align: center;
+      margin-top: 64px;
+      border-top: 1px solid var(--border-strong);
+      padding-top: 32px;
+    }
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--f-sc);
+      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      min-height: 40px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .footer-link:hover {
+      color: var(--bordeaux);
+      border-bottom-color: var(--bordeaux);
+    }
+    
+    /* ============================================================
+       FOCUS STYLES
+    ============================================================ */
+    :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+<div class="site-wrap">
+<div class="content-box">
+
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">← Back to Portal</a>
+  </div>
+
+  <header class="masthead reveal">
+    <span class="masthead-kicker">Electrical Lights & Sound Engineering Archive</span>
+    <h1 class="masthead-title">Tokyo Disneyland<br>Electrical Parade</h1>
+    <span class="masthead-subtitle">漆黒の闇をキャンバスに変えた、夢の開拓者たちの温かな情熱の記録</span>
+  </header>
+
+  <!-- 目次 -->
+  <nav class="toc-wrap reveal" aria-label="目次">
+    <div class="toc-head">
+      <span class="toc-head-title">Archives Index</span>
+    </div>
+    <ul class="toc-list">
+      <li><a href="#genesis" class="toc-link"><span class="toc-text">I. 水上から陸上への挑戦 ― ゼロから夢を紡いだイマジニアの開発秘話</span><span class="toc-action">Explore →</span></a></li>
+      <li><a href="#engineering" class="toc-link"><span class="toc-text">II. 情熱が灯した光と音 ― 電球ひとつに心を込めた温かな技術の工夫</span><span class="toc-action">Explore →</span></a></li>
+      <li><a href="#music" class="toc-link"><span class="toc-text">III. 音楽的ルーツ ― 楽しげな電子音と交響楽が織りなす奇跡のメロディ</span><span class="toc-action">Explore →</span></a></li>
+      <li><a href="#dreamlights" class="toc-link"><span class="toc-text">IV. ドリームライツと親子の絆 ― 世代を超えて受け継がれる「光のループ」</span><span class="toc-action">Explore →</span></a></li>
+      <li><a href="#glow" class="toc-link"><span class="toc-text">V. 哀愁の雨と消えた魔法 ― 英語の調べと逆回りが生んだ「ナイトフォール・グロウ」の記憶</span><span class="toc-action">Explore →</span></a></li>
+      <li><a href="#global" class="toc-link"><span class="toc-text">VI. 世界の夜を巡る旅 ― 摩天楼を魔法に染めたニューヨークの奇跡</span><span class="toc-action">Explore →</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- I. 水上から陸上への挑戦 -->
+  <section class="article-block reveal" id="genesis">
+    <h2 class="article-h2">I. From Water to Street</h2>
+    <h3 class="article-h3">漆黒の湖畔から始まった、光の魔法の第一歩</h3>
+    <p class="article-p">
+      夜の帳が下りる頃、どこか懐かしく胸を躍らせるおもちゃのような電子の音色とともに、きらめく光の海が私たちの目の前にやってきます。今や東京ディズニーランドの夜の象徴となった「エレクトリカルパレード」。その温かな魔法のはじまりは、1971年の秋、フロリダの澄んだ湖の上にありました。
+    </p>
+    <p class="article-p">
+      エンターテイメントの責任者だったボブ・ジャニは、広大な敷地を包み込む、完全な闇に沈んだ湖畔をじっと見つめ、「この暗闇こそ、世界最高の劇場になる」と直感しました。こうして誕生したのが、水面に浮かぶスクリーンが幻想的な光を放ちながら進む『エレクトリカル・ウォーター・ページェント』です。このショーの爆発的な成功に心を動かされたイマジニアたちは、「この魔法を、今度はアナハイムの陸上のストリートで再現しよう」という、前代未聞の挑戦に乗り出すことになります。
+    </p>
+    <p class="article-p">
+      「暗闇を恐れるな。暗闇はゲストに夢を見せるための、最も大切な舞台だ」——ボブ・ジャニがチームに語りかけたとされるその言葉は、今もイマジニアたちの心に受け継がれています。光が美しいのは、それを包む夜があるから。その逆説的な真実が、エレクトリカルパレードのすべての出発点でした。
+    </p>
+
+    <div class="photo-frame photo-frame-portrait reveal">
+      <img src="tdl-ep-bluefairy.jpeg" alt="美しく夜空を照らすブルーフェアリーのフロート" width="480" height="640" decoding="async" loading="lazy">
+    </div>
+
+    <h3 class="article-h3">火花を散らしたリハーサルと、開拓者たちの執念</h3>
+    <p class="article-p">
+      しかし、その挑戦は決して平坦な道ではありませんでした。外部に委託したフロートの製作は大幅に遅れ、お披露目のわずか2ヶ月前に、半分しか完成していない状態で届くという最大の危機を迎えます。
+    </p>
+    <p class="article-p">
+      イマジニアたちは即座に立ち上がり、バックステージに臨時の作業場を設営。溶接工や電気技術者たちが寝食を忘れて突貫工事を進めました。初めての本番リハーサルでは、フロートが建物の角にぶつかり、出演者の衣装から火花が散るという散々な結果に終わりましたが、誰一人として諦めませんでした。その執念が実を結び、1972年6月17日、ストリートはまばゆい光に満ち溢れ、伝説の初演を迎えたのです。この時、平面スクリーンのフロート群の中で唯一、美しい「3次元の立体」として丁寧に作られていたのが、パレードを先導する光の妖精「ブルーフェアリー」でした。
+    </p>
+    <p class="article-p">
+      ブルーフェアリーがパレードの先頭を走るのには、深い理由があります。彼女はピノキオに「本物の人間になりたい」という夢を叶えた存在であり、同時に「信じる心があれば夢は必ず叶う」というウォルト・ディズニーの思想そのものを体現するキャラクターです。夜の闇の中、彼女の青白い翼が最初にメインストリートを照らす瞬間、パレードはただのショーではなく、「夢の始まり」を告げる儀式へと変わります。
+    </p>
+
+    <div class="article-table-wrap reveal">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">開発の歩み</th>
+            <th>夢を形にするための丁寧なアプローチ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. 物語の紡ぎだし</td>
+            <td>キャラクターの魅力を引き出し、光で語るべき最も美しいシーンを構想。</td>
+          </tr>
+          <tr>
+            <td>2. スタジオとの対話</td>
+            <td>アニメーターたちと密に連携し、二次元の躍動感をそのまま立体へ息づかせる。</td>
+          </tr>
+          <tr>
+            <td>3. 光と色彩の設計</td>
+            <td>小さな光の一粒一粒が、闇の中で最も美しく温かく見える位置を厳密に決定。</td>
+          </tr>
+          <tr>
+            <td>4. 遮光の工夫</td>
+            <td>反対側の観客席から電球の裏側や骨組みが透けて見えないよう、特殊な布地を選定。</td>
+          </tr>
+          <tr>
+            <td>5. クレイモデルによる試作</td>
+            <td>粘土を用いて精密な立体模型を作り、金属職人に渡すための温かなフォルムを確かめる。</td>
+          </tr>
+          <tr>
+            <td>6. 金属の骨組みの溶接</td>
+            <td>試作したフォルムをもとに、強固な金属フレームを職人の手で一本ずつ溶接。</td>
+          </tr>
+          <tr>
+            <td>7. 手作業による配線</td>
+            <td>張り巡らせた布地の上に、一本一本、電球の温かな配線を丁寧に手作業で施す。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- II. 情熱が灯した光と音 -->
+  <section class="article-block reveal" id="engineering">
+    <h2 class="article-h2">II. Warm Light & Harmony</h2>
+    <h3 class="article-h3">電球ひとつに心を込めた、イマジニアの温かな工夫</h3>
+    <p class="article-p">
+      ゲストの瞳にきらめく光を届けるため、イマジニアたちは驚くほど細やかで温かな工夫を積み重ねてきました。
+    </p>
+    <p class="article-p">
+      かつてのパレードでは、走行する車体の上でこれほど多くの電球を灯し続けることは不可能とされていました。そこで彼らは、スタジオの特殊撮影用として開発されたコンパクトでパワフルな「ニッケル・カドミウム蓄電池」を応用し、フロート自体が自律して輝き続けられる仕組みを考案したのです。
+    </p>
+    <p class="article-p">
+      さらに、初期のパレードに使われた約50万個の小さな電球は、ただ配置されたわけではありません。おもちゃ箱を開けたときのような、優しくノスタルジックな色彩を表現するため、技術者たちがすべての電球をひとつひとつ、手作業で丁寧に染め上げて配列しました。この細やかな「手仕事の温もり」こそが、冷たい電気の光をぬくもりある魔法の光へと変えた瞬間でした。
+    </p>
+    <p class="article-p">
+      現在のドリームライツでは、LED や光ファイバーへの移行によって電球の数は100万個を超えましたが、そのひとつひとつが「どの角度から、どの距離で見ても美しく見えるか」を徹底的に検証されて配置されています。技術は進化しても、「光で人を幸せにしたい」というイマジニアの哲学だけは、初演の夜からまったく変わっていません。
+    </p>
+
+    <div class="photo-frame photo-frame-portrait reveal">
+      <img src="tdl-ep-donald.jpeg" alt="楽しげな光に彩られたドナルドたちのフロート" width="480" height="640" decoding="async" loading="lazy">
+    </div>
+
+    <h3 class="article-h3">目の前の世界と音楽が完璧に溶け合う「ゾーン音響」</h3>
+    <p class="article-p">
+      もう一つの素晴らしい工夫が、音響の仕掛けです。パレードルートを歩く時、自分の目の前にやってきたフロートに合わせて、まるで魔法のように周囲のスピーカーから流れる曲がそのキャラクターのテーマへと切り替わることに気づいたことはあるでしょうか。
+    </p>
+    <p class="article-p">
+      イマジニアたちは、パレードルートを細かなエリア（トリガーゾーン）に分割し、フロートがその境界を越えた瞬間、地中に埋め込まれたセンサーが反応して、エリア全体の固定スピーカーへ「いま、この音楽を流して」という信号を送る独自の音響システムを開発しました。これにより、フロートが途中で一時停止したり、前後の間隔が変わったりしても音響がズレることなく、いつでも目の前の世界に完璧に没入できます。
+    </p>
+    <p class="article-p">
+      実はこの仕掛けには、もう一つの狙いがあります。ゲストがパレードルートのどこに立っていても、必ずいくつかのフロートが「目の前を通過する」瞬間を体験できるよう、フロートの間隔とゾーンの長さが精密に設計されているのです。「どこで見ても主役になれる」という思いやりが、足元の地面の下に静かに息づいています。
+    </p>
+  </section>
+
+  <!-- III. 音楽的ルーツ -->
+  <section class="article-block reveal" id="music">
+    <h2 class="article-h2">III. The Electronic Symphony</h2>
+    <h3 class="article-h3">小さなトイ・サウンドから、壮大な交響楽への奇跡</h3>
+    <p class="article-p">
+      誰もが自然と口ずさみ、思わずステップを踏んでしまうあの名テーマ曲「バロック・ホウダウン（Baroque Hoedown）」。実は、この曲はディズニーがパレードのために書き下ろしたオリジナル曲ではありません。1967年、電子音楽の先駆者であるジャン＝ジャック・ペリーとジル・ヴァンダービルトが、発売されたばかりの初期シンセサイザー（モーグ）を使ってレコーディングした、おもちゃのように無邪気で楽しげな一曲だったのです。
+    </p>
+    <p class="article-p">
+      当初はクラシックなオーケストラ演奏を検討していたボブ・ジャニでしたが、パークのナレーションを担当していたジャック・ワーグナーが「光を表現するなら、絶対に電子音楽が合う」とこの曲を発見し、パレードの歩行テンポに完璧に調和した世紀のテーマ曲が誕生しました。
+    </p>
+    <p class="article-p">
+      「バロック・ホウダウン」という曲名には、17世紀のバロック音楽様式と、アメリカ南部の陽気なダンス音楽「ホウダウン」という、一見まったく異質なふたつの要素が込められています。格式と遊び心、荘厳さとユーモア——その絶妙なミスマッチが生み出すエネルギーこそ、何十年経っても色褪せないこの曲の秘密かもしれません。
+    </p>
+    <p class="article-p">
+      そして時が流れ、東京ディズニーランドの「ドリームライツ」へと受け継がれる際、この楽しげな電子音の背景に、各ディズニー映画の物語を繊細かつドラマチックに描き出す「フルオーケストラ」の豊かな響きが重ね合わされました。電子音の持つどこか無邪気なワクワク感と、交響楽が織りなす重厚な美しさがふわりと溶け合う——その奇跡のグラデーションは、私たちの心をそっと包み込み、夜のパークをこの上ない感動で満たしてくれます。
+    </p>
+
+    <div class="photo-frame photo-frame-portrait reveal">
+      <img src="tdl-ep-chipdale.jpeg" alt="チップとデールを乗せてきらめく気球のフロート" width="480" height="640" decoding="async" loading="lazy">
+    </div>
+  </section>
+
+  <!-- IV. ドリームライツと親子の絆 -->
+  <section class="article-block reveal" id="dreamlights">
+    <h2 class="article-h2">IV. Quarter-Century & Family Loop</h2>
+    <h3 class="article-h3">世代を超えて受け継がれる、温かな「光のループ」</h3>
+    <p class="article-p">
+      1985年に初代が東京ディズニーランドへ上陸してから、じつに40年以上の歳月が流れました。この長い光の歴史の中で、今、言葉にできないほど美しく微笑ましいループが起きています。
+    </p>
+    <p class="article-p">
+      かつて小さな子供として、温かな親の手をしっかりと握りながら、キラキラと輝くミッキーたちの姿を夢中になって見上げていた少年少女たち。時が流れた今、彼らは大人になり、自分たちが「親」となって、生まれたばかりの我が子を抱いてパレードルートに立っています。
+    </p>
+    <p class="article-p">
+      「ほら、ミッキーだよ。パパもママも、子供のころにこうして見ていたんだよ」
+    </p>
+    <p class="article-p">
+      そう語りかける横顔と、それを見上げて瞳を輝かせる子供の笑顔。世代から世代へと途切れることなく受け継がれていくこの温かな感動こそ、東京の夜空の下で紡がれ続ける最も美しい魔法です。ドリームライツが灯し続けるのは、ただの電気の光ではなく、幾千もの家族が重ねてきた幸せな「時間の記憶」そのものなのです。
+    </p>
+    <p class="article-p">
+      パレードの演出担当者たちはこのループを「最高の褒め言葉」と語ります。どんな批評よりも、どんな賞よりも、かつて子供だったゲストが大人になって我が子を連れてまた帰ってきてくれること——それがイマジニアにとって最大の答えだと言うのです。光は消えても、その記憶は永遠に輝き続けます。
+    </p>
+
+    <div class="article-table-wrap reveal">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th>夜を彩る工夫</th>
+            <th>初代パレード（1985年 - 1995年）</th>
+            <th>ドリームライツ（2001年 - 現在）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>光源</td>
+            <td>約50万個のぬくもりある白熱ミニチュア電球</td>
+            <td>約100万個超のLEDや光ファイバーによる豊かな色彩</td>
+          </tr>
+          <tr>
+            <td>音響</td>
+            <td>懐かしく楽しげな純電子音のシンセサイザー</td>
+            <td>電子音と壮大なフルオーケストラによる温かな融合</td>
+          </tr>
+          <tr>
+            <td>光の演出</td>
+            <td>規則的な点滅や流れるような光の動き</td>
+            <td>シーンに合わせて絵柄が変化する流動的なグラデーション</td>
+          </tr>
+          <tr>
+            <td>フロート数</td>
+            <td>約20基</td>
+            <td>約26基（登場キャラクター数も大幅拡張）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="article-h3">最後尾を見送ったあとに灯る、静かな「夢の種まき」</h3>
+    <p class="article-p">
+      そしてパレードの最後尾、色とりどりの輝きを見送ったあとに静かに灯る「BIPROGY（ビプロジー／旧・日本ユニシス）」の優しい光のロゴ。
+    </p>
+    <p class="article-p">
+      一般消費者向けに直接商品を販売しているわけではないIT企業が、なぜ40年近くもの長きにわたってこの光の魔法を支え続けているのでしょうか。そこには、未来に向けた静かな「夢の種まき」がありました。
+    </p>
+    <p class="article-p">
+      いつの日か、このまばゆい光を見上げて瞳を輝かせた子供たち——未来のエンジニアやクリエイターたちが大人になったとき、かつて夜空に描かれた魔法のような「高い技術と夢」が、新しい世界を支える力になるようにと願いを込めた、静かで温かな約束なのです。
+    </p>
+    <p class="article-p">
+      ロゴが通り過ぎた後、ストリートに残るのは静寂と、まだ耳に残るあのメロディだけ。しかしその静寂の中に、「また来年も、ここで会おう」というイマジニアたちの無言のメッセージが、そっと込められています。
+    </p>
+
+    <div class="photo-frame photo-frame-portrait reveal">
+      <img src="tdl-ep-train.jpeg" alt="まばゆい光を放ち先頭を走るドリームライツ・トレイン" width="480" height="640" decoding="async" loading="lazy">
+    </div>
+  </section>
+
+  <!-- V. 哀愁の雨と消えた魔法 -->
+  <section class="article-block reveal" id="glow">
+    <h2 class="article-h2">V. Shimmering Rainy Night</h2>
+    <h3 class="article-h3">雨空に現れた、切なくも美しいもう一つの奇跡</h3>
+    <p class="article-p">
+      どんなに楽しみにしていた日でも、空からポツリポツリと雨が降り出すと、少し寂しい気持ちになってしまうもの。しかし、かつての東京ディズニーランドには、雨の夜だからこそ出逢える、息をのむほど幻想的な魔法がありました。それが、雨天限定のミニパレード『ナイトフォール・グロウ』です。
+    </p>
+    <p class="article-p">
+      ドリームライツが天候により休演となった雨の夜、「雨の日こそ、おしゃれを楽しみたい！」というミニーマウスやデイジーダックたちが、水滴を宝石のようにきらめかせながらトゥーンタウンの奥から現れます。
+    </p>
+    <p class="article-p">
+      このパレードには、ファンの心を強く惹きつける特別な仕掛けがありました。通常のパレードとは異なる「逆回りのルート（トゥーンタウン出発）」で運行されること、そして何より、キャラクターたちのセリフがすべて日本語ではなく、異国情緒漂う『英語』であったことです。
+    </p>
+    <p class="article-p">
+      「Tonight is a magical night — even in the rain!」——そう朗らかに呼びかけるミニーの声が、ひんやりとした雨の空気の中に透き通るように広がるとき、パレードルートはまるで異国の小さな街角に変わります。しっとりとした英語のセリフと、濡れた路面に万華鏡のように映り込むフロートの淡い色彩。傘越しに見上げる光は、晴れの夜とはまったく異なる、儚く繊細な美しさを帯びていました。
+    </p>
+    <p class="article-p">
+      コロナ禍によるエンターテイメント休止期には、晴れの夕暮れ時にも特別に運行され、久しぶりの光と音楽がパークに希望を灯しました。そのときキャストたちは、いつも以上に丁寧に、心を込めてパフォーマンスを届けたといいます。雨の日の救世主として多くのゲストに愛された『ナイトフォール・グロウ』は、惜しまれながら2026年3月31日をもってすべての公演を終了し、静かに伝説の幕を閉じました。それでも今でも雨が降る夜、パレードルートに立つと、あの切なくも愛おしい光と英語のメロディが、胸の奥に優しく蘇るのです。
+    </p>
+
+    <blockquote class="blockquote">
+      雨に濡れた路面に映り込む光は、晴れの夜には決して見えない景色だった。<br>
+      あの夜だけが、あの場所だけが持っていた魔法——それを知っている人が、今もどこかにいる。
+    </blockquote>
+  </section>
+
+  <!-- VI. 世界の夜を巡る旅 -->
+  <section class="article-block reveal" id="global">
+    <h2 class="article-h2">VI. Global Night Processions</h2>
+    <h3 class="article-h3">国境を越え、世界の街を魔法に染めたニューヨークの夜</h3>
+    <p class="article-p">
+      この光のパレードは、ある時はパリの運河の岸辺を照らし、ある時はアナハイムのノスタルジックなストリートを進み、パークの境界線すら越えて世界を旅してきました。
+    </p>
+    <p class="article-p">
+      その中で最も奇跡的でロマンチックな出来事として語り継がれているのが、1997年6月14日の夜のことです。大都会ニューヨークの「ブロードウェイ」の主要なストリートを完全に通行止めにし、タイムズスクエアのど真ん中を、光のフロートたちがゆっくりと練り歩くという夢のような屋外スペクタクルが実現したのです。
+    </p>
+    <p class="article-p">
+      普段は絶え間ないクラクションが鳴り響く大都会の摩天楼が、この夜だけはバロック・ホウダウンの優しい音色と色鮮やかな魔法に包み込まれました。沿道を埋め尽くした大人も子供も、その美しい光景を前に、誰もが年齢も国境も忘れ、純粋な子供のような輝きを瞳に宿して見つめていました。
+    </p>
+    <p class="article-p">
+      考えてみれば不思議なことです。1967年にシンセサイザーで録音されたおもちゃのような音楽が、1972年に誰かの思いつきで夜の道路を走り始め、半世紀を超えた今も世界のどこかで人々を立ち止まらせ、涙を流させている。技術の進歩も、時代の変化も、その本質をひとつも変えることができていません。
+    </p>
+    <p class="article-p">
+      「この場所は、世界に想像力がある限り、永遠に完成することはない」——ウォルトが残したその言葉の通り、電球ひとつを手作業で染め上げたあの日のぬくもりから、最新のLEDが描き出す現代の光の物語まで、ゲストを笑顔にしたいと願うイマジニアたちの愛と工夫がある限り、この光の航路はこれからも私たちの心に温かな希望を灯し続けていくのです。
+    </p>
+  </section>
+
+  <!-- クリエイター紹介セクション -->
+  <section class="article-block reveal" id="pioneers">
+    <h2 class="article-h2">The Architects of Light</h2>
+    <p class="article-p">
+      暗闇を最大のエンターテイメントへと変え、光の交響楽を紡ぎ出した4人の先駆者たち。各肖像をタップすることで、彼らの開発への情熱と温かなこだわりを垣間見ることができます。
+    </p>
+
+    <div class="creator-grid">
+      <div class="creator-card" tabindex="0" data-member="jani" aria-label="ロバート・ボブ・ジャニの詳細を表示">
+        <div class="card-en">Robert "Bob" Jani</div>
+        <div class="card-ja">ロバート・ボブ・ジャニ</div>
+        <div class="card-role">エンターテイメント部門責任者 / 総合発案者</div>
+      </div>
+      <div class="creator-card" tabindex="0" data-member="miziker" aria-label="ロン・ミジカーの詳細を表示">
+        <div class="card-en">Ron Miziker</div>
+        <div class="card-ja">ロン・ミジカー</div>
+        <div class="card-role">プロジェクトディレクター / 開発執行役</div>
+      </div>
+      <div class="creator-card" tabindex="0" data-member="dorsey" aria-label="ドン・ドーシーの詳細を表示">
+        <div class="card-en">Don Dorsey</div>
+        <div class="card-ja">ドン・ドーシー</div>
+        <div class="card-role">音楽監督 / 1977年シンセサイザー編曲</div>
+      </div>
+      <div class="creator-card" tabindex="0" data-member="smith" aria-label="グレゴリー・スミスの詳細を表示">
+        <div class="card-en">Gregory Smith</div>
+        <div class="card-ja">グレゴリー・スミス</div>
+        <div class="card-role">編曲家 / ドリームライツ交響楽編曲</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-link-wrap reveal">
+    <a href="index.html" class="footer-link">← Back to Portal</a>
+  </div>
+
+</div><!-- /content-box -->
+</div><!-- /site-wrap -->
+
+<!-- ===== MODAL ===== -->
+<div class="modal-wrap" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalNameEn">
+  <div class="modal-panel">
+    <button class="modal-close-btn" id="modalClose" aria-label="閉じる">✕ Close</button>
+    <div class="modal-name-en" id="modalNameEn"></div>
+    <div class="modal-name-ja" id="modalNameJa"></div>
+    <p class="modal-desc" id="modalDesc"></p>
+  </div>
+</div>
+
+<script>
+  /* ─── クリエイターデータ ─── */
+  const members = {
+    jani: {
+      en: "Robert \"Bob\" Jani",
+      ja: "ロバート（ボブ）・ジャニ",
+      desc: "ディズニーのエンターテイメント部門を統括した伝説の責任者です。WDWの暗闇に包まれた湖を見て「エレクトリカル・ウォーター・ページェント」を着想。さらにアナハイムでの陸上パレード化（MSEP）を指揮し、「夜間パレード」という全く新しいエンターテイメントのジャンルを確立した、光の魔法のグランドデザイナーです。「暗闇を怖がってはいけない。暗闇こそが、光を最も美しく見せる舞台なのだから」という彼の言葉は、今もイマジニアたちの精神的な支柱となっています。"
+    },
+    miziker: {
+      en: "Ron Miziker",
+      ja: "ロン・ミジカー",
+      desc: "エレクトリカルパレードの初期開発においてプロジェクトディレクターを務めた人物です。ボブ・ジャニとともに、外部委託先との困難な交渉や、直前の突貫工事といった数々の壁を乗り越えました。メインストリートの建物へのフロートの衝突や、衣装から火花が散るリハーサルといった危機に直面しながらも、「最悪の状況の中でこそ、最高のものが生まれる」と信じ続け、奇跡の初演を成功へと導きました。"
+    },
+    dorsey: {
+      en: "Don Dorsey",
+      ja: "ドン・ドーシー",
+      desc: "1977年のパレードアップデートから音楽監督および編曲を担った電子音楽の巨匠です。ジャック・ワーグナーが発掘した「バロック・ホウダウン」をベースに、象徴的なオープニングファンファーレや、ボコーダーを用いた幻想的なボイス、各ディズニー作品のメロディを緻密に織り込んだシンセサイザー・アレンジメントを構築し、MSEPの音楽的アイデンティティを確立しました。彼のアレンジなしに、あのパレードの「音の世界観」は生まれなかったと言っても過言ではありません。"
+    },
+    smith: {
+      en: "Gregory Smith",
+      ja: "グレゴリー・スミス",
+      desc: "2001年に東京ディズニーランドで始まった「エレクトリカルパレード・ドリームライツ」の音楽を手掛けた作曲家・編曲家です。「バロック・ホウダウン」が持つ独特の電子的なトイ・サウンドの魅力を損なうことなく、背後にフルオーケストラによる壮大な交響楽的アレンジを重ねるという繊細な作業を成し遂げました。「電子音とオーケストラは対立するものではなく、互いの美しさを引き立て合うものだ」という彼の信念が、ドリームライツの音楽に永遠の命を吹き込んでいます。"
+    }
+  };
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { 
+        e.target.classList.add('on'); 
+        io.unobserve(e.target); 
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+  
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ファーストビューの要素を即時表示 */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el, index) => {
+      if(index < 3) el.classList.add('on');
+    });
+  }, 50);
+
+  /* ─── モーダル ─── */
+  const modalBg = document.getElementById('modalBg');
+  const modalClose = document.getElementById('modalClose');
+
+  function openModal(id) {
+    const d = members[id];
+    if (!d) return;
+    document.getElementById('modalNameEn').textContent = d.en;
+    document.getElementById('modalNameJa').textContent = d.ja;
+    document.getElementById('modalDesc').textContent = d.desc;
+    modalBg.classList.add('open');
+    modalClose.focus();
+  }
+  function closeModal() { modalBg.classList.remove('open'); }
+
+  document.querySelectorAll('.creator-card').forEach(card => {
+    card.addEventListener('click', () => openModal(card.dataset.member));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card.dataset.member);
+      }
+    });
+  });
+  modalClose.addEventListener('click', closeModal);
+  modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* Image protection */
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
+</body>
+</html>
