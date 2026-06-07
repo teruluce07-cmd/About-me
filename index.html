@@ -89,7 +89,6 @@
       letter-spacing: 0.025em;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      /* モバイルでのフォントサイズ自動拡大を防ぐ */
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
     }
@@ -168,7 +167,6 @@
       letter-spacing: 0.06em;
       padding: 0 10px;
       white-space: nowrap;
-      /* 画面幅が極端に狭い場合の省略 */
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
@@ -234,7 +232,6 @@
       text-decoration: none;
       padding: 8px 20px;
       border: 1px solid var(--border-strong);
-      /* タップしやすい最小サイズ */
       min-height: 40px;
       transition: all 0.25s;
     }
@@ -263,12 +260,10 @@
 
     .hero-photo-frame {
       position: relative;
-      /* PCは21:8の横長、タブレットは16:9、モバイルは3:2 */
       aspect-ratio: 21/8;
       overflow: hidden;
       background: var(--ink-2);
       border: 1px solid var(--border-strong);
-      /* Art deco inner frame */
       box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 7px var(--border-strong);
     }
 
@@ -370,7 +365,6 @@
       color: var(--ink-soft);
       line-height: 2.1;
     }
-    /* モバイルでは改行タグを無視してテキストを自然にフロー */
     @media (max-width: 600px) {
       .intro-body br { display: none; }
     }
@@ -416,7 +410,6 @@
       border: 1px solid var(--border);
       transition: all 0.2s;
       background: rgba(255,252,245,0.5);
-      /* タップしやすいように最小高さを確保 */
       min-height: 34px;
       display: inline-flex;
       align-items: center;
@@ -461,7 +454,6 @@
       cursor: pointer;
       transition: all 0.22s;
       text-transform: uppercase;
-      /* タップしやすい最小サイズ */
       min-height: 40px;
       -webkit-tap-highlight-color: transparent;
     }
@@ -472,9 +464,6 @@
 
     /* ============================================================
        ARTICLE GRID
-       - モバイル(~599px): 1列
-       - タブレット(600px~): 2列
-       - PC(900px~): 3列
     ============================================================ */
     .article-grid {
       display: grid;
@@ -510,7 +499,6 @@
       border-right: 1px solid var(--border-strong);
     }
 
-    /* 2列時: 右端のカードはborder-rightが重複しないように */
     @media (min-width: 600px) and (max-width: 899px) {
       .card:nth-child(2n) { border-right: none; }
     }
@@ -536,7 +524,6 @@
     }
     .card:hover::before { transform: scaleY(1); }
 
-    /* カードが非表示の時はグリッドから除外 */
     .card[style*="display: none"],
     .card[style*="display:none"] {
       display: none !important;
@@ -553,7 +540,6 @@
       text-transform: uppercase;
     }
 
-    /* Card image */
     .card-img {
       position: relative;
       width: 100%;
@@ -586,7 +572,6 @@
       z-index: 1; pointer-events: none;
     }
 
-    /* Placeholder panels */
     .card-placeholder {
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
@@ -653,7 +638,6 @@
       display: block;
     }
 
-    /* Card body */
     .card-body {
       padding: clamp(12px, 2.5vw, 14px) clamp(12px, 2.5vw, 16px) clamp(14px, 3vw, 16px);
       flex: 1;
@@ -1035,6 +1019,7 @@
         <a href="#tl-card">Tomorrowland</a>
         <a href="#smallworld-card">Small World</a>
         <a href="#tdlhistory-card">TDL History</a>
+        <a href="#ep-card">Electrical Parade</a>
       </div>
     </div>
     <div class="toc-group">
@@ -1179,6 +1164,18 @@
       </div>
     </a>
 
+    <a href="bgs-electricalparade.html" class="card reveal" id="ep-card" data-cat="tdl">
+      <div class="card-img">
+        <img src="tdl-ep-bluefairy.jpeg" alt="東京ディズニーランド・エレクトリカルパレード" loading="lazy" decoding="async" style="object-position:center 30%">
+      </div>
+      <div class="card-body">
+        <div class="card-meta-row"><span class="card-cat">Story · TDL</span><span class="card-time">5 min</span></div>
+        <div class="card-title">Electrical Parade</div>
+        <p class="card-desc">電球ひとつに宿したイマジニアたちの手仕事と、40年を超えて巡りゆく温かな親子のループ。雨の夜の幻「ナイトフォール・グロウ」が灯した希望の光。</p>
+        <div class="card-cta">Read Story →</div>
+      </div>
+    </a>
+
     <a href="bgs-spatial-epic.html" class="card reveal" id="spatial-epic-card" data-cat="tds">
       <span class="badge-new">New</span>
       <div class="card-img">
@@ -1302,12 +1299,14 @@
         <h4>II. 幻の「映画スタジオ」と、海を渡ったもう一つの夢</h4>
         <p>2つ目の新しいパークをつくろうと計画が始まったとき、最初に提案されたのは「映画スタジオ」のテーマでした。しかし、日本のクリエイターたちは<strong>「日本のゲストに、時代を超えて愛される唯一無二の物語を届けたい」</strong>と願いました。カリフォルニアで計画されながらも実現に至らなかった幻の海洋テーマパーク「ポート・ディズニー」の構想が太平洋を渡り、私たちの愛する「東京ディズニーシー」として生まれ変わることになったのです。</p>
         <h4>III. 幻の灯台と、エントランスに込められた「心の魔法」</h4>
-        <p>ディズニーシーのデザインを考えていたとき、最初に提案されたシンボルは「巨大な灯台」でした。しかし<strong>「日本の皆様にとって、灯台は少し寂しさや哀愁を感じさせてしまうかもしれない」</strong>という優しい心遣いから、「アクアスフィア」が生まれました。そして、プロメテウス火山が中央に据えられたのです。</p>
-        <p>ホテル・ミラコスタの薄暗い下部通路を歩くとき、心が高鳴るのを感じたことはないでしょうか。これは「圧縮と開放」と呼ばれる演出の魔法です。一度、暗く低いトンネルを通ることで心がすっと静まり、そこを抜けた瞬間に陽光に輝く壮大なメディテレーニアンハーバーが一気に広がります。</p>
+        <p>ディズニーシーのデザインを考えていたとき、最初に提案されたシンボルは「巨大な灯台」でした。しかし<strong>「日本の皆様にとって、灯台は少し寂しさや哀愁を感じさせてしまうかもしれない」</strong>という優しい心遣いから、「アクアスフィア」が生まれ、プロメテウス火山が中央に据えられたのです。</p>
+        <p>ホテル・ミラコスタの薄暗い下部通路を歩くとき、心が高鳴るのを感じたことはないでしょうか。これは「圧縮と開放」と呼ばれる演出の魔法です。一度、暗く低いトンネルをくぐることで気持ちがすっと静まり、そこを抜けた瞬間に陽光に輝く壮大なメディテレーニアンハーバーが一気に広がります。</p>
         <h4>IV. 歳月を重ねるほど愛おしくなる、本物へのこだわり</h4>
-        <p>ディズニーシーの美しさは、新しさだけではありません。クリエイターたちが最も大切にしたのは<strong>「経年美化」</strong>という考え方でした。ヨーロッパやアメリカから本物のレンガや天然石を取り寄せ、職人たちの手によって潮風にさらされた錆や雨だれの跡が描かれ、歳月とともに本物の風合いへと育っていくように設計されています。</p>
+        <p>ディズニーシーの美しさは、新しさだけにあるわけではありません。クリエイターたちが最も大切にしたのは<strong>「経年美化」</strong>という考え方でした。ヨーロッパやアメリカから本物のレンガや天然石を取り寄せ、職人たちの手によって潮風にさらされた錆や雨だれの跡が描かれ、歳月とともに本物の風合いへと育っていくように設計されています。</p>
         <h4>V. すべての源流へ、自然が紡ぐ「水の物語」</h4>
         <p>2024年に誕生した「ファンタジースプリングス（魔法の泉）」は、パークのすべての水の<strong>「源流」</strong>という美しい物語を持っています。魔法の泉から湧き出た水は川となってジャングルの奥地を潤し、やがて壮大なハーバーへと流れ込みます。この広大な自然の循環が完成したことで、パーク内のすべての場所が一本の美しい「水のストーリー」で結ばれることになりました。</p>
+        <h4>VI. 終わりなき物語のはじまりへ</h4>
+        <p>「ディズニーランドは、世界に想像力がある限り、永遠に完成することはない」——ウォルト・ディズニーが遺したこの言葉は、舞浜の地でも生き続けています。開園から40年を超えた今も、クリエイターたちはゲストに「まだ見たことのない感動」を届けるため、夢を描き続けています。あなたが次にパークを訪れる日、また新しい物語が、きっとどこかで静かに始まっているはずです。</p>
       </div>
     </details>
   </div>
@@ -1326,7 +1325,7 @@
   <div class="modal-panel">
     <button class="modal-close-btn" id="modal-close" aria-label="閉じる">✕ Close</button>
     <div class="modal-title" id="modal-title">Site Notes &amp; Contacts</div>
-    <p class="modal-text">このサイトで紹介しているバックグラウンドストーリー（BGS）は正確な情報を集めておりますが、時に誤りや相違が生じる場合がございます。誤りを発見された場合は、InstagramのDMにてご報告いただけますと幸いです。</p>
+    <p class="modal-text">このサイトで紹介しているバックグラウンドストーリー（BGS）は正確な情報を集めておりますが、時に誤りや相違が生じる場合がございます。誤りを発見された際は、InstagramのDMにてご報告いただけますと幸いです。</p>
     <div class="modal-actions">
       <a href="https://www.instagram.com/teru_luce_" target="_blank" rel="noopener noreferrer" class="modal-sns-link">Instagram (DM)</a>
     </div>
