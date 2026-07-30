@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>It's a Small World | スモワの仕組み・人形・いつからある歴史や都市伝説を紐解くBGSコラム — BGS Chronicles</title>
-<meta name="description" content="イッツ・ア・スモールワールド（スモワ）はいつからある？アトラクションに潜む都市伝説の噂、人形の顔が「全員同じ」仕組みや歴史、メアリー・ブレアらの色彩設計から隠された豆知識まで徹底解説するBGS考察コラム。">
+<title>It's a Small World | スモワの都市伝説と歴史のBGSコラム — BGS Chronicles</title>
+<meta name="description" content="スモワはいつからある？人形の顔が全員同じ理由、都市伝説、メアリー・ブレアの色彩設計まで解説するBGS考察コラム。">
 <meta name="keywords" content="イッツアスモールワールド BGS, スモワ, 人形, いつからある, 都市伝説, 仕組み, コラム, 豆知識, メアリー・ブレア, シャーマン兄弟">
 <meta name="author" content="TERU_LUCE_">
 <meta name="robots" content="index, follow">
@@ -23,6 +23,7 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
+<!-- 記事の構造化データ: datePublished/dateModified/画像オブジェクトを追加 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,10 +31,57 @@
   "headline": "It's a Small World — 世界をつなぐ船旅の記録",
   "description": "イッツ・ア・スモールワールド（スモワ）はいつからある？アトラクションに潜む都市伝説の噂、人形の顔が「全員同じ」仕組みや歴史、メアリー・ブレアらの色彩設計から隠された豆知識まで徹底解説するBGS考察コラム。",
   "inLanguage": "ja",
-  "author": { "@type": "Person", "name": "TERU_LUCE_" },
+  "author": { "@type": "Person", "name": "TERU_LUCE_", "url": "https://teruluce07-cmd.github.io/disney-bgs/profile.html" },
   "publisher": { "@type": "Person", "name": "TERU_LUCE_" },
   "url": "https://teruluce07-cmd.github.io/disney-bgs/bgs-smallworld.html",
+  "mainEntityOfPage": "https://teruluce07-cmd.github.io/disney-bgs/bgs-smallworld.html",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-06-30",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://teruluce07-cmd.github.io/disney-bgs/smallworld-exterior-day.jpeg",
+    "width": 1200,
+    "height": 675
+  },
   "keywords": "イッツアスモールワールド BGS, スモワ, 人形, いつからある, 都市伝説, 仕組み, コラム, 豆知識"
+}
+</script>
+
+<!-- よくある質問の構造化データ: 検索結果にQ&Aが表示される可能性があります -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "スモワ（イッツ・ア・スモールワールド）はいつから運行していますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1964年のニューヨーク世界博覧会でユニセフ・パビリオンの展示として誕生し、その後アナハイムのディズニーランドに移設されました。以来、世界各国のディズニーパークに広まっています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "なぜスモワの人形はみんな同じ顔をしているのですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "彫刻家ブレイン・ギブソンが「人種や国籍に関わらず子供たちはみな平等で尊い存在である」というメッセージを込め、あえて同じ顔の造形にしたためです。"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- 二重パンくずリスト: サイト構造をGoogleに伝える -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "BGS Chronicles", "item": "https://teruluce07-cmd.github.io/disney-bgs/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "It's a Small World", "item": "https://teruluce07-cmd.github.io/disney-bgs/bgs-smallworld.html" }
+  ]
 }
 </script>
 
@@ -53,8 +101,8 @@
   --gold-pale: #FAF3E5;
   --c-text: #23282D;
   --c-muted: #555D66;
-  --c-border: rgba(201, 146, 42, 0.2);   /* 修正：未定義変数を追加 */
-  --c-border2: rgba(201, 146, 42, 0.12); /* 修正：未定義変数を追加 */
+  --c-border: rgba(201, 146, 42, 0.2);
+  --c-border2: rgba(201, 146, 42, 0.12);
   --content-max: 720px;
   --pad: clamp(16px, 5vw, 36px);
 }
@@ -588,6 +636,27 @@ a:hover { text-decoration: underline; }
   line-height: 2.0;
 }
 
+/* ─── 関連ストーリー ─── */
+.related-links {
+  margin: 0 0 56px;
+  padding: 24px var(--pad);
+  background: rgba(255,255,255,.6);
+  border: 1px dashed var(--c-border2);
+}
+.related-title {
+  font-family: 'Cinzel', serif;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--accent-dark);
+  margin-bottom: 14px;
+}
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.related-list a {
+  font-family: 'Noto Serif JP', serif;
+  font-size: .8rem;
+  font-weight: 500;
+}
+
 /* ─── フッター ─── */
 .page-footer {
   text-align: center;
@@ -609,6 +678,11 @@ a:hover { text-decoration: underline; }
 }
 .reveal.active { opacity: 1; transform: translateY(0); }
 </style>
+
+<!-- JSが動かない場合でも本文が非表示のままにならないようフォールバック -->
+<noscript>
+<style>.reveal{opacity:1 !important;transform:none !important;}</style>
+</noscript>
 </head>
 <body>
 
@@ -862,6 +936,15 @@ a:hover { text-decoration: underline; }
     <p>旅の最後に訪れる、一面が純白の「ホワイト・ルーム」。各テーマの部屋では緑や青、暖色といった地域固有の色彩が主役を務めていましたが、最終部屋ではそれらがすべて「白と金」の2色へと統合されます。光学的には、あらゆる色の光を重ね合わせると白い光になるように、多種多様な文化や国籍が手を取り合い、すべてが一つに融け合う調和の状態を、純白の光の中で表現しているのです。</p>
     <p>アナハイムのパステル調のファサードから、フロリダ版の「純白と金」による屋内ファサードまで、各地の気候に合わせながらも一貫して同じメッセージが世界中のパークで受け継がれています。</p>
   </section>
+
+  <!-- 関連ストーリー: サイト内回遊のための内部リンクを追加 -->
+  <nav class="related-links reveal" aria-label="関連ストーリー">
+    <div class="related-title">RELATED ARCHIVES</div>
+    <ul class="related-list">
+      <li>→ <a href="bgs-tdlhistory.html">東京ディズニーランドが夢の王国として築かれた開拓史「Dream & Magic」を読む</a></li>
+      <li>→ <a href="bgs-electricalparade.html">夜のパークを彩るもう一つの名作「エレクトリカルパレード」の物語を読む</a></li>
+    </ul>
+  </nav>
 
   <div class="divider reveal" aria-hidden="true">
     <span class="divider-line"></span>
