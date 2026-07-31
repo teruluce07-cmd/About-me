@@ -15,9 +15,6 @@
   </noscript>
 
   <style>
-    /* ============================================================
-       DESIGN TOKENS (Synced with index.html)
-    ============================================================ */
     :root {
       --paper:       #F5EDD8;
       --paper-2:     #EDE0C4;
@@ -37,14 +34,11 @@
       --border:      rgba(60,40,15,0.22);
       --border-strong: rgba(60,40,15,0.45);
       --shadow:      rgba(20,10,3,0.18);
-
       --f-display: 'Playfair Display', 'Georgia', serif;
       --f-sc:      'Playfair Display SC', 'Georgia', serif;
       --f-body:    'Libre Baskerville', 'Georgia', serif;
       --f-type:    'Special Elite', 'Courier New', monospace;
       --f-jp:      'Noto Serif JP', serif;
-
-      /* 記事用コンテンツ幅 */
       --max-w: 720px;
       --pad-x: clamp(16px, 5vw, 48px);
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,9 +47,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
 
-    /* ============================================================
-       IMAGE PROTECTION
-    ============================================================ */
     img {
       -webkit-user-select: none; user-select: none;
       -webkit-touch-callout: none;
@@ -63,9 +54,6 @@
       -webkit-user-drag: none;
     }
 
-    /* ============================================================
-       BODY & BACKGROUND
-    ============================================================ */
     body {
       background-color: var(--paper);
       color: var(--ink);
@@ -83,11 +71,7 @@
       content: '';
       position: fixed; inset: 0; z-index: 0;
       background:
-        repeating-linear-gradient(
-          0deg,
-          transparent, transparent 28px,
-          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
-        ),
+        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px),
         radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
         radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
       pointer-events: none;
@@ -96,44 +80,29 @@
     body::after {
       content: '';
       position: fixed; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 100% 100% at 50% 50%,
-        transparent 55%, rgba(50,28,8,0.14) 100%);
+      background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(50,28,8,0.14) 100%);
       pointer-events: none;
     }
 
-    /* ============================================================
-       LAYOUT
-    ============================================================ */
     .site-wrap { position: relative; z-index: 1; }
-
     .content-box {
       max-width: var(--max-w);
       margin: 0 auto;
       padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
     }
 
-    /* ============================================================
-       REVEAL
-    ============================================================ */
     .reveal {
       opacity: 0; transform: translateY(16px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
     }
     .reveal.on { opacity: 1; transform: none; }
-
     @media (prefers-reduced-motion: reduce) {
       .reveal { transition: none; opacity: 1; transform: none; }
     }
 
-    /* ============================================================
-       BACK LINK
-    ============================================================ */
-    .back-link-wrap {
-      margin-bottom: 24px;
-    }
+    .back-link-wrap { margin-bottom: 24px; }
     .back-link {
-      display: inline-flex;
-      align-items: center;
+      display: inline-flex; align-items: center;
       font-family: var(--f-sc);
       font-size: clamp(0.55rem, 1.5vw, 0.6rem);
       letter-spacing: 0.15em;
@@ -145,9 +114,6 @@
     }
     .back-link:hover { color: var(--bordeaux); }
 
-    /* ============================================================
-       MASTHEAD / HEADER
-    ============================================================ */
     .masthead {
       border-top: 4px double var(--ink);
       border-bottom: 1px solid var(--border-strong);
@@ -156,7 +122,6 @@
       text-align: center;
       position: relative;
     }
-
     .masthead-kicker {
       font-family: var(--f-sc);
       font-size: clamp(0.5rem, 1.3vw, 0.6rem);
@@ -166,7 +131,6 @@
       display: block;
       margin-bottom: 12px;
     }
-
     .masthead-title {
       font-family: var(--f-display);
       font-size: clamp(1.4rem, 5vw, 2.2rem);
@@ -185,7 +149,6 @@
       margin-bottom: 6px;
       font-style: italic;
     }
-
     .masthead-subtitle {
       font-family: var(--f-jp);
       font-size: clamp(0.8rem, 2vw, 0.9rem);
@@ -200,28 +163,14 @@
       margin-top: 24px;
     }
 
-    /* ============================================================
-       TOC (INDEX)
-    ============================================================ */
     .toc-wrap {
       border: 1px solid var(--border-strong);
       background: rgba(245,237,216,0.6);
       padding: clamp(16px, 4vw, 24px);
       margin-bottom: 48px;
     }
-    .toc-head {
-      text-align: center;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .toc-head-title {
-      font-family: var(--f-display);
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--ink);
-      letter-spacing: 0.05em;
-    }
+    .toc-head { text-align: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .toc-head-title { font-family: var(--f-display); font-style: italic; font-size: 1.1rem; color: var(--ink); letter-spacing: 0.05em; }
     .toc-list { list-style: none; }
     .toc-link {
       display: flex; justify-content: space-between; align-items: center;
@@ -229,191 +178,120 @@
       border-bottom: 1px dashed var(--border);
       text-decoration: none;
       min-height: 44px;
-      transition: color 0.2s, opacity 0.2s;
+      transition: color 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
     .toc-list li:last-child .toc-link { border-bottom: none; }
-    .toc-text {
-      font-family: var(--f-jp);
-      font-size: clamp(0.75rem, 2vw, 0.8rem);
-      color: var(--ink-soft);
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .toc-action {
-      font-family: var(--f-body);
-      font-style: italic;
-      font-size: 0.7rem;
-      color: var(--muted);
-      white-space: nowrap;
-      margin-left: 12px;
-      transition: color 0.2s;
-    }
-    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-text { font-family: var(--f-jp); font-size: clamp(0.75rem, 2vw, 0.8rem); color: var(--ink-soft); font-weight: 500; transition: color 0.2s; }
+    .toc-action { font-family: var(--f-body); font-style: italic; font-size: 0.7rem; color: var(--muted); white-space: nowrap; margin-left: 12px; transition: color 0.2s; }
+    .toc-link:hover .toc-text,
     .toc-link:hover .toc-action { color: var(--bordeaux); }
 
-    /* ============================================================
-       PHOTO FRAME
-    ============================================================ */
     .photo-frame {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-      background: var(--ink-2);
+      position: relative; width: 100%; aspect-ratio: 16/9;
+      overflow: hidden; background: var(--ink-2);
       border: 1px solid var(--border-strong);
       box-shadow: inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--border-strong);
       margin: 48px 0;
     }
-    .photo-frame img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
-      display: block;
-    }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9); display: block; }
 
-    /* ============================================================
-       ARTICLE BODY
-    ============================================================ */
     .article-block { margin-bottom: 56px; }
-    
     .article-h2 {
-      font-family: var(--f-display);
-      font-style: italic;
-      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 24px;
+      font-family: var(--f-display); font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem); font-weight: 700;
+      color: var(--ink); margin-bottom: 24px;
       display: flex; align-items: center; gap: 16px;
       letter-spacing: 0.02em;
     }
-    .article-h2::after {
-      content: ''; flex: 1; height: 1px;
-      background: var(--border-strong);
-    }
-    
+    .article-h2::after { content: ''; flex: 1; height: 1px; background: var(--border-strong); }
     .article-p {
-      font-family: var(--f-jp);
-      font-size: clamp(0.8rem, 2vw, 0.85rem);
-      font-weight: 300;
-      color: var(--ink-soft);
-      line-height: 2.1;
-      margin-bottom: 20px;
-      text-align: justify;
+      font-family: var(--f-jp); font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300; color: var(--ink-soft);
+      line-height: 2.1; margin-bottom: 20px; text-align: justify;
     }
-    .article-p strong {
-      font-weight: 500;
-      color: var(--ink);
-    }
+    .article-p strong { font-weight: 500; color: var(--ink); }
 
-    /* ============================================================
-       COLUMN CARD (Ghost Info)
-    ============================================================ */
     .column-box {
-      border: 1px solid var(--border-strong);
-      border-left: 3px solid var(--bordeaux);
-      background: rgba(245,237,216,0.4);
-      padding: clamp(20px, 4vw, 28px);
-      margin: 32px 0;
+      border: 1px solid var(--border-strong); border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4); padding: clamp(20px, 4vw, 28px); margin: 32px 0;
     }
-    .column-box h3 {
-      font-family: var(--f-jp);
-      font-size: clamp(0.9rem, 2.5vw, 0.95rem);
-      font-weight: 700;
-      color: var(--bordeaux);
-      margin-bottom: 8px;
+    .column-box h3 { font-family: var(--f-jp); font-size: clamp(0.9rem, 2.5vw, 0.95rem); font-weight: 700; color: var(--bordeaux); margin-bottom: 8px; }
+    .column-box-meta { display: block; font-family: var(--f-jp); font-size: clamp(0.65rem, 1.8vw, 0.7rem); color: var(--muted); border-bottom: 1px dashed var(--border); padding-bottom: 8px; margin-bottom: 12px; }
+    .column-box p { font-family: var(--f-jp); font-size: clamp(0.75rem, 2vw, 0.8rem); font-weight: 300; color: var(--ink-soft); line-height: 2; margin-bottom: 0; }
+
+    .related-link-card {
+      display: block; text-decoration: none;
+      background: rgba(255,252,245,0.5);
+      border: 1px solid var(--border-strong); border-left: 3px solid var(--bordeaux);
+      padding: clamp(16px, 3vw, 20px); margin: 32px 0;
+      transition: all 0.25s; min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
     }
-    .column-box-meta {
-      display: block;
-      font-family: var(--f-jp);
-      font-size: clamp(0.65rem, 1.8vw, 0.7rem);
-      color: var(--muted);
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-    }
-    .column-box p {
-      font-family: var(--f-jp);
-      font-size: clamp(0.75rem, 2vw, 0.8rem);
-      font-weight: 300;
-      color: var(--ink-soft);
-      line-height: 2;
-      margin-bottom: 0;
-    }
+    .related-link-card:hover { background: var(--ink); border-color: var(--ink); }
+    .related-link-title { display: block; font-family: var(--f-jp); font-weight: 700; font-size: clamp(0.8rem, 2vw, 0.85rem); color: var(--bordeaux); margin-bottom: 6px; transition: color 0.2s; }
+    .related-link-desc { display: block; font-family: var(--f-jp); font-weight: 300; font-size: clamp(0.75rem, 2vw, 0.78rem); color: var(--ink-soft); line-height: 1.8; transition: color 0.2s; }
+    .related-link-card:hover .related-link-title,
+    .related-link-card:hover .related-link-desc { color: var(--paper); }
 
     /* ============================================================
-       RELATED LINK CARD
+       X SHARE BUTTON
     ============================================================ */
-    .related-link-card {
+    .share-section {
+      text-align: center;
+      margin: 56px 0 0;
+      padding-top: 32px;
+      border-top: 3px double var(--border-strong);
+    }
+    .share-ornament {
       display: block;
+      font-family: var(--f-body);
+      color: var(--gold);
+      letter-spacing: 0.4em;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+    .share-label {
+      display: block;
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: var(--bordeaux);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--f-sc);
+      font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.22em;
+      color: var(--ink);
       text-decoration: none;
-      background: rgba(255,252,245,0.5);
+      text-transform: uppercase;
+      padding: 16px 36px;
       border: 1px solid var(--border-strong);
-      border-left: 3px solid var(--bordeaux);
-      padding: clamp(16px, 3vw, 20px);
-      margin: 32px 0;
-      transition: all 0.25s;
+      background: rgba(255,252,245,0.4);
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
       min-height: 44px;
       -webkit-tap-highlight-color: transparent;
     }
-    .related-link-card:hover {
-      background: var(--ink);
-      border-color: var(--ink);
-    }
-    .related-link-title {
-      display: block;
-      font-family: var(--f-jp);
-      font-weight: 700;
-      font-size: clamp(0.8rem, 2vw, 0.85rem);
-      color: var(--bordeaux);
-      margin-bottom: 6px;
-      transition: color 0.2s;
-    }
-    .related-link-desc {
-      display: block;
-      font-family: var(--f-jp);
-      font-weight: 300;
-      font-size: clamp(0.75rem, 2vw, 0.78rem);
-      color: var(--ink-soft);
-      line-height: 1.8;
-      transition: color 0.2s;
-    }
-    .related-link-card:hover .related-link-title,
-    .related-link-card:hover .related-link-desc {
-      color: var(--paper);
-    }
+    .share-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .share-btn svg { flex-shrink: 0; }
 
-    /* ============================================================
-       FOOTER LINK
-    ============================================================ */
-    .footer-link-wrap {
-      text-align: center;
-      margin-top: 64px;
-      border-top: 1px solid var(--border-strong);
-      padding-top: 32px;
-    }
+    .footer-link-wrap { text-align: center; margin-top: 40px; padding-top: 32px; }
     .footer-link {
-      display: inline-flex;
-      align-items: center;
-      font-family: var(--f-sc);
-      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      min-height: 40px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 4px;
+      display: inline-flex; align-items: center;
+      font-family: var(--f-sc); font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em; color: var(--muted); text-decoration: none;
+      transition: color 0.2s; min-height: 40px;
+      border-bottom: 1px solid var(--border); padding-bottom: 4px;
       -webkit-tap-highlight-color: transparent;
     }
-    .footer-link:hover {
-      color: var(--bordeaux);
-      border-bottom-color: var(--bordeaux);
-    }
-    
-    /* ============================================================
-       FOCUS STYLES
-    ============================================================ */
+    .footer-link:hover { color: var(--bordeaux); border-bottom-color: var(--bordeaux); }
+
     :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
   </style>
 </head>
@@ -429,11 +307,11 @@
   <header class="masthead reveal">
     <span class="masthead-kicker">Featured Story</span>
     <h1 class="masthead-title">
-        <span class="masthead-title-en">Haunted Mansion</span>
-        Haunted Mansion：999人の亡霊が住まう、美しきゴシックの館
+      <span class="masthead-title-en">Haunted Mansion</span>
+      Haunted Mansion：999人の亡霊が住まう、美しきゴシックの館
     </h1>
     <span class="masthead-subtitle">
-        ファンタジーランドの片隅にそびえ立つ、重厚で古びたゴシック調の洋館。そこには、世界中から集まった999人の幽霊たちが、1000人目の仲間を待ちわびながら暮らしています。恐怖とユーモアが交差するこの館の知られざる物語を紐解きましょう。
+      ファンタジーランドの片隅にそびえ立つ、重厚で古びたゴシック調の洋館。そこには、世界中から集まった999人の幽霊たちが、1000人目の仲間を待ちわびながら暮らしています。恐怖とユーモアが交差するこの館の知られざる物語を紐解きましょう。
     </span>
   </header>
 
@@ -507,41 +385,62 @@
     <h2 class="article-h2">V. 世界に広がる幽霊屋敷</h2>
     <p class="article-p">ホーンテッドマンションは、各国の文化的土壌に合わせて姿を変え、世界中のディズニーパークに存在しています。パリの「ファントム・マナー」では、花嫁メラニーを巡る凄惨な悲劇を描く、ヨーロッパ向けのダークな心理ホラーへと深化しています。</p>
     <p class="article-p">香港ディズニーランドでは、中国の死生観に配慮し、幽霊要素を完全に排除した「ミスティック・マナー」として存在しています。この館の主であるヘンリー・ミスティック卿は、ディズニーシーとも深い関わりを持つ秘密結社「S.E.A.」の著名なメンバーです。</p>
-    
+
     <a href="bgs-sea.html" class="related-link-card reveal">
-        <span class="related-link-title">📖 関連ストーリー：</span>
-        <span class="related-link-desc">世界中のパークを結ぶ巨大な冒険家ギルド「S.E.A. Archives」の完全解剖はこちら。</span>
+      <span class="related-link-title">📖 関連ストーリー：</span>
+      <span class="related-link-desc">世界中のパークを結ぶ巨大な冒険家ギルド「S.E.A. Archives」の完全解剖はこちら。</span>
     </a>
   </section>
+
+  <!-- ===== X SHARE BUTTON ===== -->
+  <div class="share-section reveal">
+    <span class="share-ornament">❦ &nbsp; ❦ &nbsp; ❦</span>
+    <span class="share-label">Share this Story</span>
+    <a id="x-share-btn" href="#" class="share-btn" target="_blank" rel="noopener noreferrer" aria-label="この記事をXでシェアする">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.626zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+      X でシェアする
+    </a>
+  </div>
 
   <div class="footer-link-wrap reveal">
     <a href="index.html" class="footer-link">← HOMEへ戻る</a>
   </div>
 
-</div><!-- /content-box -->
-</div><!-- /site-wrap -->
+</div>
+</div>
 
 <script>
+  /* ============================================================
+     X SHARE CONFIG — 記事ごとにここだけ変更する
+  ============================================================ */
+  const SHARE_TITLE = "ホーンテッドマンション：999人の亡霊が住まう、美しきゴシックの館";
+  const SHARE_URL   = "https://teruluce07-cmd.github.io/disney-bgs/bgs-haunted.html";
+  const SHARE_TAGS  = "#東京ディズニーランド #ホーンテッドマンション #BGSChronicles";
+  /* ============================================================ */
+
+  (function() {
+    var body = "【BGS Chronicles】" + SHARE_TITLE + "\n\n" + SHARE_URL + "\n\n" + SHARE_TAGS;
+    var btn = document.getElementById('x-share-btn');
+    if (btn) btn.href = "https://x.com/intent/tweet?text=" + encodeURIComponent(body);
+  })();
+
   /* Reveal on scroll */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { 
-        e.target.classList.add('on'); 
-        io.unobserve(e.target); 
-      }
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
     });
   }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
-  
+
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ファーストビューの要素を即時表示 */
   setTimeout(() => {
     document.querySelectorAll('.reveal').forEach((el, index) => {
-      if(index < 3) el.classList.add('on');
+      if (index < 3) el.classList.add('on');
     });
   }, 50);
 
-  /* Image protection */
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
   document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
