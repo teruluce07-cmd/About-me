@@ -15,9 +15,6 @@
   </noscript>
 
   <style>
-    /* ============================================================
-       DESIGN TOKENS (Synced with index.html)
-    ============================================================ */
     :root {
       --paper:       #F5EDD8;
       --paper-2:     #EDE0C4;
@@ -44,7 +41,7 @@
       --f-type:    'Special Elite', 'Courier New', monospace;
       --f-jp:      'Noto Serif JP', serif;
 
-      --max-w: 640px; /* Profile用のコンパクトな幅 */
+      --max-w: 640px;
       --pad-x: clamp(16px, 5vw, 40px);
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -52,9 +49,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
 
-    /* ============================================================
-       IMAGE PROTECTION
-    ============================================================ */
     img {
       -webkit-user-select: none; user-select: none;
       -webkit-touch-callout: none;
@@ -62,9 +56,6 @@
       -webkit-user-drag: none;
     }
 
-    /* ============================================================
-       BODY & BACKGROUND
-    ============================================================ */
     body {
       background-color: var(--paper);
       color: var(--ink);
@@ -100,9 +91,6 @@
       pointer-events: none;
     }
 
-    /* ============================================================
-       LAYOUT
-    ============================================================ */
     .site-wrap { position: relative; z-index: 1; }
 
     .content-box {
@@ -111,9 +99,6 @@
       padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
     }
 
-    /* ============================================================
-       REVEAL
-    ============================================================ */
     .reveal {
       opacity: 0; transform: translateY(16px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
@@ -124,9 +109,6 @@
       .reveal { transition: none; opacity: 1; transform: none; }
     }
 
-    /* ============================================================
-       BACK LINK
-    ============================================================ */
     .back-link-wrap {
       text-align: center;
       margin-bottom: 24px;
@@ -145,9 +127,6 @@
     }
     .back-link:hover { color: var(--bordeaux); }
 
-    /* ============================================================
-       MASTHEAD / PROFILE HERO
-    ============================================================ */
     .masthead {
       border-top: 4px double var(--ink);
       border-bottom: 1px solid var(--border-strong);
@@ -208,9 +187,6 @@
     }
     .masthead-bottom-rules span:first-child { height: 3px; background: var(--ink); }
 
-    /* ============================================================
-       SECTIONS
-    ============================================================ */
     .section-title {
       font-family: var(--f-display);
       font-style: italic;
@@ -228,9 +204,6 @@
       background: var(--border-strong);
     }
 
-    /* ============================================================
-       INFO LIST
-    ============================================================ */
     .info-list {
       border-top: 1px solid var(--border-strong);
       border-bottom: 1px solid var(--border-strong);
@@ -262,9 +235,6 @@
       line-height: 1.8;
     }
 
-    /* ============================================================
-       CONNECTIONS (LINKS)
-    ============================================================ */
     .links-area {
       display: flex; flex-direction: column; gap: 12px;
       margin-top: 24px;
@@ -290,9 +260,32 @@
       border-color: var(--ink);
     }
 
-    /* ============================================================
-       FOOTER
-    ============================================================ */
+    /* BGS Chronicles アカウント用 — bordeaux アクセント */
+    .btn-bgs {
+      border-color: var(--bordeaux);
+      color: var(--bordeaux);
+    }
+    .btn-bgs:hover {
+      background: var(--bordeaux);
+      color: var(--paper);
+      border-color: var(--bordeaux);
+    }
+
+    .links-divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 4px 0;
+    }
+    .links-divider span {
+      flex: 1; height: 1px; background: var(--border);
+    }
+    .links-divider em {
+      font-family: var(--f-type);
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      font-style: normal;
+    }
+
     .site-footer {
       margin-top: 64px;
       border-top: 3px double var(--border-strong);
@@ -306,9 +299,6 @@
       letter-spacing: 0.12em;
     }
     
-    /* ============================================================
-       FOCUS STYLES
-    ============================================================ */
     :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
   </style>
 </head>
@@ -317,12 +307,10 @@
 <div class="site-wrap">
 <div class="content-box">
 
-  <!-- ===== BACK LINK ===== -->
   <div class="back-link-wrap reveal">
     <a href="index.html" class="back-link">← Back to BGS Portal</a>
   </div>
 
-  <!-- ===== HERO / MASTHEAD ===== -->
   <header class="masthead reveal">
     <div class="profile-img-frame">
       <img 
@@ -340,7 +328,6 @@
     </div>
   </header>
 
-  <!-- ===== IDENTITY ===== -->
   <h2 class="section-title reveal">Curator Identity</h2>
   <div class="info-list reveal">
     <div class="info-row">
@@ -361,7 +348,6 @@
     </div>
   </div>
 
-  <!-- ===== GEARS ===== -->
   <h2 class="section-title reveal">Gears</h2>
   <div class="info-list reveal">
     <div class="info-row">
@@ -374,24 +360,34 @@
     </div>
   </div>
 
-  <!-- ===== CONNECTIONS ===== -->
   <h2 class="section-title reveal">Connections</h2>
   <div class="links-area reveal">
-    <a href="https://www.instagram.com/teru_luce_?igsh=MWV4bjlocXR0MXJmdw%3D%3D&amp;utm_source=qr" class="btn" target="_blank" rel="noopener noreferrer">Instagram / Main</a>
-    <a href="https://www.instagram.com/teru_diario_?igsh=M25raDdsYmJlcWww&amp;utm_source=qr" class="btn" target="_blank" rel="noopener noreferrer">Instagram / Diario</a>
-    <a href="https://x.com/teru_luce?s=21" class="btn" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+
+    <!-- Personal accounts -->
+    <a href="https://www.instagram.com/teru_luce_?igsh=MWV4bjlocXR0MXJmdw%3D%3D&utm_source=qr" class="btn" target="_blank" rel="noopener noreferrer">Instagram / Main</a>
+    <a href="https://www.instagram.com/teru_diario_?igsh=M25raDdsYmJlcWww&utm_source=qr" class="btn" target="_blank" rel="noopener noreferrer">Instagram / Diario</a>
+    <a href="https://x.com/teru_luce?s=21" class="btn" target="_blank" rel="noopener noreferrer">X (Twitter) / Personal</a>
+
+    <!-- Divider -->
+    <div class="links-divider">
+      <span></span>
+      <em>BGS Chronicles</em>
+      <span></span>
+    </div>
+
+    <!-- BGS Chronicles account -->
+    <a href="https://x.com/BGSChronicles" class="btn btn-bgs" target="_blank" rel="noopener noreferrer">X (Twitter) / @BGSChronicles</a>
+
   </div>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="site-footer reveal">
     <p class="footer-copy">&copy; TERU_LUCE_ | Since 2007</p>
   </footer>
 
-</div><!-- /content-box -->
-</div><!-- /site-wrap -->
+</div>
+</div>
 
 <script>
-  /* Reveal on scroll */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { 
@@ -403,14 +399,12 @@
   
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ファーストビューの要素を即時表示 */
   setTimeout(() => {
     document.querySelectorAll('.reveal').forEach((el, index) => {
       if(index < 2) el.classList.add('on');
     });
   }, 50);
 
-  /* Image protection */
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
   document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
