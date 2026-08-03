@@ -15,28 +15,25 @@
   </noscript>
 
   <style>
-    /* ============================================================
-       DESIGN TOKENS (Synced with index.html)
-    ============================================================ */
     :root {
-      --paper:       #F5EDD8;
-      --paper-2:     #EDE0C4;
-      --paper-3:     #E0CFB0;
-      --paper-dark:  #D4BF98;
-      --ink:         #1C1209;
-      --ink-2:       #2E1F10;
-      --ink-soft:    #3D2D1A;
-      --bordeaux:    #6B1E2A;
-      --bordeaux-2:  #8A2535;
-      --gold:        #8A6820;
-      --gold-2:      #B08A30;
-      --gold-rule:   rgba(138,104,32,0.5);
-      --gold-dim:    rgba(138,104,32,0.1);
-      --muted:       #7A6048;
-      --muted-2:     #9C7E58;
-      --border:      rgba(60,40,15,0.22);
+      --paper:         #F5EDD8;
+      --paper-2:       #EDE0C4;
+      --paper-3:       #E0CFB0;
+      --paper-dark:    #D4BF98;
+      --ink:           #1C1209;
+      --ink-2:         #2E1F10;
+      --ink-soft:      #3D2D1A;
+      --bordeaux:      #6B1E2A;
+      --bordeaux-2:    #8A2535;
+      --gold:          #8A6820;
+      --gold-2:        #B08A30;
+      --gold-rule:     rgba(138,104,32,0.5);
+      --gold-dim:      rgba(138,104,32,0.1);
+      --muted:         #7A6048;
+      --muted-2:       #9C7E58;
+      --border:        rgba(60,40,15,0.22);
       --border-strong: rgba(60,40,15,0.45);
-      --shadow:      rgba(20,10,3,0.18);
+      --shadow:        rgba(20,10,3,0.18);
 
       --f-display: 'Playfair Display', 'Georgia', serif;
       --f-sc:      'Playfair Display SC', 'Georgia', serif;
@@ -44,7 +41,6 @@
       --f-type:    'Special Elite', 'Courier New', monospace;
       --f-jp:      'Noto Serif JP', serif;
 
-      /* 記事用コンテンツ幅 */
       --max-w: 720px;
       --pad-x: clamp(16px, 5vw, 48px);
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,9 +49,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
 
-    /* ============================================================
-       IMAGE PROTECTION
-    ============================================================ */
     img {
       -webkit-user-select: none; user-select: none;
       -webkit-touch-callout: none;
@@ -63,9 +56,6 @@
       -webkit-user-drag: none;
     }
 
-    /* ============================================================
-       BODY & BACKGROUND
-    ============================================================ */
     body {
       background-color: var(--paper);
       color: var(--ink);
@@ -83,11 +73,7 @@
       content: '';
       position: fixed; inset: 0; z-index: 0;
       background:
-        repeating-linear-gradient(
-          0deg,
-          transparent, transparent 28px,
-          rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px
-        ),
+        repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px),
         radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
         radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
       pointer-events: none;
@@ -96,155 +82,93 @@
     body::after {
       content: '';
       position: fixed; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 100% 100% at 50% 50%,
-        transparent 55%, rgba(50,28,8,0.14) 100%);
+      background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(50,28,8,0.14) 100%);
       pointer-events: none;
     }
 
-    /* ============================================================
-       LAYOUT
-    ============================================================ */
     .site-wrap { position: relative; z-index: 1; }
-
     .content-box {
       max-width: var(--max-w);
       margin: 0 auto;
       padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
     }
 
-    /* ============================================================
-       REVEAL
-    ============================================================ */
     .reveal {
       opacity: 0; transform: translateY(16px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
     }
     .reveal.on { opacity: 1; transform: none; }
-
     @media (prefers-reduced-motion: reduce) {
       .reveal { transition: none; opacity: 1; transform: none; }
     }
 
-    /* ============================================================
-       BACK LINK
-    ============================================================ */
-    .back-link-wrap {
-      margin-bottom: 24px;
-    }
+    /* BACK LINK */
+    .back-link-wrap { margin-bottom: 24px; }
     .back-link {
-      display: inline-flex;
-      align-items: center;
+      display: inline-flex; align-items: center;
       font-family: var(--f-sc);
       font-size: clamp(0.55rem, 1.5vw, 0.6rem);
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      min-height: 40px;
-      -webkit-tap-highlight-color: transparent;
+      letter-spacing: 0.15em; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+      min-height: 40px; -webkit-tap-highlight-color: transparent;
     }
     .back-link:hover { color: var(--bordeaux); }
 
-    /* ============================================================
-       MASTHEAD / HEADER
-    ============================================================ */
+    /* MASTHEAD */
     .masthead {
       border-top: 4px double var(--ink);
       border-bottom: 1px solid var(--border-strong);
-      padding: 32px 0 24px;
-      margin-bottom: 48px;
-      text-align: center;
-      position: relative;
+      padding: 32px 0 24px; margin-bottom: 48px;
+      text-align: center; position: relative;
     }
-
     .masthead-kicker {
       font-family: var(--f-sc);
       font-size: clamp(0.5rem, 1.3vw, 0.6rem);
-      letter-spacing: 0.35em;
-      color: var(--bordeaux);
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 12px;
+      letter-spacing: 0.35em; color: var(--bordeaux);
+      text-transform: uppercase; display: block; margin-bottom: 12px;
     }
-
     .masthead-title {
       font-family: var(--f-display);
       font-size: clamp(1.8rem, 7vw, 3.2rem);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      margin-bottom: 12px;
+      font-weight: 700; color: var(--ink);
+      line-height: 1.1; letter-spacing: 0.02em; margin-bottom: 12px;
     }
-
     .masthead-subtitle {
       font-family: var(--f-jp);
       font-size: clamp(0.8rem, 2vw, 0.95rem);
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      display: block;
+      font-weight: 300; letter-spacing: 0.12em;
+      color: var(--muted); display: block;
     }
 
-    /* ============================================================
-       TOC (INDEX)
-    ============================================================ */
+    /* TOC */
     .toc-wrap {
       border: 1px solid var(--border-strong);
       background: rgba(245,237,216,0.6);
-      padding: clamp(16px, 4vw, 24px);
-      margin-bottom: 48px;
+      padding: clamp(16px, 4vw, 24px); margin-bottom: 48px;
     }
-    .toc-head {
-      text-align: center;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-    .toc-head-title {
-      font-family: var(--f-display);
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--ink);
-      letter-spacing: 0.05em;
-    }
+    .toc-head { text-align: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .toc-head-title { font-family: var(--f-display); font-style: italic; font-size: 1.1rem; color: var(--ink); letter-spacing: 0.05em; }
     .toc-list { list-style: none; }
     .toc-link {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px dashed var(--border);
-      text-decoration: none;
-      min-height: 44px;
-      transition: color 0.2s, opacity 0.2s;
+      padding: 12px 0; border-bottom: 1px dashed var(--border);
+      text-decoration: none; min-height: 44px; transition: color 0.2s;
       -webkit-tap-highlight-color: transparent;
     }
     .toc-list li:last-child .toc-link { border-bottom: none; }
-    .toc-text {
-      font-family: var(--f-jp);
-      font-size: clamp(0.75rem, 2vw, 0.8rem);
-      color: var(--ink-soft);
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .toc-action {
-      font-family: var(--f-body);
-      font-style: italic;
-      font-size: 0.7rem;
-      color: var(--muted);
-      white-space: nowrap;
-      margin-left: 12px;
-      transition: color 0.2s;
-    }
-    .toc-link:hover .toc-text { color: var(--bordeaux); }
+    .toc-text { font-family: var(--f-jp); font-size: clamp(0.75rem, 2vw, 0.8rem); color: var(--ink-soft); font-weight: 500; transition: color 0.2s; }
+    .toc-action { font-family: var(--f-body); font-style: italic; font-size: 0.7rem; color: var(--muted); white-space: nowrap; margin-left: 12px; transition: color 0.2s; }
+    .toc-link:hover .toc-text,
     .toc-link:hover .toc-action { color: var(--bordeaux); }
 
     /* ============================================================
-       PHOTO FRAME
+       PHOTO FRAME — 修正版
+       aspect-ratio を 3/2 に変更して縦方向の見切れを軽減
     ============================================================ */
     .photo-frame {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
+      aspect-ratio: 3 / 2;          /* 16/9 → 3/2 に変更 */
       overflow: hidden;
       background: var(--ink-2);
       border: 1px solid var(--border-strong);
@@ -254,142 +178,177 @@
     .photo-frame img {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center;       /* デフォルト */
       filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
       display: block;
     }
 
-    /* ============================================================
-       ARTICLE BODY
-    ============================================================ */
+    /* 外観・尖塔系 → 上基準で表示 */
+    .photo-frame--top img {
+      object-position: top center;
+    }
+
+    /* 夜景・ライトアップ系 → 上基準 ＋ 温かみフィルター */
+    .photo-frame--night img {
+      object-position: top center;
+      filter: grayscale(8%) sepia(35%) contrast(1.1) brightness(0.82) saturate(1.15);
+    }
+
+    /* 水鏡リフレクション → 中央 (上下対称を保つ) */
+    .photo-frame--reflection img {
+      object-position: center;
+      filter: grayscale(15%) sepia(25%) contrast(1.08) brightness(0.88);
+    }
+
+    /* 城内写真 → 上中心 */
+    .photo-frame--interior img {
+      object-position: top center;
+      filter: grayscale(20%) sepia(15%) contrast(1.05) brightness(0.92);
+    }
+
+    /* ARTICLE */
     .article-block { margin-bottom: 56px; }
-    
+
     .article-h2 {
-      font-family: var(--f-display);
-      font-style: italic;
-      font-size: clamp(1.2rem, 3.5vw, 1.4rem);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 24px;
+      font-family: var(--f-display); font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.4rem); font-weight: 700;
+      color: var(--ink); margin-bottom: 24px;
       display: flex; align-items: center; gap: 16px;
       letter-spacing: 0.02em;
     }
-    .article-h2::after {
-      content: ''; flex: 1; height: 1px;
-      background: var(--border-strong);
-    }
-    
-    .article-p {
-      font-family: var(--f-jp);
-      font-size: clamp(0.8rem, 2vw, 0.85rem);
-      font-weight: 300;
-      color: var(--ink-soft);
-      line-height: 2.1;
-      margin-bottom: 20px;
-      text-align: justify;
-    }
-    .article-p strong {
-      font-weight: 500;
-      color: var(--ink);
-    }
+    .article-h2::after { content: ''; flex: 1; height: 1px; background: var(--border-strong); }
 
     /* ============================================================
-       COLUMN CARD
+       GOLD HEADING — #night-dress セクション用
     ============================================================ */
-    .column-box {
-      border: 1px solid var(--border-strong);
-      border-left: 3px solid var(--bordeaux);
-      background: rgba(245,237,216,0.4);
-      padding: clamp(20px, 4vw, 28px);
-      margin: 32px 0;
+    .article-h2--gold {
+      color: var(--gold-2);
     }
+    .article-h2--gold::after {
+      background: var(--gold-rule);
+    }
+
+    .article-p {
+      font-family: var(--f-jp); font-size: clamp(0.8rem, 2vw, 0.85rem);
+      font-weight: 300; color: var(--ink-soft);
+      line-height: 2.1; margin-bottom: 20px; text-align: justify;
+    }
+    .article-p strong { font-weight: 500; color: var(--ink); }
+
+    /* ============================================================
+       GOLD SECTION WRAPPER — #night-dress を金色の雰囲気に
+    ============================================================ */
+    .section--gold {
+      scroll-margin-top: 32px;       /* アンカーリンクが隠れないように */
+      border-left: 3px solid var(--gold-rule);
+      padding-left: 20px;
+      margin-left: -20px;
+    }
+
+    /* Instagram流入向けゴールドバナー */
+    .gold-entry-banner {
+      display: flex; align-items: center; gap: 10px;
+      border: 1px solid var(--gold-rule);
+      background: rgba(138,104,32,0.07);
+      padding: 12px 16px;
+      margin-bottom: 28px;
+    }
+    .gold-entry-banner-text {
+      font-family: var(--f-type);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      line-height: 1.7;
+    }
+
+    /* COLUMN BOX */
+    .column-box {
+      border: 1px solid var(--border-strong); border-left: 3px solid var(--bordeaux);
+      background: rgba(245,237,216,0.4); padding: clamp(20px, 4vw, 28px); margin: 32px 0;
+    }
+    /* ゴールド variant — ウォルトの塔など */
+    .column-box--gold {
+      border-color: var(--gold-rule);
+      border-left-color: var(--gold);
+      background: rgba(138,104,32,0.06);
+    }
+    .column-box--gold h4 { color: var(--gold-2); }
     .column-box h4 {
-      font-family: var(--f-jp);
-      font-size: clamp(0.85rem, 2vw, 0.9rem);
-      font-weight: 700;
-      color: var(--bordeaux);
-      margin-bottom: 16px;
-      line-height: 1.5;
+      font-family: var(--f-jp); font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-weight: 700; color: var(--bordeaux); margin-bottom: 16px; line-height: 1.5;
     }
     .column-box p {
-      font-family: var(--f-jp);
-      font-size: clamp(0.75rem, 2vw, 0.8rem);
-      font-weight: 300;
-      color: var(--ink-soft);
-      line-height: 2;
-      margin-bottom: 0;
+      font-family: var(--f-jp); font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 300; color: var(--ink-soft); line-height: 2; margin-bottom: 0;
     }
 
-    /* ============================================================
-       DATA TABLE
-    ============================================================ */
+    /* DATA TABLE */
     .data-table-wrap {
-      overflow-x: auto;
-      margin: 32px 0;
+      overflow-x: auto; margin: 32px 0;
       border: 1px solid var(--border-strong);
       background: rgba(255,252,245,0.4);
     }
     .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 500px;
-      text-align: left;
+      width: 100%; border-collapse: collapse; min-width: 500px; text-align: left;
     }
     .data-table th, .data-table td {
-      padding: 12px 16px;
-      border-bottom: 1px dashed var(--border);
-      font-family: var(--f-jp);
-      font-size: clamp(0.7rem, 2vw, 0.75rem);
-      line-height: 1.8;
-      vertical-align: top;
+      padding: 12px 16px; border-bottom: 1px dashed var(--border);
+      font-family: var(--f-jp); font-size: clamp(0.7rem, 2vw, 0.75rem);
+      line-height: 1.8; vertical-align: top;
     }
     .data-table tr:last-child td { border-bottom: none; }
     .data-table th {
-      font-family: var(--f-sc);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--bordeaux);
-      text-transform: uppercase;
-      background: rgba(245,237,216,0.5);
-      border-bottom: 1px solid var(--border-strong);
+      font-family: var(--f-sc); font-size: 0.65rem; letter-spacing: 0.15em;
+      color: var(--bordeaux); text-transform: uppercase;
+      background: rgba(245,237,216,0.5); border-bottom: 1px solid var(--border-strong);
       font-weight: 400;
     }
-    .data-table td strong {
-      color: var(--ink);
-      font-family: var(--f-sc);
-      letter-spacing: 0.05em;
-    }
+    .data-table td strong { color: var(--ink); font-family: var(--f-sc); letter-spacing: 0.05em; }
 
     /* ============================================================
-       FOOTER LINK
+       X SHARE BUTTON
     ============================================================ */
-    .footer-link-wrap {
-      text-align: center;
-      margin-top: 64px;
-      border-top: 1px solid var(--border-strong);
-      padding-top: 32px;
+    .share-section {
+      text-align: center; margin: 56px 0 0;
+      padding-top: 32px; border-top: 3px double var(--border-strong);
     }
+    .share-ornament {
+      display: block; font-family: var(--f-body);
+      color: var(--gold); letter-spacing: 0.4em;
+      font-size: 0.85rem; margin-bottom: 16px;
+    }
+    .share-label {
+      display: block; font-family: var(--f-type);
+      font-size: 0.58rem; letter-spacing: 0.22em;
+      color: var(--bordeaux); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .share-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: var(--f-sc); font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.22em; color: var(--ink);
+      text-decoration: none; text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid var(--border-strong);
+      background: rgba(255,252,245,0.4);
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      min-height: 44px; -webkit-tap-highlight-color: transparent;
+    }
+    .share-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .share-btn svg { flex-shrink: 0; }
+
+    /* FOOTER */
+    .footer-link-wrap { text-align: center; margin-top: 40px; padding-top: 32px; }
     .footer-link {
-      display: inline-flex;
-      align-items: center;
-      font-family: var(--f-sc);
-      font-size: clamp(0.6rem, 1.5vw, 0.65rem);
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      min-height: 40px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 4px;
+      display: inline-flex; align-items: center;
+      font-family: var(--f-sc); font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+      letter-spacing: 0.15em; color: var(--muted); text-decoration: none;
+      transition: color 0.2s; min-height: 40px;
+      border-bottom: 1px solid var(--border); padding-bottom: 4px;
       -webkit-tap-highlight-color: transparent;
     }
-    .footer-link:hover {
-      color: var(--bordeaux);
-      border-bottom-color: var(--bordeaux);
-    }
-    
-    /* ============================================================
-       FOCUS STYLES
-    ============================================================ */
+    .footer-link:hover { color: var(--bordeaux); border-bottom-color: var(--bordeaux); }
+
     :focus-visible { outline: 2px solid var(--bordeaux); outline-offset: 3px; }
   </style>
 </head>
@@ -408,40 +367,37 @@
     <span class="masthead-subtitle">時を刻む魔法と、青き尖塔のファンタジー</span>
   </header>
 
-  <!-- 目次 -->
   <nav class="toc-wrap reveal" aria-label="目次">
     <div class="toc-head">
       <span class="toc-head-title">Index</span>
     </div>
     <ul class="toc-list">
-      <li><a href="#prologue" class="toc-link"><span class="toc-text">I. 夢が現実になる場所（プロローグ）</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#history" class="toc-link"><span class="toc-text">II. 絵本の世界へ誘う色彩と「優しい配慮」</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#architecture" class="toc-link"><span class="toc-text">III. 「空を近くする」視覚の魔法</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#night-dress" class="toc-link"><span class="toc-text">IV. 夜が魅せる、色とりどりのドレスアップ</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#prologue"      class="toc-link"><span class="toc-text">I. 夢が現実になる場所（プロローグ）</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#history"       class="toc-link"><span class="toc-text">II. 絵本の世界へ誘う色彩と「優しい配慮」</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#architecture"  class="toc-link"><span class="toc-text">III. 「空を近くする」視覚の魔法</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#night-dress"   class="toc-link"><span class="toc-text">IV. 夜が魅せる、色とりどりのドレスアップ ✦</span><span class="toc-action">Read →</span></a></li>
       <li><a href="#inside-castle" class="toc-link"><span class="toc-text">V. お城の中に隠された、秘密の回廊と光のドーム</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#comparison" class="toc-link"><span class="toc-text">VI. 世界のディズニー城 徹底比較</span><span class="toc-action">Read →</span></a></li>
-      <li><a href="#trivia" class="toc-link"><span class="toc-text">VII. 堀を泳ぐカルガモと、お城が起こす小さな奇跡</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#comparison"    class="toc-link"><span class="toc-text">VI. 世界のディズニー城 徹底比較</span><span class="toc-action">Read →</span></a></li>
+      <li><a href="#trivia"        class="toc-link"><span class="toc-text">VII. 堀を泳ぐカルガモと、お城が起こす小さな奇跡</span><span class="toc-action">Read →</span></a></li>
     </ul>
   </nav>
 
-  <!-- 1枚目：晴れ渡る日の美しいお城 -->
-  <div class="photo-frame reveal">
+  <!-- 1枚目：晴れ渡る日 → top基準で尖塔を見せる -->
+  <div class="photo-frame photo-frame--top reveal">
     <img src="cinderella-castle-sunny.jpg" alt="Cinderella Castle on a Sunny Day" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
   </div>
 
-  <!-- I. プロローグ -->
   <section class="article-block reveal" id="prologue">
     <h2 class="article-h2">I. 夢が現実になる場所</h2>
     <p class="article-p">ワールドバザールを抜け、どこまでも続く青空のもと、前方にそびえ立つ美しい「シンデレラ城」。一歩一歩近づくごとに、日常の騒がしさは遥か遠くへ消え去り、きらめく童話の世界に迎え入れられます。</p>
     <p class="article-p">このお城には、単なるランドマークとしての枠を超えた、イマジニアたちの細やかな「おもてなしの魔法」が散りばめられています。お城を見上げたときの高揚感、城門をくぐり抜けるときのどこか特別な空気。それらすべてが、私たちを物語の主人公へと優しく仕立て上げてくれます。</p>
   </section>
 
-  <!-- 2枚目：手前の城壁塔とお城 -->
-  <div class="photo-frame reveal">
+  <!-- 2枚目：手前の城壁塔 → top基準 -->
+  <div class="photo-frame photo-frame--top reveal">
     <img src="cinderella-tower-front.jpg" alt="Castle Turret View" width="800" height="450" decoding="async" loading="lazy">
   </div>
 
-  <!-- II. 絵本の世界へ誘う色彩と「優しい配慮」 -->
   <section class="article-block reveal" id="history">
     <h2 class="article-h2">II. 絵本の世界へ誘う色彩と「優しい配慮」</h2>
     <p class="article-p">お城を近くから眺めてみると、手前の重厚な城壁の石造りから、天に伸びる塔へ向かうにつれて優しく明るいクリーム色へとグラデーションが施されているのがわかります。この色彩は、東京の柔らかな光のもとで最も美しく輝き、温かみと高揚感をゲストに与えるように何度も計算して選ばれました。</p>
@@ -452,55 +408,68 @@
       <p>実は開園当初、お城のなかに贅沢なレストランをオープンする計画がありました。しかし諸条件からそれは幻の計画となり、その代わりに数々の冒険を生んだ「シンデレラ城ミステリーツアー」が誕生しました。<br><br>
       そして現在、城内は「シンデレラのフェアリーテイル・ホール」として生まれ変わり、美しいステンドグラスやシンデレラの物語を描いた数々の美術品が並ぶ、優雅なプリンセスの空間として私たちを歓迎してくれます。</p>
     </div>
+
+    <div class="column-box column-box--gold reveal">
+      <h4>✦ 金色の塔に宿る、ウォルトの美学とファンのロマン</h4>
+      <p>カリフォルニアの「眠れる森の美女の城」に小さな金色の塔が添えられた際、創始者ウォルト・ディズニーはそのデザインをとても気に入っていたと伝えられています。その美意識はその後のシンデレラ城にも受け継がれ、最も高くそびえる塔の頂へ、誇らしげに金色が採用されました。<br><br>
+      ファンの間では「空の上からパークを見守るウォルトが、自分のお城を見つけられるように」という温かなロマンが語り継がれています。公式な設定ではなく、あくまでファンたちが紡いだ夢の物語ですが、そう信じて空に向かってそびえる金の塔を見上げると、その輝きがいっそう特別なものに感じられるから不思議です。</p>
+    </div>
   </section>
 
-  <!-- 3枚目：昼のプラザとお城 -->
+  <!-- 3枚目：昼のプラザ → center（広場+城を両方映す） -->
   <div class="photo-frame reveal">
     <img src="cinderella-castle-plaza.jpg" alt="Lively Palace Plaza" width="800" height="450" decoding="async" loading="lazy">
   </div>
 
-  <!-- III. 「空を近くする」視覚の魔法 -->
   <section class="article-block reveal" id="architecture">
     <h2 class="article-h2">III. 「空を近くする」視覚の魔法</h2>
     <p class="article-p">プラザの広場から、ゆっくりとお城全体を見上げてみてください。実際よりも遥かに高く、まるで本当に雲に届きそうな壮大さを感じませんか？</p>
     <p class="article-p">ここには、上に行くほど窓や石垣、レンガのサイズを少しずつ小さく描いていく「強制遠近法」という視覚の魔法がかけられています。地上から見上げるゲストの瞳には、奥行き（パースペクティブ）が強調され、実際よりもはるかにスケールの大きな絵本の世界として映し出されるのです。工学的な現実を感じさせず、ただ物語としての純粋な美しさだけを伝える、イマジニアこだわりの技法です。</p>
   </section>
 
-  <!-- 4枚目：夕暮れの美しい水鏡リフレクション -->
-  <div class="photo-frame reveal">
+  <!-- 4枚目：水鏡リフレクション → reflection（対称を保つ） -->
+  <div class="photo-frame photo-frame--reflection reveal">
     <img src="cinderella-castle-reflection.jpg" alt="Cinderella Castle Reflection in Moat" width="800" height="450" decoding="async" loading="lazy">
   </div>
 
-  <!-- IV. 夜が魅せる、色とりどりのドレスアップ -->
-  <section class="article-block reveal" id="night-dress">
-    <h2 class="article-h2">IV. 夜が魅せる、色とりどりのドレスアップ</h2>
+  <!-- ============================================================
+       IV. 夜のドレスアップ — 金色セクション
+  ============================================================ -->
+  <section class="article-block section--gold reveal" id="night-dress">
+
+    <!-- Instagram流入向けゴールドバナー -->
+    <div class="gold-entry-banner">
+      <span class="gold-entry-banner-text">
+        ✦ &nbsp; Featured Highlight &nbsp;—&nbsp; 夜が纏う、黄金のドレス
+      </span>
+    </div>
+
+    <h2 class="article-h2 article-h2--gold">IV. 夜が魅せる、色とりどりのドレスアップ</h2>
     <p class="article-p">太陽が沈み、静かに夕闇が降りてくる頃。お城を囲むお堀の水面は、優しい光に照らされた青き尖塔をまるで鏡のように静かに映し出します。</p>
     <p class="article-p">シンデレラ城は、季節の移り変わりや節目のセレブレーションごとに、色鮮やかな光やデコレーションで華やかに着飾ります。アニバーサリーを祝う黄金の輝きや、ディズニーの夢を届けるプロジェクションマッピングなど、お城自体が一つの生きたキャンバスとなり、私たちの心に永遠に残る特別な夜をプロデュースしてくれます。</p>
   </section>
 
-  <!-- 5枚目：40周年夜の美しくライトアップされたシンデレラ城 -->
-  <div class="photo-frame reveal">
+  <!-- 5枚目：40周年夜景 → night（暖色フィルター+尖塔top） -->
+  <div class="photo-frame photo-frame--night reveal">
     <img src="cinderella-castle-40th-night.jpg" alt="40th Anniversary Light Up" width="800" height="450" decoding="async" loading="lazy">
   </div>
 
-  <!-- V. お城の中に隠された、秘密の回廊と光のドーム -->
   <section class="article-block reveal" id="inside-castle">
     <h2 class="article-h2">V. お城の中に隠された、秘密の回廊と光のドーム</h2>
     <p class="article-p">お城のなかへと一歩入ると、そこは外の広場とはまた違った、静粛で神秘的な空気が漂っています。</p>
     <p class="article-p">重厚な石造りのアーチに包まれた回廊のウェイティングスペース。頭上には、古い騎士たちの邸宅を思わせる、鉄細工の重厚で美しいシャンデリアが揺れています。その先に進むと、パステルブルーとゴールドの繊細な装飾で縁取られた八角形の高天井（ドーム）が現れ、まばゆいクリスタルのシャンデリアが空間全体に虹色の光の粒を優しく降らせています。そこにいるだけでプリンセスの優雅な余韻に浸れる、こだわり抜かれたロイヤルな空間デザインです。</p>
   </section>
 
-  <!-- 6枚目：城内のキューラインの鉄製シャンデリアとアーチ -->
-  <div class="photo-frame reveal">
+  <!-- 6枚目：城内キューライン → interior（上基準） -->
+  <div class="photo-frame photo-frame--interior reveal">
     <img src="cinderella-inside-queue.jpg" alt="Castle Corridor Queue" width="800" height="450" decoding="async" loading="lazy">
   </div>
 
-  <!-- 7枚目：大広間の美しい八角形天井と豪華シャンデリア -->
-  <div class="photo-frame reveal">
+  <!-- 7枚目：大広間天井 → interior（上基準で天井を見せる） -->
+  <div class="photo-frame photo-frame--interior reveal">
     <img src="cinderella-hall-ceiling.jpg" alt="Grand Ballroom Dome Ceiling" width="800" height="450" decoding="async" loading="lazy">
   </div>
 
-  <!-- VI. 世界のディズニー城 徹底比較 -->
   <section class="article-block reveal" id="comparison">
     <h2 class="article-h2">VI. 世界のディズニー城 徹底比較</h2>
     <p class="article-p">世界中のディズニーパークにあるお城は、それぞれの土地や物語に合わせて、異なるコンセプトでデザインされています。建築の細かな数字は置いておき、それぞれの「デザインコンセプト」と「見どころ」を夢あふれる視点で比較してみましょう。</p>
@@ -555,9 +524,15 @@
         </tbody>
       </table>
     </div>
+
+    <div class="column-box reveal">
+      <h4>🌏 同じシンデレラ城なのに、なぜ印象が違うのか</h4>
+      <p>東京とフロリダの「シンデレラ城」は同じ物語をモチーフにしながら、並べてみると明らかに色の雰囲気が異なります。その理由の一つは、それぞれの土地の光にあります。<br><br>
+      日差しが強烈なフロリダでは、淡い色は強い紫外線に洗われてくすんで見えてしまうため、城の外壁はコントラストの高い深みのある白とグレーが採用されています。一方、穏やかな拡散光が多い東京では、より柔らかなクリームホワイトと青みがかった尖塔が採用されており、晴れた日には絵本から切り取られたような、夢見るような優しい印象を醸し出します。<br><br>
+      この「やわらかさ」はフロリダのお城にはない東京固有の魅力として、海外のディズニーファンの間でも高く評価されており、「世界で最も美しいシンデレラ城」として語る声も少なくありません。</p>
+    </div>
   </section>
 
-  <!-- VII. トリビア -->
   <section class="article-block reveal" id="trivia">
     <h2 class="article-h2">VII. 堀を泳ぐカルガモと、お城が起こす小さな奇跡</h2>
     <p class="article-p">お城を囲む穏やかなお堀。そこをすいすいと泳ぐ愛らしいカルガモたちを見かけたら、ぜひ優しく見守ってみてください。彼らは人工のオーディオ・アニマトロニクスではなく、居心地のよい魔法の空気に誘われていつの間にかここに住み着くようになった、本物のカルガモたちです。</p>
@@ -570,34 +545,55 @@
     </div>
   </section>
 
+  <!-- ===== X SHARE BUTTON ===== -->
+  <div class="share-section reveal">
+    <span class="share-ornament">❦ &nbsp; ❦ &nbsp; ❦</span>
+    <span class="share-label">Share this Story</span>
+    <a id="x-share-btn" href="#" class="share-btn" target="_blank" rel="noopener noreferrer" aria-label="この記事をXでシェアする">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.626zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+      X でシェアする
+    </a>
+  </div>
+
   <div class="footer-link-wrap reveal">
     <a href="index.html" class="footer-link">← HOMEへ戻る</a>
   </div>
 
-</div><!-- /content-box -->
-</div><!-- /site-wrap -->
+</div>
+</div>
 
 <script>
+  /* ============================================================
+     X SHARE CONFIG — 記事ごとにここだけ変更する
+  ============================================================ */
+  var SHARE_TITLE = "シンデレラ城：時を刻む魔法と、青き尖塔のファンタジー";
+  var SHARE_URL   = "https://teruluce07-cmd.github.io/disney-bgs/cinderella-castle.html";
+  var SHARE_TAGS  = "#東京ディズニーランド #シンデレラ城 #BGSChronicles";
+  /* ============================================================ */
+
+  (function() {
+    var body = "【BGS Chronicles】" + SHARE_TITLE + "\n\n" + SHARE_URL + "\n\n" + SHARE_TAGS;
+    var btn = document.getElementById('x-share-btn');
+    if (btn) btn.href = "https://x.com/intent/tweet?text=" + encodeURIComponent(body);
+  })();
+
   /* Reveal on scroll */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { 
-        e.target.classList.add('on'); 
-        io.unobserve(e.target); 
-      }
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
     });
   }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
-  
+
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  /* ファーストビューの要素を即時表示 */
   setTimeout(() => {
     document.querySelectorAll('.reveal').forEach((el, index) => {
-      if(index < 3) el.classList.add('on');
+      if (index < 3) el.classList.add('on');
     });
   }, 50);
 
-  /* Image protection */
   document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
   document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
