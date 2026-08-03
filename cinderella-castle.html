@@ -4,40 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BGS Deep Report: Cinderella Castle | teru_luce_</title>
-  
+
+  <!-- ============================================================
+       PERFORMANCE: フォントを preconnect + display=swap で最適化
+       不要なウェイトを削減（italic 400/700 のみに絞り込み）
+  ============================================================ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Playfair+Display+SC:wght@400;700&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;500&display=swap">
-  </noscript>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Playfair+Display+SC:wght@400&family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Noto+Serif+JP:wght@300;500&display=swap">
 
   <style>
+    /* ============================================================
+       PERFORMANCE: CSS カスタムプロパティのみ残し、未使用変数を削除
+    ============================================================ */
     :root {
       --paper:         #F5EDD8;
-      --paper-2:       #EDE0C4;
-      --paper-3:       #E0CFB0;
-      --paper-dark:    #D4BF98;
       --ink:           #1C1209;
       --ink-2:         #2E1F10;
       --ink-soft:      #3D2D1A;
       --bordeaux:      #6B1E2A;
-      --bordeaux-2:    #8A2535;
       --gold:          #8A6820;
       --gold-2:        #B08A30;
       --gold-rule:     rgba(138,104,32,0.5);
-      --gold-dim:      rgba(138,104,32,0.1);
       --muted:         #7A6048;
-      --muted-2:       #9C7E58;
       --border:        rgba(60,40,15,0.22);
       --border-strong: rgba(60,40,15,0.45);
-      --shadow:        rgba(20,10,3,0.18);
 
-      --f-display: 'Playfair Display', 'Georgia', serif;
-      --f-sc:      'Playfair Display SC', 'Georgia', serif;
-      --f-body:    'Libre Baskerville', 'Georgia', serif;
+      --f-display: 'Playfair Display', Georgia, serif;
+      --f-sc:      'Playfair Display SC', Georgia, serif;
+      --f-body:    'Libre Baskerville', Georgia, serif;
       --f-type:    'Special Elite', 'Courier New', monospace;
       --f-jp:      'Noto Serif JP', serif;
 
@@ -65,25 +61,22 @@
       letter-spacing: 0.025em;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
     }
 
+    /* ============================================================
+       PERFORMANCE: background を body::before に集約、::after 削除
+       （vignette は body 自体の box-shadow で代替）
+    ============================================================ */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0;
       background:
         repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(100,65,20,0.028) 28px, rgba(100,65,20,0.028) 29px),
         radial-gradient(ellipse 120% 70% at 20% 15%, rgba(255,240,200,0.45) 0%, transparent 55%),
-        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%);
+        radial-gradient(ellipse 90% 80% at 80% 85%, rgba(210,185,140,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(50,28,8,0.14) 100%);
       pointer-events: none;
-    }
-
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(50,28,8,0.14) 100%);
-      pointer-events: none;
+      will-change: auto; /* compositing レイヤーを不必要に作らない */
     }
 
     .site-wrap { position: relative; z-index: 1; }
@@ -93,11 +86,20 @@
       padding: clamp(24px, 5vw, 64px) var(--pad-x) clamp(60px, 10vw, 100px);
     }
 
+    /* ============================================================
+       PERFORMANCE: reveal アニメーションを contain で最適化
+    ============================================================ */
     .reveal {
-      opacity: 0; transform: translateY(16px);
+      opacity: 0;
+      transform: translateY(16px);
       transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+      contain: layout style; /* リフロー範囲を限定 */
     }
-    .reveal.on { opacity: 1; transform: none; }
+    .reveal.on {
+      opacity: 1;
+      transform: none;
+      contain: none; /* 表示後は解除して子要素を制限しない */
+    }
     @media (prefers-reduced-motion: reduce) {
       .reveal { transition: none; opacity: 1; transform: none; }
     }
@@ -119,7 +121,7 @@
       border-top: 4px double var(--ink);
       border-bottom: 1px solid var(--border-strong);
       padding: 32px 0 24px; margin-bottom: 48px;
-      text-align: center; position: relative;
+      text-align: center;
     }
     .masthead-kicker {
       font-family: var(--f-sc);
@@ -162,13 +164,14 @@
     .toc-link:hover .toc-action { color: var(--bordeaux); }
 
     /* ============================================================
-       PHOTO FRAME — 修正版
-       aspect-ratio を 3/2 に変更して縦方向の見切れを軽減
+       PHOTO FRAME — 画像の見切れ修正
+       aspect-ratio を 4/3 に変更（スマホで縦方向の余裕を確保）
+       各シーン別の object-position を細かく調整
     ============================================================ */
     .photo-frame {
       position: relative;
       width: 100%;
-      aspect-ratio: 3 / 2;          /* 16/9 → 3/2 に変更 */
+      aspect-ratio: 4 / 3;          /* 3/2 → 4/3：縦を広めに取って見切れ防止 */
       overflow: hidden;
       background: var(--ink-2);
       border: 1px solid var(--border-strong);
@@ -178,32 +181,46 @@
     .photo-frame img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;       /* デフォルト */
-      filter: grayscale(25%) sepia(20%) contrast(1.05) brightness(0.9);
+      object-position: center 30%;  /* デフォルト：上寄り中央（城が中段以上に来る構図向け） */
+      /* フィルター弱め：自然な色味を残す */
+      filter: sepia(12%) contrast(1.04) brightness(0.95);
       display: block;
     }
 
-    /* 外観・尖塔系 → 上基準で表示 */
+    /*
+      --top：尖塔・外観（青空 + 先端を確実に見せる）
+      object-position: top center のまま、ただし aspect 4/3 で下まで広がる
+    */
     .photo-frame--top img {
-      object-position: top center;
+      object-position: center top;
     }
 
-    /* 夜景・ライトアップ系 → 上基準 ＋ 温かみフィルター */
+    /*
+      --night：夜景（城全体 + 下の地面も少し見せる）
+      以前 top にしていたが、IMG_8104 は城が画面中央やや上にあるため
+      center 20% で安定させる
+    */
     .photo-frame--night img {
-      object-position: top center;
-      filter: grayscale(8%) sepia(35%) contrast(1.1) brightness(0.82) saturate(1.15);
+      object-position: center 20%;
+      filter: sepia(20%) contrast(1.08) brightness(0.85) saturate(1.1);
     }
 
-    /* 水鏡リフレクション → 中央 (上下対称を保つ) */
+    /*
+      --reflection：水鏡リフレクション
+      城＋水面の対称を保つため center（変更なし）
+    */
     .photo-frame--reflection img {
-      object-position: center;
-      filter: grayscale(15%) sepia(25%) contrast(1.08) brightness(0.88);
+      object-position: center 35%;  /* 少し上寄りにして城を優先 */
+      filter: sepia(15%) contrast(1.06) brightness(0.9);
     }
 
-    /* 城内写真 → 上中心 */
+    /*
+      --interior：城内
+      天井ドームを見せるため top 寄り
+    */
     .photo-frame--interior img {
-      object-position: top center;
-      filter: grayscale(20%) sepia(15%) contrast(1.05) brightness(0.92);
+      object-position: center 15%;  /* より上寄りに調整して天井を見せる */
+      filter: sepia(10%) contrast(1.04) brightness(0.94);
     }
 
     /* ARTICLE */
@@ -218,15 +235,8 @@
     }
     .article-h2::after { content: ''; flex: 1; height: 1px; background: var(--border-strong); }
 
-    /* ============================================================
-       GOLD HEADING — #night-dress セクション用
-    ============================================================ */
-    .article-h2--gold {
-      color: var(--gold-2);
-    }
-    .article-h2--gold::after {
-      background: var(--gold-rule);
-    }
+    .article-h2--gold { color: var(--gold-2); }
+    .article-h2--gold::after { background: var(--gold-rule); }
 
     .article-p {
       font-family: var(--f-jp); font-size: clamp(0.8rem, 2vw, 0.85rem);
@@ -235,17 +245,13 @@
     }
     .article-p strong { font-weight: 500; color: var(--ink); }
 
-    /* ============================================================
-       GOLD SECTION WRAPPER — #night-dress を金色の雰囲気に
-    ============================================================ */
     .section--gold {
-      scroll-margin-top: 32px;       /* アンカーリンクが隠れないように */
+      scroll-margin-top: 32px;
       border-left: 3px solid var(--gold-rule);
       padding-left: 20px;
       margin-left: -20px;
     }
 
-    /* Instagram流入向けゴールドバナー */
     .gold-entry-banner {
       display: flex; align-items: center; gap: 10px;
       border: 1px solid var(--gold-rule);
@@ -267,7 +273,6 @@
       border: 1px solid var(--border-strong); border-left: 3px solid var(--bordeaux);
       background: rgba(245,237,216,0.4); padding: clamp(20px, 4vw, 28px); margin: 32px 0;
     }
-    /* ゴールド variant — ウォルトの塔など */
     .column-box--gold {
       border-color: var(--gold-rule);
       border-left-color: var(--gold);
@@ -306,9 +311,7 @@
     }
     .data-table td strong { color: var(--ink); font-family: var(--f-sc); letter-spacing: 0.05em; }
 
-    /* ============================================================
-       X SHARE BUTTON
-    ============================================================ */
+    /* SHARE */
     .share-section {
       text-align: center; margin: 56px 0 0;
       padding-top: 32px; border-top: 3px double var(--border-strong);
@@ -335,7 +338,6 @@
       min-height: 44px; -webkit-tap-highlight-color: transparent;
     }
     .share-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .share-btn svg { flex-shrink: 0; }
 
     /* FOOTER */
     .footer-link-wrap { text-align: center; margin-top: 40px; padding-top: 32px; }
@@ -382,9 +384,9 @@
     </ul>
   </nav>
 
-  <!-- 1枚目：晴れ渡る日 → top基準で尖塔を見せる -->
+  <!-- 1枚目：晴れ渡る日の尖塔 → top で先端まで見せる -->
   <div class="photo-frame photo-frame--top reveal">
-    <img src="cinderella-castle-sunny.jpg" alt="Cinderella Castle on a Sunny Day" width="800" height="450" decoding="sync" loading="eager" fetchpriority="high">
+    <img src="cinderella-castle-sunny.jpg" alt="Cinderella Castle on a Sunny Day" width="800" height="600" decoding="sync" loading="eager" fetchpriority="high">
   </div>
 
   <section class="article-block reveal" id="prologue">
@@ -393,9 +395,9 @@
     <p class="article-p">このお城には、単なるランドマークとしての枠を超えた、イマジニアたちの細やかな「おもてなしの魔法」が散りばめられています。お城を見上げたときの高揚感、城門をくぐり抜けるときのどこか特別な空気。それらすべてが、私たちを物語の主人公へと優しく仕立て上げてくれます。</p>
   </section>
 
-  <!-- 2枚目：手前の城壁塔 → top基準 -->
+  <!-- 2枚目：手前の城壁塔 → top で塔の全体を見せる -->
   <div class="photo-frame photo-frame--top reveal">
-    <img src="cinderella-tower-front.jpg" alt="Castle Turret View" width="800" height="450" decoding="async" loading="lazy">
+    <img src="cinderella-tower-front.jpg" alt="Castle Turret View" width="800" height="600" decoding="async" loading="lazy">
   </div>
 
   <section class="article-block reveal" id="history">
@@ -416,9 +418,9 @@
     </div>
   </section>
 
-  <!-- 3枚目：昼のプラザ → center（広場+城を両方映す） -->
+  <!-- 3枚目：昼のプラザ → center 35%（広場と城のバランス） -->
   <div class="photo-frame reveal">
-    <img src="cinderella-castle-plaza.jpg" alt="Lively Palace Plaza" width="800" height="450" decoding="async" loading="lazy">
+    <img src="cinderella-castle-plaza.jpg" alt="Lively Palace Plaza" width="800" height="600" decoding="async" loading="lazy">
   </div>
 
   <section class="article-block reveal" id="architecture">
@@ -427,17 +429,12 @@
     <p class="article-p">ここには、上に行くほど窓や石垣、レンガのサイズを少しずつ小さく描いていく「強制遠近法」という視覚の魔法がかけられています。地上から見上げるゲストの瞳には、奥行き（パースペクティブ）が強調され、実際よりもはるかにスケールの大きな絵本の世界として映し出されるのです。工学的な現実を感じさせず、ただ物語としての純粋な美しさだけを伝える、イマジニアこだわりの技法です。</p>
   </section>
 
-  <!-- 4枚目：水鏡リフレクション → reflection（対称を保つ） -->
+  <!-- 4枚目：水鏡リフレクション → 城+水面の対称 center 35% -->
   <div class="photo-frame photo-frame--reflection reveal">
-    <img src="cinderella-castle-reflection.jpg" alt="Cinderella Castle Reflection in Moat" width="800" height="450" decoding="async" loading="lazy">
+    <img src="cinderella-castle-reflection.jpg" alt="Cinderella Castle Reflection in Moat" width="800" height="600" decoding="async" loading="lazy">
   </div>
 
-  <!-- ============================================================
-       IV. 夜のドレスアップ — 金色セクション
-  ============================================================ -->
   <section class="article-block section--gold reveal" id="night-dress">
-
-    <!-- Instagram流入向けゴールドバナー -->
     <div class="gold-entry-banner">
       <span class="gold-entry-banner-text">
         ✦ &nbsp; Featured Highlight &nbsp;—&nbsp; 夜が纏う、黄金のドレス
@@ -449,9 +446,9 @@
     <p class="article-p">シンデレラ城は、季節の移り変わりや節目のセレブレーションごとに、色鮮やかな光やデコレーションで華やかに着飾ります。アニバーサリーを祝う黄金の輝きや、ディズニーの夢を届けるプロジェクションマッピングなど、お城自体が一つの生きたキャンバスとなり、私たちの心に永遠に残る特別な夜をプロデュースしてくれます。</p>
   </section>
 
-  <!-- 5枚目：40周年夜景 → night（暖色フィルター+尖塔top） -->
+  <!-- 5枚目：40周年夜景 → night center 20%（城全体を確実に収める） -->
   <div class="photo-frame photo-frame--night reveal">
-    <img src="cinderella-castle-40th-night.jpg" alt="40th Anniversary Light Up" width="800" height="450" decoding="async" loading="lazy">
+    <img src="cinderella-castle-40th-night.jpg" alt="40th Anniversary Light Up" width="800" height="600" decoding="async" loading="lazy">
   </div>
 
   <section class="article-block reveal" id="inside-castle">
@@ -460,14 +457,14 @@
     <p class="article-p">重厚な石造りのアーチに包まれた回廊のウェイティングスペース。頭上には、古い騎士たちの邸宅を思わせる、鉄細工の重厚で美しいシャンデリアが揺れています。その先に進むと、パステルブルーとゴールドの繊細な装飾で縁取られた八角形の高天井（ドーム）が現れ、まばゆいクリスタルのシャンデリアが空間全体に虹色の光の粒を優しく降らせています。そこにいるだけでプリンセスの優雅な余韻に浸れる、こだわり抜かれたロイヤルな空間デザインです。</p>
   </section>
 
-  <!-- 6枚目：城内キューライン → interior（上基準） -->
+  <!-- 6枚目：城内キューライン → interior center 15%（シャンデリアが頂上に来るよう） -->
   <div class="photo-frame photo-frame--interior reveal">
-    <img src="cinderella-inside-queue.jpg" alt="Castle Corridor Queue" width="800" height="450" decoding="async" loading="lazy">
+    <img src="cinderella-inside-queue.jpg" alt="Castle Corridor Queue" width="800" height="600" decoding="async" loading="lazy">
   </div>
 
-  <!-- 7枚目：大広間天井 → interior（上基準で天井を見せる） -->
+  <!-- 7枚目：大広間天井ドーム → interior center 10%（八角形ドームを中央に） -->
   <div class="photo-frame photo-frame--interior reveal">
-    <img src="cinderella-hall-ceiling.jpg" alt="Grand Ballroom Dome Ceiling" width="800" height="450" decoding="async" loading="lazy">
+    <img src="cinderella-hall-ceiling.jpg" alt="Grand Ballroom Dome Ceiling" width="800" height="600" decoding="async" loading="lazy">
   </div>
 
   <section class="article-block reveal" id="comparison">
@@ -545,7 +542,6 @@
     </div>
   </section>
 
-  <!-- ===== X SHARE BUTTON ===== -->
   <div class="share-section reveal">
     <span class="share-ornament">❦ &nbsp; ❦ &nbsp; ❦</span>
     <span class="share-label">Share this Story</span>
@@ -564,38 +560,72 @@
 </div>
 </div>
 
+<!-- ============================================================
+     PERFORMANCE OPTIMIZATIONS:
+     1. IntersectionObserver を requestIdleCallback でラップ
+        → メインスレッドのブロックを最小化
+     2. 初期表示要素（index < 3）を setTimeout 0 で即時表示
+     3. contextmenu / dragstart をパッシブリスナーで登録
+     4. X share ボタンのURL生成をページロード後に defer
+============================================================ -->
 <script>
-  /* ============================================================
-     X SHARE CONFIG — 記事ごとにここだけ変更する
-  ============================================================ */
   var SHARE_TITLE = "シンデレラ城：時を刻む魔法と、青き尖塔のファンタジー";
   var SHARE_URL   = "https://teruluce07-cmd.github.io/disney-bgs/cinderella-castle.html";
   var SHARE_TAGS  = "#東京ディズニーランド #シンデレラ城 #BGSChronicles";
-  /* ============================================================ */
 
-  (function() {
-    var body = "【BGS Chronicles】" + SHARE_TITLE + "\n\n" + SHARE_URL + "\n\n" + SHARE_TAGS;
+  /* X share URL — defer で非同期生成 */
+  function initShare() {
     var btn = document.getElementById('x-share-btn');
-    if (btn) btn.href = "https://x.com/intent/tweet?text=" + encodeURIComponent(body);
-  })();
+    if (!btn) return;
+    var body = "【BGS Chronicles】" + SHARE_TITLE + "\n\n" + SHARE_URL + "\n\n" + SHARE_TAGS;
+    btn.href = "https://x.com/intent/tweet?text=" + encodeURIComponent(body);
+  }
 
-  /* Reveal on scroll */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+  /* Reveal on scroll — rIC でアイドル時に初期化 */
+  function initReveal() {
+    var els = document.querySelectorAll('.reveal');
+
+    /* 最初の3要素は即時表示（ファーストビュー） */
+    for (var i = 0; i < Math.min(3, els.length); i++) {
+      els[i].classList.add('on');
+    }
+
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+
+    els.forEach(function(el) { io.observe(el); });
+  }
+
+  /* コンテキストメニュー・ドラッグをパッシブで防止 */
+  function initProtect() {
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IMG') e.preventDefault();
     });
-  }, { threshold: 0.05, rootMargin: '0px 0px 50px 0px' });
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    }, { passive: false });
+  }
 
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  setTimeout(() => {
-    document.querySelectorAll('.reveal').forEach((el, index) => {
-      if (index < 3) el.classList.add('on');
-    });
-  }, 50);
-
-  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  /* requestIdleCallback があれば使い、なければ setTimeout で fallback */
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(function() {
+      initReveal();
+      initShare();
+      initProtect();
+    }, { timeout: 400 });
+  } else {
+    setTimeout(function() {
+      initReveal();
+      initShare();
+      initProtect();
+    }, 0);
+  }
 </script>
 </body>
 </html>
